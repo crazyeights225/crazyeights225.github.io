@@ -1,0 +1,954 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+<div class="row">
+<div class="col-lg-3">
+    <div class="list-group">
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'Intro')" id="defaultOpen">Introduction</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'HSBasics')">Basics</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADT')">Algebraic Data Types</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'MDT')">Maybe Data Type</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADTLL')">ADT: Linked List</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADTQ')">ADT: Queue</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADTAT')">ADT: Arithmetic Tree</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADTG')">ADT: Graphs</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ADTH')">ADT: Heaps</button>
+  <!--<button class="list-group-item list-group-item-action" onclick="openSection(event, 'CG')">Cabal and Gloss</button>-->
+</div>
+<br>
+</div>
+<div class="col-lg-9" id="Intro">
+        <div class="jumbotron">
+                <h1 class="display-3">Functional Programming with Haskell</h1>
+                <p class="lead">Notes and Example Implementations of Data Structures.</p>
+                <hr class="my-4">
+                <p>Basic Haskell Syntax, Implementation of LinkedList, Queue, Arithmetic Tree, Max Heap, and Graphs.</p>
+              </div>
+</div>
+  <div class="col-lg-9" id="HSBasics">
+      <p class="text-info">Functional Programming with Haskell.</p>
+      <h2>Haskell Basics</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">To Install:</div>
+          <div class="card-body">
+              <div style="overflow:auto;width:auto; border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+<span style="color: #71afe5; font-style: italic">//On Linux:</span>
+<span>sudo apt-get install haskell-platform</span>
+                </pre></div>
+          </div>
+        </div>
+
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">GHCI</div>
+    <div class="card-body">
+<div style="overflow:auto;width:auto; border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">//In terminal:</span>
+<span style="color: #2b88d8">~$</span> ghci
+
+<span style="color: #71afe5; font-style: italic">//To quit:</span>
+<span style="color: #2b88d8">:</span>quit
+
+<span style="color: #71afe5; font-style: italic">//To get type of variable:</span>
+<span style="color: #2b88d8">:</span>t [variable]
+
+<span style="color: #71afe5; font-style: italic">//To load from file:</span>
+<span style="color: #2b88d8">:</span>l [filename]
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Comments</div>
+    <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- I am a single line comment</span>
+<span style="color: #71afe5; font-style: italic">{--I am a multiline comment --}</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Types</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto; border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Ints</span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span><span style="color: #FFFFFF">5</span>
+
+<span style="color: #71afe5; font-style: italic">-- Floats</span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span><span style="color: #FFFFFF">5.23</span>
+
+<span style="color: #71afe5; font-style: italic">-- Chars</span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span>&#39;a&#39;
+
+<span style="color: #71afe5; font-style: italic">-- Strings:</span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span><span style="color: #FFFFFF">&quot;abcd&quot;</span>
+
+<span style="color: #71afe5; font-style: italic">-- or </span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+
+<span style="color: #71afe5; font-style: italic">-- Lists, must all have the same data type</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: An integer list, type: [Int] </span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span>[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Tuples, can have different types</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: </span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span>(<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,&#39;a&#39;, [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>])
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">List Operations</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- A list of ints </span>
+
+<span style="color: #FFFFFF">a</span><span style="color: #f0f3f3; font-weight: bold">=</span>[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Get the first element: </span>
+<span style="color: #FFFFFF">head</span> a
+
+<span style="color: #FFFFFF">1</span>
+
+<span style="color: #71afe5; font-style: italic">-- Get every element but the first: </span>
+<span style="color: #FFFFFF">tail</span> a
+
+[<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Get the last element: </span>
+<span style="color: #FFFFFF">last</span> a
+
+<span style="color: #FFFFFF">4</span>
+
+<span style="color: #71afe5; font-style: italic">-- Get every element but the last: </span>
+<span style="color: #FFFFFF">init</span> a
+
+[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Returns true if list is empty, false otherwise </span>
+<span style="color: #FFFFFF">null</span> a
+
+<span style="color: #007788; font-weight: bold">False</span>
+
+<span style="color: #71afe5; font-style: italic">-- reverse the order of the list </span>
+<span style="color: #FFFFFF">reverse</span> a
+
+[<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">1</span>]
+
+<span style="color: #71afe5; font-style: italic">-- get length of list </span>
+<span style="color: #FFFFFF">length</span> a
+
+<span style="color: #FFFFFF">4</span>
+
+<span style="color: #71afe5; font-style: italic">-- get first n elements of the list</span>
+<span style="color: #FFFFFF">take</span> <span style="color: #FFFFFF">2</span> a
+
+[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>]
+
+<span style="color: #71afe5; font-style: italic">-- drop first n elements of the list</span>
+<span style="color: #FFFFFF">drop</span> <span style="color: #FFFFFF">2</span> a
+
+[<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>]
+
+<span style="color: #71afe5; font-style: italic">-- get largest element in a list</span>
+<span style="color: #FFFFFF">maximum</span> a
+
+<span style="color: #FFFFFF">4</span>
+
+<span style="color: #71afe5; font-style: italic">-- get smallest element in a list</span>
+<span style="color: #FFFFFF">minimum</span> a
+
+<span style="color: #FFFFFF">1</span>
+
+<span style="color: #71afe5; font-style: italic">-- get the sum of the elements in the list</span>
+<span style="color: #FFFFFF">sum</span> a
+
+<span style="color: #FFFFFF">10</span>
+
+<span style="color: #71afe5; font-style: italic">-- get the product of the elements in the list</span>
+<span style="color: #FFFFFF">product</span> a
+
+<span style="color: #FFFFFF">24</span>
+
+<span style="color: #71afe5; font-style: italic">-- check if element is a list</span>
+<span style="color: #FFFFFF">elem</span> <span style="color: #FFFFFF">5</span> a
+
+<span style="color: #007788; font-weight: bold">False</span>
+
+<span style="color: #71afe5; font-style: italic">-- concat 2 lists: </span>
+<span style="color: #FFFFFF">a</span> <span style="color: #2b88d8">++</span> [<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">5</span>,<span style="color: #FFFFFF">6</span>]
+
+[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">5</span>,<span style="color: #FFFFFF">6</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Add an element to a list: </span>
+ <span style="color: #FFFFFF">4</span> <span style="color: #007788; font-weight: bold">:</span> a
+
+[<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+<span style="color: #71afe5; font-style: italic">-- OR: </span>
+
+[<span style="color: #FFFFFF">4</span>] <span style="color: #2b88d8">++</span> a
+
+[<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">List Comprehensions</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- the process of generating a list using a mathematical expression</span>
+<span style="color: #71afe5; font-style: italic">-- format: [operation | range, condition]</span>
+<span style="color: #71afe5; font-style: italic">-- Example: double every element in a list</span>
+
+<span style="color: #FFFFFF">a</span> <span style="color: #f0f3f3; font-weight: bold">=</span> [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>]
+
+[x<span style="color: #2b88d8">*</span><span style="color: #FFFFFF">2</span> <span style="color: #2b88d8">|</span>x <span style="color: #f0f3f3; font-weight: bold">&lt;-</span> a]
+
+[<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">6</span>,<span style="color: #FFFFFF">8</span>]
+
+<span style="color: #71afe5; font-style: italic">-- double only even numbers:</span>
+
+[x<span style="color: #2b88d8">*</span><span style="color: #FFFFFF">2</span> <span style="color: #2b88d8">|</span> x <span style="color: #f0f3f3; font-weight: bold">&lt;-</span> a, (even x)]
+
+[<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">8</span>]
+
+<span style="color: #71afe5; font-style: italic">-- double even numbers, triple odd numbers:</span>
+
+[<span style="color: #006699; font-weight: bold">if</span> even x <span style="color: #006699; font-weight: bold">then</span> x<span style="color: #2b88d8">*</span><span style="color: #FFFFFF">2</span> <span style="color: #006699; font-weight: bold">else</span> x<span style="color: #2b88d8">*</span><span style="color: #FFFFFF">3</span> <span style="color: #2b88d8">|</span> x <span style="color: #f0f3f3; font-weight: bold">&lt;-</span> a]
+
+[<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">9</span>,<span style="color: #FFFFFF">8</span>]
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Sequence/Range Operator</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Get all the values within a certain range</span>
+<span style="color: #71afe5; font-style: italic">-- Can be used with chars as well</span>
+<span style="color: #71afe5; font-style: italic">-- Must be ascending order</span>
+<span style="color: #71afe5; font-style: italic">-- Ex:</span>
+
+[<span style="color: #FFFFFF">1</span><span style="color: #2b88d8">..</span><span style="color: #FFFFFF">10</span>]
+<span style="color: #71afe5; font-style: italic">--OUT:</span>
+[<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">5</span>,<span style="color: #FFFFFF">6</span>,<span style="color: #FFFFFF">7</span>,<span style="color: #FFFFFF">8</span>,<span style="color: #FFFFFF">9</span>,<span style="color: #FFFFFF">10</span>]
+
+
+[&#39;a&#39;<span style="color: #2b88d8">..</span>&#39;g&#39;]
+<span style="color: #71afe5; font-style: italic">--OUT:</span>
+<span style="color: #FFFFFF">&quot;abcdefg&quot;</span>
+
+
+[<span style="color: #FFFFFF">10</span><span style="color: #2b88d8">..</span><span style="color: #FFFFFF">1</span>]
+<span style="color: #71afe5; font-style: italic">--OUT:</span>
+<span style="color: #007788; font-weight: bold">[]</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Functions</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Functions consist of 2 parts: declaration, and definition</span>
+<span style="color: #71afe5; font-style: italic">-- Function declaration: myFunc :: arg1 -&gt; arg2 -&gt; outVal</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: Sum of 2 ints</span>
+
+
+<span style="color: #FFFFFF">mySum</span><span style="color: #f0f3f3; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #f0f3f3; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #f0f3f3; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #FFFFFF">mySum</span> x y <span style="color: #f0f3f3; font-weight: bold">=</span> x<span style="color: #2b88d8">+</span>y
+
+<span style="color: #71afe5; font-style: italic">--To call the function:</span>
+
+(mySum <span style="color: #FFFFFF">2</span> <span style="color: #FFFFFF">4</span>)
+<span style="color: #71afe5; font-style: italic">-- OUT:</span>
+<span style="color: #FFFFFF">6</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Pattern Matching</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Pattern matching allows functions to execute differently depending on their arguments</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: Recursive function calculating factorial</span>
+
+
+<span style="color: #FFFFFF">myFact</span><span style="color: #f0f3f3; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #f0f3f3; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #FFFFFF">myFact</span> <span style="color: #FFFFFF">0</span> <span style="color: #f0f3f3; font-weight: bold">=</span> <span style="color: #FFFFFF">1</span>
+<span style="color: #FFFFFF">myFact</span> n <span style="color: #f0f3f3; font-weight: bold">=</span> n <span style="color: #2b88d8">*</span> (fact (n<span style="color: #2b88d8">-</span><span style="color: #FFFFFF">1</span>))
+
+<span style="color: #71afe5; font-style: italic">--To call the function:</span>
+
+<span style="color: #FFFFFF">myFact</span> <span style="color: #FFFFFF">4</span>
+<span style="color: #71afe5; font-style: italic">-- OUT:</span>
+<span style="color: #FFFFFF">24</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Guards</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Match 1 or more expressions, use guards to test some property of an expression</span>
+<span style="color: #71afe5; font-style: italic">--guards seperated by | </span>
+<span style="color: #71afe5; font-style: italic">-- Ex: Recursive function calculating factorial</span>
+
+
+<span style="color: #FFFFFF">myFact</span> <span style="color: #f0f3f3; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #f0f3f3; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #FFFFFF">myFact</span> n <span style="color: #2b88d8">|</span> n <span style="color: #2b88d8">==</span> <span style="color: #FFFFFF">0</span> <span style="color: #f0f3f3; font-weight: bold">=</span> <span style="color: #FFFFFF">1</span>
+        <span style="color: #2b88d8">|</span> otherwise <span style="color: #f0f3f3; font-weight: bold">=</span> (fact (n<span style="color: #2b88d8">-</span><span style="color: #FFFFFF">1</span>))
+
+<span style="color: #71afe5; font-style: italic">--To call the function:</span>
+<span style="color: #FFFFFF">myFact</span> <span style="color: #FFFFFF">4</span>
+<span style="color: #71afe5; font-style: italic">-- OUT:</span>
+<span style="color: #FFFFFF">24</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Where clause</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Used to break complex expressions into smaller parts</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: Recursive function calculating nth term of the fibonacci sequence</span>
+
+<span style="color: #FFFFFF">myFib</span><span style="color: #f0f3f3; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #f0f3f3; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #FFFFFF">myFib</span> <span style="color: #FFFFFF">0</span> <span style="color: #f0f3f3; font-weight: bold">=</span> <span style="color: #FFFFFF">0</span>
+<span style="color: #FFFFFF">myFib</span> <span style="color: #FFFFFF">1</span> <span style="color: #f0f3f3; font-weight: bold">=</span> <span style="color: #FFFFFF">1</span>
+<span style="color: #FFFFFF">myFib</span> n <span style="color: #f0f3f3; font-weight: bold">=</span> m <span style="color: #006699; font-weight: bold">where</span> m <span style="color: #f0f3f3; font-weight: bold">=</span> (myFib (n<span style="color: #2b88d8">-</span><span style="color: #FFFFFF">1</span>)) <span style="color: #2b88d8">+</span> (myFib (n<span style="color: #2b88d8">-</span><span style="color: #FFFFFF">2</span>))
+
+<span style="color: #71afe5; font-style: italic">--To call the function:</span>
+<span style="color: #FFFFFF">myFib</span> <span style="color: #FFFFFF">5</span>
+<span style="color: #71afe5; font-style: italic">-- OUT:</span>
+<span style="color: #FFFFFF">5</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Lambda Expressions</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- anonymous function, can only be used once</span>
+<span style="color: #71afe5; font-style: italic">-- denoted by \</span>
+<span style="color: #71afe5; font-style: italic">-- Ex: Increase by one</span>
+
+((<span style="color: #FFFFFF">\</span>x<span style="color: #f0f3f3; font-weight: bold">-&gt;</span> x <span style="color: #2b88d8">+</span> <span style="color: #FFFFFF">1</span>) <span style="color: #FFFFFF">4</span>)
+<span style="color: #71afe5; font-style: italic">--OUT:</span>
+<span style="color: #FFFFFF">5</span>
+</pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Higher Order Functions</div>     <div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #71afe5; font-style: italic">-- Accumulation (Folding) - apply a binary operator between the elements of a list</span>
+<span style="color: #71afe5; font-style: italic">-- Format: fold (operator) (accumulator) list</span>
+<span style="color: #71afe5; font-style: italic">-- foldl - accumulator left side arguement (ex. accumulator - myList[i])</span>
+<span style="color: #71afe5; font-style: italic">-- foldr - accumulator right side arguement (ex. myList[i] - accumulator)</span>
+<span style="color: #71afe5; font-style: italic">-- Ex:</span>
+<span style="color: #FFFFFF">foldl</span> (<span style="color: #2b88d8">+</span>) <span style="color: #FFFFFF">0</span> [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+<span style="color: #FFFFFF">6</span>
+
+<span style="color: #FFFFFF">foldl</span> (<span style="color: #2b88d8">-</span>) <span style="color: #FFFFFF">12</span> [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+<span style="color: #FFFFFF">6</span>
+
+<span style="color: #FFFFFF">foldr</span> (<span style="color: #2b88d8">-</span>) <span style="color: #FFFFFF">12</span> [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+<span style="color: #2b88d8">-</span><span style="color: #FFFFFF">10</span>
+
+<span style="color: #71afe5; font-style: italic">-- Transformation(Mapping) - call a function on every element in a list </span>
+<span style="color: #71afe5; font-style: italic">-- Format: map (operator) list</span>
+<span style="color: #71afe5; font-style: italic">-- Ex:</span>
+<span style="color: #FFFFFF">map</span> (<span style="color: #2b88d8">+</span><span style="color: #FFFFFF">2</span>) [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+[<span style="color: #FFFFFF">3</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">5</span>]
+
+<span style="color: #FFFFFF">map</span> (<span style="color: #2b88d8">*</span><span style="color: #FFFFFF">2</span>) [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+[<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">4</span>,<span style="color: #FFFFFF">6</span>]
+
+<span style="color: #71afe5; font-style: italic">-- Selection(Filtering) - Test a predicate for every element of a list</span>
+<span style="color: #71afe5; font-style: italic">-- Format: filter (boolean condition) myList</span>
+<span style="color: #71afe5; font-style: italic">-- Ex:</span>
+<span style="color: #FFFFFF">filter</span> (even) [<span style="color: #FFFFFF">1</span>,<span style="color: #FFFFFF">2</span>,<span style="color: #FFFFFF">3</span>]
+
+[<span style="color: #FFFFFF">2</span>]
+
+<span style="color: #FFFFFF">filter</span> (<span style="color: #2b88d8">&lt;</span><span style="color: #FFFFFF">10</span>) [<span style="color: #FFFFFF">8</span>, <span style="color: #FFFFFF">9</span>, <span style="color: #FFFFFF">10</span>]
+
+[<span style="color: #FFFFFF">8</span>,<span style="color: #FFFFFF">9</span>]
+
+<span style="color: #FFFFFF">filter</span> (<span style="color: #2b88d8">==</span>&#39;a&#39;) [&#39;a&#39;,&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+
+<span style="color: #FFFFFF">&quot;aa&quot;</span>
+</pre></div>
+      </div>
+      </div>
+</div>
+<div class="col-lg-9" id="ADT">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>Algebraic Data Types</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: User defined data type</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0099FF; font-style: italic">-- Ex:</span>
+
+  <span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">Food</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Cake</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Spinach</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Apple</span>
+
+  <span style="color: #CC00FF">myFoods</span> <span style="color: #FFFFFF; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Food</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>]
+  <span style="color: #CC00FF">myFoods</span> <span style="color: #007788; font-weight: bold">Cake</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #CC3300">&quot;Yum!&quot;</span>
+  <span style="color: #CC00FF">myFoods</span> <span style="color: #007788; font-weight: bold">Spinach</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #CC3300">&quot;Yuck&quot;</span>
+  <span style="color: #CC00FF">myFoods</span> <span style="color: #007788; font-weight: bold">Apple</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #CC3300">&quot;Nice Healthy Choice&quot;</span>
+  
+  <span style="color: #0099FF; font-style: italic">-- Run</span>
+  <span style="color: #CC00FF">myFoods</span> <span style="color: #007788; font-weight: bold">Apple</span>
+  <span style="color: #0099FF; font-style: italic">--OUT:</span>
+  <span style="color: #CC3300">&quot;Nice Healthy choice&quot;</span>
+  </pre></div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Truth Table</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0099FF; font-style: italic">-- A) Define enumerated data type</span>
+
+<span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">=</span>  <span style="color: #007788; font-weight: bold">Trwue</span>
+   <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+   <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Unkwown</span>
+   <span style="color: #006699; font-weight: bold">deriving</span> <span style="color: #007788; font-weight: bold">Show</span>
+
+
+<span style="color: #0099FF; font-style: italic">-- Logical NOT</span>
+<span style="color: #CC00FF">ternaryNOT</span> <span style="color: #FFFFFF; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LogicDataType</span>
+<span style="color: #CC00FF">ternaryNOT</span> <span style="color: #007788; font-weight: bold">Trwue</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+<span style="color: #CC00FF">ternaryNOT</span> <span style="color: #007788; font-weight: bold">Fawlse</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Trwue</span>
+<span style="color: #CC00FF">ternaryNOT</span> a <span style="color: #FFFFFF; font-weight: bold">=</span> a
+
+<span style="color: #0099FF; font-style: italic">--  Logical AND</span>
+<span style="color: #CC00FF">ternaryAND</span> <span style="color: #FFFFFF; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LogicDataType</span>
+<span style="color: #CC00FF">ternaryAND</span> <span style="color: #007788; font-weight: bold">Trwue</span> <span style="color: #007788; font-weight: bold">Trwue</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Trwue</span>
+<span style="color: #CC00FF">ternaryAND</span> <span style="color: #007788; font-weight: bold">Fawlse</span> a <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+<span style="color: #CC00FF">ternaryAND</span> a <span style="color: #007788; font-weight: bold">Fawlse</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+<span style="color: #CC00FF">ternaryAND</span> a b <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Unkwown</span>
+
+<span style="color: #0099FF; font-style: italic">-- Logical OR </span>
+<span style="color: #CC00FF">ternaryOR</span> <span style="color: #FFFFFF; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LogicDataType</span> <span style="color: #FFFFFF; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LogicDataType</span>
+<span style="color: #CC00FF">ternaryOR</span> <span style="color: #007788; font-weight: bold">Fawlse</span> <span style="color: #007788; font-weight: bold">Fawlse</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+<span style="color: #CC00FF">ternaryOR</span> <span style="color: #007788; font-weight: bold">Trwue</span> a <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Trwue</span>
+<span style="color: #CC00FF">ternaryOR</span> b <span style="color: #007788; font-weight: bold">Trwue</span> <span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Trwue</span>
+<span style="color: #CC00FF">ternaryOR</span> a b<span style="color: #FFFFFF; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Unkwown</span>
+
+<span style="color: #0099FF; font-style: italic">-- Run</span>
+<span style="color: #CC00FF">ternaryOR</span> <span style="color: #007788; font-weight: bold">Trwue</span> <span style="color: #007788; font-weight: bold">Fawlse</span>
+<span style="color: #0099FF; font-style: italic">-- OUT:</span>
+<span style="color: #007788; font-weight: bold">Trwue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="MDT">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>The Maybe Data Type</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Maybe Data Type for Division</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0099FF; font-style: italic">--an enumerated type that allows you to work with a value that might not exist</span>
+<span style="color: #0099FF; font-style: italic">-- Prototype: data Maybe a = Just a | Nothing deriving (Eq, Ord)</span>
+<span style="color: #0099FF; font-style: italic">-- Ex: Using Maybe for division</span>
+<span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">Data.Maybe</span>
+  
+  <span style="color: #CC00FF">safeDivide</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Maybe</span> <span style="color: #007788; font-weight: bold">Int</span>
+  <span style="color: #CC00FF">safeDivide</span> n <span style="color: #FF6600">0</span>  <span style="color: #ffffff; font-weight: bold">=</span>  <span style="color: #007788; font-weight: bold">Nothing</span>
+  <span style="color: #CC00FF">safeDivide</span> n m  <span style="color: #ffffff; font-weight: bold">=</span>  <span style="color: #007788; font-weight: bold">Just</span> (n `div` m)
+  
+  <span style="color: #0099FF; font-style: italic">-- Run</span>
+  <span style="color: #CC00FF">safeDivide</span> <span style="color: #FF6600">12</span> <span style="color: #FF6600">3</span>
+  <span style="color: #0099FF; font-style: italic">--Out:</span>
+  <span style="color: #007788; font-weight: bold">Just</span> <span style="color: #FF6600">4</span>
+  
+  <span style="color: #CC00FF">safeDivide</span> <span style="color: #FF6600">12</span> <span style="color: #FF6600">0</span>
+  <span style="color: #0099FF; font-style: italic">--Out:</span>
+  <span style="color: #007788; font-weight: bold">Nothing</span>
+  </pre></div>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="ADTLL">
+  <p class="text-info">Functional Programming with Haskell.</p>    
+  <h2>Abstract Data Type: Linked List</h2>
+  <div class="vspace1em"></div>
+  <div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Linked List Implementation</div>     
+  <div class="card-body">
+<div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;"><span style="color: #0099FF; font-style: italic">-- For School Assignment</span>
+<span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">LList</span> <span style="color: #006699; font-weight: bold">where</span>
+show <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;| . |&quot;</span>
+show (<span style="color: #007788; font-weight: bold">Node</span> a llist) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;| &quot;</span><span style="color: #d3d3d3">++</span>(show a)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; |----&gt;&quot;</span><span style="color: #d3d3d3">++</span>show(llist)
+
+<span style="color: #CC00FF">addToList</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LList</span>
+<span style="color: #CC00FF">addToList</span> <span style="color: #007788; font-weight: bold">Null</span> a <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> a (<span style="color: #007788; font-weight: bold">Null</span>))
+<span style="color: #CC00FF">addToList</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) b <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> a (addToList llist b))
+
+<span style="color: #CC00FF">sumOfList</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #CC00FF">sumOfList</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">0</span>
+<span style="color: #CC00FF">sumOfList</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) <span style="color: #ffffff; font-weight: bold">=</span> a<span style="color: #d3d3d3">+</span>(sumOfList llist)
+
+<span style="color: #CC00FF">arrayToLList</span> <span style="color: #ffffff; font-weight: bold">::</span> [<span style="color: #007788; font-weight: bold">Int</span>] <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LList</span>
+<span style="color: #CC00FF">arrayToLList</span> <span style="color: #007788; font-weight: bold">[]</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Null</span>
+<span style="color: #CC00FF">arrayToLList</span> (x<span style="color: #007788; font-weight: bold">:</span>xs) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> x (arrayToLList xs))
+
+<span style="color: #CC00FF">removeAtK</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LList</span>
+<span style="color: #CC00FF">removeAtK</span> <span style="color: #007788; font-weight: bold">Null</span> a <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Null</span>
+<span style="color: #CC00FF">removeAtK</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) <span style="color: #FF6600">0</span><span style="color: #ffffff; font-weight: bold">=</span>llist
+<span style="color: #CC00FF">removeAtK</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) b<span style="color: #ffffff; font-weight: bold">=</span>(<span style="color: #007788; font-weight: bold">Node</span> a (removeAtK llist (b<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>)))
+
+<span style="color: #CC00FF">addAtK</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">LList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">LList</span>
+<span style="color: #CC00FF">addAtK</span> <span style="color: #007788; font-weight: bold">Null</span> i a <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> a (<span style="color: #007788; font-weight: bold">Null</span>))
+<span style="color: #CC00FF">addAtK</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) <span style="color: #FF6600">0</span> b<span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> b (<span style="color: #007788; font-weight: bold">Node</span> a (llist)))
+<span style="color: #CC00FF">addAtK</span> (<span style="color: #007788; font-weight: bold">Node</span> a llist) i b<span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> a (addAtK llist (i<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) b))
+</div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Running the Linked List</div>     
+<div class="card-body">
+<div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;">
+<span style="color: #0099FF; font-style: italic">-- Run it:</span>
+<span style="color: #0099FF; font-style: italic">-- Create a Linked List: </span>
+<span style="color: #CC00FF">a</span> <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">4</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">5</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Null</span>)))))
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">4</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">5</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #d3d3d3">.</span> <span style="color: #d3d3d3">|</span>
+
+<span style="color: #0099FF; font-style: italic">-- Add to List: </span>
+(addAtK a <span style="color: #FF6600">3</span> <span style="color: #FF6600">9</span>)
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">4</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">5</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">9</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #d3d3d3">.</span> <span style="color: #d3d3d3">|</span>
+
+<span style="color: #0099FF; font-style: italic">-- Remove from List: </span>
+(addAtK a <span style="color: #FF6600">2</span>)
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">4</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #d3d3d3">.</span> <span style="color: #d3d3d3">|</span>
+
+<span style="color: #0099FF; font-style: italic">-- Convert an Array to a Linked List: </span>
+(arrayToLList [<span style="color: #FF6600">1</span>,<span style="color: #FF6600">2</span>,<span style="color: #FF6600">3</span>,<span style="color: #FF6600">4</span>])
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">3</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #FF6600">4</span> <span style="color: #d3d3d3">|----&gt;|</span> <span style="color: #d3d3d3">.</span> <span style="color: #d3d3d3">|</span>
+
+
+<span style="color: #0099FF; font-style: italic">-- Get the sum of the Linked List: </span>
+(sumOfList a)
+
+<span style="color: #FF6600">12</span>
+</pre></div>
+  </div>
+  </div>
+  </div>
+<div class="col-lg-9" id="ADTQ">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>Abstract Data Type: Queue</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Queue Implementation</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">MyQueue</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Back</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #007788; font-weight: bold">MyQueue</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Front</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Node</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #007788; font-weight: bold">MyQueue</span> 
+
+  <span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">MyQueue</span> <span style="color: #006699; font-weight: bold">where</span>
+  show (<span style="color: #007788; font-weight: bold">Front</span> curr) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; &quot;</span><span style="color: #d3d3d3">++</span>(show curr)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>
+  show (<span style="color: #007788; font-weight: bold">Back</span> curr next) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;| &quot;</span><span style="color: #d3d3d3">++</span>(show curr)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; | &quot;</span><span style="color: #d3d3d3">++</span>(show next) 
+  show (<span style="color: #007788; font-weight: bold">Node</span> curr next) <span style="color: #ffffff; font-weight: bold">=</span> (show curr)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; |&quot;</span><span style="color: #d3d3d3">++</span>(show next)
+
+
+<span style="color: #CC00FF">insertElem</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">MyQueue</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">MyQueue</span>
+<span style="color: #CC00FF">insertElem</span> (<span style="color: #007788; font-weight: bold">Back</span> curr next) n <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Back</span> n (<span style="color: #007788; font-weight: bold">Node</span> curr (next)))
+
+<span style="color: #CC00FF">deleteElem</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">MyQueue</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">MyQueue</span>
+<span style="color: #CC00FF">deleteElem</span> (<span style="color: #007788; font-weight: bold">Back</span> curr next) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Back</span> curr (deleteElem next)) 
+<span style="color: #CC00FF">deleteElem</span> (<span style="color: #007788; font-weight: bold">Node</span> curr (<span style="color: #007788; font-weight: bold">Front</span> n)) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Front</span> curr)
+<span style="color: #CC00FF">deleteElem</span> (<span style="color: #007788; font-weight: bold">Node</span> curr next) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> curr (deleteElem next))
+</pre>
+</div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Running the Queue Implementation</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+<span style="color: #0099FF; font-style: italic">-- Run it:</span>
+
+<span style="color: #0099FF; font-style: italic">--Create a queue</span>
+
+<span style="color: #CC00FF">a</span> <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Back</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">3</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Front</span> <span style="color: #FF6600">8</span>))))
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">3</span> <span style="color: #d3d3d3">|</span><span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">8</span> 
+
+<span style="color: #0099FF; font-style: italic">--Insert (Push) an element</span>
+<span style="color: #CC00FF">insertElem</span> a <span style="color: #FF6600">5</span>
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">5</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|</span><span style="color: #FF6600">3</span> <span style="color: #d3d3d3">|</span><span style="color: #FF6600">1</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">8</span> 
+
+<span style="color: #0099FF; font-style: italic">--Delete (Pop) an element</span>
+<span style="color: #CC00FF">deleteElem</span> a
+
+<span style="color: #d3d3d3">|</span> <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">3</span> <span style="color: #d3d3d3">|</span> <span style="color: #FF6600">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="ADTAT">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>Abstract Data Type: Arithmetic Tree</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Arithmetic Tree Implementation</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;"><span style="color: #0099FF; font-style: italic">-- For School Assignment</span>
+  <span style="color: #0099FF; font-style: italic">-- Type Literal x</span>
+  <span style="color: #CC00FF">x</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Char</span>
+  <span style="color: #CC00FF">x</span> <span style="color: #ffffff; font-weight: bold">=</span> &#39;x&#39;
+  
+  
+  <span style="color: #0099FF; font-style: italic">-- Operators</span>
+  
+  <span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">Op</span><span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Add</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Sub</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Mul</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Div</span> 
+  
+  <span style="color: #0099FF; font-style: italic">--Show the Operators</span>
+  
+  <span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">Op</span> <span style="color: #006699; font-weight: bold">where</span>
+      show <span style="color: #007788; font-weight: bold">Add</span><span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; + &quot;</span>
+      show <span style="color: #007788; font-weight: bold">Sub</span><span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; - &quot;</span>
+      show <span style="color: #007788; font-weight: bold">Mul</span><span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; * &quot;</span>
+      show <span style="color: #007788; font-weight: bold">Div</span><span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; / &quot;</span>
+  
+  <span style="color: #0099FF; font-style: italic">-- Helper Function to apply the operators</span>
+  
+  <span style="color: #CC00FF">applyOper</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Op</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Float</span>
+  <span style="color: #CC00FF">applyOper</span> <span style="color: #007788; font-weight: bold">Add</span> ls rs <span style="color: #ffffff; font-weight: bold">=</span> ls <span style="color: #d3d3d3">+</span> rs
+  <span style="color: #CC00FF">applyOper</span> <span style="color: #007788; font-weight: bold">Sub</span> ls rs <span style="color: #ffffff; font-weight: bold">=</span> ls <span style="color: #d3d3d3">-</span> rs
+  
+  <span style="color: #CC00FF">applyOper</span> <span style="color: #007788; font-weight: bold">Mul</span> ls rs <span style="color: #ffffff; font-weight: bold">=</span> ls <span style="color: #d3d3d3">*</span> rs
+  
+  <span style="color: #CC00FF">applyOper</span> <span style="color: #007788; font-weight: bold">Div</span> ls rs <span style="color: #ffffff; font-weight: bold">=</span> ls <span style="color: #d3d3d3">/</span> rs
+  
+  <span style="color: #0099FF; font-style: italic">-- Recursive Data Structure for the Arithmetic Tree</span>
+  
+  <span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Lit</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Var</span> <span style="color: #007788; font-weight: bold">Char</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Oper</span> <span style="color: #007788; font-weight: bold">Op</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #007788; font-weight: bold">Expr</span>
+  
+  <span style="color: #0099FF; font-style: italic">---------------------------------</span>
+  
+  <span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #006699; font-weight: bold">where</span> 
+             show (<span style="color: #007788; font-weight: bold">Lit</span> a) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; &quot;</span><span style="color: #d3d3d3">++</span>(show a)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>
+             show (<span style="color: #007788; font-weight: bold">Var</span> a) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot; &quot;</span><span style="color: #d3d3d3">++</span>[a]<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>
+             show (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;(&quot;</span><span style="color: #d3d3d3">++</span>(show ls)<span style="color: #d3d3d3">++</span>(show op)<span style="color: #d3d3d3">++</span>(show rs)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot;)&quot;</span>
+  
+  <span style="color: #0099FF; font-style: italic">-- Solve the expression given the value of the literal x</span>
+  
+  <span style="color: #CC00FF">solveExpr</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Maybe</span> <span style="color: #007788; font-weight: bold">Float</span>
+  <span style="color: #CC00FF">solveExpr</span> (<span style="color: #007788; font-weight: bold">Var</span> a) n <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Just</span> n
+  <span style="color: #CC00FF">solveExpr</span> (<span style="color: #007788; font-weight: bold">Lit</span> a) n <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Just</span> a
+  <span style="color: #CC00FF">solveExpr</span> (<span style="color: #007788; font-weight: bold">Oper</span> <span style="color: #007788; font-weight: bold">Div</span> ls rs) n <span style="color: #ffffff; font-weight: bold">=</span> (safeDiv a b) <span style="color: #006699; font-weight: bold">where</span> 
+                             <span style="color: #007788; font-weight: bold">Just</span> a <span style="color: #ffffff; font-weight: bold">=</span> (solveExpr ls n)
+                             <span style="color: #007788; font-weight: bold">Just</span> b <span style="color: #ffffff; font-weight: bold">=</span> (solveExpr rs n)
+  <span style="color: #CC00FF">solveExpr</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs) n <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Just</span> (applyOper op a b) <span style="color: #006699; font-weight: bold">where</span> 
+                            <span style="color: #007788; font-weight: bold">Just</span> a <span style="color: #ffffff; font-weight: bold">=</span> (solveExpr ls n) 
+                            <span style="color: #007788; font-weight: bold">Just</span> b <span style="color: #ffffff; font-weight: bold">=</span> (solveExpr rs n)
+  
+  <span style="color: #0099FF; font-style: italic">-- Perform a division such that if divided by 0 it will not return an error</span>
+  
+  <span style="color: #CC00FF">safeDiv</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Float</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Maybe</span> <span style="color: #007788; font-weight: bold">Float</span>
+  <span style="color: #CC00FF">safeDiv</span> n <span style="color: #FF6600">0</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Nothing</span>
+  <span style="color: #CC00FF">safeDiv</span> n m <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Just</span> (n<span style="color: #d3d3d3">/</span>m)
+  
+  <span style="color: #0099FF; font-style: italic">--------------------------</span>
+  <span style="color: #0099FF; font-style: italic">-- Draw Tree</span>
+  <span style="color: #0099FF; font-style: italic">-- Purpose: Function to draw tree</span>
+  
+  <span style="color: #CC00FF">drawTree</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [[<span style="color: #007788; font-weight: bold">Char</span>]]
+  <span style="color: #CC00FF">drawTree</span> (<span style="color: #007788; font-weight: bold">Lit</span> a)<span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot;  &quot;</span><span style="color: #d3d3d3">++</span>(show a)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>] 
+  <span style="color: #CC00FF">drawTree</span> (<span style="color: #007788; font-weight: bold">Var</span> a)<span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot;  &quot;</span><span style="color: #d3d3d3">++</span>[a]<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>]
+  <span style="color: #CC00FF">drawTree</span> tree <span style="color: #ffffff; font-weight: bold">=</span> (drawLevels tree (getLevels tree))
+  
+  <span style="color: #0099FF; font-style: italic">-- Purpose: takes the tree and max number of levels</span>
+  <span style="color: #0099FF; font-style: italic">-- recursively draws the left hand side of the tree and then the right side</span>
+  <span style="color: #0099FF; font-style: italic">-- IN: </span>
+  <span style="color: #0099FF; font-style: italic">--  - Expr - an Expression Tree</span>
+  <span style="color: #0099FF; font-style: italic">--  - Int - the number of layers in the tree</span>
+  <span style="color: #0099FF; font-style: italic">-- OUT:</span>
+  <span style="color: #0099FF; font-style: italic">--   - [[Char]] - the string representation of the subtree</span>
+  
+  <span style="color: #CC00FF">drawLevels</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [[<span style="color: #007788; font-weight: bold">Char</span>]]
+  <span style="color: #CC00FF">drawLevels</span> (<span style="color: #007788; font-weight: bold">Lit</span> a) n <span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>(show a)]
+  <span style="color: #CC00FF">drawLevels</span> (<span style="color: #007788; font-weight: bold">Var</span> a) n<span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>[a]<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; &quot;</span>] 
+  <span style="color: #CC00FF">drawLevels</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs) n<span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot;(&quot;</span> <span style="color: #d3d3d3">++</span> (show op) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;)&quot;</span><span style="color: #d3d3d3">++</span>(drawLeft ls)] <span style="color: #d3d3d3">++</span> (drawRight ls n)  <span style="color: #d3d3d3">++</span>  (drawLevels rs (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+  
+  <span style="color: #0099FF; font-style: italic">-- Purpose: draws the right side of the tree </span>
+  <span style="color: #0099FF; font-style: italic">-- draws the vertical lines, as well as the right leaves as they must be on the same line in order for the tree to be connected</span>
+  <span style="color: #0099FF; font-style: italic">-- IN: </span>
+  <span style="color: #0099FF; font-style: italic">--  - Expr - an Expression Tree</span>
+  <span style="color: #0099FF; font-style: italic">--  - Int - the number of layers (vertical lines to draw)</span>
+  <span style="color: #0099FF; font-style: italic">-- OUT:</span>
+  <span style="color: #0099FF; font-style: italic">--   - [[Char]] - the string representation of the subtree</span>
+  <span style="color: #CC00FF">drawRight</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [[<span style="color: #007788; font-weight: bold">Char</span>]]
+  <span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Lit</span> a) n <span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot; |&quot;</span>]
+  <span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Var</span> a) n <span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot; |&quot;</span>]
+  <span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls (<span style="color: #007788; font-weight: bold">Var</span> a)) n<span style="color: #ffffff; font-weight: bold">=</span>[(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) <span style="color: #CC3300">&quot; |         &quot;</span>),(dupl(n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">2</span>) <span style="color: #CC3300">&quot; |         &quot;</span>)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>[a]]<span style="color: #d3d3d3">++</span>(drawRight ls (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+  <span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls (<span style="color: #007788; font-weight: bold">Lit</span> a)) n<span style="color: #ffffff; font-weight: bold">=</span>[(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) <span style="color: #CC3300">&quot; |         &quot;</span>),(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">2</span>) <span style="color: #CC3300">&quot; |         &quot;</span>)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>(show a)]<span style="color: #d3d3d3">++</span>(drawRight ls (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+  <span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs) n <span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot; |&quot;</span>]<span style="color: #d3d3d3">++</span>(drawRight ls n)<span style="color: #d3d3d3">++</span>(drawRight rs n)
+  
+  <span style="color: #0099FF; font-style: italic">-- Purpose: draws the &quot;left hand side&quot; of the tree</span>
+  <span style="color: #CC00FF">drawLeft</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>]
+  <span style="color: #CC00FF">drawLeft</span> (<span style="color: #007788; font-weight: bold">Lit</span> a)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot;  ---- &quot;</span><span style="color: #d3d3d3">++</span>(show a) 
+  <span style="color: #CC00FF">drawLeft</span> (<span style="color: #007788; font-weight: bold">Var</span> a)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot;  ---- &quot;</span><span style="color: #d3d3d3">++</span>[a]
+  <span style="color: #CC00FF">drawLeft</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot; ---- ( &quot;</span> <span style="color: #d3d3d3">++</span> (show op) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot; )&quot;</span><span style="color: #d3d3d3">++</span>(drawLeft ls)
+  
+  <span style="color: #0099FF; font-style: italic">-- Purpose: duplicates a string a given amount of times</span>
+  
+  <span style="color: #CC00FF">dupl</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>] <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>]
+  <span style="color: #CC00FF">dupl</span> <span style="color: #FF6600">0</span> a<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot;&quot;</span>
+  <span style="color: #CC00FF">dupl</span> n a<span style="color: #ffffff; font-weight: bold">=</span>a<span style="color: #d3d3d3">++</span>(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) a)
+  
+  <span style="color: #0099FF; font-style: italic">-- Purpose: gets the max number of layers in the tree or subtree, used for proper spacing when drawing the tree</span>
+  
+  <span style="color: #CC00FF">getLevels</span><span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Expr</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+  <span style="color: #CC00FF">getLevels</span> (<span style="color: #007788; font-weight: bold">Lit</span> a)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #FF6600">1</span>
+  <span style="color: #CC00FF">getLevels</span> (<span style="color: #007788; font-weight: bold">Var</span> a)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #FF6600">1</span>
+  <span style="color: #CC00FF">getLevels</span> (<span style="color: #007788; font-weight: bold">Oper</span> op ls rs)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #006699; font-weight: bold">if</span> (getLevels ls) <span style="color: #d3d3d3">&gt;=</span> (getLevels rs) <span style="color: #006699; font-weight: bold">then</span> <span style="color: #FF6600">1</span><span style="color: #d3d3d3">+</span>(getLevels ls) <span style="color: #006699; font-weight: bold">else</span> <span style="color: #FF6600">1</span> <span style="color: #d3d3d3">+</span> (getLevels rs)
+  </pre>
+  </div>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Running the Arithmetic Tree Implementation</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;">
+<span style="color: #0099FF; font-style: italic">-- Run it:</span>
+  
+  <span style="color: #0099FF; font-style: italic">-- Create Tree</span>
+  
+  <span style="color: #CC00FF">a</span> <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Oper</span> <span style="color: #007788; font-weight: bold">Add</span> (<span style="color: #007788; font-weight: bold">Oper</span> <span style="color: #007788; font-weight: bold">Sub</span> (<span style="color: #007788; font-weight: bold">Lit</span> <span style="color: #FF6600">5</span>) (<span style="color: #007788; font-weight: bold">Var</span> x)) (<span style="color: #007788; font-weight: bold">Lit</span> <span style="color: #FF6600">2</span>))
+  
+  (( <span style="color: #FF6600">5.0</span>  <span style="color: #d3d3d3">-</span>  x ) <span style="color: #d3d3d3">+</span>  <span style="color: #FF6600">2.0</span> )
+  
+  <span style="color: #0099FF; font-style: italic">-- Solve the Tree given x</span>
+  
+  <span style="color: #CC00FF">solveExpr</span> a <span style="color: #FF6600">3</span>
+  
+  <span style="color: #007788; font-weight: bold">Just</span> <span style="color: #FF6600">4.0</span>
+  
+  <span style="color: #0099FF; font-style: italic">-- Draw Tree</span>
+  
+  <span style="color: #CC00FF">putStr</span> (unlines (drawTree a))
+  
+  ( <span style="color: #d3d3d3">+</span> ) <span style="color: #0099FF; font-style: italic">---- (  -  )  ---- 5.0</span>
+   <span style="color: #d3d3d3">|</span>          <span style="color: #d3d3d3">|</span>         
+   <span style="color: #d3d3d3">|</span>          <span style="color: #0099FF; font-style: italic">---- x</span>
+   <span style="color: #d3d3d3">|</span>
+   <span style="color: #0099FF; font-style: italic">---- 2.0</span>
+  </pre></div>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="ADTG">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>Abstract Data Type: Undirected and Directed Graphs</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Graph Implementation with Adjacency List and Adjacency Matrix</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;"><span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">AdjacencyList</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Node</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #007788; font-weight: bold">AdjacencyList</span>
+
+  <span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">AdjacencyList</span> <span style="color: #006699; font-weight: bold">where</span>
+  show <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;|/|&quot;</span>
+  show (<span style="color: #007788; font-weight: bold">Node</span> a adjlist) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;|&quot;</span> <span style="color: #d3d3d3">++</span> (show a) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;|--&gt;&quot;</span> <span style="color: #d3d3d3">++</span> (show adjlist)
+
+<span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">GraphList</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #007788; font-weight: bold">AdjacencyList</span> <span style="color: #007788; font-weight: bold">GraphList</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">None</span>
+
+<span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">GraphList</span> <span style="color: #006699; font-weight: bold">where</span>
+  show <span style="color: #007788; font-weight: bold">None</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;</span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span>
+  show (<span style="color: #007788; font-weight: bold">NodeList</span> x al gr) <span style="color: #ffffff; font-weight: bold">=</span> (show x) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;|  |-&gt;&quot;</span><span style="color: #d3d3d3">++</span> (show al) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;</span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show gr) 
+
+<span style="color: #CC00FF">adjacentListToList</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">AdjacencyList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">adjacentListToList</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">[]</span>
+<span style="color: #CC00FF">adjacentListToList</span> (<span style="color: #007788; font-weight: bold">Node</span> x adjlist) <span style="color: #ffffff; font-weight: bold">=</span> x <span style="color: #007788; font-weight: bold">:</span> (adjacentListToList adjlist)
+
+<span style="color: #CC00FF">getAdjacentVertices</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">GraphList</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">getAdjacentVertices</span> <span style="color: #007788; font-weight: bold">None</span> v <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">[]</span>
+<span style="color: #CC00FF">getAdjacentVertices</span> (<span style="color: #007788; font-weight: bold">NodeList</span> x al gr) v <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #006699; font-weight: bold">if</span> x <span style="color: #d3d3d3">==</span> v <span style="color: #006699; font-weight: bold">then</span> (adjacentListToList al) <span style="color: #006699; font-weight: bold">else</span> (getAdjacentVertices gr v) 
+
+<span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">GraphMatrix</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #007788; font-weight: bold">Int</span> [<span style="color: #007788; font-weight: bold">Int</span>] <span style="color: #007788; font-weight: bold">GraphMatrix</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">MNull</span>
+
+<span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">GraphMatrix</span> <span style="color: #006699; font-weight: bold">where</span>
+show <span style="color: #007788; font-weight: bold">MNull</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;</span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span>
+show (<span style="color: #007788; font-weight: bold">GNode</span> v l gr) <span style="color: #ffffff; font-weight: bold">=</span> (show v) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot; | &quot;</span> <span style="color: #d3d3d3">++</span> (show l) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;</span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show gr)
+
+
+<span style="color: #CC00FF">main</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #006699; font-weight: bold">do</span>
+<span style="color: #006699; font-weight: bold">let</span> g <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">5</span> <span style="color: #007788; font-weight: bold">Null</span>)) (<span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">5</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">3</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">4</span> <span style="color: #007788; font-weight: bold">Null</span>)))) (<span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #FF6600">3</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">4</span> <span style="color: #007788; font-weight: bold">Null</span>)) (<span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #FF6600">4</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">5</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">3</span> <span style="color: #007788; font-weight: bold">Null</span>))) (<span style="color: #007788; font-weight: bold">NodeList</span> <span style="color: #FF6600">5</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">4</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> <span style="color: #007788; font-weight: bold">Null</span>))) <span style="color: #007788; font-weight: bold">None</span>)))))
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Graph g: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show g)
+
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Adjacent to 2:</span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show (getAdjacentVertices g <span style="color: #FF6600">2</span>))
+
+<span style="color: #006699; font-weight: bold">let</span> gr <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #FF6600">1</span> [<span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>] (<span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #FF6600">2</span> [<span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">1</span>] (<span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #FF6600">3</span> [<span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>] (<span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #FF6600">4</span> [<span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>] (<span style="color: #007788; font-weight: bold">GNode</span> <span style="color: #FF6600">5</span> [<span style="color: #FF6600">1</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>, <span style="color: #FF6600">1</span>, <span style="color: #FF6600">0</span>] <span style="color: #007788; font-weight: bold">MNull</span>)))))
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Graph g: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show gr)
+</pre></div>
+<br>
+<h3>Using the following as an example:</h3>
+<p>You can compare the adjacency matrix structure with the adjacency list structure</p>
+<img src="../public/images/haskell2.gif" style="width:80%;">
+<div class="vspace1em"></div>
+<h5>Output</h5>
+<img src="../public/images/haskell1.png" style="width: 80%;">
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="ADTH">
+<p class="text-info">Functional Programming with Haskell.</p>    
+<h2>Abstract Data Type: Heap</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">     <div class="card-header">Example: Max Heap Implementation with Binary Tree and Array</div>     
+<div class="card-body">
+<!-- HTML generated using hilite.me --><div style="overflow:auto;width:auto;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;"><span style="color: #006699; font-weight: bold">data</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Node</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #d3d3d3">|</span> <span style="color: #007788; font-weight: bold">Null</span>
+
+  <span style="color: #006699; font-weight: bold">instance</span> <span style="color: #007788; font-weight: bold">Show</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #006699; font-weight: bold">where</span>
+  show <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;&quot;</span>
+  show tree <span style="color: #ffffff; font-weight: bold">=</span> (unlines (drawLevels tree (getLevels tree)))
+
+<span style="color: #CC00FF">drawLevels</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [[<span style="color: #007788; font-weight: bold">Char</span>]]
+<span style="color: #CC00FF">drawLevels</span> <span style="color: #007788; font-weight: bold">Null</span> n<span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot;/&quot;</span>]
+<span style="color: #CC00FF">drawLevels</span> (<span style="color: #007788; font-weight: bold">Node</span> x <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) n  <span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>(show x)]
+<span style="color: #CC00FF">drawLevels</span> (<span style="color: #007788; font-weight: bold">Node</span> x ls rs) n <span style="color: #ffffff; font-weight: bold">=</span>  [<span style="color: #CC3300">&quot;(&quot;</span> <span style="color: #d3d3d3">++</span> (show x) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot;)&quot;</span><span style="color: #d3d3d3">++</span>(drawLeft ls)] <span style="color: #d3d3d3">++</span> (drawRight ls n)  <span style="color: #d3d3d3">++</span>  (drawLevels rs (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+
+<span style="color: #CC00FF">drawRight</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [[<span style="color: #007788; font-weight: bold">Char</span>]]
+<span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Node</span> x <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) n <span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot; |&quot;</span>]
+<span style="color: #CC00FF">drawRight</span> <span style="color: #007788; font-weight: bold">Null</span> n<span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #CC3300">&quot; |&quot;</span>]
+<span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls (<span style="color: #007788; font-weight: bold">Node</span> x <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>)) n<span style="color: #ffffff; font-weight: bold">=</span>[(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) <span style="color: #CC3300">&quot; |         &quot;</span>),(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">2</span>) <span style="color: #CC3300">&quot; |         &quot;</span>)<span style="color: #d3d3d3">++</span><span style="color: #CC3300">&quot; ---- &quot;</span><span style="color: #d3d3d3">++</span>(show x)]<span style="color: #d3d3d3">++</span>(drawRight ls (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+<span style="color: #CC00FF">drawRight</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls rs) n <span style="color: #ffffff; font-weight: bold">=</span>[<span style="color: #CC3300">&quot; |&quot;</span>]<span style="color: #d3d3d3">++</span>(drawRight ls n)<span style="color: #d3d3d3">++</span>(drawRight rs n)
+
+<span style="color: #0099FF; font-style: italic">-- Purpose: draws the &quot;left hand side&quot; of the tree</span>
+<span style="color: #CC00FF">drawLeft</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>]
+<span style="color: #CC00FF">drawLeft</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #CC3300">&quot;/&quot;</span>
+<span style="color: #CC00FF">drawLeft</span> (<span style="color: #007788; font-weight: bold">Node</span> x <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot;  ---- &quot;</span><span style="color: #d3d3d3">++</span>(show x) 
+<span style="color: #CC00FF">drawLeft</span> (<span style="color: #007788; font-weight: bold">Node</span> x ls rs)<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot; ---- ( &quot;</span> <span style="color: #d3d3d3">++</span> (show x) <span style="color: #d3d3d3">++</span> <span style="color: #CC3300">&quot; )&quot;</span><span style="color: #d3d3d3">++</span>(drawLeft ls)
+
+<span style="color: #0099FF; font-style: italic">-- Purpose: duplicates a string a given amount of times</span>
+<span style="color: #CC00FF">dupl</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>] <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Char</span>]
+<span style="color: #CC00FF">dupl</span> <span style="color: #FF6600">0</span> a<span style="color: #ffffff; font-weight: bold">=</span><span style="color: #CC3300">&quot;&quot;</span>
+<span style="color: #CC00FF">dupl</span> n a<span style="color: #ffffff; font-weight: bold">=</span>a<span style="color: #d3d3d3">++</span>(dupl (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>) a)
+
+
+<span style="color: #CC00FF">treeToList</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">treeToList</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">[]</span>
+<span style="color: #CC00FF">treeToList</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls rs) <span style="color: #ffffff; font-weight: bold">=</span> r <span style="color: #007788; font-weight: bold">:</span> (treeToList ls) <span style="color: #d3d3d3">++</span> (treeToList rs)
+
+<span style="color: #CC00FF">levelOrderToList&#39;</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">levelOrderToList&#39;</span> <span style="color: #007788; font-weight: bold">Null</span> n <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">[]</span>
+<span style="color: #CC00FF">levelOrderToList&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls rs) <span style="color: #FF6600">0</span> <span style="color: #ffffff; font-weight: bold">=</span> [r]
+<span style="color: #CC00FF">levelOrderToList&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls rs) n <span style="color: #ffffff; font-weight: bold">=</span>  (levelOrderToList&#39; ls (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>)) <span style="color: #d3d3d3">++</span> (levelOrderToList&#39; rs (n<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+
+<span style="color: #CC00FF">getLevels</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #CC00FF">getLevels</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">0</span>
+<span style="color: #CC00FF">getLevels</span> (<span style="color: #007788; font-weight: bold">Node</span> r ls rs) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #006699; font-weight: bold">if</span> (ln <span style="color: #d3d3d3">&gt;</span> rn) <span style="color: #006699; font-weight: bold">then</span> ln<span style="color: #d3d3d3">+</span><span style="color: #FF6600">1</span> <span style="color: #006699; font-weight: bold">else</span> rn<span style="color: #d3d3d3">+</span><span style="color: #FF6600">1</span> <span style="color: #006699; font-weight: bold">where</span>
+                  ln<span style="color: #ffffff; font-weight: bold">=</span>(getLevels ls)
+                  rn<span style="color: #ffffff; font-weight: bold">=</span>(getLevels rs)
+                  
+
+<span style="color: #CC00FF">walkLevels</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">walkLevels</span> t m <span style="color: #FF6600">0</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">[]</span>
+<span style="color: #CC00FF">walkLevels</span> t n m <span style="color: #ffffff; font-weight: bold">=</span> (levelOrderToList&#39; t n) <span style="color: #d3d3d3">++</span> (walkLevels t (n<span style="color: #d3d3d3">+</span><span style="color: #FF6600">1</span>) (m<span style="color: #d3d3d3">-</span><span style="color: #FF6600">1</span>))
+
+<span style="color: #CC00FF">levelOrderToList</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> [<span style="color: #007788; font-weight: bold">Int</span>]
+<span style="color: #CC00FF">levelOrderToList</span> t <span style="color: #ffffff; font-weight: bold">=</span> (walkLevels t <span style="color: #FF6600">0</span> (getLevels t))  
+
+<span style="color: #CC00FF">listToTree</span> <span style="color: #ffffff; font-weight: bold">::</span> [<span style="color: #007788; font-weight: bold">Int</span>] <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">BinTree</span>
+<span style="color: #CC00FF">listToTree</span> <span style="color: #007788; font-weight: bold">[]</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Null</span>
+<span style="color: #CC00FF">listToTree</span> (x<span style="color: #007788; font-weight: bold">:[]</span>) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Node</span> x <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>
+<span style="color: #CC00FF">listToTree</span> (x<span style="color: #007788; font-weight: bold">:</span>xs) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> x (listToTree (take n xs)) (listToTree (drop n xs))) <span style="color: #006699; font-weight: bold">where</span> n <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #006699; font-weight: bold">if</span> mod (length xs) <span style="color: #FF6600">2</span> <span style="color: #d3d3d3">==</span> <span style="color: #FF6600">1</span> <span style="color: #006699; font-weight: bold">then</span> (div ((length xs)<span style="color: #d3d3d3">+</span><span style="color: #FF6600">1</span>) <span style="color: #FF6600">2</span>) <span style="color: #006699; font-weight: bold">else</span> (div (length xs) <span style="color: #FF6600">2</span>)) 
+
+
+<span style="color: #CC00FF">rebuildTree</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">BinTree</span>
+<span style="color: #CC00FF">rebuildTree</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #007788; font-weight: bold">Null</span>
+<span style="color: #CC00FF">rebuildTree</span> (<span style="color: #007788; font-weight: bold">Node</span> r <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> r <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>)
+<span style="color: #CC00FF">rebuildTree</span> (<span style="color: #007788; font-weight: bold">Node</span> r (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs) <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> ls <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> r (rebuildTree (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs)) <span style="color: #007788; font-weight: bold">Null</span>)
+                                         <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> ls (<span style="color: #007788; font-weight: bold">Node</span> r lls lrs) <span style="color: #007788; font-weight: bold">Null</span>)
+<span style="color: #CC00FF">rebuildTree</span> (<span style="color: #007788; font-weight: bold">Node</span> r <span style="color: #007788; font-weight: bold">Null</span> (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs)) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> rs <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> r (rebuildTree (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs)) <span style="color: #007788; font-weight: bold">Null</span>)
+                                         <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> rs (<span style="color: #007788; font-weight: bold">Node</span> r rls rrs) <span style="color: #007788; font-weight: bold">Null</span>) 
+<span style="color: #CC00FF">rebuildTree</span> (<span style="color: #007788; font-weight: bold">Node</span> r (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs) (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs)) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> ls <span style="color: #d3d3d3">&amp;&amp;</span> r <span style="color: #d3d3d3">&gt;</span> rs <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> r (rebuildTree (<span style="color: #007788; font-weight: bold">Node</span> ls lrs lls)) (rebuildTree (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs))) 
+                                                      <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&lt;</span> ls <span style="color: #d3d3d3">&amp;&amp;</span> ls <span style="color: #d3d3d3">&gt;</span> rs <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> ls (<span style="color: #007788; font-weight: bold">Node</span> r lls lrs) (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs))
+                                                      <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span>  (<span style="color: #007788; font-weight: bold">Node</span> rs (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs) (<span style="color: #007788; font-weight: bold">Node</span> r rls rrs))
+
+<span style="color: #CC00FF">buildHeap&#39;</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">Int</span>
+<span style="color: #CC00FF">buildHeap&#39;</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">0</span>
+<span style="color: #CC00FF">buildHeap&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">0</span>
+<span style="color: #CC00FF">buildHeap&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r <span style="color: #007788; font-weight: bold">Null</span> (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs)) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> rs <span style="color: #ffffff; font-weight: bold">=</span> (buildHeap&#39; (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs))
+                                        <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">1</span>
+<span style="color: #CC00FF">buildHeap&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs) <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> ls <span style="color: #ffffff; font-weight: bold">=</span> (buildHeap&#39; (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs))
+                                        <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">1</span>
+<span style="color: #CC00FF">buildHeap&#39;</span> (<span style="color: #007788; font-weight: bold">Node</span> r (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs) (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs)) <span style="color: #d3d3d3">|</span> r <span style="color: #d3d3d3">&gt;</span> ls <span style="color: #d3d3d3">&amp;&amp;</span> r <span style="color: #d3d3d3">&gt;</span> rs <span style="color: #ffffff; font-weight: bold">=</span> (buildHeap&#39; (<span style="color: #007788; font-weight: bold">Node</span> ls lls lrs)) <span style="color: #d3d3d3">+</span> (buildHeap&#39; (<span style="color: #007788; font-weight: bold">Node</span> rs rls rrs))
+                                                     <span style="color: #d3d3d3">|</span> otherwise <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #FF6600">1</span>
+
+<span style="color: #CC00FF">buildHeap</span> <span style="color: #ffffff; font-weight: bold">::</span> <span style="color: #007788; font-weight: bold">BinTree</span> <span style="color: #ffffff; font-weight: bold">-&gt;</span> <span style="color: #007788; font-weight: bold">BinTree</span>
+<span style="color: #CC00FF">buildHeap</span> tr <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #006699; font-weight: bold">if</span> (buildHeap&#39; tr) <span style="color: #d3d3d3">==</span> <span style="color: #FF6600">0</span> <span style="color: #006699; font-weight: bold">then</span> tr <span style="color: #006699; font-weight: bold">else</span> (buildHeap (rebuildTree tr))
+
+<span style="color: #CC00FF">main</span> <span style="color: #ffffff; font-weight: bold">=</span> <span style="color: #006699; font-weight: bold">do</span>
+<span style="color: #006699; font-weight: bold">let</span> t <span style="color: #ffffff; font-weight: bold">=</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">1</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">2</span> (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">4</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>) <span style="color: #007788; font-weight: bold">Null</span>) (<span style="color: #007788; font-weight: bold">Node</span> <span style="color: #FF6600">3</span> <span style="color: #007788; font-weight: bold">Null</span> <span style="color: #007788; font-weight: bold">Null</span>))
+putStr <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Tree t: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span><span style="color: #d3d3d3">++</span>(show t)
+
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Tree to List: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span><span style="color: #d3d3d3">++</span>(show (treeToList t))
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Tree to Level Order List: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span><span style="color: #d3d3d3">++</span>(show (levelOrderToList t))
+
+<span style="color: #006699; font-weight: bold">let</span> arr <span style="color: #ffffff; font-weight: bold">=</span> [<span style="color: #FF6600">4</span>,<span style="color: #FF6600">3</span>,<span style="color: #FF6600">7</span>,<span style="color: #FF6600">1</span>,<span style="color: #FF6600">8</span>,<span style="color: #FF6600">5</span>]
+<span style="color: #006699; font-weight: bold">let</span> tr <span style="color: #ffffff; font-weight: bold">=</span> (listToTree arr)
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;List to Tree: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show tr)
+<span style="color: #006699; font-weight: bold">let</span> heap <span style="color: #ffffff; font-weight: bold">=</span> (buildHeap tr)
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;List to Heap: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span> <span style="color: #d3d3d3">++</span> (show heap)
+putStrLn <span style="color: #d3d3d3">$</span> <span style="color: #CC3300">&quot;Heap to Level Order List: </span><span style="color: #CC3300; font-weight: bold">\n</span><span style="color: #CC3300">&quot;</span><span style="color: #d3d3d3">++</span>(show (levelOrderToList heap))
+</pre></div>
+<h3>Example Usage:</h3>
+<p>Create a tree and convert to list. Convert a list to tree, and convert list to max heap</p>
+<img src="../public/images/haskell3.png" style="widows: 80%;">
+</div>
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div>
+<script>
+  function openSection(evt, sName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("col-lg-9");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(sName).style.display = "inline-block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+</script>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>

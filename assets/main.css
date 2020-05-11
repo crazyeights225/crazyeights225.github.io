@@ -1,0 +1,49 @@
+
+.folder-link{
+    color: #3498DB!important;
+}
+
+.folder-box, .file-outer{
+    min-width: 200px;
+}
+
+.folder-box {
+    max-width: 300px; 
+    min-width: 200px;
+}
+
+.folder-inner, .file-inner, .file-body{
+    display: flex; 
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.file-body{
+    text-align: center;
+}
+
+.file-inner{
+    padding-top: 3px;
+}
+
+.folder-icon{
+    width: 80%; 
+    max-width: 52px; 
+    margin: auto;
+}
+
+.file-icon{
+    width: 80%; 
+    max-width: 64px; 
+    margin: auto;
+}
+
+.file-div{
+    background: transparent!important; 
+    border: none;
+}
+
+.date-text{
+    display: block; 
+    margin: auto;
+}

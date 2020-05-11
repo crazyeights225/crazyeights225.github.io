@@ -1,0 +1,284 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Projects</title>
+<link rel="stylesheet" type="text/css" media="screen" href="assets/bootstrap.css">
+<link rel="stylesheet" href="public/css/_bootswatch.scss">
+<link rel="stylesheet" href="public/css/_variables.scss">
+<link href="public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="#"><img src="assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="files.html">Files</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="projects.html">Projects<span class="sr-only">(current)</span></a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+<div class="row">
+<div class="col-lg-3">
+    <div class="list-group">
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'dealsspider')">Deal Finding Spider - Webservice</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'pyimgrec')">Python Image Recognition</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'browshist')">Web App - Classifying Browsing History</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'cuacs')">cuACS - Animal Shelter Application</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'moviesapp')">Movies Library Application with Spring</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'srobotatt')" id="defaultOpen">s-robot - Automated Testing Tool</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'mincrypto')">min-crypto decoding tool</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'naivebloc')">NaiveBloc - a naive blockchain protocol</button>
+</div>
+<br>
+</div>
+<div class="col-lg-9" id="dealsspider">
+      <p class="text-info">Projects.</p>
+      <h2>Deal Finding Spider - Webservice</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Details</div>
+          <div class="card-body">
+          <h5>Started: June 2018, Finished: June 2018</h5>
+          <h6>Specs:</h6>
+          <p>Spider written in Python with Beautiful Soup, Findings stored in mySQL database, and displayed using Django</p><br><br>
+          <img src="public/images/projects_imgs/sample1.png" style="width:80%;"><br><br>
+          <p>Spider scrapes webpages for entries fitting in one of the predetermined categories, and adds entries to database. Server displays database contents in webstore.
+          Although project was a success and operated as intended, some sites did not like my scraping and blocked my access.
+          </p> 
+        </div>
+    </div>
+</div>
+<div class="col-lg-9" id="pyimgrec">
+        <p class="text-info">Projects.</p>
+        <h2>Python Image Recognition</h2>
+        <div class="card border-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">Details</div>
+            <div class="card-body">
+                    <h5>Started: August 2018, Finished: October 2018</h5>
+                    <h6>Specs:</h6>
+                    <p>Python with Keras, Tensorflow</p><br>
+                    <img src="public/images/projects_imgs/image_classified_ex.png" style="width:80%;">
+                    <div class="vspace1em"></div>
+                    <h5>A simple application of that program is:</h5>
+                    <div class="vspace1em"></div>
+                    <img src="public/images/projects_imgs/sample2.png" style="width:80%;"><br><br>
+                    <p>The problem with my chosen dataset is the sample size for each class was very low (written for the action figures), and it made it difficult to achieve a high level of accuracy.<br>
+                    This was the first neural network I have written, and I look forward to exploring the many other applications.</p>
+          </div>
+      </div>
+  </div>
+<div class="col-lg-9" id="browshist">
+        <p class="text-info">Projects.</p>
+        <h2>Web Application: Classifying Browsing History</h2>
+        <div class="card border-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">Details</div>
+            <div class="card-body">
+                    <h6>Using K-NN Classification to determine people's interests based on their browsing history</h6> 
+                    <h5><b>For a class on databases, </b>Started: Sept 2018, Finished: Dec 2018</h5>
+                    <h6>Specs: </h6>
+                    <p>Python to create random datasets for each of the "people", Application written using nodejs, handlebars, and sqlite3</p>
+                    <div class="vspace1em"></div>
+                    <img src="public/images/projects_imgs/sample3.png" style="width:80%;">
+                    <div class="vspace1em"></div>
+                    <img src="public/images/projects_imgs/sample4.png" style="width:80%;">
+                    <div class="vspace1em"></div>
+                    <p>Done for a course, project was rigid in its requirements, so I did not get to explore the concepts that I wanted, but it worked in the desired context. I should redo this project sometime.</p>
+          </div>
+      </div>
+  </div>
+<div class="col-lg-9" id="cuacs">
+        <p class="text-info">Projects.</p>
+        <h2>cuACS: Animal Shelter Application</h2>
+        <div class="card border-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">Details</div>
+            <div class="card-body">
+                    <h4>CUACS - Carleton University Animal Care Service</h4>
+                        <p class="text-info">Team Solo, COMP3004 w19</p>
+                        <h5>Companion Page to school project, no code, solutions, or technical stuff mentioned, as per profs requirements.</h5>
+                        <p>The cuACS system was designed with the purpose of matching animals with clients that meet their needs, and matching clients with pets that fit their preferences. 
+                        <br><br>
+                        <img src="public/images/cuACS/login.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <p class="text-info">How to get access to the system:</p>
+                        <p>If you are a new client, apply to join at your local animal shelter.</p>
+                        <p>If you are a new staff, get a login from your supervisor</p>
+                        <br>
+                        <p class="text-info">The Staff Dashboard:</p>
+                        <img src="public/images/cuACS/staff1.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <ul>
+                        <li>To view client profiles click profiles on the sidebar or the Go button under View Client Profiles</li>
+                        <li>To view, edit, and add new animals to the system click the pets button on the sidebar, or the Go button under View and Edit Animal Profiles</li>
+                        <li>To run the matching algorithm and get the result click the Match button on the sidebar or the Go button under Match Clients with Animals</li>
+                        <li>To logout of the system click the logout button in the lower left hand corner</li>
+                        <li>To close the window click the X button in the right upper hand corner</li>
+                        <li>To view this help page at any time click a question mark button</li>
+                        </ul>
+                        <p class="text-info">View all Registered Pets:</p>
+                        <img src="public/images/cuACS/staff2.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <ul>
+                        <li>To view a pets profile click on the row with its name</li>
+                        <li>To add a new pet click on the Add button at the buttom of the window</li>
+                        </ul>
+                        <p class="text-info">Add new pets to the System: </p>
+                        <img src="public/images/cuACS/staff7.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <ul>
+                        <li>To add a new pet to the system fill out the form with the animal's information</li>
+                        <li>To select an image from your filesystem click Browse and select an image, to use default image do nothing.</li>
+                        <li>To submit the new pet to the system click the submit button</li>
+                        <li>To cancel the new entry click cancel</li>
+                        </ul>
+                        <p class="text-info">Edit Existing Animals:</p>
+                        <img src="public/images/cuACS/staff3.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <br><br>
+                        <img src="public/images/cuACS/staff6.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <br>
+                        <p class="text-info">View a list of clients</p>
+                        <img src="public/images/cuACS/staff8.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <br>
+                        <p class="text-info">The Client Dashboard:</p>
+                        <img src="public/images/cuACS/client1.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"><br><br>
+                        <p class="text-info">To Edit Profile:</p>
+                        <img src="public/images/cuACS/client2.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"><br><br>
+                        <br>
+                        <p class="text-info">Match Animals to Potential Owners:</p>
+                        <img src="public/images/cuACS/staff4.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
+                        <br><br>
+                        <img src="public/images/cuACS/staff5.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">	
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-9" id="moviesapp">
+        <p class="text-info">Projects.</p>
+        <h2>Application: Movies Library</h2>
+        <div class="card border-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">Details</div>
+            <div class="card-body">
+            <p class="text-info">Spring REST API feeding Movies Library Desktop Application</p>
+            <h5>Started: June 2019, Finished: June 2019 (incomplete) </h5>
+            <h6>Specs:</h6>
+            <p> Server: Java Spring, Gradle, SQL, Client: Java Spring, Grade, Swing</p>
+            <p>Not the best application I have written, definitely the most application I have ever written. Client sends requests to server as URL, and recieves JSON results. Client could also be a web application. Not all the features I intended ended up being implemented. Will return to this maybe.</p>
+            <img src="public/images/projects_imgs/movies_sample.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"> 
+          </div>
+      </div>
+  </div>
+<div class="col-lg-9" id="srobotatt">
+        <p class="text-info">Projects.</p>
+        <h2>s-robot Automated Testing Tool</h2>
+        <div class="card border-light mb-3" style="max-width: 80rem;">
+            <div class="card-header">Details</div>
+            <div class="card-body">
+            <p class="text-info">Application which can edit and run Automated tests for web applications</p>
+            <h5>Started: June 2019, Finished: August 2019 </h5>
+            <h6>Specs:</h6>
+            <p> Java, Serenity BDD, JBehave, Apache POI, sqlite3, Server: Java Spring, handlebars, Web Application Frontend: Tabulator, JQuery</p>
+            <p>Tool to create and run Automated Tests on any Web Application without configuration. Client Requirements: Tests must be able to be written in Excel. The server runs and edits the tests, and calls the automated testing module which reads in the tests and runs them</p>
+            <div class="vspace1em"></div>
+            <img src="public/images/projects_imgs/sbot1.png" style="width: 80%">
+            <div class="vspace1em"></div>
+            <img src="public/images/projects_imgs/sbot2.png" style="width: 80%">
+            <div class="vspace1em"></div>
+            <img src="public/images/projects_imgs/sbot3.png" style="width: 80%">
+            <div class="vspace1em"></div>
+            <img src="public/images/projects_imgs/sbot4.png" style="width: 80%">
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-9" id="mincrypto">
+    <p class="text-info">Projects.</p>
+    <h2>min-crypto decoding tool</h2>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Details</div>
+        <div class="card-body">
+        <p class="text-info">cyberchef-like encoding and decoding tool</p>
+        <h5>Started: Jan 2020, Finished: Jan 2020</h5>
+        <h6>Specs:</h6>
+        <p> Python3</p>
+        <p>The purpose of this tool is to allow the user to apply a series of consecutive encode and decode operations.</p>
+        <h4>Usage Examples:</h4>
+        Show Options:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im1.png" style="width: 80%">
+        <br><div class="vspace1em"></div>Import a file:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im2.png" style="width: 80%">
+        <br><div class="vspace1em"></div>Search for an operation:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im3.png" style="width: 80%">
+        <br><div class="vspace1em"></div>Perform rot13 brute force with keyword FLAG on target no. 0:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im4.png" style="width: 80%">
+        <br><div class="vspace1em"></div>Set the target string, and show the target structure:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im5.png" style="width: 80%">
+        <br><div class="vspace1em"></div>Search for operations, and then apply:<br>
+        Encode the target in base16<br>
+        And then decode the result:
+        <div class="vspace1em"></div>
+        <img src="public/images/mincrypto/im6.png" style="width: 80%">
+      </div>
+  </div>
+</div>
+<div class="col-lg-9" id="naivebloc">
+  <p class="text-info">Projects.</p>
+  <h2>NaiveBloc - A naive blockchain protocol</h2>
+  <div class="card border-light mb-3" style="max-width: 80rem;">
+      <div class="card-header">Details</div>
+      <div class="card-body">
+      <p class="text-info">A simple and largely lacking blockchain protocol that allows the sending of messages across sockets</p>
+      <h5>Started: May 2020, Finished: TBD</h5>
+      <h6>Used:</h6>
+      <p>Python sockets, and sqlite3</p>
+      <h6>Architecture:</h6>
+      <p>1 Client, a Centralized Server that performs broadcasts, and consesus, and 2+ authorized nodes which each have a chain, and perform message encryption, storage and queries. It is unfinished, and proof-of-work step was not implelemented yet. But it works as intended.
+      <br><b>Note:</b> I am not really an expert so this is merely a first crack, as I improve my knowledge I will fix some of the flaws (hence the name NaiveBloc).
+      </p>
+      <div class="vspace1em"></div>
+      <img src="public/images/NaiveBloc/1.png" style="width: 80%">
+      <div class="vspace1em"></div>
+      <img src="public/images/NaiveBloc/3.png" style="width: 80%">
+      <div class="vspace1em"></div>
+      <img src="public/images/NaiveBloc/4.png" style="width: 80%">
+      <div class="vspace1em"></div>
+      <img src="public/images/NaiveBloc/7.png" style="width: 80%">
+      <div class="vspace1em"></div>
+    </div>
+</div>
+</div>
+</div>
+<script>
+  function openSection(evt, sName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("col-lg-9");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(sName).style.display = "inline-block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+</script>
+</main>
+<script src="public/js/jquery.min.js"></script>
+<script src="public/js/bootstrap.min.js"></script> 
+</body>
+</html>

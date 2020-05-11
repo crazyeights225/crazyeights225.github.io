@@ -1,0 +1,67 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Sputnik</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<body><div class="main"><div class="tree">
+<p><strong>Index</strong></p>
+<p><a href="2019.html">2019</a></p>
+
+<ol>
+<li><a href="2019--BasicPenTestingBox.html">BasicPenTestingBox</a></li>
+<li><a href="2019--BasicPenTestingBox2.html">BasicPenTestingBox2</a></li>
+<li><a href="2019--bee_box.html">bee box</a></li>
+<li><a href="2019--BossPlayer.html">BossPlayer</a></li>
+<li><a href="2019--CyberChallenge19.html">CyberChallenge19</a></li>
+<li><a href="2019--Dawn.html">Dawn</a></li>
+<li><a href="2019--DC-1.html">DC-1</a></li>
+<li><a href="2019--DC-2.html">DC-2</a></li>
+<li><a href="2019--DC-3.html">DC-3</a></li>
+<li><a href="2019--DerpNStik.html">DerpNStik</a></li>
+<li><a href="2019--EVM.html">EVM</a></li>
+<li><a href="2019--Fowsniff.html">Fowsniff</a></li>
+<li><a href="2019--Gemini_Inc_1.html">Gemini Inc 1</a></li>
+<li><a href="2019--JIS_CTF.html">JIS_CTF</a></li>
+<li><a href="2019--mullidae.html">mullidae</a></li>
+<li><a href="2019--PumpkinFestival.html">PumpkinFestival</a></li>
+<li><a href="2019--PumpkinGarden.html">PumpkinGarden</a></li>
+<li><a href="2019--PumpkinRaising.html">PumpkinRaising</a></li>
+<li><a href="2019--QuaoarCTFHackfest2016.html">QuaoarCTFHackfest2016</a></li>
+<li><a href="2019--Rickdiculously_Easy.html">Rickdiculously Easy</a></li>
+<li><a href="2019--silky02.html">silky02</a></li>
+<li><a href="2019--silky1.html">silky1</a></li>
+<li><a href="2019--Typhoon.html">Typhoon</a></li>
+<li><a href="2019--VMS_to_try.html">VMS to try</a></li>
+<ol>
+<li><a href="2019--VMS_to_try--US_Gov_Conf.html">US Gov Conf</a></li>
+<li><a href="2019--VMS_to_try--Gruyere.html">Gruyere</a></li>
+</ol>
+<li><a href="2019--xss_challenges.html">xss challenges</a></li>
+<li><a href="2019--Blue.html">Blue</a></li>
+<li><a href="2019--mr_robot.html">mr robot</a></li>
+<li><a href="2019--Unfinished_VMS.html">Unfinished VMS</a></li>
+<ol>
+<li><a href="2019--Unfinished_VMS--CasinoRoyale.html">CasinoRoyale</a></li>
+<li><a href="2019--Unfinished_VMS--WinterMute_Straylight.html">WinterMute Straylight</a></li>
+<li><a href="2019--Unfinished_VMS--connect_the_dots_(unfinished).html">connect the dots (unfinished)</a></li>
+<li><a href="2019--Unfinished_VMS--arsenal.html">arsenal</a></li>
+<li><a href="2019--Unfinished_VMS--heist.html">heist</a></li>
+<li><a href="2019--Unfinished_VMS--MyHouse_Box.html">MyHouse Box</a></li>
+<li><a href="2019--Unfinished_VMS--Sputnik.html">Sputnik</a></li>
+<li><a href="2019--Unfinished_VMS--Node.html">Node</a></li>
+<li><a href="2019--Unfinished_VMS--HackInOs.html">HackInOs</a></li>
+<li><a href="2019--Unfinished_VMS--Seattle.html">Seattle</a></li>
+<li><a href="2019--Unfinished_VMS--DC416-Galahad.html">DC416-Galahad</a></li>
+</ol>
+<li><a href="2019--Not_a_Box.html">Not a Box</a></li>
+<ol>
+<li><a href="2019--Not_a_Box--securitytreasurehunt_web.html">securitytreasurehunt web</a></li>
+<li><a href="2019--Not_a_Box--rpc.html">rpc</a></li>
+<li><a href="2019--Not_a_Box--msf_fix.html">msf fix</a></li>
+</ol>
+<li><a href="2019--ICE.html">ICE</a></li>
+</ol></div>
+<div class="page"><h1><b><u>Sputnik</u></b></h1><br />Sputnik<br /><br />Nmap scan report for 192.168.56.100<br />Host is up (0.000024s latency).<br />All 1000 scanned ports on 192.168.56.100 are filtered<br />MAC Address: 08:00:27:47:28:17 (Oracle VirtualBox virtual NIC)<br /><br />Nmap scan report for 192.168.56.112<br />Host is up (0.00010s latency).<br />All 1000 scanned ports on 192.168.56.112 are closed<br />MAC Address: 08:00:27:D8:0B:51 (Oracle VirtualBox virtual NIC)<br /><br />Nmap done: 255 IP addresses (3 hosts up) scanned in 3.58 seconds<br />root@kali:~# <br /><br />root@kali:~# nmap -A -p- 192.168.56.112<br />Starting Nmap 7.80 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2019-11-06 22:24 EST<br />Nmap scan report for 192.168.56.112<br />Host is up (0.00038s latency).<br />Not shown: 65531 closed ports<br />PORT      STATE SERVICE         VERSION<br />8089/tcp  open  ssl/http        Splunkd httpd<br />| http-robots.txt: 1 disallowed entry <br />|_/<br />|_http-server-header: Splunkd<br />|_http-title: splunkd<br />| ssl-cert: Subject: commonName=SplunkServerDefaultCert/organizationName=SplunkUser<br />| Not valid before: 2019-03-29T11:03:21<br />|_Not valid after:  2022-03-28T11:03:21<br />8191/tcp  open  limnerpressure?<br />| fingerprint-strings: <br />|   FourOhFourRequest, GetRequest: <br />|     HTTP/1.0 200 OK<br />|     Connection: close<br />|     Content-Type: text/plain<br />|     Content-Length: 85<br />|_    looks like you are trying to access MongoDB over HTTP on the native driver port.<br />55555/tcp open  http            Apache httpd 2.4.29 ((Ubuntu))<br />| http-git: <br />|   192.168.56.112:55555/.git/<br />|     Git repository found!<br />|_    Repository description: Unnamed repository; edit this file 'description' to name the...<br />|_http-server-header: Apache/2.4.29 (Ubuntu)<br />|_http-title: Flappy Bird Game<br />61337/tcp open  http            Splunkd httpd<br />| http-robots.txt: 1 disallowed entry <br />|_/<br />|_http-server-header: Splunkd<br />| http-title: Site doesn't have a title (text/html; charset=UTF-8).<br />|_Requested resource was <a href="http://192.168.56.112:61337/en-US/account/login?return_to=%2Fen-US%2F">http://192.168.56.112:61337/en-US/account/login?return_to=%2Fen-US%2F</a><br />1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at <a href="https://nmap.org/cgi-bin/submit.cgi?new-service">https://nmap.org/cgi-bin/submit.cgi?new-service</a> :<br />SF-Port8191-TCP:V=7.80%I=7%D=11/6%Time=5DC38E82%P=x86_64-pc-linux-gnu%r(Ge<br />SF:tRequest,A9,"HTTP/1\.0\x20200\x20OK\r\nConnection:\x20close\r\nContent-<br />SF:Type:\x20text/plain\r\nContent-Length:\x2085\r\n\r\nIt\x20looks\x20like<br />SF:\x20you\x20are\x20trying\x20to\x20access\x20MongoDB\x20over\x20HTTP\x20<br />SF:on\x20the\x20native\x20driver\x20port\.\r\n")%r(FourOhFourRequest,A9,"H<br />SF:TTP/1\.0\x20200\x20OK\r\nConnection:\x20close\r\nContent-Type:\x20text/<br />SF:plain\r\nContent-Length:\x2085\r\n\r\nIt\x20looks\x20like\x20you\x20are<br />SF:\x20trying\x20to\x20access\x20MongoDB\x20over\x20HTTP\x20on\x20the\x20n<br />SF:ative\x20driver\x20port\.\r\n");<br />MAC Address: 08:00:27:D8:0B:51 (Oracle VirtualBox virtual NIC)<br />Device type: general purpose<br />Running: Linux 3.X|4.X<br />OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br />OS details: Linux 3.2 - 4.9<br />Network Distance: 1 hop<br /><br />TRACEROUTE<br />HOP RTT     ADDRESS<br />1   0.38 ms 192.168.56.112<br /><br />OS and Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br />Nmap done: 1 IP address (1 host up) scanned in 59.09 seconds<br />root@kali:~# <br /><br /><a href="http://192.168.56.112:55555/.git/logs/refs/heads/master">http://192.168.56.112:55555/.git/logs/refs/heads/master</a><br /><br />0000000000000000000000000000000000000000 21b4eb398bdae0799afbbb528468b5c6f580b975 root &lt;root@sputnik.(none)&gt; 1553864873 +0000	clone: from https://github.com/ameerpornillos/flappy.git<br /><br /><a href="https://www.hackingarticles.in/sputnik-1-vulnhub-walkthrough/">https://www.hackingarticles.in/sputnik-1-vulnhub-walkthrough/</a><br /></div></div>
+</body></html>

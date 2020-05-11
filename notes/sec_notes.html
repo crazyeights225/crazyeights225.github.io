@@ -1,0 +1,756 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+<div class="row">
+<div class="col-lg-3">
+    <div class="list-group">
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'Intro')" id="defaultOpen">Introduction</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'Basics')">Basic Concepts</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'CryptographyBasics')">Cryptography Basics</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'UserAuth')">User Authentication</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'OSSec')">OS Security</button>
+</div>
+<br>
+</div>
+<div class="col-lg-9" id="Intro">
+        <div class="jumbotron">
+                <h1 class="display-3">Security Notes</h1>
+                <p class="lead">Cybersecurity Notes and Definitions.</p>
+                <hr class="my-4">
+                <p>Notes on various concepts, defintions,...</p>
+              </div>
+</div>
+<div class="col-lg-9" id="Basics">
+      <p class="text-info">Security Notes.</p>
+      <h2>Basic Concepts</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Define Confidentiality</div>
+          <div class="card-body">
+            the property of non-public information remaining accessible only to authorized parties, whether stored or in transit
+              </div>
+        </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Data Integrity</div>
+    <div class="card-body">
+         the property of data, software, or hardware remaining unaltered except by authorized parties
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Authentication</div>
+    <div class="card-body">
+      assurance that a principal, data, or software is genuine relative to expectations
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Authorization</div>
+    <div class="card-body">
+    the property of computing resources being accessible only to authorized entities
+    </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Availability</div>
+    <div class="card-body">
+        the property of information, services, and computing resources remaining accessible for authorized use
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Repudiation</div>
+    <div class="card-body">
+    Repudiation - credibly deny previous commitments or actions<br>
+    If repudiation is possible then accountability has not been achieved. If transaction evidence or logs are implemented properly then there are records and repudiation is not possible
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Trusted vs Trustworthy</div>
+    <div class="card-body">
+    <ul>
+        <li>Trusted - is an actor that has our trust whether it deserves it or not</li>
+        <li>Trustworthy - is an actor that doesn't have our trust but is deserving of it</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Privacy and Anonymity</div>
+    <div class="card-body">
+    <ul>
+        <li>Privacy - information protection to prevent unauthorized disclosure</li>
+        <li>Anonymity - a persons actions are not linkable to the their public identity</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Security Policy</div>
+    <div class="card-body">
+    The design intent of a system's rules and practices, includes what is and what is not allowed. It may specify assets that need to be protected, specific users allowed to access and allowed means of access
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Security Policies and States</div>
+    <div class="card-body">
+    <img src="../public/images/SEC_D1.png">
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Security Policies and States</div>
+    <div class="card-body">
+    <img src="../public/images/SEC-D2.png">
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Quantitative vs Qualitative Risk Assessment</div>
+    <div class="card-body">
+    <h5>Qualitative</h5>
+    <ul>
+        <li>Compares risks relative to each other and ranks them</li>
+        <li>Advantages: having a rank of each asset can help prioritize which areas need improvement</li>
+        <li>Disadvantages: It is an estimation and could be wrong</li>
+    </ul>
+    <h5>Quantitative</h5>
+    <ul>
+        <li>Estimate rarely possible in practice</li>
+        <li>Numerical estimation of risk</li>
+        <li>Advantages: A numerical value for risk could be valuable for shareholders, and for calculating the minimum risk</li>
+        <li>Disadvantages: Can not be achieved/calculated accurately in practice</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">The risk equation</div>
+    <div class="card-body">
+    R = T x V x C<br>
+    The risk equation - the expected loss due to harmful future events relative to an implied set of assets and over a fixed period of time<br>
+    <ul>
+        <li>T - threat information (the probability that particular threats are initiated by actors in a given period</li>
+        <li>V - the existence of vulnerabilities</li>
+        <li>C - asset value, and the cost or impact of an attack</li>
+    </ul>
+    Simplified Risk Equation: P = (T x V)<br>
+    - P - the probability that a threat agent takes an action and successfully exploits a vulnerability
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Categorical and Capability Level Schemas</div>
+    <div class="card-body">
+        <ul>
+            <li>Categorical Schema - classifies adversaries into named groups (ie. foreign intelligence, cyber-terrorists, organized crime, ..)</li>
+            <li>Capability Schema - groups generic adversaries based on a combination of capability and intent, ie. weakest to strongest</li>
+        </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Formal Security Evaluation vs Penetration Testing</div>
+    <div class="card-body">
+    Formal Security Evaluation:
+    <ul>
+        <li>Third-party lab review</li>
+        <li>Considerable cost and time</li>
+        <li>done on the final form of the product or system</li>
+        <li>recertification required when the smallest changes are made</li>
+    </ul>
+    Penetration Testing:
+    <ul>
+        <li>self-assessments</li>
+        <li>involve customers or hired consultants</li>
+        <li>finding vulnerabilities in deployed systems by demonstrating exploits</li>
+    </ul>
+    </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Black-box vs White-box testing</div>
+    <div class="card-body">
+    <ul>
+        <li>White box: proceeds with the use of insights from design documents or source code</li>
+        <li>Black box: procees without the use of insights from design documents or source code</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">STRIDE</div>
+    <div class="card-body">
+    <ul>
+        <li>S - Spoofing - Attempt to impersonate a person or entity</li>
+        <li>T - Tampering - unauthorized altering</li>
+        <li>R - Repudiation - denying responsibility for past actions</li>
+        <li>I - Information Disclosure - unauthorized release of data</li>
+        <li>D - Denial of Service - impacting availability of service or quality of service, through actions that consume resources</li>
+        <li>E - Escalation - obtaining of privileges to access resources typically referring to malware that gains a base level of access as a foothold and exploits vulnerabilites to extend this to gain greater access</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Observability</div>
+    <div class="card-body">
+    <ul>
+        <li>Testing would ideally confirm the absence of vulnerabilities - Negative Goal</li>
+        <li>we not only want ro confirm that the functionality works as planned but that the exploits are also absent</li>
+        <li>not observing had outcomes does not mean that they do not exist</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+</div>
+<div class="col-lg-9" id="CryptographyBasics">
+    <p class="text-info">Security Notes.</p>
+    <h2>Cryptography Basics</h2>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Generic Cryptographic Notation</div>
+        <div class="card-body">
+        <ul>
+            <li>Alice encrypts a message using E_k(m)=c</li>
+            <li>Bob decrypts the message using m=D_k'(c)</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Exhaustive Key Search</div>
+        <div class="card-body">
+        Upon intercepting a ciphertext c, is to go through all keys k from the keyspace K, parameterizing D with each k sequentially, computing each D_k(c) and looking for some meaningful result 
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Known Plaintext Attack</div>
+        <div class="card-body">
+            <ul>
+                <li>Passive</li>
+                <li>An adversary tries to recover plaintext (or the key), given access to the ciphertext alone</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Ciphertext only attack</div>
+        <div class="card-body">
+            <ul>
+                <li>Passive</li>
+                <li>Given access to some ciphertext and its corresponding plaintext adversaries try to recover unknown plaintext</li>
+                <li>adversaries try to recover unknown plaintext or the key from further plaintext</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Chosen plaintext attack</div>
+        <div class="card-body">
+            <ul>
+                <li>Active</li>
+                <li>Allow adversaries to choose some amount of plaintext and see the corresponding ciphertext. Allows advanced analysis to defeat weaker algorithms</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Chosen ciphertext attack</div>
+        <div class="card-body">
+            <ul>
+                <li>Active</li>
+                <li>For a fixed key, attackers can provide ciphertext of their choosing and recieve back the corresponding plaintext, try to deduce the secret key or other information sufficient to decrypt new ciphertext</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">One-time pads</div>
+        <div class="card-body">
+            <ul>
+               <li>Advantage: it is considered unbreakable, as the key is as long as the original message, it is random and autogenerated, and destroyed after use</li>
+               <li>Disadvantages: The need for absolute synchronization between sender and reciever, the need for an unlimited number of keys, and the pad can only be used once</li>
+               <li>Why are they not used: The person who is sending the message must send the pad to the reciever securely, and if you have a reliable channel to send the key you might as well skip the one-time pad, and just use the channel</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Stream Cipher</div>
+        <div class="card-body">
+            <ul>
+               <li>Suitable when there is a need to encrypt plaintext one bit at a time (ie. when user-typed characters are sent to a secure site in real time)</li>
+               <li>Use stream cipher because there is no requirements that the length of the text be a certain size</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Mode-of-Operation</div>
+        <div class="card-body">
+        combine successive n-bit block operations such that the encryption of one block depends on the other blocks
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">ECB Mode of Operation</div>
+        <div class="card-body">
+        If a given key k is used to encrypt several identical plaintext blocks m_i then identical ciphertext blocks c_i result ECB does not hide such patterns. This information leak can be addressed by including random bits within a reserved field in each block but it is ineffecient and ackward.
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">CBC Mode of Operation</div>
+        <div class="card-body">
+            <img src="../public/images/SEC-D3.png">
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">CTR Mode of Operation</div>
+        <div class="card-body">
+            <img src="../public/images/SEC-D4.png"><br><br>
+            Counter Mode: Message m=m1, m2, ..., mi is encrypted to yield ciphertext c=c1, c2, ..., ci, Blocks mi.ci are n bits.<br>
+            E denotes a block cipher (encrypt operation) with block length n. CTR mode ECB encrypts an incrementing index (counter) to generate a keystream of blocks to XOR onto corresponding plaintext blocks. To reverse this process, decryption regenerates the same keystream using ECB encryption
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Public key encryption vs Public-key signature scheme</div>
+        <div class="card-body">
+        <ul>
+            <li>If Alice wants to send a message to Bob using public-key encryption, Bob's public key is used to encrypt and Bob's private key is used to decrypt</li>
+            <li>If Alice wants to send a message to Bob using a public-key signature scheme, Alice's private key is used to sign and Alice's public key is used to verify</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div> 
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Hybrid Encryption</div>
+        <div class="card-body">
+        <ul>
+            <li>Symmetric key algorithms are typically faster than public key algorithms</li>
+            <li>Public-key methods are more convient for establishing shared secret keys between endpoints</li>
+            <li>Hybrid: To send encrypted messages often between communication endpoints and k is then used in a symmetric-key algorithm for effecient "bulk encryption" of a payload message m</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">3 security properties provided by digital signatures:</div>
+        <div class="card-body">
+        <ul>
+            <li>Data origin authentication: assurance of who originated (signed) a message or file</li>
+            <li>Data Integrity: assurance that recieved content is the same as that originally assigned</li>
+            <li>Non-repudiation: strong evidence of unique of origination making it hard for a party to digitally sign data and later successfully deny having done so</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div> 
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">3 properties of cryptographic hash functions:</div>
+        <div class="card-body">
+        <ul>
+            <li>Preimage resistance: For all possible hash value h, given h it should be infeasible to find any m such that H(m)=h</li>
+            <li>Second preimage resistance: given any first input m1, it should be infeasible to find any distinct 2nd input m2 such that H(m1)=H(m2)</li>
+            <li>Collision resistance: it should be infeasible to find any pair of distinct inputs m1, m2 such that H(m1)=H(m2), (When 2 distinct inputs hash to then same output value, we call it a collision)</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Encrypt-then-MAC</div>
+        <div class="card-body">
+        <ul>
+            <li>Provides integrity of ciphertext</li>
+            <li>Plaintext integrity</li>
+            <li>If the ciphertext is malleable we do not need to be considered since the MAC will filter out this invalid ciphertext</li>
+            <li>The MAC does not provide any information on the plaintext since assuming the output of the cipher appears random, so does the MAC</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">MAC-then-Encrypt</div>
+        <div class="card-body">
+        <ul>
+            <li>No integrity on the ciphertext, since we have no way of knowing until we decrypt the message whether it was indeed authentic or spoofed</li>
+            <li>Plaintext integrity</li>
+            <li>If ciphertext scheme is malleable it may be possible to alter the message to  appear valid and have a valid MAC</li>
+            <li>Here the MAC cannot provide any information on the plaintext either, since it is encrypted</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">MAC-then-Encrypt vs Encrypt-then-MAC</div>
+        <div class="card-body">
+        <ul>
+            <li>Encrypt-then-MAC is generally better</li>
+            <li>Any modifications to the ciphertext do not also have a valid MAC can be filtered out before decryption, protecting  against any attacks on the implementation</li>
+            <li>The MAC cannot also be used to infer anything about the plaintext</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Secret key vs public key crytography</div>
+        <div class="card-body">
+            <ul>
+                <li>Secret key: uses a single key for encryption and decryption, which means that the sender and the reciever must possess the same key</li>
+                <li>Public-key: uses two keys: a public and private key - that are linked together mathematically. A user keeps the private key private, and shares their public key with others</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Symmetric vs Asymmetric Encryption</div>
+        <div class="card-body">
+            <ul>
+                <li>Symmetric: uses the same key for both encryption and decryption. Encryption: takes plaintext and key, and produces the ciphertext using substitution and permutation. Decryption: reverses the encryption process, produces the orginal plaintext from the key and the ciphertext</li>
+                <li>Asymmetric: uses two keys: one for encryption and the other for decryption. The two keys are paired together mathematically such that if one key encrypts a message a message the other key can decrypt.</li>
+            </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">DES</div>
+        <div class="card-body">
+        <ul>
+            <li>Data Encryption Standard</li>
+            <li>The key is 64 bits (8 bytes) long. For each byte there is one parity bit, so the actual value of the key is only 56 bits</li>
+            <li>DES contains initial and final permutation step that remaps the positions of the bits to achieve diffusion</li>
+            <li>Between the permutation, DES performs 16 rounds of operations using 16 48-bit subkeys generated from the original 56 bit key</li>
+            <li>For each round the input is the ciphertext from the previous round, and outputs ciphertext for the next round</li>
+            <li>Decryption does the same process in reverse</li>
+        </ul>
+            </div>
+      </div>
+      <div class="vspace1em"></div>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">AES</div>
+          <div class="card-body">
+          <ul>
+              <li>Replaceement for DES</li>
+              <li>block cipher</li>
+              <li>input plaintext block is 128-bits</li>
+              <li>the keylength is 128, 192, or 256 bits long</li>
+              <li>keys considered long enough to defeat brute force attempts</li>
+              <li>Each block of plaintext that AES operates on is represented as a square matrix called state array</li>
+              <li>XORed with per-round key before going through multiple rounds of encryption</li>
+              <li>Each round the the algorithm perform SubBytes, ShiftRows, and MixColumns on the state array, which represent substitution and permutation</li>
+              <li>The transformed state array is XORed with the per-round  key and passed as input to the next round</li>
+              <li>The final round which excludes MixColumns Operation returns the ciphertext</li>
+              <li>Decryption is the same process in reverse</li>
+            </ul>
+              </div>
+        </div>
+      <div class="vspace1em"></div>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Public Key Signatures</div>
+        <div class="card-body">
+        <ul>
+            <li>Verification of Identity and Message Authenticity</li>
+            <li>To sign message m, Alice uses her signing private key s_A to create a tag t_A=S_sA(m) and sends (m, t_A).</li>
+            <li>Bob recieves the message (m', t'_A), and uses Alice's verification public key v_A to test whether t'_A is a matching tag for m' from Alice, by computing V_vA(m', t'_A)</li>
+            <li>This returns valid if a match is confirmed, and invalid otherwise</li>
+        </ul>
+            </div>
+      </div>
+    <div class="vspace1em"></div>
+</div>
+<div class="col-lg-9" id="UserAuth">
+    <p class="text-info">Security Notes.</p>
+    <h2>User Authentication</h2>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Online Guessing</div>
+        <div class="card-body">
+        <ul>
+            <li>Guesses are sent to legitimate server</li>
+            <li>Prevent with: rate limiting - setting a limit on the number of guesses before lockout</li>
+        </ul>
+        </div>
+      </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Offline Guessing</div>
+    <div class="card-body">
+        <ul>
+            <li>No per-guess interaction with the server is required</li>
+            <li>Prevent with: Salts, pepper, iterated hashing, MAC on passwords</li>
+        </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Defeated password recovery</div>
+    <div class="card-body">
+        <ul>
+            <li>attacker abuses password recovery mechanism to make a new password for your account instead of stealing the old one</li>
+            <li>Prevent with security questions</li>
+        </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Bypassing authentication interface</div>
+    <div class="card-body">
+        <ul>
+            <li>gaining unauthorized access to software vulnerabilities or design flaws</li>
+            <li>Prevent with up to date software, regular security testing</li>
+        </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Password capture</div>
+    <div class="card-body">
+        <ul>
+            <li>An attacker intercepts or observes passwords directly</li>
+            <li>Prevent with encrypted traffic, educating the public</li>
+        </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Advantages and Disadvantages of Passwords</div>
+    <div class="card-body">
+    <h5>Advantages</h5>
+    <ul>
+        <li>Simple, easy-to-use and learn</li>
+        <li>free, require no extra physical device to carry</li>
+        <li>can be replaced if lost</li>
+        <li>quick login times</li>
+    </ul>
+    <h5>Disadvantages</h5>
+    <ul>
+        <li>Can be guessed and stolen very easily</li>
+        <li>Finite keyspace</li>
+        <li>User behaviour is predictable (non-uniform password distribution)</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Password Salt</div>
+    <div class="card-body">
+    A password salt is a random k-bit value that is concatenated with the password before hashing. The salt is stored in plaintext. Prevents the usage of rainbow tables. 
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Pepper or secret salt</div>
+    <div class="card-body">
+        A pepper is like a regular salt except it is not stored. To verify the password for an account the system tries all salts in a deterministic order.
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Iterated Hashing</div>
+    <div class="card-body">
+        The password is hashed k times. It is used to slow down attackers because an attacker must also perform the hashing k times in order to get the password.
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Slowing down attackers: salts vs peppers vs iterated hashing</div>
+    <div class="card-body">
+       <ul>
+           <li>Iterated hashing: by a factor of k (where k is the number of times the password is hashed)</li>
+           <li>Salting: 2^t (where t is the length of the salt)</li>
+           <li>Peppering: 2^R-1 (where R is the keyspace of the salts)</li>
+       </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">System Assigned Passwords:</div>
+    <div class="card-body">
+    <ul>
+        <li>A randomly generated password</li>
+        <li>Pros: It eliminates password bias, and minimizes guessability</li>
+        <li>Cons: It decreases usability, user have a hard time remembering random strings</li>
+    </ul>
+        </div>
+  </div>
+  <div class="vspace1em"></div>
+  <div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Targeted vs Trawling Scope:</div>
+    <div class="card-body">
+    <ul>
+        <li>Targeted: attack specific pre-identified users</li>
+        <li>Trawling: break into any account, by trying many or all accounts</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Probability of Correct Guessing</div>
+    <div class="card-body">
+    <ul>
+    <li>Probability of guessing the correct password:</li>
+    <li>q=GT/R</li>
+    <li>R - the guessing rate</li>
+    <li>T - time</li>
+    <li>G - guessing rate</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Defensive Measures</div>
+    <div class="card-body">
+    <ul>
+        <li>rate limiting - addresses online guessing, locks a user out after n attempts</li>
+        <li>blacklisting - addresses online guessing, disallow most common, or simple passwords</li>
+        <li>salt - address pre-computed dictionaries</li>
+        <li>iterated hashing - addresses offline guessing, increases time per guess</li>
+        <li>pepper - addresses offline guessing, increases time per guess</li>
+        <li>MAC on password - addresses offline guessing, stolen hashfile no longer useful</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Passkeys</div>
+    <div class="card-body">
+    Password-derived cryptographic keys - passkeys. Must be strong because they are subject to offline attacks, and require high-guessing resistance. Memory aids for passkeys - the first letters of words in a relatively long sentences.
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Secret Questions for password recovery</div>
+    <div class="card-body">
+    <ul>
+        <li>Cons: Space of potential answers is small, information is often publicly available (social media), peoples answers may change</li>
+        <li>Pros: High usability, easy to implement</li>
+    </ul>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">One time passwords</div>
+    <div class="card-body">
+    passwords are valid for one use only
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+</div>
+<div class="col-lg-9" id="OSSec">
+<p class="text-info">Security Notes.</p>
+<h2>Operating System Security Basics</h2>
+    
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Define Accountability</div>
+    <div class="card-body">
+    the ability to identify principals responsible for past actions
+        </div>
+  </div>
+<div class="vspace1em"></div>
+</div>
+<script>
+        function openSection(evt, sName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("col-lg-9");
+                  for (i = 0; i < tabcontent.length; i++) {
+                      tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+                  for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(sName).style.display = "inline-block";
+                  evt.currentTarget.className += " active";
+              }
+              
+              // Get the element with id="defaultOpen" and click on it
+              document.getElementById("defaultOpen").click();
+      </script>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>

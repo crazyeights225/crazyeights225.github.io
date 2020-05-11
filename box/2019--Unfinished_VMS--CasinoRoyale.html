@@ -1,0 +1,67 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>CasinoRoyale</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<body><div class="main"><div class="tree">
+<p><strong>Index</strong></p>
+<p><a href="2019.html">2019</a></p>
+
+<ol>
+<li><a href="2019--BasicPenTestingBox.html">BasicPenTestingBox</a></li>
+<li><a href="2019--BasicPenTestingBox2.html">BasicPenTestingBox2</a></li>
+<li><a href="2019--bee_box.html">bee box</a></li>
+<li><a href="2019--BossPlayer.html">BossPlayer</a></li>
+<li><a href="2019--CyberChallenge19.html">CyberChallenge19</a></li>
+<li><a href="2019--Dawn.html">Dawn</a></li>
+<li><a href="2019--DC-1.html">DC-1</a></li>
+<li><a href="2019--DC-2.html">DC-2</a></li>
+<li><a href="2019--DC-3.html">DC-3</a></li>
+<li><a href="2019--DerpNStik.html">DerpNStik</a></li>
+<li><a href="2019--EVM.html">EVM</a></li>
+<li><a href="2019--Fowsniff.html">Fowsniff</a></li>
+<li><a href="2019--Gemini_Inc_1.html">Gemini Inc 1</a></li>
+<li><a href="2019--JIS_CTF.html">JIS_CTF</a></li>
+<li><a href="2019--mullidae.html">mullidae</a></li>
+<li><a href="2019--PumpkinFestival.html">PumpkinFestival</a></li>
+<li><a href="2019--PumpkinGarden.html">PumpkinGarden</a></li>
+<li><a href="2019--PumpkinRaising.html">PumpkinRaising</a></li>
+<li><a href="2019--QuaoarCTFHackfest2016.html">QuaoarCTFHackfest2016</a></li>
+<li><a href="2019--Rickdiculously_Easy.html">Rickdiculously Easy</a></li>
+<li><a href="2019--silky02.html">silky02</a></li>
+<li><a href="2019--silky1.html">silky1</a></li>
+<li><a href="2019--Typhoon.html">Typhoon</a></li>
+<li><a href="2019--VMS_to_try.html">VMS to try</a></li>
+<ol>
+<li><a href="2019--VMS_to_try--US_Gov_Conf.html">US Gov Conf</a></li>
+<li><a href="2019--VMS_to_try--Gruyere.html">Gruyere</a></li>
+</ol>
+<li><a href="2019--xss_challenges.html">xss challenges</a></li>
+<li><a href="2019--Blue.html">Blue</a></li>
+<li><a href="2019--mr_robot.html">mr robot</a></li>
+<li><a href="2019--Unfinished_VMS.html">Unfinished VMS</a></li>
+<ol>
+<li><a href="2019--Unfinished_VMS--CasinoRoyale.html">CasinoRoyale</a></li>
+<li><a href="2019--Unfinished_VMS--WinterMute_Straylight.html">WinterMute Straylight</a></li>
+<li><a href="2019--Unfinished_VMS--connect_the_dots_(unfinished).html">connect the dots (unfinished)</a></li>
+<li><a href="2019--Unfinished_VMS--arsenal.html">arsenal</a></li>
+<li><a href="2019--Unfinished_VMS--heist.html">heist</a></li>
+<li><a href="2019--Unfinished_VMS--MyHouse_Box.html">MyHouse Box</a></li>
+<li><a href="2019--Unfinished_VMS--Sputnik.html">Sputnik</a></li>
+<li><a href="2019--Unfinished_VMS--Node.html">Node</a></li>
+<li><a href="2019--Unfinished_VMS--HackInOs.html">HackInOs</a></li>
+<li><a href="2019--Unfinished_VMS--Seattle.html">Seattle</a></li>
+<li><a href="2019--Unfinished_VMS--DC416-Galahad.html">DC416-Galahad</a></li>
+</ol>
+<li><a href="2019--Not_a_Box.html">Not a Box</a></li>
+<ol>
+<li><a href="2019--Not_a_Box--securitytreasurehunt_web.html">securitytreasurehunt web</a></li>
+<li><a href="2019--Not_a_Box--rpc.html">rpc</a></li>
+<li><a href="2019--Not_a_Box--msf_fix.html">msf fix</a></li>
+</ol>
+<li><a href="2019--ICE.html">ICE</a></li>
+</ol></div>
+<div class="page"><h1><b><u>CasinoRoyale</u></b></h1>Nmap scan report for 172.16.116.131<br />Host is up (0.00044s latency).<br />Not shown: 996 closed ports<br />PORT     STATE SERVICE<br />21/tcp   open  ftp<br />25/tcp   open  smtp<br />80/tcp   open  http<br />8081/tcp open  blackice-icecap<br />MAC Address: 00:0C:29:F5:ED:0B (VMware)<br /><br />root@kali:~# nmap -A -p- 172.16.116.131<br />Starting Nmap 7.80 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2019-11-15 13:26 EST<br />Nmap scan report for 172.16.116.131<br />Host is up (0.00035s latency).<br />Not shown: 65531 closed ports<br />PORT     STATE SERVICE VERSION<br />21/tcp   open  ftp     vsftpd 2.0.8 or later<br />25/tcp   open  smtp    Postfix smtpd<br />|_smtp-commands: casino.localdomain, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, SMTPUTF8, <br />| ssl-cert: Subject: commonName=casino<br />| Subject Alternative Name: DNS:casino<br />| Not valid before: 2018-11-17T20:14:11<br />|_Not valid after:  2028-11-14T20:14:11<br />|_ssl-date: TLS randomness does not represent time<br />80/tcp   open  http    Apache httpd 2.4.25 ((Debian))<br />| http-robots.txt: 2 disallowed entries <br />|_/cards /kboard<br />|_http-server-header: Apache/2.4.25 (Debian)<br />|_http-title: Site doesn't have a title (text/html).<br />8081/tcp open  http    PHP cli server 5.5 or later<br />|_http-title: Site doesn't have a title (text/html; charset=UTF-8).<br />MAC Address: 00:0C:29:F5:ED:0B (VMware)<br />Device type: general purpose<br />Running: Linux 3.X|4.X<br />OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br />OS details: Linux 3.2 - 4.9<br />Network Distance: 1 hop<br /><br />TRACEROUTE<br />HOP RTT     ADDRESS<br />1   0.35 ms 172.16.116.131<br /><br />OS and Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br />Nmap done: 1 IP address (1 host up) scanned in 34.65 seconds<br />root@kali:~# <br /><br /><img src="images/40-1.png" alt="images/40-1.png" /><br /><br /><img src="images/40-2.png" alt="images/40-2.png" /><br /><br /><img src="images/40-3.png" alt="images/40-3.png" /><br /><br /><br /><img src="images/40-4.png" alt="images/40-4.png" /><br /><br />waggles eyebrows<br /><br /><img src="images/40-5.png" alt="images/40-5.png" /><br /><br /><img src="images/40-6.png" alt="images/40-6.png" /><br /><br />root@kali:~# dirb <a href="http://172.16.116.131/">http://172.16.116.131/</a> /usr/share/wordlists/dirb/common.txt<br /><br />-----------------<br />DIRB v2.22    <br />By The Dark Raver<br />-----------------<br /><br />START_TIME: Fri Nov 15 13:33:37 2019<br />URL_BASE: <a href="http://172.16.116.131/">http://172.16.116.131/</a><br />WORDLIST_FILES: /usr/share/wordlists/dirb/common.txt<br /><br />-----------------<br /><br />GENERATED WORDS: 4612                                                          <br /><br />---- Scanning URL: <a href="http://172.16.116.131/">http://172.16.116.131/</a> ----<br />==&gt; DIRECTORY: <a href="http://172.16.116.131/cards/">http://172.16.116.131/cards/</a>                                    <br />+ <a href="http://172.16.116.131/cgi-bin/">http://172.16.116.131/cgi-bin/</a> (CODE:403|SIZE:297)                           <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/includes/">http://172.16.116.131/includes/</a>                                 <br />+ <a href="http://172.16.116.131/index.html">http://172.16.116.131/index.html</a> (CODE:200|SIZE:220)                         <br />+ <a href="http://172.16.116.131/index.php">http://172.16.116.131/index.php</a> (CODE:200|SIZE:2801)                         <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/install/">http://172.16.116.131/install/</a>                                  <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/javascript/">http://172.16.116.131/javascript/</a>                               <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/kboard/">http://172.16.116.131/kboard/</a>                                   <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/">http://172.16.116.131/phpmyadmin/</a>                               <br />+ <a href="http://172.16.116.131/robots.txt">http://172.16.116.131/robots.txt</a> (CODE:200|SIZE:49)                          <br />+ <a href="http://172.16.116.131/server-status">http://172.16.116.131/server-status</a> (CODE:403|SIZE:302)                      <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/cards/">http://172.16.116.131/cards/</a> ----<br />+ <a href="http://172.16.116.131/cards/index.php">http://172.16.116.131/cards/index.php</a> (CODE:200|SIZE:51)                     <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/includes/">http://172.16.116.131/includes/</a> ----<br />+ <a href="http://172.16.116.131/includes/index.html">http://172.16.116.131/includes/index.html</a> (CODE:200|SIZE:301)                <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/install/">http://172.16.116.131/install/</a> ----<br />+ <a href="http://172.16.116.131/install/index.php">http://172.16.116.131/install/index.php</a> (CODE:200|SIZE:2816)                 <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/javascript/">http://172.16.116.131/javascript/</a> ----<br />==&gt; DIRECTORY: <a href="http://172.16.116.131/javascript/jquery/">http://172.16.116.131/javascript/jquery/</a>                        <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/kboard/">http://172.16.116.131/kboard/</a> ----<br />+ <a href="http://172.16.116.131/kboard/index.php">http://172.16.116.131/kboard/index.php</a> (CODE:200|SIZE:46)                    <br />                                                                               <br />---- Entering directory: <a href="http://172.16.116.131/phpmyadmin/">http://172.16.116.131/phpmyadmin/</a> ----<br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/doc/">http://172.16.116.131/phpmyadmin/doc/</a>                           <br />+ <a href="http://172.16.116.131/phpmyadmin/favicon.ico">http://172.16.116.131/phpmyadmin/favicon.ico</a> (CODE:200|SIZE:22486)           <br />+ <a href="http://172.16.116.131/phpmyadmin/index.php">http://172.16.116.131/phpmyadmin/index.php</a> (CODE:200|SIZE:10525)             <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/js/">http://172.16.116.131/phpmyadmin/js/</a>                            <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/libraries/">http://172.16.116.131/phpmyadmin/libraries/</a>                     <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/locale/">http://172.16.116.131/phpmyadmin/locale/</a>                        <br />+ <a href="http://172.16.116.131/phpmyadmin/phpinfo.php">http://172.16.116.131/phpmyadmin/phpinfo.php</a> (CODE:200|SIZE:10527)           <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/setup/">http://172.16.116.131/phpmyadmin/setup/</a>                         <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/sql/">http://172.16.116.131/phpmyadmin/sql/</a>                           <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/templates/">http://172.16.116.131/phpmyadmin/templates/</a>                     <br />==&gt; DIRECTORY: <a href="http://172.16.116.131/phpmyadmin/themes/">http://172.16.116.131/phpmyadmin/themes/</a>             <br /><br /><img src="images/40-7.png" alt="images/40-7.png" /> <br />          <br />                                                           </div></div>
+</body></html>

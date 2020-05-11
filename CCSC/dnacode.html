@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+                         <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Home</a></li>
+  <li class="breadcrumb-item"><a href="#">Files</a></li>
+  <li class="breadcrumb-item"><a href="../ccscfolder.html">CCSC</a></li>
+  <li class="breadcrumb-item active">dnadecode</li>
+</ol>
+<br>
+<div class="row">
+<div class="col-lg-9">
+      <p class="text-info">Scripts.</p>
+      <h2>DNA Code decoder</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">dnadecode.py</div>
+          <div class="card-body">
+          <!-- HTML generated using hilite.me --><div style="background: transparent; overflow:auto;width:auto;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">#crazyeights225</span>
+<span style="color: #75715e">#CONVERT DNA TRIPLES TO ENGLISH</span>
+<span style="color: #75715e">#Input: DNA triples without spaces</span>
+<span style="color: #f8f8f2">dnac</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">{</span><span style="color: #e6db74">&#39;AAA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;a&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AAC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;b&#39;</span><span style="color: #f8f8f2">,</span> 
+      <span style="color: #e6db74">&#39;AAG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;c&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AAT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ACA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;e&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ACC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;f&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ACG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;g&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ACT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;h&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AGA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;i&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AGC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;j&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AGG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;k&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;AGT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;l&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ATA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;m&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ATC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;n&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ATG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;o&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;ATT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;p&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CAA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;q&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CAC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;r&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CAG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;s&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CAT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;t&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CCA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;u&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CGC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;v&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CCG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;w&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CCT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;x&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CGA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;y&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CGC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;z&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CGG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;A&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CGT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;B&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CTA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;C&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CTC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;D&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CTG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;E&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;CTT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;F&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GAA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;G&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GAC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;H&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GAG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;I&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GAT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;J&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GCA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;K&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GCC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;L&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GCG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;M&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GCT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;N&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GGA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;O&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GGC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;P&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GGG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;Q&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GGT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;R&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GTA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;S&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GTC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;T&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GTG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;U&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;GTT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;V&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TAA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;W&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TAC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;X&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TAG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;Y&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TAT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;Z&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TCA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;1&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TCC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TCG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;3&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TCT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;4&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TGA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;5&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TGC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;6&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TGG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;7&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TGT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;8&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TTA&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;9&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TTC&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;0&#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TTG&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39; &#39;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #e6db74">&#39;TTT&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;.&#39;</span><span style="color: #f8f8f2">};</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">get_input</span><span style="color: #f8f8f2">():</span>
+	<span style="color: #f8f8f2">code</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">raw_input(</span><span style="color: #e6db74">&quot;Enter dna triples:&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">code</span>
+
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">dna_code_to_english</span><span style="color: #f8f8f2">(code):</span>
+	<span style="color: #f8f8f2">plain</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;&#39;</span>
+	<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">len(code),</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">):</span>
+		<span style="color: #f8f8f2">plain</span><span style="color: #f92672">+=</span><span style="color: #f8f8f2">dnac[code[i:i</span><span style="color: #f92672">+</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]]</span>
+	<span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">plain</span>
+
+<span style="color: #f8f8f2">code</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">get_input()</span>
+<span style="color: #f8f8f2">plain</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">dna_code_to_english(code)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Output:&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(plain)</span>
+</pre></div>
+
+
+    </div>
+    </div>
+    </div> 
+</div>
+</div>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>

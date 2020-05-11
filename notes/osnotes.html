@@ -1,0 +1,1276 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+<div class="row">
+<div class="col-lg-3">
+    <div class="list-group">
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'Intro')" id="defaultOpen">Introduction</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'kernelbasics')">Kernel Basics</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'theprocessmodel')">The Process Model</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'cprocessapi')">C Process API</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'filesystems')">File Systems</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'ssh')">SSH</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'kernelmodules')">Kernel Modules</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'kernelmemory')">Kernel Memory</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'kerneltools')">Kernel Tools</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'setupnotes')">Linux Setup Notes</button>
+</div>
+<br>
+</div>
+<div class="col-lg-9" id="Intro">
+        <div class="jumbotron">
+                <h1 class="display-3">Operating System Notes</h1>
+                <p class="lead">Linux OS notes and definitions.</p>
+                <hr class="my-4">
+                <p>Detailed Notes including process model, kernel memory filesystems, ..., as well as notes on setting up linux os on clean install.</p>
+              </div>
+</div>
+<div class="col-lg-9" id="kernelbasics">
+      <p class="text-info">Operating System Notes.</p>
+      <h2>Kernel Basics</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">What does the kernel do generally?</div>
+          <div class="card-body">
+              <ul>
+<li>allocates resources</li>
+<li>deals with misbehaving programs</li>
+<li>runs first, has first access to hardware</li>
+<li>controls access between hardware and programs</li>
+</ul>
+              </div>
+        </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">What is a TCB?</div>
+    <div class="card-body">
+            <p>Trusted Computing Base: kernel, bootloader, every process running as root, partially priviliged processes</p>
+        </div>
+  </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">File System Root Directories</div>
+    <div class="card-body">
+            <p class="text-info">What does /etc do?</p>
+            <p>stores config files, static files used by applications</p>
+            <p class="text-info">What does /sys do?</p>
+            <p>virtual filesystem, set of virtual files by exporting information about various kernel and subsystem devices, and device drivers</p>
+            <p class="text-info">What does /var do?</p>
+            <p>contains variable files, the data that is changed when the system ins running normally</p>
+            <p class="text-info">What does /mnt do?</p>
+            <p>generic mount point for mounting filesystems and devices</p>
+            <p class="text-info">What does /proc do?</p>
+            <p>stores information about each process</p>
+            <p class="text-info">What does /boot do?</p>
+            <p>contains bootloader files</p>
+            <p class="text-info">What does /dev do?</p>
+            <p>contains device files, includes kernel modules</p>
+        </div>
+  </div>
+</div>
+<div class="col-lg-9" id="theprocessmodel">
+      <p class="text-info">Operating System Notes.</p>
+      <h2>The Process Model</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">What is a process?</div>
+          <div class="card-body">
+         <ul>
+<li>Entities running on top of the kernel</li>
+<li>can be visualized as a tree hierachy</li>
+<li>every process has a parent</li>
+</ul>
+              </div>
+        </div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Process vs System Calls</div>
+<div class="card-body">
+<ul>
+<li>Running program on modern OS: processes</li>
+<li>Request from a process to kernel: system call:</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">System Calls vs Function Calls</div>
+<div class="card-body">
+<ul>
+<li>System Call: CPU must switch modes, jumps to a new address space</li>
+<li>Function Call: CPU jumps to address of function (args, return address are pushed to stack)</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What are the process states?</div>
+<div class="card-body">
+<ul>
+<li> NEW - process being created</li>
+<li> READY - process is waiting to be assigned to a processor</li>
+<li> RUNNING - instructions are being executed</li>
+<li> WAITING - waiting for event to occur (IO event, reception of signal)</li>
+<li> TERMINATED - finished execution</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Process Information</div>
+<div class="card-body">
+<p class="text-info">What information is associated with each process?</p>
+<p>The process id (PID) to identify process context, parent process ID, and process group ID.</p>
+<p class="text-info">Where is process information stored?</p>
+<p>In /proc directory, there is one directory for each pid, and the file comm contains information about the process</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the init process?</div>
+<div class="card-body">
+<ul>
+<li>can build powerful facilities using process models</li>
+<li>init is the ancestor of all processes</li>
+<li>started as last step in kernel boot sequence</li>
+<li>manages other processes in the operating system</li>
+<li>pid of init is 1</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Process Duplication</div>
+<div class="card-body">
+<p>Cases for making a new process: running a new program<br>
+Duplicating an existing process - not the same as running a process a second time, variables and states are carried over, and the duplicate becomes the child and the original the parent.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Signals</div>
+<div class="card-body">
+<p class="text-info">What is a signal?</p>
+<p>Something used for processes to communicate between each other. Signals cannot be used to count the number of occurences of an event. Signals indicate that at least one event of that type has occured.</p>
+<p class="text-info">What are signal handlers?</p>
+<p>User defined functions to handle chosen functions</p>
+<p>User defined signal</p>
+<p class="text-info">Signals from zombie children</p>
+<ul>
+<li>When a child process terminates, the kernel also send a SIGCHILD signal to the parent</li>
+<li> Child process calls back to kernel when it terminates, so kernel can inform the process' parent</li>
+<li> Default behaviour is to ignore this signal</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a Process Group?</div>
+<div class="card-body">
+<ul>
+<li>a collection of one process or of related processes (they are usually related by one or more pipes)</li>
+<li>at most one terminal that can be associated with a process group. There is a foreground process group, and a background process group (which is a process group that does not have access to a controlling process)</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a Session?</div>
+<div class="card-body">
+<p> A session is an environment for processes that is associated with one controlling terminal</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Terminating and Reaping Processes</div>
+<div class="card-body">
+<p class="text-info">What does reap mean?</p>
+<p> An act of parent process acknowledging that its child process has exited, thereby removing it from the parent table</p>
+<p class="text-info">What happens if a process terminates while it still has zombie children?</p>
+<p>The  init process reaps the zombies too. Then init is informed that is has zombie children. Init reaps the zombie processes</p>
+<p class="text-info">What happens if a parent process dies before its children?</p>
+<p>The kernel makes init the parent of the orphaned children. When child process dies init recieves a SIGCHILD and reaps them.</p>
+<p class="text-info">What happens to a child process if no one waits for it?</p>
+<p> When it dies it becomes a zombie (a process that has died but no one has waited for it)</p>
+<p class="text-info">What happens to a child process when a parent dies?</p>
+<p>Another process becomes the parent.</p>
+<p class="text-info">Switching between runlevels</p>
+<p>Each runlevel has a different (possibly overlapping) set of processes that are running. Also handles process termination scenarios</p>
+<p class="text-info">What is a thread?</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a Thread?</div>
+<div class="card-body">
+<p>A thread is a path of execution within a process, a process can contain multiple threads</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Signals</div>
+<div class="card-body">
+<p class="text-info">What are signals?</p>
+<p>A notifcation, or message sent by either the operating system or some application to your program (or one of its threads). Each signal is identified by a number</p>
+<p> A primitive mechanism for IPC that can send messages from one process to another</p>
+<p class="text-info">Signal as interupts</p>
+<p>Signals interupt the flow of a program, they must be handled, program must switch to signal handler. Most signals interupt only 1 thread not the entire application</p>
+<p class="text-info">What registers signal handlers?</p>
+<p>If a process wishes to handle certan signals then in the code the process has to register a signal handling function to the kernel, passes a pointer to handler function</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">How do processes communicate?</div>
+<div class="card-body">
+<p>2 methods: shared memory, and message passing (socket, pipe, RPC)</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is Process Control Block?</div>
+<div class="card-body">
+<p>1 for each process, contains info about process, state, pid, ppid, CPU register, program counter, scheduling, ..</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What does seteuid do?</div>
+<div class="card-body">
+<p>Sets the effective id, allowing users to access files that are owned by different user</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is CPU Scheduling?</div>
+<div class="card-body">
+<p>Determining which process is in the ready state and should be moved to the running state</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a pipe?</div>
+<div class="card-body">
+<p> A general data stream IPC mechanism, conveys arbitrary data, one way from one process to another, by coupling stdout to stdin of the next</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Stack and Heap</div>
+<div class="card-body">
+<p>Stack: Keeps track of where it is in function, local address call chain. Allocates local variables and pass parameters and return values to and from routines<br> Heap: Dynamic user allocation, program runtime</p>
+<p class="text-info"> What happens to current stack + heap when exec() is called?</p>
+<p> when it is invoked it loads specified program into the memory of the current process, overwrites the instructions and data segments of the current process</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="cprocessapi">
+<p class="text-info">Operating System Notes.</p>
+<h2>The C Process API</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What are the Standard API calls to work with processes?</div>
+<div class="card-body">
+<ul>
+<li> Kernel provides all these operations</li>
+<li> fork() - creates a new process</li>
+<li> exit() - terminates a running process</li>
+<li> wait(), waitpid() - reaps terminated (zombie) child processes</li>
+<li> execve() - loads and runs a program in a process</li>
+<li> kill() - sends a signal to another process</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Why call wait?</div>
+<div class="card-body">
+<ul>
+<li>If no wait() the main proces terminates before the execve() command outputs</li>
+<li>Adding a wait - the parent process waits for its child to terminate before it dies</li>
+<li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">wait vs waitpid</div>
+<div class="card-body">
+<ul>
+<li> wait() - waits for child process to terminate</li>
+<li> waitpid() - waits for a specific child to terminate, or all children in a process group</li>
+<li> Both report an error if calling process has no children</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Execve</div>
+<div class="card-body">
+<ul>
+<li>Replaces the running process with something else</li>
+<li>morphs into the command</li>
+<li>does not return</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Fork</div>
+<div class="card-body">
+<ul>
+<li>the action to duplicate a process</li>
+<li>based on return value of fork you can identify the parent process</li>
+<li>Fork returns the PID of the child process to the parent</li>
+<li>Fork returns 0 to the child</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Signals</div>
+<div class="card-body">
+<p class="text-info">What are signal handlers?</p>
+<p>User defined functions to handle chosen functions</p>
+<p class="text-info">What is rt_sigaction?</p>
+<p> System call, specifies the action to be taken by the kernel upon recieving a specific signal</p>
+<p class="text-info">What is SA_RESTART?</p>
+<p>flag for sigaction, makes certain system calls restartable across signals</p>
+<p class="text-info">What is SIGCHILD?</p>
+<p>child process stopped, exited, or changed. When child process stops or terminates, SIGCHILD is sent to parent process</p>
+<p class="text-info">What is SIGHUP?</p>
+<p>Hangup, signal sent when processes controlling terminal is closed.</p>
+<p class="text-info">What is SIGUSR1..10?</p>
+<p>User defined signal</p>
+<p class="text-info"> Execv() and preserving file descriptors</p>
+<p> Kernel doesn't have to specifically preserve any of the processes address space to preserve file descriptors because the file descriptors are stored in kernel data structures, not in process visible memory</li>
+<p class="text-info"> What does dup() do?</p>
+<p> Allow process to create a new file descriptor that refers to the same underlying open file descriptor as an existing descriptor</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="filesystems">
+<p class="text-info">Operating System Notes.</p>
+<h2>File Systems</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Filesystems</div>
+<div class="card-body">
+<p class="text-info">What is a filesystem?</p>
+<p>Refers to a hierachy of directories, or a directory tree, which is used to organize files. The directories start at the root directory, which contains subdirectories, ... </p>
+<p class="text-info">What are the types of filesystems?</p>
+<ul>
+<li> ext, ext2, ext3</li>
+<li> ext4 </li>
+<li> NTFS </li>
+<li> XFS </li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Types of Files</div>
+<div class="card-body">
+<ul>
+<li> Regular </li>
+<li> Direcories</li>
+<li> Character Special Files (I/O devices) </li>
+<li> Block Special Files (are used to model disks)</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a virtual filesystem (VFS)?</div>
+<div class="card-body">
+<ul>
+<li> an abstraction layer on top of a more concrete file system</li>
+<li> resides above a file sysyem and provides an interface between the kernel and file system</li>
+<li> gives applications access to different types of files systems</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Disks and Diskblocks</div>
+<div class="card-body">
+<p class="text-info">What are disk sectors?</p>
+<p>A sector is a physical spot on a formatted disk that holds information</p>
+<p class="text-info">What are disk blocks?</p>
+<p> A block is a group of sectors that the OS can address. A block can have one sector or several sectors depending on the size of the disk. Each disk block has unique number. The file system always reserves a number of disk blocks (directory disk blocks) to store information about the files on the disk</p>
+<p class="text-info">What is the superblock?</p>
+<p>A superblock is a record of the characteristics of filesystem, including size block size, empty and filled blocks, etx. 
+<p> Mounted initially, the kernel reads information from it. Allows faster access to the file system, and for multiple file systems to be merged into a single tree</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is an inode?</div>
+<div class="card-body">
+<ul>
+<li> Inodes stored in inode table (index number) containing information about a file.</li>
+<li> A row corresponding to an index number contains: filetype, permissions, file size, location of file on disk, # of links, ... </li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is lost+found?</div>
+<div class="card-body">
+<p>lost+found is a directory used specifically be fsck, preallocates space for fsck to deposit files there. Files in that folder are files with an inode and no name, or an allocated inode that no file refers to. They are put in this foder to be deleted so they no longer take up space on the disk.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What does fsck do?</div>
+<div class="card-body">
+<ul>
+<li>File System Check</li>
+<li> check and repair filesystem</li>
+<li> looks for damaged blocks (an allocated inode that no file refers to)</li>
+<li> links the inode to lost+found directory using the inode number as filename</li>
+<li> Cause could be unclean shutdown</li>
+<li> Compares reported allocations to actual. </p>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">File Permissions</div>
+<div class="card-body">
+<ul>
+<li>Shown as string of ten characters or numerically as 3 digit number</li>
+<li><pre>
+	   _ Owner 
+	  |    _ Group 
+	  |   |    _ Other
+	  |   |   | 
+	d rwx rwx rwx
+	|_ d - directory
+	|_ - - file
+	|_ l - link
+
+r - permission to read
+w - permission to write
+x - permission to execute
+- - no permission
+
+-------------------------------
+Numercic Value = Owner  Group  Other
+
+r = 4 
+w = 2
+x = 1
+- = 0 
+
+</pre>	
+</ul> 
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What does mmap do?</div>
+<div class="card-body">
+<p>It creates a memory mapping in the virtual address space of the process. It is an anonymous mapping</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Symbolic Links vs Hard Links</div>
+<div class="card-body">
+<p><b>Hard Link</b> - an additional name for an existing file, preserves the contents of the original file, links to an inode.<br>
+<b>Symbolic Link</b> - does not contain the data in the original file, points to another file. Deleting the original will "break" the file. Points to the same inode.</p>
+<p class="text-info">Define Shared Files</p>
+<p>Symbolic linked files, and hard linked files</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is dev/zero?</div>
+<div class="card-body">
+<p> A file (I/O stream) that allows infinite characters to be read from it, and infinite characters to be written to it</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a loop device?</div>
+<div class="card-body">
+<ul>
+<li> it is a pseudo device that makes a file accessible as a block device</li>
+<li> before use it must be connected to an existing file system</li>
+<li> if the file contains an entire filesystem the file may then be mounted as if it were a disk device</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Directory and File Operations</div>
+<div class="card-body">
+<p class="text-info">Directory Operations</p>
+<p>Create, Delete, Open (execute), Read, Close, Rename, and link</p>
+<p class="text-info"> What are the file operations?</p>
+<p> Create, Delete, Open, Close, Read, Write, Append, Seek, Get Attributes, Set attributes, Rename</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Directory and File Operations</div>
+<div class="card-body">
+<p>Tells the kernel to attach the filesystem found on the device at the directory (dir). The previous contents become invisible as long as the filesystem is mounted</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Define Sparse File</div>
+<div class="card-body">
+<p> A file that does not store empty blocks on the disk, so a file that was 5 GB full out of 100 GB, only the blocks required for those 5 GB would be stored on the disk.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">File Descriptors</div>
+<div class="card-body">
+<p class="text-info">Define File Descriptor</p>
+<ul>
+<li> a number that uniquely identifies an open file or I/O resource to an operating system</li>
+<li> file descriptors stored in file descriptor table, points to a row in global file table, then the row in global file table points to a row in the inode table</li>
+</ul>
+<p class="text-info">What are the file descriptors: 0, 1, 2?</p>
+<ul>
+<li> 0 - stdin - Standard Input Stream - ie. the keyboard </li>
+<li> 1 - stdout - Standard Output Stream - ie. the terminal window</li>
+<li> 2 - stderr - Standard Error Stream - ie. the terminal window </li>
+</ul>
+<p class="text-info"> Local and Global Descriptor Tables</p>
+<ul> 
+<li> Each program has its own LDT, but there is a single GDT, shared by all programs in computer</li>
+<li> The LDT describes segments local to each program, includning its code, and so on, whereas the GDT describes system segments including the OS itself</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Define Sparse File</div>
+<div class="card-body">
+<p> A file that does not store empty blocks on the disk, so a file that was 5 GB full out of 100 GB, only the blocks required for those 5 GB would be stored on the disk.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Virtual Address</div>
+<div class="card-body">
+<p>A pointer to memory space that an operating system allows a process to use, the virtual address points to a location in primary storage that a process can use independently of other processes</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Indirect Pointer</div>
+<div class="card-body">
+<p> instead of pointing to a block containing data it points to a block containing pointers. An inode may have some fixeed number of data pointers but only a single indirect pointer</p>        
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Fragmentation and Defragmentation</div>
+<div class="card-body">
+<p class="text-info">What is fragmentation?</p>
+<p>The contents of a single file are stored in different locations on the disk rather than in a contiguous space</p>
+<p class="text-info">Defragmentation</p>
+<p>The process of locating non-contiguous fragments of data into which a file was divided, and rearranging them into fewer fragments, in the optimal way. </p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Journalling Filesystems</div>
+<div class="card-body">
+<p class="text-info">What is a Journalling Filesystem?</p>
+<p>A journalling filesystem is a filesystem that maintains a special file called the journal that is used to repair any inconsistencies that occurs as the result of inproper shutdown. They write metadata into a journal that is flushed to the HDD before each command returns. It guarentees the the structure of the filesystem is always consistent</p>
+<p class="text-info">3 Levels of Journalling (ext3)</p>
+<ul>
+<li>Journal - writes data and metadata to the journal before committing it to the filesystem </li>
+<li>Ordered - writes metadata data to the journal but commits data directly to the filesystem</li>
+<li>Writeback - metadata is journalled, data is not, but metadata and data may be written in whatever order is best for performance</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the reference count field in the inode table?</div>
+<div class="card-body">
+<p>The reference count field in the inode table is the number of hardlinks presently pointing at a particular inode, when it is 0, it is an indication that the inode can be deleted, since nothing points to it anymore</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is an extent?</div>
+<div class="card-body">
+<p>A range of contiguous physical blocks that can be reserved and addressed at once. Utilizing extents decreases the number of inodes required by a given file and significantly decreses fragmentation, and increases performance.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header"> Linked List Allocation using Table (File Systems)</div>
+<div class="card-body">
+<p>Take the pointer word from each disk block, and put it into a table in memory, chain terminated with special marker (FAT file allocation table)</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a memory mapped file?</div>
+<div class="card-body">
+<p>A segment of virtual memory that has been assigned a direct byte-for-byte correlation with some portion of a file or file like resource. Once present the correlation allows applications to treat the mapped portion as if it were primary memory</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is an access control list (ACL)?</div>
+<div class="card-body">
+<p>refers to permissions attached to an output that specifies which users are granted access to that object and the operations that it is allowed to perform</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is bitmap?</div>
+<div class="card-body">
+<p> One for data region, one for inode table, each bit is used to indicate whether the corresponding object/block is free (0) or in use (1) </p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Sequential vs Random Access (Files)</div>
+<div class="card-body">
+<p>Sequential Access: system can only read files in order beginning to end<br> Random Access: bytes or records can be read in any order</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="ssh">
+<p class="text-info">Operating System Notes.</p>
+<h2>SSH</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">How does SSH work generally?</div>
+<div class="card-body">
+<ul>
+<li> Public keys are exchanged</li>
+<li> Encryption for the session is negotiated, a session key is created</li>
+<li> Authenticate the user, verfiy the access they have to the server</li>
+<li> The reciever uses their own private key and the senders public key to decrypt the message</li>
+<li> The reciever uses their public to encrypt a message to send</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Encryption</div>
+<div class="card-body">
+<p class="text-info">Symmetric Encryption</p>
+<p>One key to encrypt messages to the host, and decrypt messagers from the host</p>
+<p class="text-info">Asymmetrical Encryption</p>
+<p>2 Associated keys are needed: private key and public key. The public key encrypts messages, and the associated private key decrypts them. Messages encrypted with the public key can only be decrypted with the private key.</p> 
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="kernelmodules">
+<p class="text-info">Operating System Notes.</p>
+<h2>Kernel Modules</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a kernel module? </div>
+<div class="card-body">
+<ul>
+<li> code that can be loaded and unloaded into the kernel on command</li>
+<li> extends the functionality of the kernel w/o the need to reboot the system</li>
+<li> Load a module: sudo insmod simple.ko </li>
+<li> Unload a module: sudo rmmod simple.ko</li>
+<li> List all current loaded modules: lsmod </li>
+<li> lsmod reads the contents of /proc/modules </li>
+<li> Unloading a module: the module data structure is marked as deleted and is unlinked from the list of kernel modules. Any other modules that are dependent on it have their reference lists updated so they no longer have it as a dependent. All of the kernel memory allocated by that module is deallocated</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">How do you view kernel logs? </div>
+<div class="card-body">
+<ul>
+<li> /var/log/dmesg - boot-time, stores information about hardware drivers, and status during bootup, and more</li>
+<li> /var/log/kern.log - logs kernel information and events on your system, also logs dmesg</li>
+<li> command: sudo dmesg </li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">How is a module unloaded? </div>
+<div class="card-body">
+        <p>The module data structure is marked as detected and it is unlinked from the list of kernel modules. Any other modules that are dependent on it have their reference list modified so that they have it as a dependent. All of the kernel memory that the module needed is deallocated.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is current referring to? </div>
+<div class="card-body">
+<ul>
+<li> current is struct task_struct *tsk</li>
+<li> current points to the task running on a cpu at a given moment</li>
+<li> defined in linux/include/linux/sched.h</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a shared library? </div>
+<div class="card-body">
+        <p>Libraries shared by lots of programs, only loaded once, program is linked to stub routine that binds to actual function at runtime, library is read in page by page, functions that are not used are not read</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the Kernel Symbol Table?</div>
+<div class="card-body">
+<p>A table that contains addresses of global kernel items (functions and variables) needed to implement modularized drivers. (In your module use: EXPORT_SYMBOL (name) and EXPORT_SYMBOL_GPL (name)</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="kernelmemory">
+<p class="text-info">Operating System Notes.</p>
+<h2>Kernel Memory</h2>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Commands to check disk, cpu stats:</div>
+<div class="card-body">
+<p> fdisk -l, and lscpu</p>
+</div>
+</div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Pages</div>
+<div class="card-body">
+<p class="text-info">What is a page?</p>
+<p>A page, memory page, or virtual page is a fixed length contiguous block of virtual memory, described by a single entry in the page table. It is the smallest unit of data for memory management in a virtual memory OS <br>
+<br>
+----> page (frame) unit of physical memory <br>
+----> page also a unit of logical memory. Size of page matches a page frame <br>
+----> Logical address is divided into a page selector and an offset into the page <br>
+</p>
+<p class="text-info">Allocating Pages</p>
+<p>
+page_alloc -> allocate n pages of virtual space, page table, mem_map data strucutre describes all physical pages, allocates a page in swap, multiple blocks use queue<br>
+2^(order) (1<<order) -> contiguous pages are allocated, returns a pointer to first page
+</p>
+<p class="text-info">What is paging?</h3?>
+<ul>
+<li>Used by virtual memory systems</li>
+<li>Memory management scheme by which computer stores and retrieves data from secondary storage for use in main memory, retrieves data from secondary storage in same size blocks called pages</p>
+</ul>
+<p class="text-info">What is the page table?</p>
+<p>Data structure used by virtual memory in an OS to store the mapping between virtual addresses and physical addresses. A page table entry is a frame number and an optional status.</p>
+<p class="text-info">Pages vs Sectors</p>
+<p>A block is composed of one or more sectors but is no more than a page in size
+ Assuming a 4K page size, a random read would require two 4K sector reads</p>
+<p class="text-info">Define: Page Fault</p>
+<p>Exception raised by hardware when running program accesses memory page that is not currently mapped by the memory management unit (MMU) into virtual address of the process</p>
+<p class="text-info">How is Page Fault handled?</p>
+<ul>
+<li>Os discovers a page fault has occured</li>
+<li>finds out what virtual page is needed</li>
+<li>Checks to see if address is valid</li>
+<li>Performs disk transfer, loads frame, and update page table</li>
+<li>faulting instruction backed up, faulting process is scheduled, OS returns to routine that is called</li>
+<li>Routine rebounds registers, returns to user space to continue execution</li>
+</ul>
+<p class="text-info">How is the number of pages/page size defined?</p>
+<p>1 &lt;&lt; 12 = 4096 bits is one page, number of pages in program: 2^(order)(1 &lt;&lt; order), contigous pages are allocated, returns address of first page</p>
+<p class="text-info">What is page replacement?</p>
+<p>Algorithm: decides which memory pages to page out (swap out) or write to disk when a page of memory needs to be allocated</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the swap?</div>
+<div class="card-body">
+<p> portion of hard drive for virtual memory <br>
+-> a computer with virtual memory enabled will *swap* data to the HDD and back to memory as needed, thus, in effect, increasing the total system memory.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Does the kernel use virtual or physical addresses for its own data structures?</div>
+<div class="card-body">
+<p>It would have to use both, since you cannot use virtual memory without knowing where it maps to. <br>
+-> There could be virtual addresses for the page table and virtual addresses using the page table. <br>
+-> kernel virtual memory is mappped into each process's virtual address space. <br>
+</p>
+<p class="text-info">What are data structures used by the kernel?</p>
+<p>Linked List, (Hash) Tables, Queues, Maps, Binary Trees</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a Bus?</div>
+<div class="card-body">
+<p>A bus is a subsystem that is used to connect computer components and transfer data between them. Types of buses include: address bus, data bus, and local bus. Ex. Allows processor to communicate with graphics card, or memory</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Cache</div>
+<div class="card-body">
+<p class="text-info">Define block/buffer cache</p>
+<p>It is common to read some part of the disk multiple times in a short period of time. Reading information from the disk only once and keeping it in memory until it is no longer required can speed up processes. This is called disk buffering, and the data is stored in memory called the buffer cache.</p>
+<p class="text-info">Define write-through cache</p>
+<p> A caching technique in which data is simultaneously copied to higher level caches backup storage or memory</p>
+<p class="text-info">What is CPU Caching?</p>
+<p> CPU caching - small pools of memory CPU is likely to need to next, to avoid fetching them from memoty repeatedly</p>
+<p class="text-info">L1 CPU cache</p>
+<p>first level of CPU cache, done without delay, stores heavily used data words</p>
+<p class="text-info">L2 CPU cache</p>
+<p>second level, holds several megabytes of recently used memory words, access involves delay of 1 to 2 clock cycles</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is an interupt?</div>
+<div class="card-body">
+<p>An interupt is something that pauses/changes the flow of the program. <br>
+ie. A signal - when a process recieves a signal it has to stop and either handle or ignore the signal.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Define the Memory Mapped I/O</div>
+<div class="card-body">
+<p>A method of exchanging data and instructions between a CPU and peripheral device attached to it<br>
+Processor and I/O devices share the same memory</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Define Direct Memory Access (DMA)</div>
+<div class="card-body">
+        <p> is a method that allows an Input/Output (I/O) device to send or recieve data directly to or from main memory, bypassing the CPU to speed up memory operations</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is a domain socket?</div>
+<div class="card-body">
+<p>processes reference domain sockets as file system inodes, so 2 processes can communicate by opening the same socket, used for interprocess communication</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Concurrency</div>
+<div class="card-body">
+<p class="text-info">Define: mutual exclusion</p>
+<p>The requirement that one process is in a criticial section that accesses shared resources, no other processes may be in a critical section that accesses any of those shared resources</p>
+<p class="text-info">What is a race condition?</p>
+<p>Occurs when 2 or more threads can access shared data and they try to change it at the same time. Operations must be done in proper sequence to be done correctly.</p>
+<p class="text-info">Define Deadlock</p>
+<p>When a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some process</p>
+<p class="text-info">Define spinlock</p>
+<ul>
+<li> A lock that causes the thread trying to acquire it to simply wait in loop ("spin") while repeatedly checking if the lock is available</li>
+<li> Thread remains active but is not performing useful task</li>
+</ul>
+<p class="text-info"> 3 Requirements to any solution to critical sections problem:</p>
+<ul>
+<li> Mutual Exclusion: No 2 processes simultaneously in critical region</li>
+<li> Progress: No process outside of a critical region may cause another process to block</li>
+<li> Bounded: No  process can wait forever to enter its critical region</li>
+</ul>
+<p class="text-info"> Define: Atomic Operation</p>
+<p> A function or action implemented as a sequence of one or more instructions that appears to be indivisble, that is no other process can see an intermediate state or interupt the operation. The sequence of instructions is guaranteed execute as a group, having no visible effect on  system state. Atomically guarantees isolation from concurrent processes</p>
+<p class="text-info"> 4 Issues raised by concurrency for the OS</p>
+<p> communication between process, sharing of and competing for resources, synchronization of the activities of multiple processes, Allocation of processor time to processes</p>
+<p class="text-info">Define Starvation:</p>
+<p> Allocation of resources is unfair, something cannot proceed because it never gets the resources it require, even though resources may be available they are granted to something else</p>
+<p class="text-info"> What is the basic requirement for the execution of concurrent processes?</p>
+<p> The ability to enforce mutual exclusion, that is the ability to exclude other processes from a course of action while one process is granted that ability</p>
+<p class="text-info">Recovering from deadlock</p>
+<ul>
+<li> Take resources if they preemptible</li>
+<li> It can kill processes to free resources</li>
+<li> Otherwise it can try to take snapshots of process states, and roll back on the state where the system is not deadlocked</li>
+</ul>
+<p class="text-info">How to exploit race condition?</p>
+<p>There is a time between checking whether resource is available, and accessing the resource</p>
+<p class="text-info">Concurrency in kernel programming</p>
+<p>Programs don't execute sequentially as user space applications do</p>
+<p class="text-info">How to prevent the exploit of a race condition?</p>
+<p>Check the euid before accessing a file</p>
+<p class="text-info">What is mutex?</p>
+<ul>
+<li>mutual exclusion, either producer or consumer can have the key, and proceed with work</li>
+<li>As long as buffer is filled by producer, consumer must wait and vice versa</li>
+<li>At any point in time only 1 thread can work with the entire buffer (semaphore)</li>
+</ul>
+<p class="text-info">What is a lock variable?</p>
+<ul>
+<li> simple synchronization method for processes</li>
+<li> User mode mechanism</li>
+<li> busy waiting solution</li>
+<li> lock = 0 - critical section is vacant</li>
+<li> lock = 1 - critical section is occupied</li>
+</ul>
+<p class="text-info"> What is producer consumer?</p>
+<p> Bounded buffer problem. 2 processes share a common fixed size buffer and the producer puts information in the buffer, and the other process (the consumer) takes it out</p>
+<p class="text-info"> What is FUTEX?</p>
+<p> fast user space mutex, implements basic locking but avoids dropping into kernel unless it has to</p>
+<p class="text-info">What is a monitor?</p>
+<ul>
+<li> a collection of procedures, variables, and data structures grouped together in package/module</li>
+<li> processes call procedures in the monitor whenever they want to, but they can not directly access monitors internal data structures</li>
+<li> monitors achieve mutex</li>
+</ul>
+<p class="text-info"> What is a barrier?</p>
+<ul>
+<li> synchronization method for groop of processes</li>
+<li> applications divided into phases, no process can proceed to next phase until all processes are ready to proceed</li>
+<li> place barriers at the end of each phase, all processes must reach barrier, allows synchronization</li>
+</ul>
+<p class="text-info">What is a semaphore?</p>
+<ul>
+<li>A generalized mutex</li>
+<li>If single buffer, we can split the 4 KB buffer into 4 1KB identical resources. A semaphore can be associated with these 4 buffers</li>
+<li> The producer/consumer can work on different buffers at the same time</li>
+<li>Interactions between active processes, variable, or ADT</li>
+</ul>
+<p class="text-info"> What are the 3 contexts of concurrency?</p>
+<p> processes unaware of each other, processes indirectly aware of each other, processes directly aware of each other</p>
+<p class="text-info"> What is a critical region?</p>
+<p> A group of instructions/statements or region of code that needs to be executed automatically, such as accessing a resource</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Non-Premptive Scheduling vs. Premptive Scheduling</div>
+<div class="card-body">
+<ul>
+<li>Non-Pre: picks a process to run, lets it run until it blocks or voluntarily release CPU</li>
+<li>Pre: picks a process, lets it run for max amount of some fixed time</li>
+</ul>
+<p class="text-info">Pre-emptive Multitasking</p>
+<ul>
+<li>CPU recieves interupt</li>
+<li>Interupt store program counter</li>
+<li>Interupt invokes handler</li>
+<li>handler saves process state</li>
+<li>handler does business</li>
+<li>handler invokes scheduler</li>
+<li>scheduler selects process to run</li>
+<li>scheduler restores state for that process</li>
+<li>scheduler jumps execution to that process</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">3 important attributes that an operating system maintains to keep track of information about a thread</div>
+<div class="card-body">
+<ul>
+<li>Program Counter</li>
+<li>Registers</li>
+<li>Stack</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Uniprocessors vs Multiprocessors</div>
+<div class="card-body">
+<p class="text-info">What is multiprocessors system?</p>
+<ul>
+<li> A shared memory multiprocessor is a computer system in which 2 or more CPUs share full access to common RAM</li>
+<li> A program running on any of its CPUs sees a normal veritcal address space</li>
+</ul>
+<p class="text-info">2 Reasons why uniprocessor scheduling is easier than multiprocessor scheduling</p>
+<ul>
+<li>Concurrently executing processes may be require access to shared data</li>
+<li>Load Balancing</li>
+<li>Difficult to debug non-deterministic execution sequences</li>
+<li>Cache affinity needs to be considered in scheduling decisions</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Kernel Logs</div>
+<div class="card-body">
+<p class="text-info">What is /var/log/dmesg?</p>
+<p>boot-time log, stores information about hardware drivers, and status information during boot and more</p>
+<p class="text-info">What is tty[sX]?</p>
+<p>/dev/ttyX - any device that acts as a terminal</p>
+<p class="text-info">What is /var/log/kern.log?</p>
+<p>logs the kernel information and events on your system, also logs dmesg</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Hardware Components:</div>
+<div class="card-body">
+<p class="text-info">What are I/O devices?</p>
+<p> Hardware device that has ability to accept input, send output or other processed data</p>
+<p class="text-info">Define Clock</p>
+<p> microchip that regulates timing and speed of all computer functions, shortest time any computer is capable of performing is one clock</p>
+<p class="text-info"> What is a device driver?</p>
+<p> A computer program that operates or controls a particular type of device that is attached to a computer.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is EUID?</div>
+<div class="card-body">
+<p> Effective User ID, what the current user is acting as, allows users who are not root to act as root</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Character vs Block Device </div>
+<div class="card-body">
+<p>Character Device: is one which the driver communicates by sending and recieving single characters<br> Block Device: one which the driver communicates by sending entire blocks of data</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Execution Modes</div>
+<div class="card-body">
+<p class="text-info">What are the execution modes?</p>
+<p>User, and Kernel mode</p>
+<p class="text-info">Context Switching Steps: </p>
+<ol>
+<li> Saves enough registers on the stack to eventually return back to calling C function</li>
+<li> Stores the stack pointer in the current threads control block</li>
+<li> Load the stack pointer from the destination threads registers from its stack</li>
+<li> Restores the destination threads registers from its stack</li>
+<li> Returns to C in the destination thread</li>
+</ol>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header"> What are scheduling queues?</div>
+<div class="card-body">
+<ul>
+<li>All processes upon entering the system are stored in the job queue</li>
+<li> Processes in the Ready state are placed in the Ready Queue</li>
+<li> Processes waiting for a device to become available are placed in device queues</li>
+<li> A new process is initially in the ready queue, until it is selected for execution.</li>
+<li> Once the process is assigned to the CPU: it could issue an IO request and be placed in the IO queue, could create a new subprocess unit for its termination, could be forcibly removed via interupt</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is niceness?</div>
+<div class="card-body">
+<ul>
+<li>NI - nice value of a task</li>
+<li>negative nice value means higher priority, while positive nice value means lower priority</li>
+<li>Mechanism for user space priority</li>
+<li>Range: -20 to 19</li>
+<li>Priority is: 20 + NI</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Define Address Space</div>
+<div class="card-body">
+        <p>Valid range of address that are available in memory for a program or process, the memory that a program or process can access virtual, or physical</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Base Register and Limit Register</div>
+<div class="card-body">
+<ul>
+<li> Dynamic Relocation</li>
+<li> maps each processes address space onto a different part of physical memory</li>
+<li> loaded into consecutive memory wherever there is room without relocation during loading</li>
+<li> when a process is run, base register is loaded with the physical address, when its program begins in memory and limit register stores the length of the program</li>
+<li> During the runtime, gets address at base + x, and checks if it in range of the limit</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">How does virtual mapping work?</div>
+<div class="card-body">
+<ul>
+<li> each program has its own address space which is broken into chunks called pages</li>
+<li> Each page is contiguous range of addresses</li>
+<li> They are mapped into physical memory, not all in physical memory at the same time</li>
+</ul>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the switch table?</div>
+<div class="card-body">
+<p> A data structure in the kernel where the block and character IO interface points are stored</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What is the register?</div>
+<div class="card-body">
+<p> A set of data holding places that are part of the computer processor, holds instructions, a storage addressm or any kind of data. Processor has index registers</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Segmentation</div>
+<div class="card-body">
+<p class="text-info"> What is segmentation?</p>
+<ul>
+<li> process divided into segments</li>
+<li> chunks that a program is divided into which are not necessarily all of the same size are called segments</li>
+<li> segmentation gives user's view of process, which paging does not give. User's view is mapped into physical memory</li>
+<li> Segment Table - maps 2d logical address into 1d physical address with base address, limit</li>
+</ul>
+<p class="text-info">What is segmentation fault?</p>
+<p>Common condition causing program to crash, often associated with file named core. Segfaults are caused by a program trying to read or write to an illegal memory location</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="kerneltools">
+<p class="text-info">Operating System Notes.</p>
+<h2>Kernel Tools</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">What are eBPF-bcc tools and how do they work?</div>
+<div class="card-body">
+<p class="text-info">What are eBPF-bcc tools and how do they work?</p>
+<ul>
+<li>allows users to exec semi-arbitrary code without having to load from a custom kernel module</li>
+<li>kernel tracing tools - trace certain calls</li>
+<li>they attach uprobes/kprobes to certain breakpoints, register callbacks which return data (the call return)</li>
+</ul>
+<p class="text-info">List open terminals: </p>
+<div class="main_code">
+<pre><font color="#3CB05F"><b>crazyeights@superchicken</b></font>:<font color="#729FCF"><b>~</b></font>$ ps
+  PID TTY          TIME CMD
+ 7651 pts/0    00:00:00 bash
+ 8954 pts/0    00:00:00 ps
+</pre>
+</div>
+<p class="text-info"> What is a probe?</p>
+<p>kprobe: trace kernel level functions<br>uprobe: trace user level functions</p>
+
+<p class="text-info">What is TTY?</p>
+<p> stands for teletype, refers to a terminal -> device allowing you to interact with the system by passing on data to the system, and displaying the output </p><br>
+<p>List current terminal: tty</p><br>
+<p>Locate a command (the path to file): which</p><br>
+<div class="main_code">
+<pre><font color="#3CB05F"><b>crazyeights@superchicken</b></font>:<font color="#729FCF"><b>~</b></font>$ which ls
+/bin/ls
+</pre>
+</div>
+<p>Show tty's for processes: ps aux</p><br>
+<p>Using eBPF scripts</p>
+<p class="text-info">Opensnoop</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="setupnotes">
+<p class="text-info">Operating System Notes.</p>
+<h2>Setup Notes:</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Add a new root user</div>
+<div class="card-body">
+<pre>
+add new root user:
+useradd -m [user name]
+passwd [user name]
+
+sudo usermod -a -G sudo [user name]
+chsh -s /bin/bash [user name]
+
+to remove user:
+userdel [user name]
+</pre>  
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Setting default file manager to nautilus:</div>
+<div class="card-body">
+<pre>
+<span color="#729FCF">//install nautilus</span>
+sudo apt-get install nautilus
+
+xdg-mime query default inode/directory
+xdg-mime default nautilus.desktop inode/directory
+
+vim .config/user-dirs.dirs
+<span color="#729FCF">//Add a desktop directory</span>
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Installing Node JS</div>
+<div class="card-body">
+<pre>
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo apt-get install -y build-essential
+</pre> 
+</div>
+</div>
+<div class="vspace1em"></div>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Temporary Fix for Linux Distorted and Fuzzy Sound</div>
+<div class="card-body">
+<p>In Settings &gt; Sound, Adjust the Balance abit to the left or right, If it gets fuzzy again change it again.</p>
+</div>
+</div>
+<div class="vspace1em"></div>
+</div>
+</div>
+<script>
+        function openSection(evt, sName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("col-lg-9");
+                  for (i = 0; i < tabcontent.length; i++) {
+                      tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+                  for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(sName).style.display = "inline-block";
+                  evt.currentTarget.className += " active";
+              }
+              
+              // Get the element with id="defaultOpen" and click on it
+              document.getElementById("defaultOpen").click();
+      </script>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>

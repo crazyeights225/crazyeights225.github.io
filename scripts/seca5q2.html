@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+        <div class="album py-4"></div>
+                <div class="container">
+                         <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+  <li class="breadcrumb-item"><a href="../files.html">Files</a></li>
+  <li class="breadcrumb-item"><a href="../scriptsfolder.html">Scripts</a></li>
+  <li class="breadcrumb-item active">bannergrabbingnmap</li>
+</ol>
+<br>
+<div class="row">
+<div class="col-lg-9">
+      <p class="text-info">Scripts.</p>
+      <h2></h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">seca5q2.py</div>
+          <div class="card-body">
+         <!-- HTML generated using hilite.me --><div style="background: transparent; overflow:auto;width:auto;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">os</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">xml.dom.minidom</span>
+
+<span style="color: #f8f8f2">stream</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">os</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">popen(</span><span style="color: #e6db74">&quot;nmap -sS -p10000-20000 -oX - localhost&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">output</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">stream</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">read()</span>
+
+<span style="color: #f8f8f2">scan_xml</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">xml</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dom</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">minidom</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">parseString(output)</span>
+<span style="color: #f8f8f2">ports</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">scan_xml</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">getElementsByTagName(</span><span style="color: #e6db74">&quot;port&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">port</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">ports:</span>
+        <span style="color: #f8f8f2">poid</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">port</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">getAttribute(</span><span style="color: #e6db74">&quot;portid&quot;</span><span style="color: #f8f8f2">)</span>
+	<span style="color: #f8f8f2">print</span> <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;%s/%s %s&quot;</span> <span style="color: #f92672">%</span> <span style="color: #f8f8f2">(poid,</span>
+                             <span style="color: #f8f8f2">port</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">getAttribute(</span><span style="color: #e6db74">&quot;protocol&quot;</span><span style="color: #f8f8f2">),</span>
+                             <span style="color: #f8f8f2">port</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">getElementsByTagName(</span><span style="color: #e6db74">&quot;state&quot;</span><span style="color: #f8f8f2">)[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">getAttribute(</span><span style="color: #e6db74">&quot;state&quot;</span><span style="color: #f8f8f2">)))</span>
+	<span style="color: #f8f8f2">cmd</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;nc localhost %s &lt; input.txt&quot;</span> <span style="color: #f92672">%</span> <span style="color: #f8f8f2">poid</span>
+	<span style="color: #f8f8f2">stream</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">os</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">popen(cmd)</span>
+        <span style="color: #f8f8f2">output</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">stream</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">read()</span>
+	<span style="color: #f8f8f2">print(output)</span>
+</pre></div>
+
+
+
+    </div>
+    </div>
+    </div> 
+</div>
+</div>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+.folder-link{
+    color: #3498DB!important;
+}
+
+.folder-box, .file-outer{
+    min-width: 200px;
+}
+
+.folder-box {
+    max-width: 300px; 
+    min-height: 100px;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.folder-inner{
+    margin: auto;
+}
+
+.folder-inner, .file-inner, .file-body{
+    display: flex; 
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.folder-muted{
+    color: #999;
+    font-size: 0.9em;
+}
+
+.file-body{
+    text-align: center;
+}
+
+.file-outer{
+    min-height: 200px;
+    max-width: 40%;
+}
+
+.file-inner, .folder-inner{
+    padding-top: 3px;
+}
+
+.folder-icon{
+    width: 80%; 
+    max-width: 52px; 
+    margin: auto;
+    height: auto;
+}
+
+.file-icon{
+    width: 80%; 
+    max-width: 64px; 
+    margin: auto;
+}
+
+.file-div{
+    background: transparent!important; 
+    border: none!important;
+    outline: none!important;
+}
+
+.date-text{
+    display: block; 
+    margin: auto;
+}

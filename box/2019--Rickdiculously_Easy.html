@@ -1,0 +1,67 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Rickdiculously Easy</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<body><div class="main"><div class="tree">
+<p><strong>Index</strong></p>
+<p><a href="2019.html">2019</a></p>
+
+<ol>
+<li><a href="2019--BasicPenTestingBox.html">BasicPenTestingBox</a></li>
+<li><a href="2019--BasicPenTestingBox2.html">BasicPenTestingBox2</a></li>
+<li><a href="2019--bee_box.html">bee box</a></li>
+<li><a href="2019--BossPlayer.html">BossPlayer</a></li>
+<li><a href="2019--CyberChallenge19.html">CyberChallenge19</a></li>
+<li><a href="2019--Dawn.html">Dawn</a></li>
+<li><a href="2019--DC-1.html">DC-1</a></li>
+<li><a href="2019--DC-2.html">DC-2</a></li>
+<li><a href="2019--DC-3.html">DC-3</a></li>
+<li><a href="2019--DerpNStik.html">DerpNStik</a></li>
+<li><a href="2019--EVM.html">EVM</a></li>
+<li><a href="2019--Fowsniff.html">Fowsniff</a></li>
+<li><a href="2019--Gemini_Inc_1.html">Gemini Inc 1</a></li>
+<li><a href="2019--JIS_CTF.html">JIS_CTF</a></li>
+<li><a href="2019--mullidae.html">mullidae</a></li>
+<li><a href="2019--PumpkinFestival.html">PumpkinFestival</a></li>
+<li><a href="2019--PumpkinGarden.html">PumpkinGarden</a></li>
+<li><a href="2019--PumpkinRaising.html">PumpkinRaising</a></li>
+<li><a href="2019--QuaoarCTFHackfest2016.html">QuaoarCTFHackfest2016</a></li>
+<li><a href="2019--Rickdiculously_Easy.html">Rickdiculously Easy</a></li>
+<li><a href="2019--silky02.html">silky02</a></li>
+<li><a href="2019--silky1.html">silky1</a></li>
+<li><a href="2019--Typhoon.html">Typhoon</a></li>
+<li><a href="2019--VMS_to_try.html">VMS to try</a></li>
+<ol>
+<li><a href="2019--VMS_to_try--US_Gov_Conf.html">US Gov Conf</a></li>
+<li><a href="2019--VMS_to_try--Gruyere.html">Gruyere</a></li>
+</ol>
+<li><a href="2019--xss_challenges.html">xss challenges</a></li>
+<li><a href="2019--Blue.html">Blue</a></li>
+<li><a href="2019--mr_robot.html">mr robot</a></li>
+<li><a href="2019--Unfinished_VMS.html">Unfinished VMS</a></li>
+<ol>
+<li><a href="2019--Unfinished_VMS--CasinoRoyale.html">CasinoRoyale</a></li>
+<li><a href="2019--Unfinished_VMS--WinterMute_Straylight.html">WinterMute Straylight</a></li>
+<li><a href="2019--Unfinished_VMS--connect_the_dots_(unfinished).html">connect the dots (unfinished)</a></li>
+<li><a href="2019--Unfinished_VMS--arsenal.html">arsenal</a></li>
+<li><a href="2019--Unfinished_VMS--heist.html">heist</a></li>
+<li><a href="2019--Unfinished_VMS--MyHouse_Box.html">MyHouse Box</a></li>
+<li><a href="2019--Unfinished_VMS--Sputnik.html">Sputnik</a></li>
+<li><a href="2019--Unfinished_VMS--Node.html">Node</a></li>
+<li><a href="2019--Unfinished_VMS--HackInOs.html">HackInOs</a></li>
+<li><a href="2019--Unfinished_VMS--Seattle.html">Seattle</a></li>
+<li><a href="2019--Unfinished_VMS--DC416-Galahad.html">DC416-Galahad</a></li>
+</ol>
+<li><a href="2019--Not_a_Box.html">Not a Box</a></li>
+<ol>
+<li><a href="2019--Not_a_Box--securitytreasurehunt_web.html">securitytreasurehunt web</a></li>
+<li><a href="2019--Not_a_Box--rpc.html">rpc</a></li>
+<li><a href="2019--Not_a_Box--msf_fix.html">msf fix</a></li>
+</ol>
+<li><a href="2019--ICE.html">ICE</a></li>
+</ol></div>
+<div class="page"><h1><b><u>Rickdiculously Easy</u></b></h1><h3>I completed this box but didn't make a write up<br /></h3><br />crazyeights@kali:~$ ping 172.19.210.171<br />PING 172.19.210.171 (172.19.210.171) 56(84) bytes of data.<br />64 bytes from 172.19.210.171: icmp_seq=1 ttl=64 time=0.353 ms<br />64 bytes from 172.19.210.171: icmp_seq=2 ttl=64 time=0.131 ms<br />^C<br />--- 172.19.210.171 ping statistics ---<br />2 packets transmitted, 2 received, 0% packet loss, time 1000ms<br />rtt min/avg/max/mdev = 0.131/0.242/0.353/0.111 ms<br />crazyeights@kali:~$ <br /><br />crazyeights@kali:~$ sudo nmap -sV 172.19.210.171<br />[sudo] password for crazyeights: <br />Starting Nmap 7.80 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2019-09-09 20:56 EDT<br />Nmap scan report for ad10-210-171.resnet.carleton.ca (172.19.210.171)<br />Host is up (0.00018s latency).<br />Not shown: 996 closed ports<br />PORT     STATE SERVICE VERSION<br />21/tcp   open  ftp     vsftpd 3.0.3<br />22/tcp   open  ssh?<br />80/tcp   open  http    Apache httpd 2.4.27 ((Fedora))<br />9090/tcp open  http    Cockpit web service<br />1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at <a href="https://nmap.org/cgi-bin/submit.cgi?new-service">https://nmap.org/cgi-bin/submit.cgi?new-service</a> :<br />SF-Port22-TCP:V=7.80%I=7%D=9/9%Time=5D76F4C5%P=x86_64-pc-linux-gnu%r(NULL,<br />SF:42,"Welcome\x20to\x20Ubuntu\x2014\.04\.5\x20LTS\x20\(GNU/Linux\x204\.4\<br />SF:.0-31-generic\x20x86_64\)\n");<br />MAC Address: 08:00:27:BF:52:95 (Oracle VirtualBox virtual NIC)<br />Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel<br /><br />Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br />Nmap done: 1 IP address (1 host up) scanned in 36.75 seconds<br />crazyeights@kali:~$ <br /><br /><img src="images/5-1.png" alt="images/5-1.png" /><br /><br /><img src="images/5-2.png" alt="images/5-2.png" /><br /><br />crazyeights@kali:~$ sudo nmap -A 172.19.210.171<br />Starting Nmap 7.80 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2019-09-09 21:10 EDT<br />Nmap scan report for ad10-210-171.resnet.carleton.ca (172.19.210.171)<br />Host is up (0.00013s latency).<br />Not shown: 996 closed ports<br />PORT     STATE SERVICE VERSION<br />21/tcp   open  ftp     vsftpd 3.0.3<br />| ftp-anon: Anonymous FTP login allowed (FTP code 230)<br />| -rw-r--r--    1 0        0              42 Aug 22  2017 FLAG.txt<br />|_drwxr-xr-x    2 0        0               6 Feb 12  2017 pub<br />| ftp-syst: <br />|   STAT: <br />| FTP server status:<br />|      Connected to ::ffff:172.19.211.207<br />|      Logged in as ftp<br />|      TYPE: ASCII<br />|      No session bandwidth limit<br />|      Session timeout in seconds is 300<br />|      Control connection is plain text<br />|      Data connections will be plain text<br />|      At session startup, client count was 3<br />|      vsFTPd 3.0.3 - secure, fast, stable<br />|_End of status<br />22/tcp   open  ssh?<br />| fingerprint-strings: <br />|   NULL: <br />|_    Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-31-generic x86_64)<br />|_ssh-hostkey: ERROR: Script execution failed (use -d to debug)<br />80/tcp   open  http    Apache httpd 2.4.27 ((Fedora))<br />| http-methods: <br />|_  Potentially risky methods: TRACE<br />|_http-server-header: Apache/2.4.27 (Fedora)<br />|_http-title: Morty's Website<br />9090/tcp open  http    Cockpit web service<br />| http-title: localhost.localdomain<br />|_Requested resource was <a href="https://ad10-210-171.resnet.carleton.ca:9090/">https://ad10-210-171.resnet.carleton.ca:9090/</a><br />1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at <a href="https://nmap.org/cgi-bin/submit.cgi?new-service">https://nmap.org/cgi-bin/submit.cgi?new-service</a> :<br />SF-Port22-TCP:V=7.80%I=7%D=9/9%Time=5D76F80E%P=x86_64-pc-linux-gnu%r(NULL,<br />SF:42,"Welcome\x20to\x20Ubuntu\x2014\.04\.5\x20LTS\x20\(GNU/Linux\x204\.4\<br />SF:.0-31-generic\x20x86_64\)\n");<br />MAC Address: 08:00:27:BF:52:95 (Oracle VirtualBox virtual NIC)<br />Device type: general purpose<br />Running: Linux 3.X|4.X<br />OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br />OS details: Linux 3.2 - 4.9<br />Network Distance: 1 hop<br />Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel<br /><br />TRACEROUTE<br />HOP RTT     ADDRESS<br />1   0.13 ms ad10-210-171.resnet.carleton.ca (172.19.210.171)<br /><br />OS and Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br />Nmap done: 1 IP address (1 host up) scanned in 38.70 seconds<br />crazyeights@kali:~$ <br /><br />crazyeights@kali:~$ ftp 172.19.210.171<br />Connected to 172.19.210.171.<br />220 (vsFTPd 3.0.3)<br />Name (172.19.210.171:crazyeights): Anonymous<br />331 Please specify the password.<br />Password:<br />230 Login successful.<br />Remote system type is UNIX.<br />Using binary mode to transfer files.<br />ftp&gt; <br />ftp&gt; ls<br />200 PORT command successful. Consider using PASV.<br />150 Here comes the directory listing.<br />-rw-r--r--    1 0        0              42 Aug 22  2017 FLAG.txt<br />drwxr-xr-x    2 0        0               6 Feb 12  2017 pub<br />226 Directory send OK.<br />ftp&gt; get FLAG.txt<br />local: FLAG.txt remote: FLAG.txt<br />200 PORT command successful. Consider using PASV.<br />150 Opening BINARY mode data connection for FLAG.txt (42 bytes).<br />226 Transfer complete.<br />42 bytes received in 0.02 secs (1.8639 kB/s)<br />ftp&gt; cd pub<br />250 Directory successfully changed.<br />ftp&gt; ls<br />200 PORT command successful. Consider using PASV.<br />150 Here comes the directory listing.<br />226 Directory send OK.<br />ftp&gt; ls<br />200 PORT command successful. Consider using PASV.<br />150 Here comes the directory listing.<br />226 Directory send OK.<br />ftp&gt; <br /><br />FLAG 2 - FLAG{Whoa this is unexpected} - 10 Points<br /><br /><br />crazyeights@kali:~$ skipfish -o re_site -S /usr/share/skipfish/dictionaries/minimal.wl <a href="http://172.19.210.171">http://172.19.210.171</a><br /><br /><img src="images/5-3.png" alt="images/5-3.png" /><br /><br /><br /><img src="images/5-4.png" alt="images/5-4.png" /><br /><br /><img src="images/5-5.png" alt="images/5-5.png" /><br /><br /><img src="images/5-6.png" alt="images/5-6.png" /><br /><br /><a href="http://172.19.210.171/passwords/FLAG.txt">http://172.19.210.171/passwords/FLAG.txt</a><br /><br />FLAG 3 - FLAG{Yeah d- just don't do it.} - 10 Points<br /><br /><br /><img src="images/5-7.png" alt="images/5-7.png" /><br /><br /><img src="images/5-8.png" alt="images/5-8.png" /><br /></div></div>
+</body></html>

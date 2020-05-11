@@ -1,0 +1,67 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Node</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<body><div class="main"><div class="tree">
+<p><strong>Index</strong></p>
+<p><a href="2019.html">2019</a></p>
+
+<ol>
+<li><a href="2019--BasicPenTestingBox.html">BasicPenTestingBox</a></li>
+<li><a href="2019--BasicPenTestingBox2.html">BasicPenTestingBox2</a></li>
+<li><a href="2019--bee_box.html">bee box</a></li>
+<li><a href="2019--BossPlayer.html">BossPlayer</a></li>
+<li><a href="2019--CyberChallenge19.html">CyberChallenge19</a></li>
+<li><a href="2019--Dawn.html">Dawn</a></li>
+<li><a href="2019--DC-1.html">DC-1</a></li>
+<li><a href="2019--DC-2.html">DC-2</a></li>
+<li><a href="2019--DC-3.html">DC-3</a></li>
+<li><a href="2019--DerpNStik.html">DerpNStik</a></li>
+<li><a href="2019--EVM.html">EVM</a></li>
+<li><a href="2019--Fowsniff.html">Fowsniff</a></li>
+<li><a href="2019--Gemini_Inc_1.html">Gemini Inc 1</a></li>
+<li><a href="2019--JIS_CTF.html">JIS_CTF</a></li>
+<li><a href="2019--mullidae.html">mullidae</a></li>
+<li><a href="2019--PumpkinFestival.html">PumpkinFestival</a></li>
+<li><a href="2019--PumpkinGarden.html">PumpkinGarden</a></li>
+<li><a href="2019--PumpkinRaising.html">PumpkinRaising</a></li>
+<li><a href="2019--QuaoarCTFHackfest2016.html">QuaoarCTFHackfest2016</a></li>
+<li><a href="2019--Rickdiculously_Easy.html">Rickdiculously Easy</a></li>
+<li><a href="2019--silky02.html">silky02</a></li>
+<li><a href="2019--silky1.html">silky1</a></li>
+<li><a href="2019--Typhoon.html">Typhoon</a></li>
+<li><a href="2019--VMS_to_try.html">VMS to try</a></li>
+<ol>
+<li><a href="2019--VMS_to_try--US_Gov_Conf.html">US Gov Conf</a></li>
+<li><a href="2019--VMS_to_try--Gruyere.html">Gruyere</a></li>
+</ol>
+<li><a href="2019--xss_challenges.html">xss challenges</a></li>
+<li><a href="2019--Blue.html">Blue</a></li>
+<li><a href="2019--mr_robot.html">mr robot</a></li>
+<li><a href="2019--Unfinished_VMS.html">Unfinished VMS</a></li>
+<ol>
+<li><a href="2019--Unfinished_VMS--CasinoRoyale.html">CasinoRoyale</a></li>
+<li><a href="2019--Unfinished_VMS--WinterMute_Straylight.html">WinterMute Straylight</a></li>
+<li><a href="2019--Unfinished_VMS--connect_the_dots_(unfinished).html">connect the dots (unfinished)</a></li>
+<li><a href="2019--Unfinished_VMS--arsenal.html">arsenal</a></li>
+<li><a href="2019--Unfinished_VMS--heist.html">heist</a></li>
+<li><a href="2019--Unfinished_VMS--MyHouse_Box.html">MyHouse Box</a></li>
+<li><a href="2019--Unfinished_VMS--Sputnik.html">Sputnik</a></li>
+<li><a href="2019--Unfinished_VMS--Node.html">Node</a></li>
+<li><a href="2019--Unfinished_VMS--HackInOs.html">HackInOs</a></li>
+<li><a href="2019--Unfinished_VMS--Seattle.html">Seattle</a></li>
+<li><a href="2019--Unfinished_VMS--DC416-Galahad.html">DC416-Galahad</a></li>
+</ol>
+<li><a href="2019--Not_a_Box.html">Not a Box</a></li>
+<ol>
+<li><a href="2019--Not_a_Box--securitytreasurehunt_web.html">securitytreasurehunt web</a></li>
+<li><a href="2019--Not_a_Box--rpc.html">rpc</a></li>
+<li><a href="2019--Not_a_Box--msf_fix.html">msf fix</a></li>
+</ol>
+<li><a href="2019--ICE.html">ICE</a></li>
+</ol></div>
+<div class="page"><h1><b><u>Node</u></b></h1>Node box<br /><br />Nmap scan report for 192.168.56.110<br />Host is up (0.00042s latency).<br />Not shown: 998 filtered ports<br />PORT     STATE SERVICE<br />22/tcp   open  ssh<br />3000/tcp open  ppp<br />MAC Address: 08:00:27:9E:E2:CC (Oracle VirtualBox virtual NIC)<br /><br />Nmap done: 255 IP addresses (3 hosts up) scanned in 7.57 seconds<br />root@kali:~# <br /><br />root@kali:~# nmap -A -p- 192.168.56.110<br />Starting Nmap 7.80 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2019-11-06 19:28 EST<br />Nmap scan report for 192.168.56.110<br />Host is up (0.00041s latency).<br />Not shown: 65533 filtered ports<br />PORT     STATE SERVICE            VERSION<br />22/tcp   open  ssh                OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)<br />| ssh-hostkey: <br />|   2048 dc:5e:34:a6:25:db:43:ec:eb:40:f4:96:7b:8e:d1:da (RSA)<br />|   256 6c:8e:5e:5f:4f:d5:41:7d:18:95:d1:dc:2e:3f:e5:9c (ECDSA)<br />|_  256 d8:78:b8:5d:85:ff:ad:7b:e6:e2:b5:da:1e:52:62:36 (ED25519)<br />3000/tcp open  hadoop-tasktracker Apache Hadoop<br />| hadoop-datanode-info: <br />|_  Logs: /login<br />| hadoop-tasktracker-info: <br />|_  Logs: /login<br />|_http-title: MyPlace<br />MAC Address: 08:00:27:9E:E2:CC (Oracle VirtualBox virtual NIC)<br />Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br />Device type: general purpose<br />Running: Linux 3.X|4.X<br />OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br />OS details: Linux 3.2 - 4.9<br />Network Distance: 1 hop<br />Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br /><br />TRACEROUTE<br />HOP RTT     ADDRESS<br />1   0.41 ms 192.168.56.110<br /><br />OS and Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br />Nmap done: 1 IP address (1 host up) scanned in 119.33 seconds<br />root@kali:~# <br /><br /><img src="images/20-1.png" alt="images/20-1.png" /><br /><br /><img src="images/20-2.png" alt="images/20-2.png" /><br /><br /><img src="images/20-3.png" alt="images/20-3.png" /><br /><br /><br /><img src="images/20-4.png" alt="images/20-4.png" /><br /><img src="images/20-5.png" alt="images/20-5.png" /><br /><br />[{"_id":"59a7368398aa325cc03ee51d","username":"tom","password":"f0e2e750791171b0391b682ec35835bd6a5c3f7c8d1d0191451ec77b4d75f240","is_admin":false},{"_id":"59a7368e98aa325cc03ee51e","username":"mark","password":"de5a1adf4fedcce1533915edc60177547f1057b61b7119fd130e1f7428705f73","is_admin":false},{"_id":"59aa9781cced6f1d1490fce9","username":"rastating","password":"5065db2df0d4ee53562c650c29bacf55b97e231e3fe88570abc9edd8b78ac2f0","is_admin":false}]<br /><br />Attempting to crack these hashes:<br /><br />root@kali:~# john --format=Raw-SHA256 --wordlist=/usr/share/seclists/Passwords/Leaked-Databases/rockyou-50.txt --rules node_hashes<br />Using default input encoding: UTF-8<br />Loaded 3 password hashes with no different salts (Raw-SHA256 [SHA256 256/256 AVX2 8x])<br />Warning: poor OpenMP scalability for this hash type, consider --fork=4<br />Will run 4 OpenMP threads<br />Press 'q' or Ctrl-C to abort, almost any other key for status<br />spongebob        (?)<br />snowflake        (?)<br />2g 0:00:00:00 DONE (2019-11-06 19:53) 6.060g/s 1080Kp/s 1080Kc/s 1477KC/s Sombras..Bambining<br />Use the "--show --format=Raw-SHA256" options to display all of the cracked passwords reliably<br />Session completed<br />root@kali:~# <br /><br /><br /><span style="text-decoration:line-through;">Cookie when logged in as tom:<br />A5.nX4Yh0IVaB7eTbgs9IGf8c0DCKvNXu0oy2x4Myf8jDs</span><br /><br /><img src="images/20-6.png" alt="images/20-6.png" /><br /><br /><img src="images/20-7.png" alt="images/20-7.png" /><br /><br />PASSWORD FOR ADMIN ACCOUNT:<br />root@kali:~# john --format=Raw-SHA256 --wordlist=/usr/share/seclists/Passwords/Leaked-Databases/rockyou-50.txt --rules node_hashes<br />Using default input encoding: UTF-8<br />Loaded 4 password hashes with no different salts (Raw-SHA256 [SHA256 256/256 AVX2 8x])<br />Remaining 2 password hashes with no different salts<br />Warning: poor OpenMP scalability for this hash type, consider --fork=4<br />Will run 4 OpenMP threads<br />Press 'q' or Ctrl-C to abort, almost any other key for status<br />manchester       (?)<br />1g 0:00:00:00 DONE (2019-11-06 20:07) 1.123g/s 400639p/s 400639c/s 474275C/s Sombras..Bambining<br />Use the "--show --format=Raw-SHA256" options to display all of the cracked passwords reliably<br />Session complete<br /><br /><img src="images/20-8.png" alt="images/20-8.png" /><br /><br />--&gt; backup file is a password protected zip <br /><br /></div></div>
+</body></html>

