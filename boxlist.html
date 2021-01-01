@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="assets/bulma.min.css">
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="index.html" class="navbar-item">Posts</a>
+                    <a href="projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                List of Vulnerable VMs + Boxes from Various Sources
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Work in Progress, Updated Regularly, All these I have completed, tried and failed, or tried and they didn't work
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="index.html">Posts</a></li>
+          <li class="is-active"><a href="#" aria-current="page">List of Vulnerable VMs</a></li>
+        </ul>
+      </nav>
+<div class="container">
+<div class="columns is-centered">
+<canvas id="boxchart" height="200"></canvas>
+</div>
+</div>
+<table id="boxlist" class="mt-4" style="width: 100%">
+    <tr>
+        <th>Name</th>
+        <th>Difficulty</th>
+        <th>Skills</th>
+        <th>Logic Leaps?</th>
+        <th>Date</th>
+    </tr>
+    <tr>
+    <td>Vulnhub: Sunset: Dawn</td>
+            <td>Easy</td>
+            <td>SMB, euid</td>
+            <td>N</td>
+            <td>DEC 20</td>
+            </tr>
+    <tr>
+    <td>Vulnhub: Sunset</td>
+            <td>Easy</td>
+            <td>Ftp, hash cracking</td>
+            <td>N</td>
+            <td>DEC 20</td>
+            </tr>
+    <tr>
+        <td>Vulnhub: Shuriken-1</td>
+        <td>Easy</td>
+        <td>enumeration, file upload, BOF</td>
+        <td>N</td>
+        <td>OCT 20</td>
+    </tr>
+     <tr>
+      <td>Vulnhub: school</td>
+      <td>Easy</td>
+      <td>enumeration, file upload, BOF</td>
+      <td>N</td>
+      <td>DEC 20</td>
+  </tr>
+    <tr>
+     <td>Vulnhub: Forensics</td>
+     <td>NA</td>
+     <td>Networking wouldn't work.</td>
+     <td>NA</td>
+     <td>OCT 20</td>
+ </tr>
+    </tr>
+     <tr>
+      <td>Vulnhub: Funbox-3</td>
+      <td>Easy</td>
+      <td>Web Exploits, SUID Priv Esc</td>
+      <td>N</td>
+      <td>OCT 20</td>
+  </tr>
+    <tr>
+      <td>Vulnhub: Funbox-2</td>
+      <td>Easy</td>
+      <td>FTP, Zip File Cracking, ...</td>
+      <td>N</td>
+      <td>OCT 20</td>
+  </tr>
+    <tr>
+      <td>Vulnhub: Funbox-1</td>
+      <td>Easy</td>
+      <td>Another Wordpress</td>
+      <td>N</td>
+      <td>SEPT 20</td>
+  </tr>
+   <tr>
+      <td>Vulnhub: Potato</td>
+      <td>NA</td>
+      <td>Was broken for me, Idk why.</td>
+      <td>N</td>
+      <td>SEPT 20</td>
+  </tr>
+    <tr>
+      <td>Bizarre Adventures: Sticky Fingers</td>
+      <td>NA</td>
+      <td>I don't know the anime/manga..</td>
+      <td>Y</td>
+      <td>SEPT 20</td>
+  </tr>
+      <tr>
+      <td>Vulnhub: BSides Vancouver 2018</td>
+      <td>Easy</td>
+      <td>Another Wordpress</td>
+      <td>N</td>
+      <td>SEPT 20</td>
+  </tr>
+    <tr>
+      <td>Vulnhub: Mercury</td>
+      <td>Easy</td>
+      <td>SQLi + Path Priv Esc</td>
+      <td>N</td>
+      <td>SEPT 20</td>
+  </tr>
+  <tr>
+    <td>Vulnhub: Star Wars</td>
+    <td>Easy</td>
+    <td>Enumeration</td>
+    <td>N</td>
+    <td>AUG 20</td>
+</tr>
+    <tr>
+        <td>Vulnhub: eLection</td>
+        <td>Easy</td>
+        <td>Web + Local Enumeration</td>
+        <td>N</td>
+        <td>JUL 20</td>
+    </tr>
+   <tr>
+      <td>Vulnhub: The Matrix:1</td>
+        <td>Easy</td>
+        <td>Web Enum, Custom Wordlist, rbash breakout</td>
+        <td>Y</td>
+        <td>JUL 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: BlackRose</td>
+        <td>Medium Hard</td>
+        <td>Stego, Web Exploit, RE, ssh2john</td>
+        <td>Y</td>
+        <td>JUN 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: cybersploit</td>
+        <td>Easy</td>
+        <td>Enum, Priv Esc</td>
+        <td>Y</td>
+        <td>JUN 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Sumo</td>
+        <td>Easy</td>
+        <td>Apache Vuln, Dirty Cow</td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: SolidState</td>
+        <td>Medium</td>
+        <td>James Remote Admin, pop3, rbash... </td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Zion 1</td>
+        <td>Medium</td>
+        <td>Enum, Web Exploit, Custom Wordlist</td>
+        <td>Y</td>
+        <td>JUL 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: OSCP Box</td>
+        <td>Easy</td>
+        <td>Enum</td>
+        <td>N</td>
+        <td>JUL 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Library</td>
+        <td>Easy</td>
+        <td>SQLi, FTP</td>
+        <td>N</td>
+        <td>JUL 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: HA Armor</td>
+        <td>Easy</td>
+        <td>Enum, Riddles and Trickery</td>
+        <td>Y</td>
+        <td>JUL 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: GlasgowSmile</td>
+        <td>Easy</td>
+        <td>joomla</td>
+        <td>Y</td>
+        <td>JUN 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Vegeta</td>
+        <td>Easy</td>
+        <td>Enum, Custom Wordlists, Theme</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: Anthem</td>
+        <td>Easy</td>
+        <td>Windows</td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Broken-2020</td>
+        <td>???</td>
+        <td>CMS</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Challenge 42</td>
+        <td>Easy</td>
+        <td>Enum</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: LemonSqueezy</td>
+        <td>Easy</td>
+        <td>wordpress, phpadmin,..</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: Sar-1</td>
+        <td>Easy</td>
+        <td>emum, rce, priv esc</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: VulnUni</td>
+        <td>Easy</td>
+        <td>CMS exploit</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: Attacktive Directory</td>
+        <td>Easy</td>
+        <td>Windows KRB, LDAP, RPC..</td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: Blueprint</td>
+        <td>Very Easy</td>
+        <td>SMB</td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>TryHackMe: Blaster</td>
+        <td>Easy</td>
+        <td>Web Enum, Wordpress, Windows Priv Esc</td>
+        <td>Y</td>
+        <td>APR 20</td>
+   </tr>
+   <tr>
+      <td>Vulnhub: mhz_ctf</td>
+        <td>Easy</td>
+        <td>enum, stego</td>
+        <td>Y</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: LFI</td>
+        <td>Easy</td>
+        <td>LFI,socat priv esc</td>
+        <td>N</td>
+        <td>MAY 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: CC: Pentesting</td>
+        <td>Very Easy</td>
+        <td>Enum, Password Cracking</td>
+        <td>N</td>
+        <td>JAN 20</td>
+   </tr>
+    <tr>
+      <td>Tryhackme: Easy CTF</td>
+        <td>Easy</td>
+        <td>CMS Exploit, Vim Priv Esc</td>
+        <td>N</td>
+        <td>FEB 20</td>
+   </tr>
+   <tr>
+      <td>Tryhackme: Agent Sudo</td>
+        <td>Easy</td>
+        <td>Curl, Online Password Cracking, Password-Protected Stego, Sudo Priv Esc</td>
+        <td>Y</td>
+        <td>FEB 20</td>
+   </tr>
+   <tr>
+    <td>overthewire: bandit</td>
+      <td>Easy</td>
+      <td>Linux Bash, Restricted Bash breakout</td>
+      <td>Y</td>
+      <td>DEC 19</td>
+ </tr>
+ <tr>
+  <td>Vulnhub: BlackMarket</td>
+    <td>Awesome</td>
+    <td>Web Exploits, Awesome</td>
+    <td>Y</td>
+    <td>DEC 19</td>
+  </tr>
+  <tr>
+    <td>AttackDefense Labs</td>
+      <td>Easy</td>
+      <td>Pivoting</td>
+      <td>Y</td>
+      <td>DEC 19</td>
+    </tr>
+    <tr>
+    <td>Vulnhub: Avengers Arsenal</td>
+        <td>NA</td>
+        <td>BS</td>
+        <td>Y</td>
+        <td>Fall 19</td>
+    </tr>
+    <tr>
+    <td>Vulnhub: Literally Vulnerable</td>
+          <td>Easy</td>
+          <td>...</td>
+          <td>Y</td>
+          <td>Fall 19</td>
+        </tr>
+        <tr>
+          <td>Vulnhub: Prime-1</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+          </tr>
+          <tr>
+            <td>biohazard</td>
+              <td>Easy</td>
+              <td>Android, ...</td>
+              <td>Y</td>
+              <td>Fall 19</td>
+            </tr>
+            <tr>
+              <td>OTW: Leviathan</td>
+                <td>Easy</td>
+                <td>RE</td>
+                <td>Y</td>
+                <td>Winter 20</td>
+              </tr>
+          <tr>
+              <td>Vulnhub: Skytower</td>
+                  <td>Easy</td>
+                  <td>Http-Proxy, curl</td>
+                  <td>Y</td>
+                  <td>Winter 20</td>
+          </tr>
+          <tr>
+          <td>Vulnhub: BasicPentesting-1</td>
+          <td>Easy</td>
+          <td>...</td>
+          <td>Y</td>
+          <td>Fall 19</td>
+          </tr>
+           <tr>
+            <td>Vulnhub: BasicPentesting-2</td>
+           <td>Easy</td>
+           <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+          </tr>
+          <tr>
+           <td>Vulnhub: Bossplayer</td>
+            <td>Easy</td>
+            <td>Enum, Priv Esc...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+           </tr>
+            <tr>
+            <td>Vulnhub: DC-1</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: DC-2</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: DC-3</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: DerpNStink</td>
+            <td>Easy</td>
+            <td>Enum</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: EVM</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr><tr>
+            <td>Vulnhub: Gemini Inc 1</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: JIS CTF</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: PumpkinFestival</td>
+            <td>Easy</td>
+            <td>Puzzle Solving</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: PumpkinGarden</td>
+            <td>Easy</td>
+            <td>Puzzle Solving</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: PumpkinRaising</td>
+            <td>Easy</td>
+            <td>Puzzle Solving</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: QuaoarCTFHackfest2016</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: Rickdiciously Easy</td>
+            <td>Easy</td>
+            <td>Enum, Web Exploit, Crunch, Priv Esc</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: silky01</td>
+            <td>Easy</td>
+            <td>Enumeration, Login Brute Force, EUID, Bad Path Config</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: silky02</td>
+            <td>Easy</td>
+            <td>CMD Injection, EUID</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: Typhoon</td>
+            <td>Easy</td>
+            <td>Enum, Mongodb, Priv Esc</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: kuya</td>
+            <td>Easy</td>
+            <td>Stego, Priv Esc</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: Mr Robot</td>
+            <td>Easy</td>
+            <td>Wordpress, Priv Esc</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: lazysysadmin</td>
+            <td>Easy</td>
+            <td>Wordpress, Lazy Sysadmin,..</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+            <tr>
+            <td>Vulnhub: SafeHabor</td>
+            <td>Easy</td>
+            <td>Enum, Web Exploits, Priv Esc</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Infinity Stones</td>
+            <td>Easy</td>
+            <td>Puzzles, Enum, Jenkins, Keepass,..</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: vulnerable docker</td>
+            <td>Easy</td>
+            <td>Wordpress, Pivoting</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: nullbyte</td>
+            <td>Easy</td>
+            <td>Enum, SQLi, Offline Password Cracking, PATH</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: CasinoRoyale</td>
+            <td>Easy</td>
+            <td>CMS, ...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: WinterMute Straylight</td>
+            <td>MED</td>
+            <td>PHP, POP3,...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Connect the Dots</td>
+            <td>Too many puzzles</td>
+            <td>Puzle Solving..</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Arsenal</td>
+            <td>Easy</td>
+            <td>Splunk, Mild Puzzle Solving, is Broken..</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Heist</td>
+            <td>??</td>
+            <td>RPC, ...</td>
+            <td>Y</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>MyHouse</td>
+            <td>Medium Hard</td>
+            <td>Pivoting!!</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Sputnik</td>
+            <td>Easy</td>
+            <td>Splunk</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Node</td>
+            <td>MED</td>
+            <td>Web, Password Cracking, ...</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: HackinOS</td>
+            <td>Easy</td>
+            <td>Wordpress, File Upload</td>
+            <td>N</td>
+            <td>NOV 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Seattle</td>
+            <td>Easy</td>
+            <td>Web</td>
+            <td>N</td>
+            <td>NOV 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: DC416-Galahad</td>
+            <td>MED?</td>
+            <td>Puzzle Solving</td>
+            <td>Y</td>
+            <td>NOV 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: FourAndSix</td>
+            <td>Med</td>
+            <td>NFS, ...</td>
+            <td>Y</td>
+            <td>DEC 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: Sunset: Dusk</td>
+            <td>??</td>
+            <td>I dont remember this one. SQL</td>
+            <td>Y</td>
+            <td>NOV 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: base64</td>
+            <td>Med</td>
+            <td>Wordpress, Enum, Light Puzzle Solving</td>
+            <td>Y</td>
+            <td>DEC 19</td>
+            </tr>
+             <tr>
+            <td>Vulnhub: mumbai</td>
+            <td>Broken</td>
+            <td>...</td>
+            <td>N</td>
+            <td>Fall 19</td>
+            </tr>
+               <tr>
+            <td>tryhackme: ICE</td>
+            <td>Easy</td>
+            <td>Windows, icecast</td>
+            <td>N</td>
+            <td>FEB 20</td>
+            </tr>
+            <tr>
+              <td>Google: xss challenges</td>
+              <td>Easy</td>
+              <td>XSS</td>
+              <td>N</td>
+              <td>JAN 20</td>
+              </tr>
+            <tr>
+            <td>tryhackme: GoldenEye</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>Y</td>
+            <td>DEC 19</td>
+            </tr>
+               <tr>
+            <td>tryhackme: Blue</td>
+            <td>Easy</td>
+            <td>SMB</td>
+            <td>N</td>
+            <td>DEC 19</td>
+            </tr>
+               <tr>
+            <td>HTB: Lame</td>
+            <td>Easy</td>
+            <td>SMB</td>
+            <td>N</td>
+            <td>DEC 19</td>
+            </tr>
+               <tr>
+            <td>HTB: Legacy</td>
+            <td>Easy</td>
+            <td>SMB</td>
+            <td>N</td>
+            <td>DEC 19</td>
+            </tr>
+               <tr>
+            <td>HTB: Beep</td>
+            <td>Easy</td>
+            <td>CMS, ...</td>
+            <td>N</td>
+            <td>DEC 19</td>
+            </tr>
+               <tr>
+            <td>HTB: Artic</td>
+            <td>Easy</td>
+            <td>...</td>
+            <td>N</td>
+            <td>DEC 19</td>
+            </tr>
+</table>
+<h4 class="subtitle is-4">CTF List:</h4>
+<table id="ctflist" class="mt-4" style="width: 100%">
+  <tr>
+      <th>Name</th>
+      <th>Difficulty</th>
+      <th>Skills</th>
+      <th>Country/Location</th>
+      <th>Date</th>
+  </tr>
+  <tr>
+    <tr>
+      <td>SbCTF Student CTF 2020</td>
+      <td>Medium</td>
+      <td>Stego,Pwn,Web</td>
+      <td>Russia?</td>
+      <td>NOV 20</td>
+      </tr>
+      <tr>
+      <td>BSides Orlando: SunshineCTF</td>
+      <td>Medium</td>
+      <td>Cryto,Forensics,..So much pwn, I suck at pwn..</td>
+      <td>US</td>
+      <td>Fall 20</td>
+      </tr>
+      <tr>
+        <td>CyberSCI-CO 20</td>
+        <td>NA</td>
+        <td>Network Attacks, Web + Priv Esc.</td>
+        <td>Canada</td>
+        <td>JUL 20</td>
+        </tr>
+        <tr>
+        <td>GeekSeek CTF</td>
+        <td>Easy-Medium</td>
+        <td>Web, Crypto, Stego, Forensics,...,(got some of the hard ones that not alot of people got, missed some easier ones)</td>
+        <td>Canada</td>
+        <td>Summer 20</td>
+        </tr>
+        <tr>
+          <td>CyberSCI 19 (20)</td>
+          <td>NA</td>
+          <td>Network Attacks, Scanning, Misc.</td>
+          <td>Ottawa</td>
+          <td>JAN 20</td>
+        </tr>
+        <tr>
+          <td>Tracelabs Missing Persons CTF</td>
+          <td>NA</td>
+          <td>OSINT</td>
+          <td>Toronto</td>
+          <td>JUN 19</td>
+        </tr>
+        <tr>
+          <td>CYBERSCI 18</td>
+          <td>NA</td>
+          <td>Network Attacks, Scanning, Misc.</td>
+          <td>Ottawa</td>
+          <td>NOV 18</td>
+        </tr>
+        
+</tr>
+</table>
+  </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/graph.js"></script>
+</body>
+</html>

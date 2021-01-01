@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Tryhackme: Agent Sudo
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Feb, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Tryhackme: Agent Sudo</a></li>
+        </ul>
+      </nav>
+<h3>Scanning:</h3>
+<p>Initial scan to find the machine on the network</p>
+<img src="images/1/s1.png">
+<p>Full scan to get details about running services</p>
+<img src="images/1/s2.png">
+<h3>Web:</h3>
+<p>Enumerate the server:</p>
+<img src="images/1/s3.png">
+<p>Check index.php</p>
+<img src="images/1/s4.png">
+<h4>Create request for each possible codename as User-Agent:</h4>
+<h5>Loop through the alphabet sending a request for each letter:</h5>
+<img src="images/1/s5.png">
+<p>In curl_out.txt:</p>
+<img src="images/1/s7.png">
+<h3>FTP:</h3>
+<h5>Trying to get the password for chris for ftp:</h5>
+<img src="images/1/s8.png">
+<h5>Logging into FTP for user chris:</h5>
+<img src="images/1/s9.png">
+<p>Download all the files:</p>
+<img src="images/1/s10.png">
+<p>Downloaded files:</p>
+<ul>
+    <li>To_agentJ.txt</li>
+    <li>cute-alien.jpg</li>
+    <li>cutie.png</li>
+</ul>
+
+<h5>Checking To_agentJ.txt:</h5>
+<img src="images/1/s11.png">
+<h3>Stego:</h3>
+<p>Checking the two images for hidden files or text:</p>
+<img src="images/1/s12.png">
+<img src="images/1/s13.png">
+<p>Retrieving hidden files from cutie.png using binwalk:</p>
+<img src="images/1/s21.png">
+<p>Using zip2john to get the hash for the encrypted archive:</p>
+<img src="images/1/s22.png">
+<p>Cracking the hash for the encrypted archive:</p>
+<img src="images/1/s23.png">
+<p>Viewing the contents of the archive:</p>
+<img src="images/1/s24.png">
+<p>Cracking the steghide password for the other image:</p>
+<img src="images/1/s25.png">
+<img src="images/1/s26.png">
+<p>The extracted file:</p>
+<img src="images/1/s27.png">
+<h3>User:</h3>
+<p>Login to SSH:</p>
+<img src="images/1/s28.png">
+<h4>User Flag:</h4>
+<img src="images/1/s29.png">
+<h3>Root:</h3>
+<p>Copy the image Alien_autospy.jpg to local machine:</p>
+<img src="images/1/s210.png">
+<p><b>(BONUS) Found the source of the image using Tiny Eye:</b></p>
+<p>Tiny Eye -> Fox News -> Roswell alien autopsy</p>
+
+<p>Checking if james can run anything with elevated privileges using sudo -l:</p>
+<img src="images/1/s211.png">
+<h4>sudo priv esc:</h4>
+<p>This version of sudo is vulnerable to sudo 1.8.27 - Security Bypass (CVE-2019-14287) (https://www.exploit-db.com/exploits/47502)</p>
+<img src="images/1/s213.png">
+<p>Command:</p>
+<pre><code><span>sudo -u \#$((0xffffffff)) /bin/bash</span></code></pre>
+<p>Running the command:</p>
+<img src="images/1/s214.png">
+<h4>Root Flag:</h4>
+<img src="images/1/s215.png">
+<p>Fin.</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

