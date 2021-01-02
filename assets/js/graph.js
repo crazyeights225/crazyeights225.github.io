@@ -5,7 +5,7 @@ month_map = {"JAN": "Winter", "FEB": "Winter", "MAR": "Winter", "APR": "Winter",
 "OCT": "Fall", "NOV": "Fall", "DEC": "Fall"}
 var table = document.getElementById("boxlist");
 var ctf_table = document.getElementById("ctflist");
-for (var i = (table.rows.length)-1; i > 1 ; i--) {
+for (var i = (table.rows.length)-1; i >= 1 ; i--) {
     row = table.rows[i];
     date_field = row.cells[4].innerHTML;
     if (date_field.split(" ")[0] in month_map){
