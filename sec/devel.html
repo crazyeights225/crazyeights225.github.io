@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="../assets/js/navbar.js"></script><style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                HackTheBox: Devel
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan, 2021
+            </h2>
+        </div>
+    </div>
+<section class="section mt-2">
+  <div class="container">
+  <div class="columns">
+  <div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Devel</a></li>
+        </ul>
+      </nav>
+<h2 >Scanning:</h2><p >Start by finding running services: (Note I have been trying to find the fastest nmap command, so this isn&#x27;t necessarily the command to use).</p><figure id="fc8a796d-0182-411d-a0a6-daf00824c528" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-26-21.png"><img style="width:657px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-26-21.png"/></a></figure><p >Checking the web server first.</p><h2 >Web:</h2><figure id="9f9ce6f4-0a7a-4641-9f05-5fe26fbd7830" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-22-01.png"><img style="width:996px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-22-01.png"/></a></figure><ul id="394b8c7a-841f-4371-989a-b27cd1a2d17d" class="bulleted-list"><li>Enumerated the server and found nothing</li></ul><ul id="66af2f5b-c40c-4a9b-919e-62b29aac672b" class="bulleted-list"><li>Searched for exploits and found none</li></ul><ul id="b8a2efb5-c609-4f4e-b4c6-a22bed942eeb" class="bulleted-list"><li>Moving on to FTP</li></ul><h2 >FTP:</h2><p >The FTP service allows for anonymous login:</p><figure id="75cf1e21-589e-4325-bc98-48b71e59b014" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-31-29.png"><img style="width:654px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-31-29.png"/></a></figure><p >We can guess by the other files in the folder that this is the same folder as the IIS server is hosted.</p><p >Also there is an aspnet_client in the folder. If we upload an asp reverse shell then we should be able to access it from the web server.</p><p >I used this reverse shell:</p><pre id="8b05547d-6765-4d97-9c8c-2229abbd2659" class="code code-wrap"><code>https://github.com/borjmz/aspx-reverse-shell</code></pre><figure id="c4a09ac7-73eb-4206-8116-492c81a27357" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-42-00.png"><img style="width:714px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-42-00.png"/></a></figure><p >Start the listener:</p><pre id="05442963-883d-4abf-9e60-aa814f125d0f" class="code code-wrap"><code>nc -lvp 1234</code></pre><p >Visit the reverse shell in the browser:</p><pre id="40d45156-253d-4661-b62d-3a6e426366d7" class="code code-wrap"><code>http://10.10.10.5/shell.aspx</code></pre><h2 >User:</h2><p >We now have a shell:</p><figure id="e5e38d92-388a-45e7-9288-b4028161ffd8" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-42-14.png"><img style="width:654px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_13-42-14.png"/></a></figure><p >We do not have permission to read the user flag. We will try and elevate our privileges.</p><h2 >Root:</h2><p >Get system info to find the OS version:</p><figure id="4ac958f4-467e-4330-9ec3-1e7a59d268bd" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-08-05.png"><img style="width:615px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-08-05.png"/></a></figure><p >Using exploit-db we find that that version of windows is vulnerable to: </p><pre id="6ec9a23f-3bbe-4d98-af8e-522cfc380ba1" class="code code-wrap"><code>'afd.sys' Local Privilege Escalation (MS11-046)</code></pre><p >We find an exe version of the exploit on abatchy17 github:</p><figure id="031cd26b-35e4-44f4-90a7-846b32f153af" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-23-45.png"><img style="width:1416px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-23-45.png"/></a></figure><p >Use impacket smb server to transfer the exec from our machine to the target:</p><figure id="8cd16c5a-6849-4c99-ac8f-f88b90818c21" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-24-50.png"><img style="width:1030px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-24-50.png"/></a></figure><p >Copy the exploit to the remote machine:</p><figure id="5f961fec-971a-4d8e-9425-3bf37cd050f9" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-20-37.png"><img style="width:735px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-20-37.png"/></a></figure><p >We run the exploit, and now have system privileges:</p><figure id="013bd981-ef04-438e-98a4-d5265c6aa073" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-21-03.png"><img style="width:669px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-21-03.png"/></a></figure><p >Get the flags:</p><p >They are on Administrator&#x27;s and babis&#x27;s Desktop:</p><figure id="a77f545f-0862-45e9-a9f6-3501d0af34a2" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-21-37.png"><img style="width:1130px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-21-37.png"/></a></figure><figure id="0994238d-279d-4b99-8036-2ce92faf023c" class="image"><a href="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-22-17.png"><img style="width:1126px" src="Devel%20fc8a796d0182411da0a6daf00824c528/Screenshot_from_2021-01-18_14-22-17.png"/></a></figure><p >FIN. 🥳</p>
+</div>
+</div></div></section><footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

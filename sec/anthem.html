@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="../assets/js/navbar.js"></script><style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                TryHackMe: Anthem
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan, 2021
+            </h2>
+        </div>
+    </div>
+<section class="section mt-2">
+<div class="container">
+<div class="columns">
+<div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Anthem</a></li>
+        </ul>
+      </nav>
+<p >This box is really easy, it doesn&#x27;t really any exploitation, just enumeration.</p><h1 >Scanning</h1><p >Looking for open ports, and service information:</p><pre class="code"><code><span>crazyeights@es-base:~$ nmap -Pn --script=banner --min-rate 200 -T4 --min-parallelism 100 10.10.142.92
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-01-13 11:06 EST
+Nmap scan report for 10.10.142.92
+Host is up (0.13s latency).
+Not shown: 998 filtered ports
+PORT     STATE SERVICE
+80/tcp   open  http
+3389/tcp open  ms-wbt-server</span></code></pre><h1 >Web</h1><p >Index Page:</p><figure id="78abb202-1cf4-4155-9b17-d1780f84e2a4" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-11-34.png"><img style="width:1498px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-11-34.png"/></a></figure><h3 >Enumeration:</h3><p >Enumeration can mostly be done manually.</p><p >We find a user Jane:</p><figure id="db811183-a7d1-4b7c-8aa9-46134bd74334" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-15-15.png"><img style="width:1009px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-15-15.png"/></a></figure><p >There is also a cryptic message in the post &quot;A cheers to out IT department&quot; about the administrator.</p><p >Looking it up we get a username:</p><figure id="4ae358c0-fbb5-4784-bd71-4a63a3bbe789" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-19-08.png"><img style="width:802px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-19-08.png"/></a></figure><p >There is four flags to find, we can find them manually just by poking around:</p><figure id="28cfe070-c9a5-4d7e-a86d-1c760094313c" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2020-05-18_16-20-38.png"><img style="width:924px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2020-05-18_16-20-38.png"/></a></figure><figure id="cbe88491-1dc7-49b8-9cf8-ecc3dbf05b2f" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-13-50.png"><img style="width:1083px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-13-50.png"/></a></figure><figure id="2c17c342-cc5b-48b8-8803-932b564a1325" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-14-49.png"><img style="width:1481px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-14-49.png"/></a></figure><p >Using nikto to enumerate:</p><figure id="4a3608ea-ca4f-4173-af28-f56cd51e95dc" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-32-53.png"><img style="width:653px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-32-53.png"/></a></figure><p >We check robots.txt:</p><figure id="dfe46b74-b2b5-4e2e-8229-81fc22b8998f" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-32-44.png"><img style="width:792px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-32-44.png"/></a></figure><p >UmbracoIsTheBest! is the password for the user Solomon Grundy.</p><h2 >Umbraco:</h2><p >Go to /umbraco to access Umbraco CMS</p><p >
+</p><p >Solomon Grundy&#x27;s username follows the same format as Jane Doe&#x27;s, that being <code>[First Initial][Last Initial]@anthem.com</code></p><p >
+</p><p ><strong>Credentials</strong>: <code>SG@anthem.com:UmbracoIsTheBest!</code></p><p >You can log in and look around but there is no additional info.</p><figure id="f2133a92-029e-4ee7-a3e0-0b3637782a1f" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-34-18.png"><img style="width:1459px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-34-18.png"/></a></figure><p >
+</p><h2 >Remote Desktop:</h2><p >Use the umbraco password:</p><pre class="code"><code><span>crazyeights@es-base:~$ rdesktop 10.10.142.92:3389 -u SG -p UmbracoIsTheBest!</span></code></pre><p >
+</p><h3 >User Flag:</h3><p >The user flag can be found on Desktop:</p><figure id="dd77256b-8624-4bfd-a7b9-62897df0b518" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-41-12.png"><img style="width:1044px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_11-41-12.png"/></a></figure><p >The next step is to find the Administrator&#x27;s password</p><p >When we enable Hidden Files we see folder backup containing the file restore.</p><p >We do not have permissions to access restore, but we can modify the permissions to allow ourselves to access it: </p><figure id="c16d906f-f408-494c-ad24-2c867a792479" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-17-53.png"><img style="width:1044px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-17-53.png"/></a></figure><figure id="1174b22f-1097-425c-8043-adcc38f86ecf" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-18-06.png"><img style="width:1044px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-18-06.png"/></a></figure><p >To login as admin click on the Users\Administrator folder, and enter the password in restore.</p><p >We can find the root flag on Administrator&#x27;s Desktop.</p><figure id="7c3912cb-d36f-4e59-8065-bbbd6df8b8e5" class="image"><a href="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-20-48.png"><img style="width:1044px" src="TryHackMe%20Anthem%2078abb2021cf441559b17d1780f84e2a4/Screenshot_from_2021-01-13_12-20-48.png"/></a></figure><p >FIN. 🥳</p><p >
+</div>
+</div>
+</div></section><footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

