@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="../assets/js/navbar.js"></script><style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true">
+                <span aria-hidden="true">
+                <span aria-hidden="true">
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                Vulnhub: HappyCorp-1
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+                Jan, 2021
+            </h2>
+        </div>
+    </div>
+<section class="section mt-2">
+  <div class="container">
+  <div class="columns">
+  <div class="content column is-10">
+    <nav class="breadcrumb mb-5" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="../index.html">Posts</a></li>
+          <li><a href="../sec.html">CTFs and Vulnerable VMs</a></li>
+          <li class="is-active"><a href="#" aria-current="page">HappyCorp-1</a></li>
+        </ul>
+      </nav>
+<p>This box was fun. It has some interesting vulnerabilities that you don&#x27;t often see. The flow and pace was also nice. It is a great box for beginners. 10/10 - Nice 😁 </p><h2 >Scanning</h2><p >Finding the box on the network using SYN scan.</p><pre id="31b99379-e343-4b73-8c67-51a95cab8490" class="code code-wrap"><code><span>nmap -PS 192.168.202.130
+
+Starting Nmap 7.80 (https://nmap.org) at 2021-01-20 21:44 EST
+Nmap scan report for 192.168.202.130
+Host is up (0.0010s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+111/tcp  open  rpcbind
+2049/tcp open  nfs
+</span></code></pre>
+</p><p >Starting with the web service as always.</p><h2 >Web</h2><p >Index Page:</p><figure id="eb8efc99-ffc6-4788-b285-6584cd114d99" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-46-23.png"><img style="width:1671px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-46-23.png"/></a></figure><p >
+</p><p >Enumerating pages and directories using dirsearch:</p><pre id="2b89a76f-1507-421c-998d-b075d3248d0e" class="code code-wrap"><code>python3 tools/dirsearch/dirsearch.py -u http://192.168.202.130/ -E</code></pre><p >
+</p><figure id="e1b58285-afbc-4379-91a5-cef50e383058" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-45-51.png"><img style="width:1034px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-45-51.png"/></a></figure><p >
+</p><p >Visit the admin page:</p><figure id="b050aa2a-787d-4061-a989-2272956c69b1" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-47-14.png"><img style="width:1228px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-47-14.png"/></a></figure><p >
+</p><p >When you look in the page source you see:</p><figure id="93c86224-334d-45dd-ba69-4f76eb09a9a8" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-47-35.png"><img style="width:913px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_21-47-35.png"/></a></figure><p >
+</p><p >Assuming this means that this login page doesn&#x27;t work. I tried to find credentials anyway.</p><p >On the index page there are several emails:</p><pre id="5762c64b-206d-4752-9b79-2d0c0f716ea2" class="code code-wrap"><code>heather@happycorp.local
+carolyn@happycorp.local
+rodney@happycorp.local
+jennifer@happycorp.local</code></pre><p >
+</p><p >When we try heather on the login page it gives the message &quot;Invalid password&quot; instead of &quot;Invalid email&quot; meaning that the user heather is a valid user. </p><p >When we try and crack the password for heather apparently the password is also heather. It does not actually work, so moving on to the NFS.</p><figure id="d554886e-c29b-4fa8-8b4c-6a13bf924c7d" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-23-17.png"><img style="width:1106px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-23-17.png"/></a></figure><h2 >NFS</h2><p >List available shares. (Using the script I wrote)</p><figure id="069d7413-492b-446c-931a-5167b91ca48d" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-03-49.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-03-49.png"/></a></figure><p >Mount the available share to view files:</p><figure id="186412a9-6259-4485-960a-fa457dfbc4ff" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-05-09.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-05-09.png"/></a></figure><p >In the mounted share we can see the files are owned by a user with UID 1001:</p><figure id="be4c2b62-68ee-4d4a-8dbe-9583800dbf81" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-05-33.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-05-33.png"/></a></figure><p >If we create a user on our machine with the uid 1001 as well we can read the files. I created a user with uid 1001 using the useradd command. For simplicity I also named the new user karl, and I set their password to karl as well.</p><figure id="f4451ad2-4d22-41f7-85e9-5c846e41758e" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-15-25.png"><img style="width:986px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-15-25.png"/></a></figure><p >Login as the user we created: karl, and we now have access to all karl&#x27;s files:</p><figure id="f386fd22-3e4d-4725-9c83-9a9ad45ffdb3" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-16-15.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-16-15.png"/></a></figure><h2 >User</h2><p >
+</p><p >Karl has a directory .ssh, so we can get his private key which will allow us to login as karl via SSH.</p><p >In Karl&#x27;s ssh directory we also find a flag:</p><figure id="ba2c064b-e104-4d66-bc7d-ee965a70066d" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-16-38.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-16-38.png"/></a></figure><p >Retrieve karl&#x27;s private key:</p><p >I did <code>cat id_rsa</code> and copy pasted the output into a text file.</p><p >Karl&#x27;s private key is password protected, so we must crack the password for the key before we can use it.</p><figure id="55094cd6-b65d-4285-9d41-ba436ccbaff8" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-22-48.png"><img style="width:1138px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-22-48.png"/></a></figure><p >Use ssh2john to retrieve the password hash for the private key:</p><pre id="7319e87d-0b47-4a25-b65c-92bab5952565" class="code code-wrap"><code><span>python /usr/share/ssh2john.py karl_id_rsa</span></code></pre><figure id="26957fdf-f5ce-45bc-97a3-69a007ff74a9" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-22-24.png"><img style="width:1650px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-22-24.png"/></a></figure><p >Crack the password hash for the private key:</p><figure id="7b9bd780-092d-43bd-94c4-f68348b88238" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-24-53.png"><img style="width:1138px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-24-53.png"/></a></figure><p >Now that the have the password for the private key we can now login in as karl via SSH with the password sheep:</p>
+<pre id="46c14c24-23d1-4879-a4e5-2c8109fdac9c" class="code code-wrap"><code><span>ssh -i karl_id_rsa karl@192.168.202.130</span></code></pre><p >We can see that when we are logged in we are stuck in a restricted shell, that doesn&#x27;t really seem to work, it seems to continuously spawn new processes:</p><figure id="2dc99c8d-80b0-44d8-ab36-f4e9e873f98c" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-43-31.png"><img style="width:1018px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-43-31.png"/></a></figure><p >Trying to kill all the processes doesn&#x27;t work.</p><p >Log out and log back in using the -t parameter to force pseudo-terminal allocation. Set the pseudo-terminal to sh.</p><p >We now can use the terminal normally:</p><figure id="07d96c36-1419-43bf-8219-5610cd9c12ba" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-46-03.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_22-46-03.png"/></a></figure><h2 >Root</h2><p >We find the programs that have the SUID bit set. The /bin/cp program having the SUID bit set is unusual and can be exploited.</p><p >We can use cp to read from and write to files owned by root. For example /etc/shadow:</p><figure id="29d43f16-38c5-4f7a-9dbb-ddedf3e9dd84" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-03-49.png"><img style="width:1074px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-03-49.png"/></a></figure><p >
+</p><p >To get a root shell we can insert our public key (id_rsa.pub) into karl&#x27;s authorized_keys and copy the folder .ssh to root (since root doesn&#x27;t have an .ssh folder).</p>
+<pre id="c312576e-cc9c-4e1a-8484-29e3f91673b9" class="code code-wrap"><code>$ <span class="token builtin class-name"><span>echo "ssh-rsa AAAAB3Nza_my_public_key" > .ssh/authorized_keys
+
+$ /bin/cp -r .ssh/ /root/</span></code></pre><p>
+</p><p >We can now login as root via ssh and get the root flag:</p><figure id="1154e503-769f-4f82-8b7f-1812f5acbd18" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-15-43.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-15-43.png"/></a></figure><h3 >Cleanup</h3><p >To clean up I am going  to want to delete the user karl:</p><figure id="558d4121-6854-4495-ad56-4f96fa499fda" class="image"><a href="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-17-28.png"><img style="width:714px" src="Happy%20Corp%20eb8efc99ffc64788b2856584cd114d99/Screenshot_from_2021-01-20_23-17-28.png"/></a></figure><p >
+</p><p >FIN. 🥳</p>
+</div>
+</div></div></section><footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
