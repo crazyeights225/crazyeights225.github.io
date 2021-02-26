@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crazyeights225</title>
+   
+    <link rel="stylesheet" href="../assets/bulma.min.css">
+    <link rel="stylesheet" href="../static/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+    <script src="../assets/js/navbar.js"></script>
+    <style>
+      span{margin: 0; line-height: 125%; white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}pre{padding:0.5rem 0.5rem!important;}
+      
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+      .source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+      .bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+    </style>
+
+  </head>
+  <body>
+    <div id="app" class="mt-2">
+        <nav class="navbar container" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="../assets/logo.png">
+              </a>
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbar" class="navbar-menu">
+              <div class="navbar-start">
+                    <a href="../index.html" class="navbar-item">Posts</a>
+                    <a href="../projects.html" class="navbar-item">Projects</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="hero-body mt-2" style="background-color: #285aff;">
+        <div class="container has-text-centered">
+            <h1 class="title" style="color: #f1f1f1;">
+                CTF Challenges - Jeopardy Format (WIP)
+            </h1>
+            <h2 class="subtitle" style="color: #f1f1f1;">
+              (I have way more, its gonna take a while to organize them all) 2020
+            </h2>
+        </div>
+    </div>
+
+<section class="container mt-3">
+    
+        <div class="content column is-10 mb-3">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                  <li><a href="../index.html">Posts</a></li>
+                  <li><a href="../notes.html">Notes + Tutorials</a></li>
+                  <li class="is-active"><a href="#" aria-current="page">CTF Challenges</a></li>
+                </ul>
+              </nav>
+              <hr>
+        </div>
+
+    <div class="columns">
+            
+        <div class="column is-3">
+            <aside class="menu">
+                <p class="menu-label">
+                  Info
+                </p>
+                <ul class="menu-list">
+                  <li><button class="button is-white section-link" onclick="openSection(event, 'list')" id="defaultOpen">Challenge List</button></li>
+                </ul>
+                <p class="menu-label">
+                  Challenges
+                </p>
+                <ul class="menu-list">
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'dc')">HTB - Digitial Cube</button></li>
+                    <li><button class="button is-white section-link" onclick="openSection(event, 'for')">HTB - Forest</button></li>
+                </ul>
+              </aside>
+        </div>
+<div class="column is-10">
+<div class="columns">
+
+
+
+<div class="column is-9 article-section" id="list">
+    <div class="box">
+        <h4 id="const" class="title is-3">Challenge List:</h4>
+        <p>List of servers from old CTFs, and other Jeopardy style Practice</p>
+        <div class="page-body"><figure id="a21e4a38-83fa-4ea5-873b-552e98aae36a"><a href="https://ctflearn.com/challenge/1/browse" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Challenges - CTFlearn - CTF Practice - CTF Problems - CTF Challenges</div></div><div class="bookmark-href"><img src="https://ctflearn.com/static/img/favicon.ico" class="icon bookmark-icon"/>https://ctflearn.com/challenge/1/browse</div></div></a></figure><p id="6aedbd2b-bc9f-46f1-b7cc-51db6fd4f498" class=""></p>
+        <figure id="263fc748-58b4-4449-ac6d-c79fda663e34"><a href="https://ctf.hacker101.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Hacker101 CTF</div><div class="bookmark-description">The Hacker101 CTF is a game designed to let you learn to hack in a safe, rewarding environment. Hacker101 is a free educational site for hackers, run by HackerOne.</div></div><div class="bookmark-href"><img src="https://ctf.hacker101.com/favicon.ico" class="icon bookmark-icon"/>https://ctf.hacker101.com/</div></div></a></figure><p id="ee5cb2c1-5d1e-46b1-891e-28e8292df3f8" class="">
+        </p><figure id="cbec27d3-aad1-425f-878a-ff2c902c64c6"><a href="https://ringzer0ctf.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Home - RingZer0 CTF</div><div class="bookmark-description">RingZer0 Team&#x27;s online CTF offers you tons of challenges designed to test and improve your hacking skills through hacking challenges. Register and get a flag for every challenge. I started this website in 2014 hosting everything in my garage (Picture here). If you like the website you can support us by making a donation.</div></div><div class="bookmark-href"><img src="https://ringzer0ctf.com/favicon.png" class="icon bookmark-icon"/>https://ringzer0ctf.com/</div></div><img src="https://ringzer0ctf.com/claranet.png" class="bookmark-image"/></a></figure><p id="4f67d6fe-d110-4e81-8d51-4ef89f06f35c" class="">
+        </p><figure id="a1c49e5a-e24b-46b8-9f82-87a85d42c3d6"><a href="https://capturetheflag.withgoogle.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Google CTF</div></div><div class="bookmark-href"><img src="https://capturetheflag.withgoogle.com/favicon.ico" class="icon bookmark-icon"/>https://capturetheflag.withgoogle.com/</div></div></a></figure><p id="a86fe4ee-e99a-4094-8782-c690877ca8ac" class="">
+        </p><figure id="d902fa7e-801a-48f1-8a6d-868d640c5882"><a href="https://2019.ctf.link/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Challenges</div><div class="bookmark-description">hxp 36C3 CTF</div></div><div class="bookmark-href"><img src="https://2019.ctf.link/assets/img/favicon/favicon-16x16.png" class="icon bookmark-icon"/>https://2019.ctf.link/</div></div><img src="https://2019.ctf.link/assets/img/hxp-36c3.png" class="bookmark-image"/></a></figure><p id="f6651c8b-0f5d-40df-bef5-d74ab0d7dc4d" class="">
+        </p><figure id="3b835378-74c2-43e2-bc7d-4e558a4d1ff2"><a href="https://www.gameofhacks.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Game of Hacks</div><div class="bookmark-description">This game was designed to test your application hacking skills. You will be presented with vulnerable pieces of code and your mission if you choose to accept it is to find which vulnerability exists in that code as quickly as possible</div></div><div class="bookmark-href"><img src="https://www.gameofhacks.com/images/favicon.ico" class="icon bookmark-icon"/>https://www.gameofhacks.com/</div></div></a></figure><p id="87c39e25-f9c2-4592-a1a6-76a8f84816c9" class="">
+        </p><figure id="68c15d64-342a-4934-9aab-dde463217ec1"><a href="https://ctf.hackucf.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Capture The Flag At UCF</div><div class="bookmark-description">Download and install VirtualBox from https://www.virtualbox.org/wiki/Downloads. Download the 64-bit .iso file for Ubuntu 16.04 Desktop from https://www.ubuntu.com/download/desktop/thank-you?country=US&amp;version=16.04.1&amp;architecture=amd64. Create a new VM in VirtualBox, then attach the ISO file for Ubuntu as a virtual DVD and boot it. Complete the installation process for Ubuntu. Once Ubuntu is installed and has rebooted, open a Terminal.</div></div><div class="bookmark-href"><img src="https://ctf.hackucf.org/static/original/img/favicon.ico" class="icon bookmark-icon"/>https://ctf.hackucf.org/</div></div></a></figure><p id="b1bb3a6c-0eb6-432f-9208-58c689c87f50" class="">
+        </p><p id="a1c32537-c6a3-4a90-9c7c-e3f21ae0c18e" class="">
+        </p>
+    </div>
+</div>
+</div>
+<div class="column is-9 article-section" id="dc">
+  <div class="box">
+      <h4 id="const" class="title is-3">Hackthebox: Digital Cube</h4>
+      <p id="847b4b98-6afc-4e6a-8cd5-4020d886e403" class="">Forensics</p><figure id="10a5d0fd-f5ea-494f-a5eb-0307d82074ea" class="image"><a href="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_2021-02-17_Stego_Challenges.png"><img style="width:1216px" src="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_2021-02-17_Stego_Challenges.png"/></a></figure><p id="cab7a925-9f8d-4ab4-bf21-b2401a14c0bb" class="">
+      </p><p id="662a42eb-084d-496c-b58d-3eb076f0f17e" class="">Download the zip, and decompress it.</p><p id="68eba12e-49d0-4ace-9db1-1e9fbfaeeb29" class="">You get the following:</p><figure id="70ae7101-4e59-41bd-8f0e-f5b5781b8603" class="image"><a href="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_from_2021-02-17_20-28-49.png"><img style="width:920px" src="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_from_2021-02-17_20-28-49.png"/></a></figure><p id="0da77f9d-9a61-481d-b055-1afdae7b24fa" class="">Since the challenge name is digital cube, and its a stego challenge cube, we can assume that we can turn this into an image, since there are 50x50 bits the image is a square.</p><p id="3cabecf3-6047-4ce8-97f0-c4558901db4b" class="">Set each 1 to a black pixel</p><p id="5200b868-e58a-48d2-9c28-06b3be83d41f" class="">Set each 0 to a white pixel</p><p id="af511f4e-988f-4ebf-b64f-06f99488ef79" class="">Using python:</p>
+      <pre><code><span>
+from PIL import Image
+
+cubetext = ""
+with open("digitalcube.txt", "r") as f:
+	cubetext = f.read()
+
+width=50
+height=50
+image = Image.new("RGB", (width, height))
+putpixel = image.putpixel
+imgx, imgy = image.size
+
+p = 0
+for i in range(50):
+	for j in range(50):
+		if cubetext[p] == "1":
+			putpixel((i, j), (0,0,0))
+		else:
+			putpixel((i, j), (255,255,255))
+		p+=1
+image.save("digital_cube.png")
+image.show()
+</span></code></pre>
+      <p id="56be7563-b139-4e05-ab3e-87d06455d892" class="">
+      </p><p id="34166220-8fdc-4913-bab9-3b1d279a4f99" class="">We get:</p><figure id="add325fc-3408-4dd8-be7c-f70cc6e29870" class="image"><a href="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/digital_cube.png"><img style="width:50px" src="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/digital_cube.png"/></a></figure><p id="b53e7c97-291b-4271-880f-498ad2046985" class="">
+      </p><p id="3285a011-fc98-437e-a5e9-bd566a7345fa" class="">Looking this up using zxing.org, we get:</p><figure id="5d469f66-b82c-4831-993e-ff967c03c029" class="image"><a href="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_2021-02-17_Decode_Succeeded.png"><img style="width:833px" src="HTB%20Digital%20Cube%2010a5d0fdf5ea494fa5eb0307d82074ea/Screenshot_2021-02-17_Decode_Succeeded.png"/></a></figure><p id="944a0a11-1260-424c-b88c-914a20c7e44d" class="">
+      </p><p id="8dfeae9b-63fa-41ce-b1db-ff340f042dff" class="">FIN. 🥳</p>
+  </div>
+</div>
+<div class="column is-9 article-section" id="for">
+  <div class="box">
+      <h4 id="const" class="title is-3">HackTheBox: Forest</h4>
+      <p id="5f58da05-ff5b-4c1f-bc51-b80ad7e3bd66" class="">Stego Challenge</p><figure id="9ed358b3-be4b-47b5-9d2c-25f4a02b793c" class="image"><a href="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_2021-02-17_Stego_Challenges(1).png"><img style="width:1216px" src="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_2021-02-17_Stego_Challenges(1).png"/></a></figure><p id="605cd4dd-5545-428c-a2ae-28cd6d4c6a50" class="">
+      </p><p id="59f42928-83e4-4d53-b6aa-b154c560ba34" class="">Download and extract the image of the forest from the zip file forest.zip.</p><p id="f7c7406f-7646-41d7-9703-be635e027a9a" class="">The image is 2.8 MB so there&#x27;s definitely something hiding inside it.</p><p id="a68c4968-de12-4252-8be6-50eb7ad88bc2" class="">Using my favorite tool stegoveritas, which automates a lot of stuff for you.</p><pre id="72c60840-3f51-4f1a-b75b-fa1107f3e2ab" class="code"><code>stegoveritas forest.jpg</code></pre><p id="5c7c047b-fa41-4b8d-a5a6-d32f8ee02428" class="">
+      </p><p id="dd4e9d99-b128-4273-a957-a3f748cf1760" class="">Stegoveritas not only looks for hidden files, and gets exif data but it also applies different filters to the image to reveal hidden text.</p><p id="3ef0c3bd-9180-4aa6-9a0e-335118c9b257" class="">We find:</p><figure id="3ddd27e2-13cc-4ad8-9b34-7b1ca73a321b" class="image"><a href="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_from_2021-02-17_21-07-06.png"><img style="width:1338px" src="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_from_2021-02-17_21-07-06.png"/></a></figure><p id="3c6084ef-1583-4d84-b142-41437ac86da1" class="">
+      </p><p id="f609171e-51f0-408e-8dba-c0aea781a036" class="">We use <code>IsJuS1Af0r3sTbR0</code> as the password for steghide:</p><pre><code><span>crazyeights@es-base:~/Downloads$ steghide extract -sf forest.jpg 
+Enter passphrase: 
+wrote extracted data to "nothinghere.txt".
+crazyeights@es-base:~/Downloads$</span></code></pre><p id="42bea06e-fd48-4990-867a-da3df54a4ee2" class="">
+      </p><p id="c109c850-d2a7-4cee-a360-8541a650193b" class="">We get the text file nothing here containing some encoded text.</p><figure id="f0eac536-2006-4b42-9684-093b116da0b1" class="image"><a href="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_from_2021-02-17_21-12-06.png"><img style="width:1046px" src="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_from_2021-02-17_21-12-06.png"/></a></figure><p id="6123938c-7b68-47ed-a833-75ded3fb8c3c" class="">Use cyberchef with ROT13 to decode it.</p><figure id="1a61ee17-d723-43c5-87d7-7a57632c14f1" class="image"><a href="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_2021-02-17_ROT13_-_CyberChef.png"><img style="width:1219px" src="HTB%20Forest%209ed358b3be4b47b59d2c25f4a02b793c/Screenshot_2021-02-17_ROT13_-_CyberChef.png"/></a></figure><p id="7fd8511b-926b-4eb5-821c-e74f5760e27e" class="">FIN. 🥳</p>
+  </div>
+</div>
+
+</div></div></section>
+<br>
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+        </div>
+    </div>
+    <script>
+        function openSection(evt, sName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("article-section");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("section-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(sName).style.display = "inline-block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+    </script>
+</footer>
+</body>

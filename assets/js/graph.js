@@ -22,9 +22,9 @@ let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
 let setNull = obj => setAll(obj, 0);
 setNull(ctf_stats);
 
-for (var i = (ctf_table.rows.length)-1; i > 1 ; i--) {
+for (var i = (ctf_table.rows.length)-1; i > 0 ; i--) {
     row = ctf_table.rows[i];
-    date_field = row.cells[4].innerHTML;
+    date_field = row.cells[5].innerHTML;
     if (date_field.split(" ")[0] in month_map){
       m = date_field.split(" ")[0]
       date_field = date_field.replace(m, month_map[m]);
