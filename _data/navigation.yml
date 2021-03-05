@@ -1,0 +1,10 @@
+# main links
+main:
+  - title: "archive"
+    url: /archive
+  - title: "CTF List"
+    url: /ctf_list.html
+  - title: "Projects"
+    url: /projects.html
+  # - title: "Sitemap"
+  #   url: /sitemap/
