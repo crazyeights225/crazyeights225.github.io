@@ -1,0 +1,9 @@
+.card-equal-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+ }
+
+.drop-down pre{
+    background: transparent!important;
+}
