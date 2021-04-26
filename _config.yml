@@ -25,7 +25,7 @@ url                      : # the base hostname & protocol for your site e.g. "ht
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : "assets/images/l6.png"
+logo                     : "assets/images/logos/l9.png"
 masthead_title           : ""
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "ES, aka crazyeights225"
-  avatar           : "assets/images/avatar.png"
+  avatar           : "assets/images/logos/avatar1.png"
   bio              : "CS Student, Interested in CyberSec and Algorithms, 
   ```flag{a1ways_b3_h1d1ng}```"
   location         : "Canada"

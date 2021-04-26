@@ -60,7 +60,8 @@
     </div>
     <div class="hero-body">
       <div class="container has-text-centered">
-        <img src="assets/images/front.png" style="width: 70%;">
+        <!--<img src="assets/images/front.png" style="width: 70%;">-->
+        <h1 class="title" style="font-size: 2.2em; margin: auto; width: 50%; text-align: left;">Carleton Cybersecurity Club</h1>
         <h2 class="subtitle mt-2 mb-2" style="margin: auto; width: 50%; text-align: left;">
           Established 2018
         </h2>
@@ -88,18 +89,13 @@
               <h1 class="title section-title mb-3">About Us</h1>
               <p class="is-larger" style="color: #ccc !important;">
                 &emsp;&emsp;<strong style="color: #ccc !important;"
-                  >Showcase is a modern, beautiful personal website template to
-                  showcase who you are, as well as projects you've worked on in
-                  the past.</strong
+                  >Welcome to the Carleton Cyber Security Club! 
+                  This club is a student-run organization based out of Carleton University, created for sharing a love of cybersecurity.</strong
                 >
               </p>
               <br />
               <p style="color: #ccc!important;">
-                Showcase was built from the ground up with Bulma to be fast and
-                responsive out of the box with all source files well documented
-                for easy to customization. The Showcase template gives you a
-                personal space to share what you are all about as a creative
-                designer, developer, photographer, and more!
+                We strive to share our knowledge and improve our own by hosting workshops and meetups, and participating in CTF challenges, and competitions. This club aims to accommodate all skill levels and interests, with sessions conducted on topics like career paths, certifications, challenges, professional advice and much more. It has something to offer for everyone!
               </p>
               <br />
               <div class="is-divider"></div>
@@ -140,7 +136,7 @@
                     <h1 class="title post-title">Learn about our Meetups and Events!</h1>
                     <!--<p class="post-excerpt">This template is based off of the official default blog template created by the fine folks over at <a href="https://ghost.io">Ghost</a></p>-->
                     <br>
-                    <a href="events.html" class="button is-primary">Read More</a>
+                    <a href="#" class="button is-primary">Read More</a>
                   </div>
 
                 </div>
@@ -156,7 +152,7 @@
                 </div>
                 <div class="column is-12 featured-content ">
                   <h3 class="heading post-category">Archive</h3>
-                  <h1 class="title post-title">Check our archive of past challenges</h1>
+                  <h1 class="title post-title">Check our archive of past activity</h1>
                   <p class="has-text-white">Read past presentations, challenges, and about our participation in CTFs.</p>
                   <br>
                   <a href="archive.html" class="button is-primary">Read More</a>
@@ -171,7 +167,7 @@
                 <div class="column is-12 featured-content ">
                   <h3 class="heading post-category">About</h3>
                   <h1 class="title post-title">Learn about the club</h1>
-                  <p class="has-text-white">Learn how the club formed, and who the executives are.</p>
+                  <p class="has-text-white">Learn more about the club, including how the club formed, and who the executives are.</p>
                   <br>
                   <a href="about.html" class="button is-primary">Read More</a>
                 </div>
@@ -206,41 +202,7 @@
       </div>
 
   </section>
-  <script>
-    $('#welcome-terminal').terminal(function(command, term){
-        var items = ["yes", "no", "maybe", "definitely", "good luck", "you wish", "ha ha", "time will tell"];
-        if (command !== '') {
-            try {
-                
-                if(command==="options"){
-                    this.echo("hello\nflag\ninfo\n8-ball\n");
-                }
-                else if(command==="hello"){
-                    this.echo("Hello! :)");
-                }
-                else if(command==="flag"){
-                    this.echo("flag{adm1n5_n3w_web51te}")
-                }else if(command==="8-ball"){
-                    this.echo("Ask me a question");
-                }else if(command.substring(0,6)==="8-ball"){
-                    this.echo(items[items.length * Math.random() | 0]);
-                }else if(command=="info"){
-                    this.echo("Hello there! Welcome to the Carleton Cybersecurity Club, we are a group of students from Carleton University dedicated to learning about cybersecurity. Look around to learn about what we do!");
-                }else{
-                    this.echo("Command not found, use options to list options");
-                }
-            } catch(e) {
-                this.error(new String(e));
-            }
-        } else {
-           this.echo('');
-        }
-    }, {
-        greetings: '[[;green;]Welcome Terminal, Enter options for help',
-        name: 'js_demo',
-        prompt: '[[;green;]$ '
-    });
-    </script>
+  <script src="assets/js/terminal.js"></script>
 </div>
 </body>
 </html>
