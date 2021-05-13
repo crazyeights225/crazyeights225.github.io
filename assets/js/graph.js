@@ -46,7 +46,7 @@ for (var i = (ctf_table.rows.length)-1; i > 0 ; i--) {
 config = {
   type: 'line',
   data: {
-    labels:  Object.keys(box_stats),
+    labels:  Object.keys(ctf_stats),
     datasets: [{
       data: Object.values(box_stats),
       label: 'Number of Entries',
