@@ -33,11 +33,12 @@ setNull(ctf_stats);
 for (var i = (ctf_table.rows.length)-1; i > 0 ; i--) {
     row = ctf_table.rows[i];
     date_field = row.cells[4].innerHTML;
+    console.log(date_field);
     if (date_field.split(" ")[0] in month_map){
       m = date_field.split(" ")[0]
       date_field = date_field.replace(m, month_map[m]);
     }
-    if (!(date_field in box_stats)) {
+    if (!(date_field in ctf_stats)) {
       ctf_stats[date_field] =  0;
     }
     ctf_stats[date_field]++;
