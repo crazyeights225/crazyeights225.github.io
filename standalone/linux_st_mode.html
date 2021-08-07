@@ -1,0 +1,193 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<title>Linux st_mode calculator</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<a href="https://crazyeights225.github.io"><img src="l9.png" style="max-width: 20%; padding: 5px; min-width: 150px;"></a>
+<hr>
+<div class="d1">
+<h2>🎭 Linux st_mode Calculator</h2>
+<hr>
+<div class="row">
+<div class="column">
+<p class="form-label">Enter a mask:</p>
+<input type="text" placeholder="Enter st_mode flag" id="in"/>
+<select name="format" id="format">
+<option value="octal">octal</option>
+<option value="hex">hex</option>
+</select>
+<button onclick="callHexToMask()">Convert</button>
+
+<p class="form-label">Result:</p>
+<div id="out"></div>
+<br>
+
+<p class="all-flags">All Flags:</p><button onClick="showTable()">Hide/Show Table</button>
+<div id="st_mode_table" style="display: none;">
+<table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">flag</th>
+<th title="Field #2">octal</th>
+<th title="Field #3">definition</th>
+</tr></thead>
+<tbody><tr>
+<td>S_IFMT</td>
+<td>00170000</td>
+<td>bit mask for the file type bit fields</td>
+</tr>
+<tr>
+<td>S_IFSOCK</td>
+<td>0140000</td>
+<td>is socket</td>
+</tr>
+<tr>
+<td>S_IFLNK</td>
+<td>0120000</td>
+<td>is symbolic link</td>
+</tr>
+<tr>
+<td>S_IFREG</td>
+<td>0100000</td>
+<td>is regular file</td>
+</tr>
+<tr>
+<td>S_IFBLK</td>
+<td>0060000</td>
+<td>is block device</td>
+</tr>
+<tr>
+<td>S_IFDIR</td>
+<td>0040000</td>
+<td>is directory</td>
+</tr>
+<tr>
+<td>S_IFCHR</td>
+<td>0020000</td>
+<td>is character device</td>
+</tr>
+<tr>
+<td>S_IFIFO</td>
+<td>0010000</td>
+<td>is FIFO</td>
+</tr>
+<tr>
+<td>S_ISUID</td>
+<td>0004000</td>
+<td>UID bit set</td>
+</tr>
+<tr>
+<td>S_ISGID</td>
+<td>0002000</td>
+<td>group-ID bit set</td>
+</tr>
+<tr>
+<td>S_ISVTX</td>
+<td>0001000</td>
+<td>sticky bit set</td>
+</tr>
+<tr>
+<td>S_IRWXU</td>
+<td>00700</td>
+<td>mask for file owner permissions</td>
+</tr>
+<tr>
+<td>S_IRUSR</td>
+<td>00400</td>
+<td>owner has read permissions</td>
+</tr>
+<tr>
+<td>S_IWUSR</td>
+<td>00200</td>
+<td>owner has write permissions</td>
+</tr>
+<tr>
+<td>S_IXUSR</td>
+<td>00100</td>
+<td>owner has execute permissions</td>
+</tr>
+<tr>
+<td>S_IRWXG</td>
+<td>00070</td>
+<td>mask for group permissions</td>
+</tr>
+<tr>
+<td>S_IRGRP</td>
+<td>00040</td>
+<td>group has read permissions</td>
+</tr>
+<tr>
+<td>S_IWGRP</td>
+<td>00020</td>
+<td>group has write permissions</td>
+</tr>
+<tr>
+<td>S_IXGRP</td>
+<td>00010</td>
+<td>group has execute permissions</td>
+</tr>
+<tr>
+<td>S_IRWXO</td>
+<td>00007</td>
+<td>mask for others permissions</td>
+</tr>
+<tr>
+<td>S_IROTH</td>
+<td>00004</td>
+<td>others have read permissions</td>
+</tr>
+<tr>
+<td>S_IWOTH</td>
+<td>00002</td>
+<td>others have write permissions</td>
+</tr>
+<tr>
+<td>S_IXOTH</td>
+<td>00001</td>
+<td>others have execute permissions</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="column">
+  <p class="form-label">What is it for?</p>
+  This calculator is for decoding the st_mode mask to a human-readable format. It will be probably be useless to 99.99999% of people.
+  The st_mode flags are defined here: include/uapi/linux/stat.h
+  They are used to define file type and file permissions.
+  It is used (as far as I know) when you read the attributes of a file, and when a new file is created.
+  When you read the attributes of a file a struct stat is returned. This struct contains st_mode.
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+struct stat {
+    dev_t     st_dev;     /* ID of device containing file */
+    ino_t     st_ino;     /* inode number */
+    mode_t    st_mode;    /* protection */
+....
+</pre></div><br>
+  For example we have:
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+fstat(3, {st_mode=S_IFREG|0644, st_size=5699248, ...}) = 0</pre></div><br>
+  which would have an st_mode of 010644, which means it a regular file, with permissions rw-r-r-.
+  
+  The other location it is used is when we open a file for creation:
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+int open(const char *pathname, int flags, mode_t mode);
+int creat(const char *pathname, mode_t mode);
+int openat(int dirfd, const char *pathname, int flags, mode_t mode);</pre></div><br>
+  The st_mode flag is set to define the permissions of the new file being created. (See the open docs: https://man7.org/linux/man-pages/man2/open.2.html)
+  The st_mode flag will only appear in raw octal when probes are being used, and even then sometimes a pointer to a struct is in the that field instead of actual data (which is annoying).
+  For example when we make this call:
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+int fd = open("/tmp/test.txt", O_RDWR|O_CREAT);
+
+// it becomes this (or something similiar) in kernel space
+int ret = sys_open(path, flags, mode);
+  
+//which becomes something like when open calls are traced:
+test_me-2737    [000] ....  3556.552147: test_probe: (do_sys_open+0x0/0x290) dfd=0xffffffff986daf80 filename="supervise/status.new" flags=0x1ed mode=0xc0273f48ffffffff
+</pre></div>
+</div>
+</div>
+</div>
+<script src="mode_flags.js"></script>
+</body>
+</html>
