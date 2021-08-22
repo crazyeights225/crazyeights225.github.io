@@ -1,0 +1,157 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<title>Linux st_mode calculator</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<a href="https://crazyeights225.github.io"><img src="l9.png" style="max-width: 20%; padding: 5px; min-width: 150px;"></a>
+<hr>
+<div class="d1">
+<h2>🎭 Linux Open Flags Calculator</h2>
+<hr>
+<div class="row">
+<div class="column">
+<p class="form-label">Enter flags:</p>
+<input type="text" placeholder="Enter flags" id="in"/>
+<select name="format" id="format">
+<option value="octal">octal</option>
+<option value="hex">hex</option>
+<option value="decimal">decimal</option>
+</select>
+<button onclick="callHexToMask()">Convert</button>
+
+<p class="form-label">Result:</p>
+<div id="out"></div>
+<br>
+
+<p class="all-flags">All Flags:</p><button onClick="showTable()">Hide/Show Table</button>
+<div id="flags_table" style="display: none;">
+<p>TO DO, They are described here: https://man7.org/linux/man-pages/man2/open.2.html</p>
+<table class="table table-bordered table-hover table-condensed">
+    <thead><tr><th title="Field #1">alias</th>
+    <th title="Field #2">oct</th>
+    </tr></thead>
+    <tbody><tr>
+    <td>O_PATH</td>
+    <td>010000000</td>
+    </tr>
+    <tr>
+    <td>O_SYNC</td>
+    <td>4010000</td>
+    </tr>
+    <tr>
+    <td>O_CLOEXEC</td>
+    <td>02000000</td>
+    </tr>
+    <tr>
+    <td>O_NOATIME</td>
+    <td>01000000</td>
+    </tr>
+    <tr>
+    <td>O_NOFOLLOW</td>
+    <td>00400000</td>
+    </tr>
+    <tr>
+    <td>O_DIRECTORY</td>
+    <td>00200000</td>
+    </tr>
+    <tr>
+    <td>O_LARGEFILE</td>
+    <td>00100000</td>
+    </tr>
+    <tr>
+    <td>O_DIRECT</td>
+    <td>00040000</td>
+    </tr>
+    <tr>
+    <td>FASYNC</td>
+    <td>00020000</td>
+    </tr>
+    <tr>
+    <td>O_DSYNC</td>
+    <td>00010000</td>
+    </tr>
+    <tr>
+    <td>O_NONBLOCK</td>
+    <td>00004000</td>
+    </tr>
+    <tr>
+    <td>O_APPEND</td>
+    <td>00002000</td>
+    </tr>
+    <tr>
+    <td>O_TRUNC</td>
+    <td>00001000</td>
+    </tr>
+    <tr>
+    <td>O_NOCTTY</td>
+    <td>00000400</td>
+    </tr>
+    <tr>
+    <td>O_EXCL</td>
+    <td>00000200</td>
+    </tr>
+    <tr>
+    <td>O_CREAT</td>
+    <td>00000100</td>
+    </tr>
+    <tr>
+    <td>O_RDWR</td>
+    <td>00000002</td>
+    </tr>
+    <tr>
+    <td>O_ACCMODE</td>
+    <td>00000003</td>
+    </tr>
+    <tr>
+    <td>O_WRONLY</td>
+    <td>00000001</td>
+    </tr>
+    <tr>
+    <td>O_RDONLY</td>
+    <td>00000000</td>
+    </tr>
+    </tbody></table>
+</div>
+</div>
+<div class="column">
+  <p class="form-label">What is it for?</p>
+This calculator is for decoding open <b>file creation flags and file status flags</b> in to a human-readable format. It will be probably be useless to 99.99999% of people.
+These flags are defined here: /include/uapi/asm-generic/fcntl.h (and probably somewhere else also)
+They defined what access we have to a path. They appear in open(), and openat() system calls.
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+    int open(const char *pathname, int flags);
+    int open(const char *pathname, int flags, mode_t mode);
+
+    int openat(int dirfd, const char *pathname, int flags);
+    int openat(int dirfd, const char *pathname, int flags, mode_t mode);
+</pre></div><br>
+  For example we have:
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+int fd = open("/tmp/test.txt", O_RDWR|O_CREAT);</pre></div><br>
+
+They are defined here: https://man7.org/linux/man-pages/man2/open.2.html
+
+They are used in the inode struct and the file struct:
+  <div class="form-div"><pre style="white-space: pre-wrap;">
+struct inode {
+    struct hlist_node       i_hash;           /* hash list */
+    struct list_head        i_list;           /* list of inodes */
+    struct list_head        i_dentry;         /* list of dentries */
+    unsigned long           i_ino;            /* inode number */
+    [SNIPPED]
+    unsigned int            i_flags;          /* filesystem flags */
+
+struct file {
+    struct list_head        f_list;
+    struct dentry           *f_dentry;
+    [SNIPPED]
+    unsigned int            f_flags;        
+</pre></div><br>
+f_flags in file struct: O_XXX flags from open(2) system call copied there (with slight modifications by filp_open()) by dentry_open() and after clearing O_CREAT, O_EXCL, O_NOCTTY, O_TRUNC - there is no point in storing these flags permanently since they cannot be modified by F_SETFL (or queried by F_GETFL) fcntl(2) calls. (Source: https://tldp.org/LDP/lki/lki-3.html)
+</div>
+</div>
+<script src="flags_calc.js"></script>
+</body>
+</html>
