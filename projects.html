@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="crazyeights225">
+    <title>crazyeights - Projects</title>
+    <!-- CSS only -->
+    <link href="projects/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+    <link href="projects/multi-carousel.css" rel="stylesheet">
+    <link href="projects/main.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <nav class="py-2 bg-dark border-bottom">
+        <div class="container d-flex flex-wrap">
+          <ul class="nav me-auto">
+            <a href="https://crazyeights225.github.io/" class="d-block link-dark text-decoration-none" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="projects/l9.png" alt="mdo" height="32">
+              </a>
+          </ul>
+          <ul class="nav">
+            <li class="nav-item"><a href="https://crazyeights225.github.io/" class="nav-link link-light px-2">Home</a></li>
+            <li class="nav-item"><a href="https://crazyeights225.github.io/archive" class="nav-link link-light px-2">Archive</a></li>
+            <li class="nav-item"><a href="https://crazyeights225.github.io/ctf_list.html" class="nav-link link-light px-2">CTF List</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-light px-2 active">Projects</a></li>
+          </ul>
+        </div>
+      </nav>
+      
+    
+      <div class="b-example-divider"></div>
+    
+    
+<div class="col-lg-10 mx-auto p-2 py-md-3">
+<div class="row">
+<div class="col-md-2">
+    <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
+        <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
+        <nav id="TableOfContents">
+<ul>
+  <li><a class="nav-link px-1 py-1 text-muted" href="#2021">2021</a>
+    <ul>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#prophet">Malware Sandbox - Panda</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#ca">CA Anomaly Detection</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#jsmalcatcher">js-mal-catcher</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#fishtrace">fishtrace</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#predatorprey">reinforcement learning: multi-agent predator-prey</a></li>
+    </ul>
+  </li>
+  <li><a class="nav-link px-1 py-1 text-muted" href="#2020">2020</a>
+    <ul>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#fossilgis">fossil-gis</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#ebphtest">ebpH Testsuite</a></li>
+    </ul>
+  </li>
+  <li><a class="nav-link px-1 py-1 text-muted" href="#older">Older</a>
+    <ul>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#magneto">Magneto</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#sbot">s-bot</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#spider">Spider</a></li>
+      <li><a class="nav-link px-1 py-1 text-muted small" href="#misc">misc</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+      </div>
+</div>
+<div class="col-md-10 mx-auto">
+  <main>
+    
+    <h1 class="my-3">Projects</h1>
+    <p class="col-md-8"></p>
+    <p>A relatively complete list of projects I have worked on. Includes papers for classes, personal projects, and a few things from hackathons. Mostly focus on some combinations of algorithms and cybersecurity (my favorite things!).</p>
+    <header id="2021" class="border-bottom py-1 mb-3">
+    <h2>This Year:</h2>
+    </header>
+        <div id="prophet" class="col-md-10">
+          <h3 class="project-title text-center display-6">Malware Sandbox with PANDA</h3>
+          <p>For GeekPeek hackathon 2021, we were finalists!</p>
+<ul>
+<li>Wrote a malware analysis platform using panda-re doing all the analysis ourselves - was awesome, I learnt so much!</li>
+<li>Typical CTI focuses on IoCs and techniques - would it help analysts identify threats if we created a platform that described malware behavior?</li>
+<li>Create a queryable CTI platform</li>
+<li>Include behaviors in addition to IoCs</li>
+<li>Use dynamic and static analysis techniques</li>
+<li>Specs:</li>
+<ul>
+ <li>PANDA - full system introspection</li>
+ <li>Radare2, ioc_exract, pefile</li>
+ <li>Clustered similiar samples from hybrid properties (both dynamic and static)</li>
+ <li>Used sequences of calls to classify malware class (spyware, downloader, trojan, worms, adware, dropper, virus, backdoor), used octatak malware api class for training, used 1D Convolutional Neural Network with > 95% accuracy on validation data</li>
+</ul>
+</li>
+<li>We were recognized for extracting behaviors (ie. ttps) in our static analysis from the binary itself - apparently thats novel (?) </li>
+</ul>
+<p>It was for a hackathon so the interface is a bit rough. The malware analysis portion is more complete.</p>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+
+        <div class="card border-dark">
+          <div class="card-body">
+          <h4>Slides</h4>
+          <p>The slides from the pitch to the judges, has more detail:</p>
+          <a href="slides/1.pdf" class="btn btn-primary">View</a>
+        </div>
+        </div>
+   
+    </div>
+    <div class="row g-5 mt-2">
+        <div id="ca" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">Cellular Automata for Anomaly Detection</h3>
+          <p>Term Paper for Course on Biologically-Inspired Algorithms</p>
+          <p><b>Abstract:</b> This paper describes the use of cellular automata paired with a generative neural network architecture for anomaly-based intrusion detection. The benchmark dataset ADFA-LD consisting of attack and benign Linux system-call traces was used to evaluate this method. Our results show that there was no improvement in the performance of this method compared to past research on this dataset.</p>
+          <ul>
+            <li>Basically we generate CA patterns for syscall sequences and use Generative NN to differentiate between normal and abnormal samples training them on CA patterns (which are just images)</li>
+            <li>We do this with the assumption that there will be unique patterns for attack sequences</li>
+            <li>This assumption did hold, however the results showed no significant improvement over past research, and there other downsides to using this method (space, resources, etc..)</li>
+          </ul>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="row g-5 mt-2">
+        <div id="jsmalcatcher" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">js-mal-catcher</h3>
+          <p><b>Detection of Malicious Javascript</b>, Term paper for course "Machine Learning for Applications in Cybersecurity"</p>
+          <p><b>Abstract:</b>Malicious JavaScript detection is vital to ensure a safe internet browsing experience. Obfuscation techniques have evolved in benign and malicious scripts in recent years, hindering detection efforts. We propose and evaluate a two-tier architecture that incorporates BERT embeddings in a Bi-LSTM neural network using features extracted from bytecode instructions that deem obfuscation irrelevant. While our method did not beat the baseline in all metrics, it scored a 98% f1 score without pretraining an embedding model, making it a viable solution when pretraining on a custom corpus is not feasible.
+            Index Terms—machine learning, obfuscation, cybersecurity</p>
+          <ul>
+            <li>This was a fun but challenging course, I learned alot</li>
+            <li>I did mostly the preprocessing and data collection steps</li>
+            <li>We generated byecode instructions, and collected API call traces by overwriting built-in functions using v8 and puppeteer</li>
+            <li>With these methods we were able to observe the functionality of the script, without performing deobfuscation, and both would highlgiht patterns of calls that may consistent with malicious javascript.</li>
+          </ul>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+          <div class="box">
+              <h3>Exert:</h3>
+              <p>
+                The opposite effect was observed for the bytecode instructions, where benign calls produced over 16 times the amount of bytecode instructions compared to the malicioussamples, with over 99 million bytecode instructions captured, versus only 6 million for malicious scripts. This supports the assumption that while bytecode was able to describe the complete functionality of a sample, the API calls focus on functionality that may be helpful for the classification task. Because of this significant difference in the number of calls captured we must consider any features that appear more frequently in attack samples versus benign samples as significant. These include CallUndefinedReciever0 which appears 1.4 times more frequently in malicious samples than benign samples, and StaGlobal which appears 1.05 times more frequently in malicious samples than benign samples. In JavaScript the receiver is the object in which a property lookup occurs, thus the script is trying to reference an object that is yet to be defined. CallUndefinedReciever0 sets the feedback slot, in which the optimizer collects statistics about the types used. StaGlobal stores the value in the accumulator into the global object with the specified name inthe constant pool. The constant pool handles object caching. Both these instructions support the conclusion that the control flow of malicious scripts is different from benign scripts, and that on average malicious scripts make more calls in the global execution context.
+              </p>
+          </div>
+        </div>
+    </div>
+
+    <div class="row g-5 mt-2">
+        <div id="fishtrace" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">fishtrace</h3>
+          <p>Event tracing and introspection for Linux using libebpf</p>
+          <p>Written in golang, using grpc for event forwarding and mongodb for storage. Uses sockets and buffered queue to merge data streams from multiple sources. Used as a base model for other projects.</p>
+          <p>As shown below a 3-d force graph was used to visualize the relationships between processes, and between applications and files, resulting in a some interesting visuals. Nodes are scaled by number of syscalls they make. Different colors correspond to different types of objects (parent, child, file, etc.)</p>
+          <p>The most dense clusters are Firefox processes</p>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row g-5 mt-2">
+      <div id="predatorprey" class="col-md-10">
+        <h3 class="project-title text-center display-6 py-2">AI Predator-Prey</h3>
+        <p>A simple predator-prey simulation with Q-Learning and Deep Q-Learning.</p>
+
+        <p>In the single-agent environment, we have prey and food. The goal of the prey is to eat the food:</p>
+        <img class="mx-auto d-block img-fluid" src="projects/5btvde.gif">
+
+        <p>In the multi-agent environment, we have prey (green), predator (blue), and food (red). Below shows predators chasing prey:</p>
+        <img class="mx-auto d-block img-fluid" src="projects/5bwc6q.gif">
+      </div>
+    </div>
+    
+    
+    <header id="2020" class="border-bottom py-1 mb-3 mt-3">
+      <h2>Last Year:</h2>
+      </header>
+    
+    <div class="row g-5  mt-2">
+        <div id="fossilgis" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">GIS: Fossil Clustering</h3>
+          <p>For a course in GIS, a rather trivial but well put together project.</p>
+
+<p><strong>An analysis of the clustering of Canadian Fossil Data</strong></p>
+
+<blockquote>
+  <p>Started: Oct 2020, Finished: Dec 2020
+Used: dash, numpy, geopandas</p>
+</blockquote>
+
+<p>Implemeneted and analysed the following algorithms: Graham Scan, k-means, CLARANS, BIRCH, Agglomerative Hierarchical
+Clustering: Average, and Minimum Linkages, and DBScan</p>
+
+<div class="container">
+  <div class="carousel">
+    <div class="carousel__main">
+      <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+        <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <ul class="carousel__slides">
+        <!---></--->
+      </ul>
+      <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg></button>
+    </div>
+    <div class="carousel__thumbnails">
+      <ul class="carousel__slides carousel__slides--thumbnails">
+        <!---></--->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+      </div>
+    
+      <div class="row g-5 mt-2">
+        <div id="ebphtest" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">Honors Project: ebph testsuite</h3>
+          <ul>
+    <li>ebpH TestSuite and Automation Server Done for my Honors Project, Fall 2020.</li>
+    <li>Will provide a more detailed description at a later date.</li>
+    <li>Involved repeatedly training and testing the ebpH Intrusion Detection System. Learned alot of valuable skills, the most important being how to approach defensive security from an offensive perspective. It was a very interesting project, the ebpH IDS is pretty neat. I also wrote a jenkins-like application for scheduling and logging. Below are some snapshots:</li>
+          </ul>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      
+
+    <div class='b-example-divider'></div>
+    <header id="older" class="border-bottom py-1 mb-3 mt-3">
+      <h2>Older:</h2>
+      </header>
+
+    <div class="row g-5  mt-2">
+        <div id="magneto" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">Magneto: Anomaly Detection in Electromagnetic Data</h3>
+          <p>From the Space Apps Hackathon in 2019. We were national finalists.</p>
+          <p>We were given electromagnetic data from weather stations around Canada and tasked with finding anomalies, as well as displaying the data, and predicting the values at a new station.</p>
+          <p>We used the correlation between the values at the different stations to identify anomalies. </p>
+
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+            <div class="card border-dark">
+              <div class="card-body">
+              <h4>Slides</h4>
+              <p>Here are the slides presented to the judges, they explain it alot better than I did above.</p>
+              <a href="slides/2.pdf" class="btn btn-primary">View</a>
+            </div>
+            </div>
+        </div>
+      </div>
+    
+      <div class="row g-5  mt-2">
+        <div id="sbot" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">QA: s-robot Automated Testing Tool</h3>
+    <ul>
+    <li>One day I am going to explain this properly</li>
+    <li>Application which can edit and run Automated tests for web applications</li>
+    <li>Started: June 2019, Finished: August 2019</li>
+    <li>Specs: Java, Serenity BDD, JBehave, Apache POI, sqlite3, Server: Java Spring, handlebars, Web Application Frontend: Tabulator, JQuery</li>
+    <li>Tool to create and run Automated Tests on any Web Application without configuration. Client Requirements: Tests must be able to be written in Excel. The server runs and edits the tests, and calls the automated testing module which reads in the tests and runs them</li>
+  </ul>
+          <img class="img-fluid mx-auto d-block" src="projects/projects_imgs/sbot1.png">
+          <p class="my-3">Create scenarios, stories, and testsuites, and model pages. Reuse steps between stories:</p>
+          <img class="img-fluid mx-auto d-block" src="projects/projects_imgs/sbot2.png">
+          <p class="my-3">Run tests and get results from the web app.</p>
+        </div>
+      </div>
+
+      <div class="row g-5">
+        <div id="spider" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">Noob: Deal Finder: Web Crawler with Django</h3>
+          <p>Not very good looking back now, but my first real project, so it will always be included. Started: June 2018, Finished: June 2018 Specs: Spider written in Python with Beautiful Soup, Findings stored in mySQL database, and displayed using Django.</p>
+          <img class="mx-auto d-block img-fluid" src="projects/projects_imgs/sample1.png">
+        </div>
+      </div>
+
+    <div class='b-example-divider'></div>
+    
+
+    <div class="row g-5 mt-2">
+        <div id="misc" class="col-md-10">
+          <h3 class="project-title text-center display-6 py-2">Misc: Hardly Worth Mentioning:</h3>
+          <p>Very old or very small projects of varying qualities. Mostly involving data analysis of some kind.</p>
+          <div class="container">
+            <div class="carousel">
+              <div class="carousel__main">
+                <button class="carousel__button" type="button" aria-label="Go to previous photo" id="prevButton">
+                  <svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <ul class="carousel__slides">
+                  <!---></--->
+                </ul>
+                <button class="carousel__button" type="button" aria-label="Go to next photo" id="nextButton"><svg class="carousel__arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg></button>
+              </div>
+              <div class="carousel__thumbnails">
+                <ul class="carousel__slides carousel__slides--thumbnails">
+                  <!---></--->
+                </ul>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Updated Jan 2022
+  </footer>
+</div>
+</div>
+</div>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="projects/bootstrap.bundle.min.js"></script>
+<script src="projects/jquery.min.js"></script>
+<script src="projects/multi-carousel.js"></script>
+  </body>
+</html>

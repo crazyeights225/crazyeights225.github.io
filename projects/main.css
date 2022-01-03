@@ -1,0 +1,15 @@
+.darker{
+    background-color: rgba(0, 0, 0, 0.4)!important;
+}
+
+.car-cap{
+    position: absolute!important;
+    bottom: 0rem;
+    right:unset;
+    left: unset;
+}
+
+.project-title {
+    color: #1F51FF;
+    
+}

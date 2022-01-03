@@ -1,0 +1,83 @@
+body {
+    background-color: #fff;
+  }
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5em;
+    width: 100%;
+    --bs-gutter-x: 0em;
+  }
+  .carousel__main {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .carousel__thumbnails {
+    width: 100%;
+  }
+  .carousel__slides {
+    position: relative;
+    display: flex;
+    padding-left: 0.2em!important;
+    align-items: center;
+  }
+  .carousel__slides--thumbnails {
+    position: unset;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+    justify-content: center;
+    gap: 0.325rem;
+    width: 100%;
+    margin-top: 0.325rem;
+  }
+  .carousel__slide {
+    list-style: none;
+  }
+  .carousel__slide--main {
+    position: absolute;
+    display: flex;
+    visibility: visible;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+  }
+  .carousel__slide--visible {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    padding-left: 0.2em!important;
+  }
+  .carousel__slide--thumbnail {
+    position: relative;
+    filter: brightness(0.3);
+    transition: filter 0.25s linear, transform 0.15s linear;
+  }
+  .carousel__slide--thumbnail:hover {
+    cursor: pointer;
+    filter: brightness(1);
+    z-index: 1;
+  }
+  .carousel__slide--visible.carousel__slide--thumbnail {
+    filter: brightness(0.8);
+    animation: none;
+  }
+  .carousel__img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+  }
+  .carousel__button {
+    border: none;
+    background: none;
+    margin: 0.2em;
+  }
+  .carousel__button:hover {
+    cursor: pointer;
+  }
+  .carousel__arrow {
+    width: 1.6em;
+    height: 1.6em;
+    color: #333;
+  }
